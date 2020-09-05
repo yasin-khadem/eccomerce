@@ -5,4 +5,8 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+@import 'dashboard/material-dashboard.min.css';
+@import 'dashboard/material-dashboard-rtl.css';
+@import 'styles.scss';
+@import '~@fortawesome/fontawesome-free/css/all.css';
