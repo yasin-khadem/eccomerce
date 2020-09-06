@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('bootstrap-material-design');
+
 // require('./plugin/material-dashboard.min.js'); 
 
 import router from './router/router' 

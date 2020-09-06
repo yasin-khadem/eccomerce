@@ -2,6 +2,8 @@
     <div class="form-check">
         <label class="form-check-label">
             {{ label }}
+        <div class="d-inline px-1">
+        </div>
             <input class="form-check-input"
                 type="checkbox"
                 :id="name"

@@ -1,7 +1,7 @@
 <template>
     <div class="w-100" id="bg-navbar">
         <div class="container" >
-            <nav class="row navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
                 <router-link class="navbar-brand" :to="{ name: 'home' }">وب آموز</router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -64,6 +64,6 @@
 
 <style scoped>
     #bg-navbar {
-        background-color: #212529;
+        background-color: #343a40;
     }  
 </style>

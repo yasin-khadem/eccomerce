@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/applayout.js": "/js/applayout.js",
+    "/js/auth-routes.js": "/js/auth-routes.js",
     "/js/home.js": "/js/home.js"
 }

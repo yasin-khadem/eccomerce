@@ -1,7 +1,7 @@
 <template>
 <div>
   <navbar></navbar>
-  <router-view id="mainpagemargin" :key="$route.fullPath"></router-view>
+  <router-view  :key="$route.fullPath"></router-view>
 </div>
 </template>
 
@@ -11,12 +11,21 @@ export default {
     name:"AppLayout",
     components:{
         Navbar
+    },
+    data() {
+      return {
+        currentUrl: window.history.href
+      }
+    },
+   
+  watch: {
+    currentUrl: function() {
+      console.log(this.currentUrl);
     }
+  }
 }
 </script>
 
 <style scoped>
-  #mainpagemargin{
-        margin-top: 55px;
-    }   
+
 </style>

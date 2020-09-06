@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/applayout":"js/applayout","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2068,6 +2068,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
 //
 //
 //
@@ -46624,7 +46626,9 @@ var render = function() {
     { staticClass: "form-check" },
     [
       _c("label", { staticClass: "form-check-label" }, [
-        _vm._v("\n        " + _vm._s(_vm.label) + "\n        "),
+        _vm._v("\n        " + _vm._s(_vm.label) + "\n    "),
+        _c("div", { staticClass: "d-inline px-1" }),
+        _vm._v(" "),
         _c(
           "input",
           _vm._b(
@@ -62514,6 +62518,10 @@ var AppLayout = function AppLayout() {
   return __webpack_require__.e(/*! import() | js/applayout */ "js/applayout").then(__webpack_require__.bind(null, /*! ../views/layout/AppLayout.vue */ "./resources/js/views/layout/AppLayout.vue"));
 };
 
+var AuthRoutes = function AuthRoutes() {
+  return __webpack_require__.e(/*! import() | js/auth-routes */ "js/auth-routes").then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -62521,6 +62529,11 @@ var AppLayout = function AppLayout() {
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/auth/:url',
+    name: 'auth',
+    props: true,
+    component: AuthRoutes
   }]
 }]);
 

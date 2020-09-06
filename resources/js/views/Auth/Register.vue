@@ -1,0 +1,49 @@
+<template>
+  <form
+    class="d-flex flex-column align-items-center mt-5 login-width mx-auto  py-5 container"
+    @submit.prevent="register"
+  >
+    <h3>فرم ثبت نام</h3>
+    <base-input name="name" type="name" label="نام" v-model="form.name"></base-input>
+    <base-input name="email" type="email" label="ایمیل" v-model="form.email"></base-input>
+    <base-input name="password" type="password" label="رمز عبور" v-model="form.password"></base-input>
+    <base-input
+      name="password_confirmation"
+      type="password"
+      label="تایید رمز عبور"
+      v-model="form.password_confirmation"
+    ></base-input>
+    <base-btn :loading="form.busy" class="btn-block btn-success">ثبت نام</base-btn>
+  </form>
+</template>
+
+<script>
+import { Form } from "vform";
+
+export default {
+  name: "Register",
+
+  data() {
+    return {
+      form: new Form({
+        name: null,
+        email: null,
+        password: null,
+        password_confirmation: null,
+      }),
+    };
+  },
+
+  methods: {
+    register() {
+      //
+    },
+  },
+};
+</script>
+
+<style>
+.login-width {
+  max-width: 360px;
+}
+</style>
