@@ -1,12 +1,12 @@
 <template>
 <div>
   <navbar></navbar>
-    <router-view :key="$route.fullPath"></router-view>
+  <router-view id="mainpagemargin" :key="$route.fullPath"></router-view>
 </div>
 </template>
 
 <script>
-import Navbar from '../../components/Navbar'
+import Navbar from '@/components/Navbar'
 export default {
     name:"AppLayout",
     components:{
@@ -15,6 +15,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  #mainpagemargin{
+        margin-top: 55px;
+    }   
 </style>

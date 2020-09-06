@@ -16687,3 +16687,30 @@ a.text-dark:focus {
   }
 }
 
+@font-face {
+  font-family: "iransans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/iransans.ttf?e59513c82578df5dafb6b8da951be9b6);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: iransans !important;
+}
+
+.navbar {
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.28), 0 7px 10px -5px rgba(0, 0, 0, 0.43);
+}
+
