@@ -72,6 +72,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
+  metaInfo: {
+    title: "فرم ثبت نام"
+  },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
@@ -124,6 +127,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
+  metaInfo: {
+    title: "فرم ورود"
+  },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
@@ -289,7 +295,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Home"
+  name: "Home",
+  metaInfo: {
+    title: 'صفحه اصلی'
+  }
 });
 
 /***/ }),

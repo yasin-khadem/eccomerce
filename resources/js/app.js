@@ -2,10 +2,11 @@ require('./bootstrap');
 require('bootstrap-material-design');
 
 // require('./plugin/material-dashboard.min.js'); 
-
+import VueMeta from 'vue-meta'
 import router from './router/router' 
 
 window.Vue = require('vue');
+Vue.use(VueMeta);
 
 
 const files = require.context('./components', true, /Base[A-Z]\w+\.vue$/i)

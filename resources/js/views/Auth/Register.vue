@@ -22,6 +22,9 @@ import { Form } from "vform";
 
 export default {
   name: "Register",
+  metaInfo: {
+    title: "فرم ثبت نام",
+  },
 
   data() {
     return {

@@ -22,6 +22,9 @@
 import { Form } from "vform";
 export default {
   name: "Login",
+  metaInfo: {
+    title: "فرم ورود",
+  },
   data() {
     return {
       form: new Form({
