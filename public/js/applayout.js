@@ -179,7 +179,10 @@ var render = function() {
     _c("div", { staticClass: "container" }, [
       _c(
         "nav",
-        { staticClass: "row navbar navbar-expand-lg navbar-dark bg-dark" },
+        {
+          staticClass: "row navbar navbar-expand-lg navbar-dark bg-dark",
+          attrs: { dir: "ltr" }
+        },
         [
           _c(
             "router-link",
@@ -216,7 +219,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "form-inline my-2 my-lg-0" },
+                {
+                  staticClass: "form-inline my-2 my-lg-0",
+                  attrs: { dir: "rtl" }
+                },
                 [
                   _c(
                     "router-link",

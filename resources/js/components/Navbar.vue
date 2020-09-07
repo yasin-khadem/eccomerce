@@ -1,7 +1,7 @@
 <template>
     <div class="w-100" id="bg-navbar">
         <div class="container" >
-            <nav class="row navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav class="row navbar navbar-expand-lg navbar-dark bg-dark" dir="ltr">
                 <router-link class="navbar-brand" :to="{ name: 'home' }">وب آموز</router-link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
                             <router-link class="nav-link" :to="{ name: 'home' }">صفحه اصلی</router-link>
                         </li>
                     </ul>
-                    <div class="form-inline my-2 my-lg-0">
+                    <div class="form-inline my-2 my-lg-0" dir="rtl">
                  <!--       <template v-if="! isLoggedIn">  -->
                             <router-link :to="{ name: 'auth', params: { url: 'register' } }">
                                 <base-btn class="my-2 my-sm-0 mr-2" btn="success">ثبت نام</base-btn>

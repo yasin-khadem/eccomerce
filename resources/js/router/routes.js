@@ -1,3 +1,5 @@
+import NotFound from "../views/errors/NotFound"
+import AccessDenied from "../views/errors/AccessDenied"
 const Home = () => import(/* webpackChunkName: "js/home" */ '../views/Home.vue');
 const AppLayout = () => import(/* webpackChunkName: "js/applayout" */ '../views/layout/AppLayout.vue');
 const AuthRoutes = () => import(/* webpackChunkName: "js/auth-routes" */ '../views/Auth/AuthRoutes.vue');
@@ -18,5 +20,20 @@ export default [
                 component: AuthRoutes,
             },
         ]
+    },
+    {
+        path: '*',
+        name: 'not-found',
+        component: NotFound
+    },
+    {
+        path: '/404',
+        name: 'error404',
+        component: NotFound
+    },
+    {
+        path: '/403',
+        name: 'access-denied',
+        component: AccessDenied
     }
 ]

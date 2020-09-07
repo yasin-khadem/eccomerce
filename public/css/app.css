@@ -16711,7 +16711,7 @@ h6,
 }
 
 .navbar {
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.28), 0 7px 10px -5px rgba(0, 0, 0, 0.43);
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.226), 0 7px 10px -5px rgba(0, 0, 0, 0.43);
 }
 
 .form-check .form-check-label span {
@@ -16726,5 +16726,13 @@ h6,
 
 html[dir=rtl] .form-check-label {
   padding-right: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  border: 1px solid #b7bfc9;
 }
 

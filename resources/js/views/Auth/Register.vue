@@ -1,6 +1,6 @@
 <template>
   <form
-    class="d-flex flex-column align-items-center mt-5 login-width mx-auto  py-5 container"
+    class="d-flex flex-column align-items-center mt-5 login-width mx-auto  py-2 container"
     @submit.prevent="register"
   >
     <h3>فرم ثبت نام</h3>
@@ -13,7 +13,7 @@
       label="تایید رمز عبور"
       v-model="form.password_confirmation"
     ></base-input>
-    <base-btn :loading="form.busy" class="btn-block btn-success">ثبت نام</base-btn>
+    <base-btn :loading="form.busy" class="btn-block" btn="success mr-top">ثبت نام</base-btn>
   </form>
 </template>
 
@@ -45,5 +45,8 @@ export default {
 <style>
 .login-width {
   max-width: 360px;
+}
+.mr-top{
+  margin-top: 1rem;
 }
 </style>

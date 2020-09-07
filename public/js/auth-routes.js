@@ -12,10 +12,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_Auth_login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/views/Auth/login */ "./resources/js/views/Auth/login.vue");
 /* harmony import */ var _views_Auth_Register__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/views/Auth/Register */ "./resources/js/views/Auth/Register.vue");
 /* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/views/Home */ "./resources/js/views/Home.vue");
+/* harmony import */ var _views_errors_NotFound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/views/errors/NotFound */ "./resources/js/views/errors/NotFound.vue");
 //
 //
 //
 //
+
 
 
 
@@ -25,11 +27,12 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Login: _views_Auth_login__WEBPACK_IMPORTED_MODULE_0__["default"],
     Register: _views_Auth_Register__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Home: _views_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Home: _views_Home__WEBPACK_IMPORTED_MODULE_2__["default"],
+    NotFound: _views_errors_NotFound__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   computed: {
     componentName: function componentName() {
-      return ['login', 'register'].includes(this.url) ? this.url : 'home';
+      return ['login', 'register'].includes(this.url) ? this.url : 'not-found';
     }
   }
 });
@@ -303,7 +306,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width {\r\n  max-width: 360px;\n}\r\n", ""]);
+exports.push([module.i, "\n.login-width {\r\n  max-width: 360px;\n}\n.mr-top{\r\n  margin-top: 1rem;\n}\r\n", ""]);
 
 // exports
 
@@ -432,7 +435,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "d-flex flex-column align-items-center mt-5 login-width mx-auto  py-5 container",
+        "d-flex flex-column align-items-center mt-5 login-width mx-auto  py-2 container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -494,8 +497,8 @@ var render = function() {
       _c(
         "base-btn",
         {
-          staticClass: "btn-block btn-success",
-          attrs: { loading: _vm.form.busy }
+          staticClass: "btn-block",
+          attrs: { loading: _vm.form.busy, btn: "success mr-top" }
         },
         [_vm._v("ثبت نام")]
       )

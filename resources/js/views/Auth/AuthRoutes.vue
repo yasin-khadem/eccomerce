@@ -6,15 +6,16 @@
 import Login from '@/views/Auth/login'
 import Register from '@/views/Auth/Register'
 import Home from '@/views/Home'
+import NotFound from '@/views/errors/NotFound'
 export default {
 name:"AuthRoutes",
 props:['url'],
 components:{
-    Login,Register,Home
+    Login,Register,Home,NotFound
 },
 computed: {
     componentName() {
-        return ['login','register'].includes(this.url) ? this.url : 'home';
+        return ['login','register'].includes(this.url) ? this.url : 'not-found';
     }
 },
 }
