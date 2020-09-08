@@ -3,7 +3,7 @@
     <div class="row justify-content-center m-4">
       <h3>دسترسی لازم را برای ورود به این بخش ندارید!!!</h3>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mx-2">
       <svg
         id="Capa_1"
         enable-background="new 0 0 512 512"
