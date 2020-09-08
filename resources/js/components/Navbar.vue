@@ -61,7 +61,11 @@ export default {
   computed: {
     ...mapGetters("auth", ["user", "isLoggedIn"]),
   },
-  
+  watch:{
+      '$route'(){
+          $('#navbarSupportedContent').collapse('hide');
+      }
+    },
   methods: {
     logout() {
       this.$store.dispatch("auth/logout").then(() => {

@@ -46,6 +46,13 @@ export const actions = {
     },
     logout({ commit }) {
         commit('LOGOUT_USER')
+    },
+    getUser({commit}){
+        return axios.get('/api/me').then(({data})=>{
+            commit('SET_USER',data)
+        }).catch(()=>{
+            commit('LOGOUT_USER');
+        })
     }
 };
 export const getters = {

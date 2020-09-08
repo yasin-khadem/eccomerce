@@ -66454,6 +66454,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
+router.beforeEach(function (to, from, next) {
+  return next();
+});
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
 /***/ }),
@@ -66573,6 +66576,15 @@ var actions = {
   logout: function logout(_ref5) {
     var commit = _ref5.commit;
     commit('LOGOUT_USER');
+  },
+  getUser: function getUser(_ref6) {
+    var commit = _ref6.commit;
+    return axios.get('/api/me').then(function (_ref7) {
+      var data = _ref7.data;
+      commit('SET_USER', data);
+    })["catch"](function () {
+      commit('LOGOUT_USER');
+    });
   }
 };
 var getters = {

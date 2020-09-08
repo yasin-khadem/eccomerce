@@ -76,6 +76,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("auth", ["user", "isLoggedIn"])),
+  watch: {
+    '$route': function $route() {
+      $('#navbarSupportedContent').collapse('hide');
+    }
+  },
   methods: {
     logout: function logout() {
       var _this = this;
