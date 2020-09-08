@@ -86,7 +86,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    register: function register() {//
+    register: function register() {
+      this.$store.dispatch('auth/register', this.form).then(function () {});
     }
   }
 });
@@ -140,7 +141,15 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    login: function login() {}
+    login: function login() {
+      var _this = this;
+
+      this.$store.dispatch('auth/login', this.form).then(function () {
+        _this.$router.push({
+          name: 'home'
+        });
+      });
+    }
   }
 });
 

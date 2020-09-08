@@ -39,7 +39,11 @@ export default {
 
   methods: {
     register() {
-      //
+      
+      this.$store.dispatch('auth/register',this.form).then(()=>{
+        
+      })
+    
     },
   },
 };

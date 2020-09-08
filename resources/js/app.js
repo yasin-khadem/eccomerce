@@ -4,6 +4,7 @@ require('bootstrap-material-design');
 // require('./plugin/material-dashboard.min.js'); 
 import VueMeta from 'vue-meta'
 import router from './router/router' 
+import store from './store/store' 
 
 window.Vue = require('vue');
 Vue.use(VueMeta);
@@ -14,5 +15,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });

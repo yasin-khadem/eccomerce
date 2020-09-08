@@ -35,7 +35,11 @@ export default {
     };
   },
   methods: {
-    login() {},
+    login() {
+      this.$store.dispatch('auth/login',this.form).then(()=>{
+        this.$router.push({name: 'home'});
+      })
+    },
   },
 };
 </script>
