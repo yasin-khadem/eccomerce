@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Traits\TokenTrait;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class RegisterController extends Controller
             return $response;
         }
 
-        return [$user, $this->getContent()];
+        return new UserResource($user, $this->getContent());
     }
     protected function createUser($request)
     {

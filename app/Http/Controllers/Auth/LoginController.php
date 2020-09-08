@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -26,7 +27,7 @@ class LoginController extends Controller
         }
         
 
-        return [$user , $this->getContent()];
+        return new UserResource($user, $this->getContent()); 
 
     }
     protected function getUser($request){
