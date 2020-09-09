@@ -9,21 +9,21 @@ export default [
     {
         path: '/',
         component: AppLayout,
-        // meta:{
-        //     middleware:[
-        //         auth
-        //     ]
-        // },
+        meta:{
+            middleware:[
+                auth
+            ]
+        },
         children:[
             {
                 path: '/',
                 name: 'home',
                 component: Home,
-                // meta:{
-                //     middleware:[
-                //         guest
-                //     ]
-                // }
+                meta:{
+                    middleware:[
+                        guest
+                    ]
+                }
             },
             {
                 path: '/auth/:url',
