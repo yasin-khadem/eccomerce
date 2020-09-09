@@ -67339,7 +67339,7 @@ function middlewarePipeline(context, middleware, index) {
   };
 
   return nextMiddleware(_objectSpread(_objectSpread({}, context), {}, {
-    next: nextPipeline
+    pipe: nextPipeline
   }));
 }
 
@@ -67415,7 +67415,7 @@ router.beforeEach(function (to, from, next) {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__["default"]
   };
   return middleware[0](_objectSpread(_objectSpread({}, context), {}, {
-    next: Object(_middlewarePipeline__WEBPACK_IMPORTED_MODULE_5__["default"])(context, middleware, 1)
+    pipe: Object(_middlewarePipeline__WEBPACK_IMPORTED_MODULE_5__["default"])(context, middleware, 1)
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -67455,21 +67455,18 @@ var AuthRoutes = function AuthRoutes() {
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
-  meta: {
-    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-  },
   children: [{
     path: '/',
     name: 'home',
-    component: Home,
-    meta: {
-      middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_3__["default"]]
-    }
+    component: Home
   }, {
     path: '/auth/:url',
     name: 'auth',
     props: true,
-    component: AuthRoutes
+    component: AuthRoutes,
+    meta: {
+      middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_3__["default"]]
+    }
   }]
 }, {
   path: '*',
@@ -67515,7 +67512,7 @@ var mutations = {
   },
   SET_TOKEN: function SET_TOKEN(state, token) {
     state.token = token;
-    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('token', token);
   },
   LOGOUT_USER: function LOGOUT_USER(state) {
     state.user = null;

@@ -5,5 +5,5 @@ export default function middlewarePipeline(context,middleware,index){
         return context.next
     }
     let nextPipeline = () => middlewarePipeline(context,middleware,++index);
-    return nextMiddleware({...context,next: nextPipeline});
+    return nextMiddleware({...context,pipe: nextPipeline});
 }

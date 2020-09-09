@@ -9,27 +9,23 @@ export default [
     {
         path: '/',
         component: AppLayout,
-        meta:{
-            middleware:[
-                auth
-            ]
-        },
         children:[
             {
                 path: '/',
                 name: 'home',
                 component: Home,
-                meta:{
-                    middleware:[
-                        guest
-                    ]
-                }
+                
             },
             {
                 path: '/auth/:url',
                 name: 'auth',
                 props: true,
                 component: AuthRoutes,
+                meta: {
+                    middleware: [
+                        guest
+                    ]
+                }
             },
         ]
     },
