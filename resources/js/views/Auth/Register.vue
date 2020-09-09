@@ -41,7 +41,7 @@ export default {
     register() {
       
       this.$store.dispatch('auth/register',this.form).then(()=>{
-        
+                this.$router.push({name: 'home'});
       })
     
     },

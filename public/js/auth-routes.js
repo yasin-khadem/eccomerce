@@ -87,7 +87,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     register: function register() {
-      this.$store.dispatch('auth/register', this.form).then(function () {});
+      var _this = this;
+
+      this.$store.dispatch('auth/register', this.form).then(function () {
+        _this.$router.push({
+          name: 'home'
+        });
+      });
     }
   }
 });

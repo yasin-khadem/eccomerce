@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -67197,6 +67197,7 @@ function auth(_ref) {
       store = _ref.store;
 
   if (!store.getters['auth/isLoggedIn']) {
+    console.log('yessss');
     return next({
       name: 'auth',
       params: {
@@ -67387,6 +67388,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  linkExactActiveClass: 'active',
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
@@ -67452,6 +67454,14 @@ var AuthRoutes = function AuthRoutes() {
   return __webpack_require__.e(/*! import() | js/auth-routes */ "js/auth-routes").then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
+var DashboardIndex = function DashboardIndex() {
+  return __webpack_require__.e(/*! import() | js/Dashboard-index */ "js/Dashboard-index").then(__webpack_require__.bind(null, /*! ../views/dashboard/DashboardIndex.vue */ "./resources/js/views/dashboard/DashboardIndex.vue"));
+};
+
+var Dashboard = function Dashboard() {
+  return __webpack_require__.e(/*! import() | js/Dashboard */ "js/Dashboard").then(__webpack_require__.bind(null, /*! ../views/dashboard/Dashboard.vue */ "./resources/js/views/dashboard/Dashboard.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -67467,6 +67477,17 @@ var AuthRoutes = function AuthRoutes() {
     meta: {
       middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_3__["default"]]
     }
+  }, {
+    path: '/dashboard',
+    component: Dashboard,
+    children: [{
+      path: 'index',
+      name: 'dashboard-index',
+      component: DashboardIndex,
+      meta: {
+        middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      }
+    }]
   }]
 }, {
   path: '*',

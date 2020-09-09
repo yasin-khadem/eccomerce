@@ -16,10 +16,23 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <!--     <li class="nav-item active">
-                            <router-link class="nav-link" :to="{ name: 'home' }">صفحه اصلی</router-link>
-            </li>-->
+          <ul class="mt-2 navbar-nav mr-auto">
+           <template v-if="isLoggedIn">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
+             <template class="mr-2"> داشبورد </template>
+                        <i class="fa fa-tachometer-alt mx-2"></i>
+              </router-link>
+            </li>
+            
+             <li class="nav-item">
+              <a class="nav-link" @click.prevent="logout">
+             <template class="mr-2"> خروج </template>
+                        <i class="fa fa-sign-out-alt mx-2"></i>
+              </a>
+            </li>
+            
+           </template>
           </ul>
           <div class="form-inline my-2 my-lg-0" dir="rtl">
             <template v-if="! isLoggedIn">
@@ -85,5 +98,16 @@ export default {
 }
 .background-dropdown-menu-color {
   background-color: rgba(0, 0, 0, 0.185);
+}
+ul>li{
+
+}
+ul>li:hover{
+  background: #9b27b0;
+  transition: 500ms;
+
+}
+.nav-item .active{
+  background: #9b27b0c5;
 }
 </style>

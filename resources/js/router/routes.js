@@ -5,6 +5,9 @@ import guest from '../middleware/guest'
 const Home = () => import(/* webpackChunkName: "js/home" */ '../views/Home.vue');
 const AppLayout = () => import(/* webpackChunkName: "js/applayout" */ '../views/layout/AppLayout.vue');
 const AuthRoutes = () => import(/* webpackChunkName: "js/auth-routes" */ '../views/Auth/AuthRoutes.vue');
+const DashboardIndex = () => import(/* webpackChunkName: "js/Dashboard-index" */ '../views/dashboard/DashboardIndex.vue');
+const Dashboard = () => import(/* webpackChunkName: "js/Dashboard" */ '../views/dashboard/Dashboard.vue');
+
 export default [
     {
         path: '/',
@@ -27,6 +30,26 @@ export default [
                     ]
                 }
             },
+            {
+                path: '/dashboard',
+                component: Dashboard ,
+                children:[
+                    {
+                        path: 'index',
+                        name: 'dashboard-index',
+                        component: DashboardIndex,
+                        meta: {
+                            middleware: [
+                                auth
+                            ]
+                        },
+                      
+                    },
+                  
+                    
+                ]
+
+            }
         ]
     },
     {

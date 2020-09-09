@@ -67,6 +67,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -145,7 +158,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: rgba(0, 0, 0, 0.185);\n}\n", ""]);
+exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: rgba(0, 0, 0, 0.185);\n}\nul>li[data-v-6dde423b]{\n}\nul>li[data-v-6dde423b]:hover{\n  background: #9b27b0;\n  transition: 500ms;\n}\n.nav-item .active[data-v-6dde423b]{\n  background: #9b27b0c5;\n}\n", ""]);
 
 // exports
 
@@ -221,7 +234,62 @@ var render = function() {
               attrs: { id: "navbarSupportedContent" }
             },
             [
-              _c("ul", { staticClass: "navbar-nav mr-auto" }),
+              _c(
+                "ul",
+                { staticClass: "mt-2 navbar-nav mr-auto" },
+                [
+                  _vm.isLoggedIn
+                    ? [
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: { name: "dashboard-index" } }
+                              },
+                              [
+                                [_vm._v(" داشبورد ")],
+                                _vm._v(" "),
+                                _c("i", {
+                                  staticClass: "fa fa-tachometer-alt mx-2"
+                                })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link",
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.logout($event)
+                                }
+                              }
+                            },
+                            [
+                              [_vm._v(" خروج ")],
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fa fa-sign-out-alt mx-2"
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]
+                    : _vm._e()
+                ],
+                2
+              ),
               _vm._v(" "),
               _c(
                 "div",
