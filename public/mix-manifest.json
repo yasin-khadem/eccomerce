@@ -1,10 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/js/Dashboard.js": "/js/Dashboard.js",
     "/js/Dashboard-index.js": "/js/Dashboard-index.js",
     "/js/applayout.js": "/js/applayout.js",
     "/js/auth-routes.js": "/js/auth-routes.js",
     "/js/home.js": "/js/home.js",
-    "/js/Dashboard.js": "/js/Dashboard.js",
-    "/js/Dashboard-index2.js": "/js/Dashboard-index2.js"
+    "/js/admin-Dashboard.js": "/js/admin-Dashboard.js",
+    "/js/admin-Dashboard-index.js": "/js/admin-Dashboard-index.js",
+    "/js/admin-user-routes.js": "/js/admin-user-routes.js",
+    "/js/admin-user-index.js": "/js/admin-user-index.js",
+    "/js/admin-user-routes~js/applayout.js": "/js/admin-user-routes~js/applayout.js",
+    "/js/admin-user-index~js/admin-user-routes~js/applayout.js": "/js/admin-user-index~js/admin-user-routes~js/applayout.js",
+    "/js/admin-user-index~js/applayout.js": "/js/admin-user-index~js/applayout.js",
+    "/js/admin-user.js": "/js/admin-user.js"
 }

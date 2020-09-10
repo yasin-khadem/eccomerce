@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-user":"js/admin-user","js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -67462,10 +67462,27 @@ var Dashboard = function Dashboard() {
   return __webpack_require__.e(/*! import() | js/Dashboard */ "js/Dashboard").then(__webpack_require__.bind(null, /*! ../views/dashboard/Dashboard.vue */ "./resources/js/views/dashboard/Dashboard.vue"));
 };
 
+var AdminDashboardIndex = function AdminDashboardIndex() {
+  return __webpack_require__.e(/*! import() | js/admin-Dashboard-index */ "js/admin-Dashboard-index").then(__webpack_require__.bind(null, /*! ../views/admin/AdminDashboardIndex.vue */ "./resources/js/views/admin/AdminDashboardIndex.vue"));
+};
+
+var AdminDashboard = function AdminDashboard() {
+  return __webpack_require__.e(/*! import() | js/admin-Dashboard */ "js/admin-Dashboard").then(__webpack_require__.bind(null, /*! ../views/admin/AdminDashboard.vue */ "./resources/js/views/admin/AdminDashboard.vue"));
+};
+
+var AdminUser = function AdminUser() {
+  return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/admin/User/AdminUser.vue */ "./resources/js/views/admin/User/AdminUser.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
   children: [{
+    path: '/admin/user/:url',
+    name: 'admin-user',
+    component: AdminUser,
+    props: true
+  }, {
     path: '/',
     name: 'home',
     component: Home
@@ -67484,6 +67501,17 @@ var Dashboard = function Dashboard() {
       path: 'index',
       name: 'dashboard-index',
       component: DashboardIndex,
+      meta: {
+        middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      }
+    }]
+  }, {
+    path: '/admin/dashboard',
+    component: AdminDashboard,
+    children: [{
+      path: 'index',
+      name: 'admin-dashboard-index',
+      component: AdminDashboardIndex,
       meta: {
         middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
       }

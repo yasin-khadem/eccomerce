@@ -24,6 +24,12 @@
                         <i class="fa fa-tachometer-alt mx-2"></i>
               </router-link>
             </li>
+               <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'admin-user' , params: {url: 'index'}}">
+             <template class="mr-2"> کاربران </template>
+                        <i class="fa fa-users mx-2"></i>
+              </router-link>
+            </li>
             
              <li class="nav-item">
               <a class="nav-link" @click.prevent="logout">
@@ -31,6 +37,7 @@
                         <i class="fa fa-sign-out-alt mx-2"></i>
               </a>
             </li>
+            
             
            </template>
           </ul>

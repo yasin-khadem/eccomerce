@@ -7,12 +7,20 @@ const AppLayout = () => import(/* webpackChunkName: "js/applayout" */ '../views/
 const AuthRoutes = () => import(/* webpackChunkName: "js/auth-routes" */ '../views/Auth/AuthRoutes.vue');
 const DashboardIndex = () => import(/* webpackChunkName: "js/Dashboard-index" */ '../views/dashboard/DashboardIndex.vue');
 const Dashboard = () => import(/* webpackChunkName: "js/Dashboard" */ '../views/dashboard/Dashboard.vue');
-
+const AdminDashboardIndex = () => import(/* webpackChunkName: "js/admin-Dashboard-index" */ '../views/admin/AdminDashboardIndex.vue');
+const AdminDashboard = () => import(/* webpackChunkName: "js/admin-Dashboard" */ '../views/admin/AdminDashboard.vue');
+const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views/admin/User/AdminUser.vue');
 export default [
     {
         path: '/',
         component: AppLayout,
         children:[
+            {
+                path: '/admin/user/:url',
+                name: 'admin-user',
+                component: AdminUser,
+                props: true
+            },
             {
                 path: '/',
                 name: 'home',
@@ -42,16 +50,31 @@ export default [
                             middleware: [
                                 auth
                             ]
-                        },
-                      
+                        },                      
                     },
-                  
-                    
                 ]
+            },
+            {
+                path: '/admin/dashboard',
+                component: AdminDashboard,
+                children: [
+                    {
+                        path: 'index',
+                        name: 'admin-dashboard-index',
+                        component: AdminDashboardIndex,
+                        meta: {
+                            middleware: [
+                                auth
+                            ]
+                        },
 
-            }
+                    },
+                         ]
+            },
+            
         ]
     },
+ 
     {
         path: '*',
         name: 'not-found',

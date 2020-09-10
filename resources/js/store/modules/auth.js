@@ -9,12 +9,10 @@ export const mutations = {
     SET_USER(state, user) {
         state.user = user
         state.isLoggedIn = true;
-
         localStorage.setItem('user', JSON.stringify(user))
     },
     SET_TOKEN(state, token) {
         state.token = token
-
         localStorage.setItem('token', token)
     },
     LOGOUT_USER(state) {
