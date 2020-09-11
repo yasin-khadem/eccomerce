@@ -18,7 +18,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_admin'
+    ];
+    protected $appends = [
+        'type'
     ];
 
     /**
@@ -40,5 +43,9 @@ class User extends Authenticatable
     ];
     public function setPasswordAttribute($password){
         $this->attributes['password'] = bcrypt($password);
+    }
+    public function getTypeAttribute(){
+        return $this->is_admin ? 'ادمین' 
+        : 'کاربر عادی';
     }
 }

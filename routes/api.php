@@ -12,3 +12,4 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('login', 'LoginController@login');
     Route::post('register', 'RegisterController@register');
 });
+Route::get('admin/users','Admin\UserController@index');
