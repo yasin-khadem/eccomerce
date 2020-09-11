@@ -165,7 +165,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: rgba(0, 0, 0, 0.185);\n}\nul>li[data-v-6dde423b]{\n}\nul>li[data-v-6dde423b]:hover{\n  background: #9b27b0;\n  transition: 500ms;\n}\n.nav-item .active[data-v-6dde423b]{\n  background: #9b27b0c5;\n}\n", ""]);
+exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: #fff;\nbox-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);\n}\nul>li[data-v-6dde423b]{\n}\nul>li[data-v-6dde423b]:hover{\n  background: #9b27b0;\n  transition: 500ms;\n}\n.nav-item .active[data-v-6dde423b]{\n  background: #9b27b0c5;\n}\n", ""]);
 
 // exports
 

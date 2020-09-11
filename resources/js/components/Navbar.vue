@@ -104,7 +104,10 @@ export default {
   background-color: #9c27b0;
 }
 .background-dropdown-menu-color {
-  background-color: rgba(0, 0, 0, 0.185);
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
+box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
 }
 ul>li{
 
