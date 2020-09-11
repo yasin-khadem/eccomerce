@@ -6,7 +6,7 @@
   </h5>
   </header>
     <div class="table-responsive">
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">#</th>

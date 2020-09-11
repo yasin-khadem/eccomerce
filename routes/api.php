@@ -12,4 +12,9 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('login', 'LoginController@login');
     Route::post('register', 'RegisterController@register');
 });
-Route::get('admin/users','Admin\UserController@index');
+Route::group(['middleware' => ['auth:api','admin'] , 
+                'namespace'=> 'Admin', 
+                'prefix' => 'admin'],   function () {
+    Route::get('users','UserController@index');
+    
+});

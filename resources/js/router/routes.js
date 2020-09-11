@@ -2,6 +2,7 @@ import NotFound from "../views/errors/NotFound"
 import AccessDenied from "../views/errors/AccessDenied"
 import auth from '../middleware/auth'
 import guest from '../middleware/guest'
+import admin from "../middleware/admin";
 const Home = () => import(/* webpackChunkName: "js/home" */ '../views/Home.vue');
 const AppLayout = () => import(/* webpackChunkName: "js/applayout" */ '../views/layout/AppLayout.vue');
 const AuthRoutes = () => import(/* webpackChunkName: "js/auth-routes" */ '../views/Auth/AuthRoutes.vue');
@@ -19,7 +20,10 @@ export default [
                 path: '/admin/user/:url',
                 name: 'admin-user',
                 component: AdminUser,
-                props: true
+                props: true,
+                meta: {
+                    middleware: [admin]
+                }
             },
             {
                 path: '/',

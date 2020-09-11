@@ -148,7 +148,7 @@ var render = function() {
     _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-striped table-bordered" }, [
+      _c("table", { staticClass: "table table-striped" }, [
         _vm._m(1),
         _vm._v(" "),
         _c(

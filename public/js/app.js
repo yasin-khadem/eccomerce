@@ -67182,6 +67182,33 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/middleware/admin.js":
+/*!******************************************!*\
+  !*** ./resources/js/middleware/admin.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return admin; });
+function admin(_ref) {
+  var next = _ref.next,
+      store = _ref.store;
+  console.log('admin middleware');
+
+  if (store.getters['auth/user'].is_admin) {
+    console.log('admin hast');
+    return next();
+  }
+
+  return next({
+    name: 'access-denied'
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/middleware/auth.js":
 /*!*****************************************!*\
   !*** ./resources/js/middleware/auth.js ***!
@@ -67195,9 +67222,9 @@ __webpack_require__.r(__webpack_exports__);
 function auth(_ref) {
   var next = _ref.next,
       store = _ref.store;
+  console.log('auth');
 
   if (!store.getters['auth/isLoggedIn']) {
-    console.log('yessss');
     return next({
       name: 'auth',
       params: {
@@ -67280,6 +67307,7 @@ function guest(_ref) {
       store = _ref.store;
 
   if (store.getters['auth/isLoggedIn']) {
+    console.log('guest');
     return next({
       name: 'home'
     });
@@ -67437,6 +67465,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_errors_AccessDenied__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/errors/AccessDenied */ "./resources/js/views/errors/AccessDenied.vue");
 /* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../middleware/auth */ "./resources/js/middleware/auth.js");
 /* harmony import */ var _middleware_guest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../middleware/guest */ "./resources/js/middleware/guest.js");
+/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../middleware/admin */ "./resources/js/middleware/admin.js");
+
 
 
 
@@ -67481,7 +67511,10 @@ var AdminUser = function AdminUser() {
     path: '/admin/user/:url',
     name: 'admin-user',
     component: AdminUser,
-    props: true
+    props: true,
+    meta: {
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
+    }
   }, {
     path: '/',
     name: 'home',

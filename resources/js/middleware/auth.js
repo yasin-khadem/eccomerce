@@ -1,6 +1,6 @@
 export default function auth({ next, store }) {
-    if (!store.getters['auth/isLoggedIn']) {
-        console.log('yessss')
+    console.log('auth')
+    if(!store.getters['auth/isLoggedIn']) {
         return next({name: 'auth', params:{url: 'login'}})
     }
 

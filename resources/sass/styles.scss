@@ -31,3 +31,8 @@ html[dir="rtl"] .form-check-label {
 .form-control{
     border: 1px solid #b7bfc9;
 }
+.table-responsive{
+   -webkit-box-shadow: 0px 0px 10px 7px rgba(0,0,0,0.14);
+-moz-box-shadow: 0px 0px 10px 7px rgba(0,0,0,0.14);
+box-shadow: 0px 0px 10px 7px rgba(0,0,0,0.14);
+}
