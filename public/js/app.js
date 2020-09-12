@@ -67195,16 +67195,14 @@ __webpack_require__.r(__webpack_exports__);
 function admin(_ref) {
   var next = _ref.next,
       store = _ref.store;
-  console.log('admin middleware');
 
-  if (store.getters['auth/user'].is_admin) {
-    console.log('admin hast');
-    return next();
+  if (!store.getters['auth/user'].is_admin) {
+    return next({
+      name: 'access-denied'
+    });
   }
 
-  return next({
-    name: 'access-denied'
-  });
+  return next();
 }
 
 /***/ }),
@@ -67222,7 +67220,6 @@ __webpack_require__.r(__webpack_exports__);
 function auth(_ref) {
   var next = _ref.next,
       store = _ref.store;
-  console.log('auth');
 
   if (!store.getters['auth/isLoggedIn']) {
     return next({
@@ -67513,7 +67510,7 @@ var AdminUser = function AdminUser() {
     component: AdminUser,
     props: true,
     meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
     }
   }, {
     path: '/',

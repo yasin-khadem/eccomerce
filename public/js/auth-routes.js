@@ -130,7 +130,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
@@ -349,7 +348,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 

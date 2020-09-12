@@ -1,9 +1,15 @@
 <template>
   <div class="container">
   <header class="my-3">
+  <div class="d-flex justify-content-between">
   <h5>
   لیست کاربران
   </h5>
+  <router-link class="btn btn-create-user text-white" :to="{name: 'admin-user' , params:{url:'create'}}">
+  <i class="fa fa-user-plus"></i>
+  ایجاد کاربر جدید 
+  </router-link>
+  </div>
   </header>
     <div class="table-responsive">
       <table class="table table-striped">
@@ -50,7 +56,7 @@ export default {
       users: {}
     }
   },
-  created(){
+   created(){
     axios.get('/api/admin/users')
     .then(({data})=>{
       this.users = data.data
@@ -59,5 +65,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.btn-create-user{
+  background-color: #43a047;
+}
 </style>

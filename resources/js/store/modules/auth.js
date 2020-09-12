@@ -1,7 +1,7 @@
 export const namespaced = true;
 export const state = {
     user: JSON.parse(localStorage.getItem('user')),
-    isLoggedIn: !!localStorage.getItem('token'),
+    isLoggedIn: !! localStorage.getItem('token'),
     token: localStorage.getItem('token'),
 };
 
@@ -21,8 +21,6 @@ export const mutations = {
         state.token = null
         localStorage.removeItem('user')
         localStorage.removeItem('token')
-
-
     }
 };
 export const actions = {

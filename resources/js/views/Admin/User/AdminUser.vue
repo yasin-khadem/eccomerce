@@ -5,17 +5,19 @@
 <script>
 import Index from './AdminUserIndex'
 import NotFound from '@/views/errors/NotFound'
+import Create from './AdminUserCreate'
 
 export default {
 name:"AdminUser",
 components:{
     Index,
-    NotFound
+    NotFound,
+    Create
 },
 props:['url'],
 computed: {
     componentName() {
-        return ['index'].includes(this.url) ? this.url : 'not-found';
+        return ['index','create'].includes(this.url) ? this.url : 'not-found';
     }
 },
 }

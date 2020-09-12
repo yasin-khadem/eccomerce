@@ -9,8 +9,7 @@
       <base-check name="remember"
                     field="remember"
                     label="مرا به خاطر بسپار"
-                    v-model="form.remember"
-    ></base-check>
+                    v-model="form.remember"></base-check>
     
     <a href="#" class="my-2">ایا رمز عبور خود را فراموش کرده اید؟</a>
 
@@ -48,6 +47,8 @@ export default {
 .login-width {
   max-width: 360px;
 }
+
+
 
 
 </style>

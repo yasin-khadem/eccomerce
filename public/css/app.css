@@ -16724,10 +16724,6 @@ h6,
   padding-right: 0;
 }
 
-html[dir=rtl] .form-check-label {
-  padding-right: 1.5rem;
-}
-
 .form-group {
   margin-bottom: 0.5rem;
 }

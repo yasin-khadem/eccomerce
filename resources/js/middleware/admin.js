@@ -1,9 +1,6 @@
-export default function admin({ next, store}){
-    console.log('admin middleware');
-    
-    if (store.getters['auth/user'].is_admin){
-        console.log('admin hast');
-        return next();
+export default function admin({ next, store }) {
+    if (!store.getters['auth/user'].is_admin) {
+        return next({ name: 'access-denied' });
     }
-    return next({ name: 'access-denied'});
+    return next();
 }

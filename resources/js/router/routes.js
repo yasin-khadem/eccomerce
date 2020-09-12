@@ -22,7 +22,9 @@ export default [
                 component: AdminUser,
                 props: true,
                 meta: {
-                    middleware: [admin]
+                    middleware: [
+                        auth,admin
+                    ]
                 }
             },
             {
