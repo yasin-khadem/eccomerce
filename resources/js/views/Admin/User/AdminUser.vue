@@ -6,18 +6,20 @@
 import Index from './AdminUserIndex'
 import NotFound from '@/views/errors/NotFound'
 import Create from './AdminUserCreate'
+import Edit from './AdminUserEdit'
 
 export default {
 name:"AdminUser",
 components:{
     Index,
     NotFound,
-    Create
+    Create,
+    Edit
 },
 props:['url'],
 computed: {
     componentName() {
-        return ['index','create'].includes(this.url) ? this.url : 'not-found';
+        return ['index','create','edit'].includes(this.url) ? this.url : 'not-found';
     }
 },
 }

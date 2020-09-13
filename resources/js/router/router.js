@@ -15,26 +15,27 @@ const router = new VueRouter({
 })
 
 
-router.beforeEach((to, from,next)=>{
-    let parentMiddleware = to.matched[0].meta.middleware;
-    let childMiddleware = to.meta.middleware;
-    if(!childMiddleware && !parentMiddleware){
+router.beforeEach((to, from, next) => {
+    let parentMiddleware = [];
+    to.matched.some(parentMeta => parentMiddleware = parentMeta.meta.middleware);
+    if (to.meta.middleware === undefined && !parentMiddleware === undefined) {
         return next();
     }
     let middleware = [checkAuth];
-    if(parentMiddleware){
-        middleware = [...middleware, ...parentMiddleware];
-    }
-    if (childMiddleware) {
-        middleware = [...middleware, ...childMiddleware];
-    }
-    let context = {
-        to,from,next,store
+    if (to.meta.middleware !== undefined && to.meta.middleware.length) {
+        middleware = middleware.concat(to.meta.middleware);
     }
 
+    if (parentMiddleware !== undefined && parentMiddleware.length) {
+        middleware = middleware.concat(parentMiddleware)
+    }
+
+    const context = {
+        to, from, next, store
+    };
     return middleware[0]({
-        ...context, pipe: middlewarePipeline(context,middleware,1)
+        ...context, next: middlewarePipeline(context, middleware, 1)
     })
-})
+});
 
 export default router;

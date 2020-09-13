@@ -10,23 +10,14 @@ const DashboardIndex = () => import(/* webpackChunkName: "js/Dashboard-index" */
 const Dashboard = () => import(/* webpackChunkName: "js/Dashboard" */ '../views/dashboard/Dashboard.vue');
 const AdminDashboardIndex = () => import(/* webpackChunkName: "js/admin-Dashboard-index" */ '../views/admin/AdminDashboardIndex.vue');
 const AdminDashboard = () => import(/* webpackChunkName: "js/admin-Dashboard" */ '../views/admin/AdminDashboard.vue');
-const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views/admin/User/AdminUser.vue');
+const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views/Admin/User/AdminUser.vue');
+const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 export default [
     {
         path: '/',
         component: AppLayout,
         children:[
-            {
-                path: '/admin/user/:url',
-                name: 'admin-user',
-                component: AdminUser,
-                props: true,
-                meta: {
-                    middleware: [
-                        auth,admin
-                    ]
-                }
-            },
+            
             {
                 path: '/',
                 name: 'home',
@@ -80,7 +71,32 @@ export default [
             
         ]
     },
- 
+    {
+        path: '/admin',
+        component: AdminLayout,
+        meta: {
+            middleware: [
+              auth, admin
+            ]
+        },
+        children:[
+             {
+                path: 'user/:url',
+                name: 'admin-user',
+                component: AdminUser,
+                props: true,              
+                children:[
+                    {
+                        path: ':id',
+                        name: 'admin-user-edit',                      
+                    }
+
+                ]
+
+            },
+        ]
+
+    },
     {
         path: '*',
         name: 'not-found',

@@ -1,8 +1,7 @@
 <template>
   <form
     class="d-flex flex-column align-items-center mt-5 py-5 login-width mx-auto container"
-    @submit.prevent="login"
-  >
+    @submit.prevent="login">
     <h2>فرم ورود</h2>
     <base-input name="email" type="email" label="ایمیل" v-model="form.email"></base-input>
     <base-input name="password" type="password" label="رمز عبور" v-model="form.password"></base-input>

@@ -1,7 +1,11 @@
 export default function auth({ next, store }) {
-    if(!store.getters['auth/isLoggedIn']) {
-        return next({name: 'auth', params:{url: 'login'}})
-    }
-
-    return next();
+    return store.dispatch('auth/getUser')
+        .then(() => {
+            let isLoggedIn = store.getters['auth/isLoggedIn'];
+            if (isLoggedIn !== undefined && !isLoggedIn) {
+                store.dispatch('auth/logout');
+                return next({ name: 'auth', params: { url: 'login' } });
+            }
+            return next();
+        })
 }

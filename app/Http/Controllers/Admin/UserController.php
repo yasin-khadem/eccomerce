@@ -33,38 +33,22 @@ class UserController extends Controller
         return response('ok',200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show(User $user)
     {
-        //
+        return $user;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+    
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        if(is_null($data['password'])){
+            unset($data['password']);
+        }
+        $user->update($data);
+        return response(['ok'],200);  
     }
 
     /**

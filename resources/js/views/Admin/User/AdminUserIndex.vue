@@ -32,7 +32,7 @@
               <td>{{user.type}}</td>
               <td>{{user.created_at}}</td>
               <td>
-                <button class="btn btn-info">ویرایش</button>
+                <router-link :to="{name:'admin-user-edit',params:{url:'edit',id:user.id}}" class="btn btn-info">ویرایش</router-link>
               </td>
               <td>
                 <button class="btn btn-danger">حذف</button>
@@ -48,7 +48,7 @@
 <script>
 export default {
   name: "AdminUserIndex",
-  mateInfo:{
+  metaInfo:{
     title: 'لیست کاربران'
   },
   data() {

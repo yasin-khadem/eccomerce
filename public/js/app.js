@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-user":"js/admin-user","js/applayout":"js/applayout","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/admin-user":"js/admin-user","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -67195,14 +67195,21 @@ __webpack_require__.r(__webpack_exports__);
 function admin(_ref) {
   var next = _ref.next,
       store = _ref.store;
+  return store.dispatch('auth/getUser').then(function () {
+    var isAdmin = store.getters['auth/user'].is_admin;
 
-  if (!store.getters['auth/user'].is_admin) {
+    if (isAdmin !== undefined && !isAdmin) {
+      return next({
+        name: 'access-denied'
+      });
+    }
+
+    return next();
+  })["catch"](function () {
     return next({
       name: 'access-denied'
     });
-  }
-
-  return next();
+  });
 }
 
 /***/ }),
@@ -67220,17 +67227,21 @@ __webpack_require__.r(__webpack_exports__);
 function auth(_ref) {
   var next = _ref.next,
       store = _ref.store;
+  return store.dispatch('auth/getUser').then(function () {
+    var isLoggedIn = store.getters['auth/isLoggedIn'];
 
-  if (!store.getters['auth/isLoggedIn']) {
-    return next({
-      name: 'auth',
-      params: {
-        url: 'login'
-      }
-    });
-  }
+    if (isLoggedIn !== undefined && !isLoggedIn) {
+      store.dispatch('auth/logout');
+      return next({
+        name: 'auth',
+        params: {
+          url: 'login'
+        }
+      });
+    }
 
-  return next();
+    return next();
+  });
 }
 
 /***/ }),
@@ -67304,7 +67315,6 @@ function guest(_ref) {
       store = _ref.store;
 
   if (store.getters['auth/isLoggedIn']) {
-    console.log('guest');
     return next({
       name: 'home'
     });
@@ -67360,13 +67370,12 @@ function middlewarePipeline(context, middleware, index) {
     return context.next;
   }
 
-  var nextPipeline = function nextPipeline() {
-    return middlewarePipeline(context, middleware, ++index);
+  return function () {
+    var nextPipeline = middlewarePipeline(context, middleware, index + 1);
+    nextMiddleware(_objectSpread(_objectSpread({}, context), {}, {
+      next: nextPipeline
+    }));
   };
-
-  return nextMiddleware(_objectSpread(_objectSpread({}, context), {}, {
-    pipe: nextPipeline
-  }));
 }
 
 /***/ }),
@@ -67393,18 +67402,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 
 
 
@@ -67418,21 +67415,23 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 router.beforeEach(function (to, from, next) {
-  var parentMiddleware = to.matched[0].meta.middleware;
-  var childMiddleware = to.meta.middleware;
+  var parentMiddleware = [];
+  to.matched.some(function (parentMeta) {
+    return parentMiddleware = parentMeta.meta.middleware;
+  });
 
-  if (!childMiddleware && !parentMiddleware) {
+  if (to.meta.middleware === undefined && !parentMiddleware === undefined) {
     return next();
   }
 
   var middleware = [_middleware_check_auth__WEBPACK_IMPORTED_MODULE_3__["default"]];
 
-  if (parentMiddleware) {
-    middleware = [].concat(_toConsumableArray(middleware), _toConsumableArray(parentMiddleware));
+  if (to.meta.middleware !== undefined && to.meta.middleware.length) {
+    middleware = middleware.concat(to.meta.middleware);
   }
 
-  if (childMiddleware) {
-    middleware = [].concat(_toConsumableArray(middleware), _toConsumableArray(childMiddleware));
+  if (parentMiddleware !== undefined && parentMiddleware.length) {
+    middleware = middleware.concat(parentMiddleware);
   }
 
   var context = {
@@ -67442,7 +67441,7 @@ router.beforeEach(function (to, from, next) {
     store: _store_store__WEBPACK_IMPORTED_MODULE_4__["default"]
   };
   return middleware[0](_objectSpread(_objectSpread({}, context), {}, {
-    pipe: Object(_middlewarePipeline__WEBPACK_IMPORTED_MODULE_5__["default"])(context, middleware, 1)
+    next: Object(_middlewarePipeline__WEBPACK_IMPORTED_MODULE_5__["default"])(context, middleware, 1)
   }));
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -67474,7 +67473,7 @@ var Home = function Home() {
 };
 
 var AppLayout = function AppLayout() {
-  return __webpack_require__.e(/*! import() | js/applayout */ "js/applayout").then(__webpack_require__.bind(null, /*! ../views/layout/AppLayout.vue */ "./resources/js/views/layout/AppLayout.vue"));
+  return Promise.all(/*! import() | js/applayout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/applayout")]).then(__webpack_require__.bind(null, /*! ../views/layout/AppLayout.vue */ "./resources/js/views/layout/AppLayout.vue"));
 };
 
 var AuthRoutes = function AuthRoutes() {
@@ -67498,21 +67497,17 @@ var AdminDashboard = function AdminDashboard() {
 };
 
 var AdminUser = function AdminUser() {
-  return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/admin/User/AdminUser.vue */ "./resources/js/views/admin/User/AdminUser.vue"));
+  return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
+};
+
+var AdminLayout = function AdminLayout() {
+  return Promise.all(/*! import() | js/admin-layout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/admin-layout")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminLayout.vue */ "./resources/js/views/Admin/AdminLayout.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
   children: [{
-    path: '/admin/user/:url',
-    name: 'admin-user',
-    component: AdminUser,
-    props: true,
-    meta: {
-      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
-    }
-  }, {
     path: '/',
     name: 'home',
     component: Home
@@ -67545,6 +67540,22 @@ var AdminUser = function AdminUser() {
       meta: {
         middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
       }
+    }]
+  }]
+}, {
+  path: '/admin',
+  component: AdminLayout,
+  meta: {
+    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"], _middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
+  },
+  children: [{
+    path: 'user/:url',
+    name: 'admin-user',
+    component: AdminUser,
+    props: true,
+    children: [{
+      path: ':id',
+      name: 'admin-user-edit'
     }]
   }]
 }, {
