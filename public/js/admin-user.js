@@ -287,6 +287,17 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref.data;
       _this.users = data.data;
     });
+  },
+  methods: {
+    deleteUser: function deleteUser(id, index) {
+      var _this2 = this;
+
+      axios["delete"]("/api/admin/users/".concat(id)).then(function (_ref2) {
+        var data = _ref2.data;
+
+        _this2.users.splice(index, 1);
+      });
+    }
   }
 });
 
@@ -735,7 +746,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.users, function(user) {
+          _vm._l(_vm.users, function(user, index) {
             return _c("tr", { key: user.id }, [
               _c("td", [_vm._v(_vm._s(user.id))]),
               _vm._v(" "),
@@ -767,7 +778,20 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._m(1, true)
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteUser(user.id, index)
+                      }
+                    }
+                  },
+                  [_vm._v("حذف")]
+                )
+              ])
             ])
           }),
           0
@@ -795,14 +819,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col", colspan: "2" } }, [_vm._v("تغییرات")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("حذف")])
     ])
   }
 ]
