@@ -270,10 +270,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminUserIndex",
   metaInfo: {
-    title: 'لیست کاربران'
+    title: "لیست کاربران"
   },
   data: function data() {
     return {
@@ -281,14 +284,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    var _this = this;
-
-    axios.get('/api/admin/users').then(function (_ref) {
-      var data = _ref.data;
-      _this.users = data.data;
-    });
+    this.getUser(this.$route.query.page);
   },
   methods: {
+    getUser: function getUser() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get("/api/admin/users?page=".concat(page)).then(function (_ref) {
+        var data = _ref.data;
+        _this.users = data;
+        window.history.pushState('users', 'Users', "/admin/user/index?page=".concat(page));
+      });
+    },
     deleteUser: function deleteUser(id, index) {
       var _this2 = this;
 
@@ -334,7 +342,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.btn-create-user[data-v-54d711a6]{\r\n  background-color: #43a047;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn-create-user[data-v-54d711a6] {\r\n  background-color: #43a047;\n}\r\n", ""]);
 
 // exports
 
@@ -722,7 +730,7 @@ var render = function() {
         "div",
         { staticClass: "d-flex justify-content-between" },
         [
-          _c("h5", [_vm._v("\nلیست کاربران\n")]),
+          _c("h5", [_vm._v("لیست کاربران")]),
           _vm._v(" "),
           _c(
             "router-link",
@@ -732,7 +740,7 @@ var render = function() {
             },
             [
               _c("i", { staticClass: "fa fa-user-plus" }),
-              _vm._v("\nایجاد کاربر جدید \n")
+              _vm._v("\n        ایجاد کاربر جدید\n      ")
             ]
           )
         ],
@@ -740,64 +748,74 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-striped" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.users, function(user, index) {
-            return _c("tr", { key: user.id }, [
-              _c("td", [_vm._v(_vm._s(user.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.email))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.type))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(user.created_at))]),
-              _vm._v(" "),
-              _c(
-                "td",
-                [
+    _c(
+      "div",
+      { staticClass: "table-responsive" },
+      [
+        _c("table", { staticClass: "table table-striped" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.users.data, function(user, index) {
+              return _c("tr", { key: user.id }, [
+                _c("td", [_vm._v(_vm._s(user.id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.email))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.type))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(user.created_at))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-info",
+                        attrs: {
+                          to: {
+                            name: "admin-user-edit",
+                            params: { url: "edit", id: user.id }
+                          }
+                        }
+                      },
+                      [_vm._v("ویرایش")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("td", [
                   _c(
-                    "router-link",
+                    "button",
                     {
-                      staticClass: "btn btn-info",
-                      attrs: {
-                        to: {
-                          name: "admin-user-edit",
-                          params: { url: "edit", id: user.id }
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteUser(user.id, index)
                         }
                       }
                     },
-                    [_vm._v("ویرایش")]
+                    [_vm._v("حذف")]
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("td", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteUser(user.id, index)
-                      }
-                    }
-                  },
-                  [_vm._v("حذف")]
-                )
+                ])
               ])
-            ])
-          }),
-          0
-        )
-      ])
-    ])
+            }),
+            0
+          )
+        ]),
+        _vm._v(" "),
+        _c("pagination", {
+          attrs: { data: _vm.users },
+          on: { "pagination-change-page": _vm.getUser }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = [

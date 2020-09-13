@@ -13,6 +13,9 @@ Vue.use(VueMeta);
 const files = require.context('./components', true, /Base[A-Z]\w+\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 const app = new Vue({
     el: '#app',
     router,
