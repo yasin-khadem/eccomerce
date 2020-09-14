@@ -11,6 +11,7 @@ const Dashboard = () => import(/* webpackChunkName: "js/Dashboard" */ '../views/
 const AdminDashboardIndex = () => import(/* webpackChunkName: "js/admin-Dashboard-index" */ '../views/admin/AdminDashboardIndex.vue');
 const AdminDashboard = () => import(/* webpackChunkName: "js/admin-Dashboard" */ '../views/admin/AdminDashboard.vue');
 const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views/Admin/User/AdminUser.vue');
+const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '../views/Admin/Category/AdminCategory.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 export default [
     {
@@ -94,6 +95,19 @@ export default [
                 ]
 
             },
+            {
+                path: 'category/:url',
+                name: 'admin-category',
+                component: AdminCategory,
+                props: true,
+                children: [
+                    {
+                        path: ':slug',
+                        name: 'admin-category-edit',
+                    }
+
+                ]
+            }
         ]
 
     },

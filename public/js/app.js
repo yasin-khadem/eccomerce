@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/admin-user":"js/admin-user","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/admin-user":"js/admin-user","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -68094,6 +68094,10 @@ var AdminUser = function AdminUser() {
   return __webpack_require__.e(/*! import() | js/admin-user */ "js/admin-user").then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
 };
 
+var AdminCategory = function AdminCategory() {
+  return __webpack_require__.e(/*! import() | js/admin-category */ "js/admin-category").then(__webpack_require__.bind(null, /*! ../views/Admin/Category/AdminCategory.vue */ "./resources/js/views/Admin/Category/AdminCategory.vue"));
+};
+
 var AdminLayout = function AdminLayout() {
   return Promise.all(/*! import() | js/admin-layout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/admin-layout")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminLayout.vue */ "./resources/js/views/Admin/AdminLayout.vue"));
 };
@@ -68150,6 +68154,15 @@ var AdminLayout = function AdminLayout() {
     children: [{
       path: ':id',
       name: 'admin-user-edit'
+    }]
+  }, {
+    path: 'category/:url',
+    name: 'admin-category',
+    component: AdminCategory,
+    props: true,
+    children: [{
+      path: ':slug',
+      name: 'admin-category-edit'
     }]
   }]
 }, {
@@ -68253,6 +68266,40 @@ var getters = {
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/category.js":
+/*!************************************************!*\
+  !*** ./resources/js/store/modules/category.js ***!
+  \************************************************/
+/*! exports provided: namespaced, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "namespaced", function() { return namespaced; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var namespaced = true;
+var mutations = {};
+var actions = {
+  storeCategory: function storeCategory(_ref, payload) {
+    var commit = _ref.commit;
+    return payload.post("/api/admin/categories", payload);
+  },
+  getCategory: function getCategory(_ref2, payload) {
+    var commit = _ref2.commit;
+    return axios.get("/api/admin/categories/".concat(payload));
+  },
+  updateCategory: function updateCategory(_ref3, payload) {
+    var commit = _ref3.commit;
+    return payload.patch("/api/admin/categories/".concat(payload.slug));
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/store/store.js":
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
@@ -68266,13 +68313,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/store/modules/auth.js");
+/* harmony import */ var _modules_category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/category */ "./resources/js/store/modules/category.js");
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_2__
+    auth: _modules_auth__WEBPACK_IMPORTED_MODULE_2__,
+    category: _modules_category__WEBPACK_IMPORTED_MODULE_3__
   }
 }));
 
