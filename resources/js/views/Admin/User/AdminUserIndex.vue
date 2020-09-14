@@ -72,7 +72,7 @@ export default {
     },
     deleteUser(id, index) {
       axios.delete(`/api/admin/users/${id}`).then(({ data }) => {
-        this.users.splice(index, 1);
+        this.users.data.splice(index, 1);
       });
     },
   },

@@ -43,7 +43,7 @@ export default {
     storeCategory() {
       this.$store.dispatch('category/storeCategory', this.form)
       .then(data => {
-        // this.$router.push({ name: "admin-category", params: { url: "index" } });
+        this.$router.push({ name: "admin-category", params: { url: "index" } });
       });
     },
   },

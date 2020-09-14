@@ -87,6 +87,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -97,8 +103,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])("auth", ["user", "isLoggedIn"])),
   watch: {
-    '$route': function $route() {
-      $('#navbarSupportedContent').collapse('hide');
+    $route: function $route() {
+      $("#navbarSupportedContent").collapse("hide");
     }
   },
   methods: {
@@ -128,7 +134,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: #fff;\nbox-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);\n}\nul>li[data-v-6dde423b]{\n}\nul>li[data-v-6dde423b]:hover{\n  background: #9b27b0;\n  transition: 500ms;\n}\n.nav-item .active[data-v-6dde423b]{\n  background: #9b27b0c5;\n}\n", ""]);
+exports.push([module.i, "\n#bg-navbar[data-v-6dde423b] {\n  background-color: #343a40;\n}\n.background-dropdown-color[data-v-6dde423b] {\n  background-color: #9c27b0;\n}\n.background-dropdown-menu-color[data-v-6dde423b] {\n  background-color: #fff;\n  box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);\n}\nul > li[data-v-6dde423b] {\n}\nul > li[data-v-6dde423b]:hover {\n  background: #9b27b0;\n  transition: 500ms;\n}\n.nav-item .active[data-v-6dde423b] {\n  background: #9b27b0c5;\n}\n", ""]);
 
 // exports
 
@@ -221,11 +227,37 @@ var render = function() {
                                 attrs: { to: { name: "dashboard-index" } }
                               },
                               [
-                                [_vm._v(" داشبورد ")],
+                                [_vm._v("داشبورد")],
                                 _vm._v(" "),
                                 _c("i", {
                                   staticClass: "fa fa-tachometer-alt mx-2"
                                 })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: {
+                                  to: {
+                                    name: "admin-category",
+                                    params: { url: "index" }
+                                  }
+                                }
+                              },
+                              [
+                                [_vm._v("دسته بندی ها")],
+                                _vm._v(" "),
+                                _c("i", { staticClass: "fa fa-list-alt mx-2" })
                               ],
                               2
                             )
@@ -249,7 +281,7 @@ var render = function() {
                                 }
                               },
                               [
-                                [_vm._v(" کاربران ")],
+                                [_vm._v("کاربران")],
                                 _vm._v(" "),
                                 _c("i", { staticClass: "fa fa-users mx-2" })
                               ],
@@ -272,7 +304,7 @@ var render = function() {
                               }
                             },
                             [
-                              [_vm._v(" خروج ")],
+                              [_vm._v("خروج")],
                               _vm._v(" "),
                               _c("i", {
                                 staticClass: "fa fa-sign-out-alt mx-2"

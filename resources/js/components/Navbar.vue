@@ -17,29 +17,35 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="mt-2 navbar-nav mr-auto">
-           <template v-if="isLoggedIn">
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
-             <template class="mr-2"> داشبورد </template>
-                        <i class="fa fa-tachometer-alt mx-2"></i>
-              </router-link>
-            </li>
-               <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'admin-user' , params: {url: 'index'}}">
-             <template class="mr-2"> کاربران </template>
-                        <i class="fa fa-users mx-2"></i>
-              </router-link>
-            </li>
-            
-             <li class="nav-item">
-              <a class="nav-link" @click.prevent="logout">
-             <template class="mr-2"> خروج </template>
-                        <i class="fa fa-sign-out-alt mx-2"></i>
-              </a>
-            </li>
-            
-            
-           </template>
+            <template v-if="isLoggedIn">
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
+                  <template class="mr-2">داشبورد</template>
+                  <i class="fa fa-tachometer-alt mx-2"></i>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'admin-category' , params: {url: 'index'}}">
+                  <template class="mr-2">دسته بندی ها</template>
+                  <i class="fa fa-list-alt mx-2"></i>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'admin-user' , params: {url: 'index'}}">
+                  <template class="mr-2">کاربران</template>
+                  <i class="fa fa-users mx-2"></i>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" @click.prevent="logout">
+                  <template class="mr-2">خروج</template>
+                  <i class="fa fa-sign-out-alt mx-2"></i>
+                </a>
+              </li>
+            </template>
           </ul>
           <div class="form-inline my-2 my-lg-0" dir="rtl">
             <template v-if="! isLoggedIn">
@@ -81,11 +87,11 @@ export default {
   computed: {
     ...mapGetters("auth", ["user", "isLoggedIn"]),
   },
-  watch:{
-      '$route'(){
-          $('#navbarSupportedContent').collapse('hide');
-      }
+  watch: {
+    $route() {
+      $("#navbarSupportedContent").collapse("hide");
     },
+  },
   methods: {
     logout() {
       this.$store.dispatch("auth/logout").then(() => {
@@ -105,19 +111,17 @@ export default {
 }
 .background-dropdown-menu-color {
   background-color: #fff;
-  -webkit-box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
-box-shadow: 0px 0px 32px -1px rgba(0,0,0,0.57);
+  -webkit-box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);
+  box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);
 }
-ul>li{
-
+ul > li {
 }
-ul>li:hover{
+ul > li:hover {
   background: #9b27b0;
   transition: 500ms;
-
 }
-.nav-item .active{
+.nav-item .active {
   background: #9b27b0c5;
 }
 </style>

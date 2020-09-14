@@ -68288,12 +68288,20 @@ var actions = {
     var commit = _ref.commit;
     return payload.post("/api/admin/categories", payload);
   },
-  getCategory: function getCategory(_ref2, payload) {
+  deleteCategory: function deleteCategory(_ref2, payload) {
     var commit = _ref2.commit;
+    return axios["delete"]("/api/admin/categories/".concat(payload));
+  },
+  getCategory: function getCategory(_ref3, payload) {
+    var commit = _ref3.commit;
     return axios.get("/api/admin/categories/".concat(payload));
   },
-  updateCategory: function updateCategory(_ref3, payload) {
-    var commit = _ref3.commit;
+  getCategories: function getCategories(_ref4, payload) {
+    var commit = _ref4.commit;
+    return axios.get("/api/admin/categories?page=".concat(payload));
+  },
+  updateCategory: function updateCategory(_ref5, payload) {
+    var commit = _ref5.commit;
     return payload.patch("/api/admin/categories/".concat(payload.slug));
   }
 };

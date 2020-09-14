@@ -303,7 +303,7 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]("/api/admin/users/".concat(id)).then(function (_ref2) {
         var data = _ref2.data;
 
-        _this2.users.splice(index, 1);
+        _this2.users.data.splice(index, 1);
       });
     }
   }
