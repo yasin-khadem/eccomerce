@@ -61,18 +61,25 @@ export default {
   },
   created() {
     this.getUser(this.$route.query.page);
-   
   },
   methods: {
     getUser(page = 1) {
       axios.get(`/api/admin/users?page=${page}`).then(({ data }) => {
         this.users = data;
-        window.history.pushState('users','Users',`/admin/user/index?page=${page}`);
+        window.history.pushState(
+          "users",
+          "Users",
+          `/admin/user/index?page=${page}`
+        );
       });
     },
     deleteUser(id, index) {
-      axios.delete(`/api/admin/users/${id}`).then(({ data }) => {
-        this.users.data.splice(index, 1);
+      swal.confirm().then((result) => {
+        if (result.value) {
+          axios.delete(`/api/admin/users/${id}`).then(({ data }) => {
+            this.users.data.splice(index, 1);
+          });
+        }
       });
     },
   },

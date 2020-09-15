@@ -101,6 +101,8 @@ __webpack_require__.r(__webpack_exports__);
             url: "index"
           }
         });
+
+        swal.message();
       });
     }
   }
@@ -181,6 +183,8 @@ __webpack_require__.r(__webpack_exports__);
             url: 'index'
           }
         });
+
+        swal.message();
       });
     }
   }
@@ -268,10 +272,14 @@ __webpack_require__.r(__webpack_exports__);
     deleteCategory: function deleteCategory(slug, index) {
       var _this2 = this;
 
-      this.$store.dispatch("category/deleteCategory", slug).then(function (_ref2) {
-        var data = _ref2.data;
+      swal.confirm().then(function (result) {
+        if (result.value) {
+          _this2.$store.dispatch("category/deleteCategory", slug).then(function (_ref2) {
+            var data = _ref2.data;
 
-        _this2.categories.data.splice(index, 1);
+            _this2.categories.data.splice(index, 1);
+          });
+        }
       });
     }
   }

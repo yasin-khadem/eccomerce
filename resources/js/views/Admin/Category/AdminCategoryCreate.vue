@@ -44,6 +44,7 @@ export default {
       this.$store.dispatch('category/storeCategory', this.form)
       .then(data => {
         this.$router.push({ name: "admin-category", params: { url: "index" } });
+        swal.message();
       });
     },
   },

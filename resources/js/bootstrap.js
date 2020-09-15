@@ -20,6 +20,8 @@ try {
  */
 
 import axios from './plugin/axios.js'
+import swal from './plugin/swal'
+window.swal = swal;
 window.axios = axios;
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -109,6 +109,8 @@ __webpack_require__.r(__webpack_exports__);
             url: "index"
           }
         });
+
+        swal.message();
       });
     }
   }
@@ -207,6 +209,8 @@ __webpack_require__.r(__webpack_exports__);
             url: "index"
           }
         });
+
+        swal.message();
       });
     }
   }
@@ -294,16 +298,20 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/admin/users?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.users = data;
-        window.history.pushState('users', 'Users', "/admin/user/index?page=".concat(page));
+        window.history.pushState("users", "Users", "/admin/user/index?page=".concat(page));
       });
     },
     deleteUser: function deleteUser(id, index) {
       var _this2 = this;
 
-      axios["delete"]("/api/admin/users/".concat(id)).then(function (_ref2) {
-        var data = _ref2.data;
+      swal.confirm().then(function (result) {
+        if (result.value) {
+          axios["delete"]("/api/admin/users/".concat(id)).then(function (_ref2) {
+            var data = _ref2.data;
 
-        _this2.users.data.splice(index, 1);
+            _this2.users.data.splice(index, 1);
+          });
+        }
       });
     }
   }

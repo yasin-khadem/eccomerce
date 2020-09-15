@@ -51,6 +51,7 @@ export default {
     storeUser() {
       this.form.post("/api/admin/users", this.form).then(() => {
         this.$router.push({ name: "admin-user", params: { url: "index" } });
+        swal.message();
       });
     },
   },

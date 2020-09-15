@@ -67,11 +67,16 @@ export default {
         );
       });
     },
-    deleteCategory(slug,index) {
-      this.$store.dispatch("category/deleteCategory",slug)
-        .then(({ data }) => {
-            this.categories.data.splice(index,1);
-        });
+    deleteCategory(slug, index) {
+      swal.confirm().then((result) => {
+        if (result.value) {
+          this.$store
+            .dispatch("category/deleteCategory", slug)
+            .then(({ data }) => {
+              this.categories.data.splice(index, 1);
+            });
+        }
+      });
     },
   },
 };

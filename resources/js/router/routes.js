@@ -39,32 +39,34 @@ export default [
             {
                 path: '/dashboard',
                 component: Dashboard ,
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                },   
                 children:[
                     {
                         path: 'index',
                         name: 'dashboard-index',
                         component: DashboardIndex,
-                        meta: {
-                            middleware: [
-                                auth
-                            ]
-                        },                      
+                                          
                     },
                 ]
             },
             {
                 path: '/admin/dashboard',
                 component: AdminDashboard,
+                meta: {
+                    middleware: [
+                        admin
+                    ]
+                },
                 children: [
                     {
                         path: 'index',
                         name: 'admin-dashboard-index',
                         component: AdminDashboardIndex,
-                        meta: {
-                            middleware: [
-                                auth
-                            ]
-                        },
+                       
 
                     },
                          ]
@@ -77,7 +79,7 @@ export default [
         component: AdminLayout,
         meta: {
             middleware: [
-              auth, admin
+                admin
             ]
         },
         children:[

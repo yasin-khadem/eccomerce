@@ -67,6 +67,7 @@ export default {
     updateUser(){
       this.form.patch(this.url,this.form).then(({data})=>{
         this.$router.push({name:"admin-user",params: {url: "index"}})
+        swal.message();
       })
     }
   },

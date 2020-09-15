@@ -52,6 +52,7 @@ export default {
     updateCategory() {
       this.$store.dispatch("category/updateCategory", this.form).then(({data})=>{
         this.$router.push({name:'admin-category',params:{url: 'index'}})
+        swal.message();
       })
     },
   },
