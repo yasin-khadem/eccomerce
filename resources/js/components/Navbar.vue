@@ -24,9 +24,21 @@
                   <i class="fa fa-tachometer-alt mx-2"></i>
                 </router-link>
               </li>
-
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'admin-category' , params: {url: 'index'}}">
+                <router-link
+                  class="nav-link"
+                  :to="{ name: 'admin-product',params: {url: 'index'} }"
+                >
+                  <template class="mr-2">محصولات</template>
+                  <i class="fas fa-shopping-cart mx-2"></i>
+                </router-link>
+              </li>
+              
+              <li class="nav-item">
+                <router-link
+                  class="nav-link"
+                  :to="{ name: 'admin-category' , params: {url: 'index'}}"
+                >
                   <template class="mr-2">دسته بندی ها</template>
                   <i class="fa fa-list-alt mx-2"></i>
                 </router-link>

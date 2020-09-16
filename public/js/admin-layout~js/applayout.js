@@ -93,6 +93,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -231,6 +243,34 @@ var render = function() {
                                 _vm._v(" "),
                                 _c("i", {
                                   staticClass: "fa fa-tachometer-alt mx-2"
+                                })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: {
+                                  to: {
+                                    name: "admin-product",
+                                    params: { url: "index" }
+                                  }
+                                }
+                              },
+                              [
+                                [_vm._v("محصولات")],
+                                _vm._v(" "),
+                                _c("i", {
+                                  staticClass: "fas fa-shopping-cart mx-2"
                                 })
                               ],
                               2

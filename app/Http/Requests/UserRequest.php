@@ -29,14 +29,14 @@ class UserRequest extends FormRequest
                 'name' => 'required|max:255|string',
                 'email' => 'required|max:255|email|unique:users,email',
                 'password' => 'required',
-                'is_admin' => 'boolean',
+                'is_admin' => 'bool',
             ];
         }else{
             return [
                 'name' => 'required|max:255|string',
                 'email' => 'required|max:255|email|unique:users,email,' . request('id'),
                 'password' => 'nullable',
-                'is_admin' => 'boolean',
+                'is_admin' => 'bool',
             ];
         }
         }

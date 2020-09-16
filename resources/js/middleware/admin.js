@@ -9,6 +9,5 @@ export default function admin({ next, store }) {
         }).catch(() => {
             return next({ name: 'access-denied' })
         })
-
 }
 

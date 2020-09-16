@@ -11,5 +11,8 @@
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/applayout.js": "/js/applayout.js",
     "/js/auth-routes.js": "/js/auth-routes.js",
-    "/js/home.js": "/js/home.js"
+    "/js/home.js": "/js/home.js",
+    "/js/admin-pro.js": "/js/admin-pro.js",
+    "/js/admin-product.js": "/js/admin-product.js",
+    "/vendors~js/admin-product.js": "/vendors~js/admin-product.js"
 }

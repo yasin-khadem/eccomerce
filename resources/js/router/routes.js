@@ -12,6 +12,7 @@ const AdminDashboardIndex = () => import(/* webpackChunkName: "js/admin-Dashboar
 const AdminDashboard = () => import(/* webpackChunkName: "js/admin-Dashboard" */ '../views/admin/AdminDashboard.vue');
 const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views/Admin/User/AdminUser.vue');
 const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '../views/Admin/Category/AdminCategory.vue');
+const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '../views/Admin/Product/AdminProduct.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 export default [
     {
@@ -106,6 +107,19 @@ export default [
                     {
                         path: ':slug',
                         name: 'admin-category-edit',
+                    }
+
+                ]
+            },
+            {
+                path: 'product/:url',
+                name: 'admin-product',
+                component: AdminProduct,
+                props: true,
+                children: [
+                    {
+                        path: ':slug',
+                        name: 'admin-product-edit',
                     }
 
                 ]

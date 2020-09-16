@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/admin-user":"js/admin-user","js/auth-routes":"js/auth-routes","js/home":"js/home"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/admin-user":"js/admin-user","js/auth-routes":"js/auth-routes","js/home":"js/home","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71178,11 +71178,14 @@ function _checkAuth() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return guest; });
+/* harmony import */ var _plugin_swal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugin/swal */ "./resources/js/plugin/swal.js");
+
 function guest(_ref) {
   var next = _ref.next,
       store = _ref.store;
 
   if (store.getters['auth/isLoggedIn']) {
+    _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('شما قبلا وارد شده اید', 'warning');
     return next({
       name: 'home'
     });
@@ -71452,6 +71455,10 @@ var AdminCategory = function AdminCategory() {
   return __webpack_require__.e(/*! import() | js/admin-category */ "js/admin-category").then(__webpack_require__.bind(null, /*! ../views/Admin/Category/AdminCategory.vue */ "./resources/js/views/Admin/Category/AdminCategory.vue"));
 };
 
+var AdminProduct = function AdminProduct() {
+  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
+};
+
 var AdminLayout = function AdminLayout() {
   return Promise.all(/*! import() | js/admin-layout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/admin-layout")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminLayout.vue */ "./resources/js/views/Admin/AdminLayout.vue"));
 };
@@ -71517,6 +71524,15 @@ var AdminLayout = function AdminLayout() {
     children: [{
       path: ':slug',
       name: 'admin-category-edit'
+    }]
+  }, {
+    path: 'product/:url',
+    name: 'admin-product',
+    component: AdminProduct,
+    props: true,
+    children: [{
+      path: ':slug',
+      name: 'admin-product-edit'
     }]
   }]
 }, {
