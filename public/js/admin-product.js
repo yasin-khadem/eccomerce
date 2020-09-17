@@ -88,9 +88,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -99,20 +96,33 @@ __webpack_require__.r(__webpack_exports__);
     title: "ثبت محصول جدید"
   },
   components: {
-    TagsInput: _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_0__["default"]
+    TagsInput: _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_0__["default"],
+    HasError: vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]
   },
   data: function data() {
     return {
       form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
         name: null,
+        code: null,
         description: null,
         price: null,
         selectedTags: []
-      })
+      }),
+      categories: []
     };
   },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/admin/categories-search').then(function (_ref) {
+      var data = _ref.data;
+      _this.categories = data.data;
+    });
+  },
   methods: {
-    storeProduct: function storeProduct() {}
+    storeProduct: function storeProduct() {
+      this.form.post('/api/admin/product');
+    }
   }
 });
 
@@ -257,6 +267,17 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("base-input", {
+                attrs: { name: "code", label: "کد محصول" },
+                model: {
+                  value: _vm.form.code,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "code", $$v)
+                  },
+                  expression: "form.code"
+                }
+              }),
+              _vm._v(" "),
+              _c("base-input", {
                 attrs: { name: "description", label: "توضیحات" },
                 model: {
                   value: _vm.form.description,
@@ -281,20 +302,16 @@ var render = function() {
               _c("tags-input", {
                 attrs: {
                   "element-id": "tags",
-                  "existing-tags": [
-                    { key: "web-development", value: "Web Development" },
-                    { key: "php", value: "PHP" },
-                    { key: "javascript", value: "JavaScript" }
-                  ],
+                  "existing-tags": _vm.categories,
                   typeahead: true,
                   "only-existing-tags": true
                 },
                 model: {
-                  value: _vm.selectedTags,
+                  value: _vm.form.selectedTags,
                   callback: function($$v) {
-                    _vm.selectedTags = $$v
+                    _vm.$set(_vm.form, "selectedTags", $$v)
                   },
-                  expression: "selectedTags"
+                  expression: "form.selectedTags"
                 }
               }),
               _vm._v(" "),

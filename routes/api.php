@@ -17,5 +17,6 @@ Route::group(['middleware' => ['auth:api','admin'] ,
                 'prefix' => 'admin'],   function () {
     Route::apiResource('users','UserController');
     Route::apiResource('categories','CategoryController');
-    
+    Route::apiResource('product','ProductController');
+    Route::get('categories-search', 'Search\CategoryController@index');
 });

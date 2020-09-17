@@ -18,16 +18,13 @@
       <div class="col-md-6">
         <form @submit.prevent="storeProduct">
           <base-input name="name" label="نام" v-model="form.name"></base-input>
+          <base-input name="code" label="کد محصول" v-model="form.code"></base-input>
           <base-input name="description" label="توضیحات" v-model="form.description"></base-input>
           <base-input name="price" label="قیمت" v-model="form.price"></base-input>
           <tags-input
             element-id="tags"
-            v-model="selectedTags"
-            :existing-tags="[
-        { key: 'web-development', value: 'Web Development' },
-        { key: 'php', value: 'PHP' },
-        { key: 'javascript', value: 'JavaScript' },
-    ]"
+            v-model="form.selectedTags"
+            :existing-tags="categories"
             :typeahead="true"
             :only-existing-tags="true"
           ></tags-input>
@@ -40,7 +37,7 @@
 
 <script>
 import TagsInput from "@voerro/vue-tagsinput";
-import { Form } from "vform";
+import { Form , HasError } from "vform";
 
 export default {
   name: "AdminProductCreate",
@@ -48,20 +45,29 @@ export default {
     title: "ثبت محصول جدید",
   },
   components: {
-    TagsInput,
+    TagsInput,HasError
   },
   data() {
     return {
       form: new Form({
         name: null,
+        code: null,
         description: null,
         price: null,
         selectedTags: [],
       }),
+      categories:[]
     };
   },
+  created(){
+    axios.get('/api/admin/categories-search').then(({data})=>{
+      this.categories = data.data
+    })
+  },
   methods: {
-    storeProduct() {},
+    storeProduct() {
+      this.form.post('/api/admin/product');
+    },
   },
 };
 </script>
