@@ -71692,12 +71692,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
 var namespaced = true;
-var state = {};
-var mutations = {};
+var state = {
+  products: {}
+};
+var mutations = {
+  SET_PRODUCTS: function SET_PRODUCTS(state, payload) {
+    state.products = payload;
+  },
+  DELETE_PRODUCT: function DELETE_PRODUCT(state, payload) {
+    state.products.data.splice(payload, 1);
+  }
+};
 var actions = {
-  store: function store(_ref, payload) {
+  getProducts: function getProducts(_ref) {
     var commit = _ref.commit;
+    var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    axios.get("/api/admin/product?page=".concat(payload)).then(function (_ref2) {
+      var data = _ref2.data;
+      commit('SET_PRODUCTS', data);
+      window.history.pushState('products', 'Products', "/admin/product/index?page=".concat(payload));
+    });
+  },
+  store: function store(_ref3, payload) {
+    var commit = _ref3.commit;
     return payload.post('/api/admin/product');
+  },
+  deleteProduct: function deleteProduct(_ref4, payload) {
+    var commit = _ref4.commit;
+    axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
+      commit('DELETE_PRODUCT', payload.index);
+      swal.message('محصول شما حذف شد');
+    });
   }
 };
 
