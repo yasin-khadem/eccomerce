@@ -66,7 +66,12 @@ export default {
   },
   methods: {
     storeProduct() {
-      this.form.post('/api/admin/product');
+      this.$store.dispatch('product/store',this.form)
+      .then(()=>{
+        swal.message('محصول ثبت شد');
+        this.$router.push({name: "admin-product", params:{url:"index"}});
+      });
+     
     },
   },
 };

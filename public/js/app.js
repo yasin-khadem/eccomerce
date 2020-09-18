@@ -71678,6 +71678,31 @@ var actions = {
 
 /***/ }),
 
+/***/ "./resources/js/store/modules/product.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/modules/product.js ***!
+  \***********************************************/
+/*! exports provided: namespaced, state, mutations, actions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "namespaced", function() { return namespaced; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+var namespaced = true;
+var state = {};
+var mutations = {};
+var actions = {
+  store: function store(_ref, payload) {
+    var commit = _ref.commit;
+    return payload.post('/api/admin/product');
+  }
+};
+
+/***/ }),
+
 /***/ "./resources/js/store/store.js":
 /*!*************************************!*\
   !*** ./resources/js/store/store.js ***!
@@ -71692,6 +71717,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _modules_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/auth */ "./resources/js/store/modules/auth.js");
 /* harmony import */ var _modules_category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/category */ "./resources/js/store/modules/category.js");
+/* harmony import */ var _modules_product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/product */ "./resources/js/store/modules/product.js");
+
 
 
 
@@ -71700,7 +71727,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _modules_auth__WEBPACK_IMPORTED_MODULE_2__,
-    category: _modules_category__WEBPACK_IMPORTED_MODULE_3__
+    category: _modules_category__WEBPACK_IMPORTED_MODULE_3__,
+    product: _modules_product__WEBPACK_IMPORTED_MODULE_4__
   }
 }));
 

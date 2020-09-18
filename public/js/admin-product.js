@@ -121,7 +121,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     storeProduct: function storeProduct() {
-      this.form.post('/api/admin/product');
+      var _this2 = this;
+
+      this.$store.dispatch('product/store', this.form).then(function () {
+        swal.message('محصول ثبت شد');
+
+        _this2.$router.push({
+          name: "admin-product",
+          params: {
+            url: "index"
+          }
+        });
+      });
     }
   }
 });

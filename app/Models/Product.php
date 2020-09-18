@@ -27,4 +27,9 @@ class Product extends Model
     public function categories(){
         return $this->belongsToMany(Category::class);
     }
+    public function syncCategories(array $categories){
+        $this->categories()->sync(
+            array_filter(collect($categories)->pluck('key')->toArray())
+        );
+    }
 }
