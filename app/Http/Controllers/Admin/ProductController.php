@@ -12,9 +12,9 @@ use Exception;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new ProductResourceCollection(Product::paginate(1));
+        return new ProductResourceCollection(Product::orderBy($request->sortBy,$request->sortDir)->paginate(1));
     }
 
     public function store(ProductRequest $request)
