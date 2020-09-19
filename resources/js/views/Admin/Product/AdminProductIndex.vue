@@ -41,6 +41,7 @@
             </td>
             <td>
               <button class="btn btn-danger" @click="deleteProduct({slug:product.slug ,index:index })">حذف</button>
+              <a class="btn btn-secondary" :href="`/mytest?access_token=${$store.state.auth.token}`">test</a>
             </td>
           </tr>
         </tbody>

@@ -229,6 +229,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminProductIndex",
@@ -579,6 +580,18 @@ var render = function() {
                       }
                     },
                     [_vm._v("حذف")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: {
+                        href:
+                          "/mytest?access_token=" + _vm.$store.state.auth.token
+                      }
+                    },
+                    [_vm._v("test")]
                   )
                 ])
               ])

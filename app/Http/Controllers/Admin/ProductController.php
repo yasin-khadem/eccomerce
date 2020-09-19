@@ -38,11 +38,9 @@ class ProductController extends Controller
     {
     }
 
-
     public function update(Request $request, Product $product)
     {
     }
-
 
     public function destroy(Product $product)
     {
