@@ -16,12 +16,30 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">نام</th>
-            <th scope="col">کد محصول</th>
-            <th scope="col">قیمت</th>
-            <th scope="col">توضیحات</th>
-            <th scope="col">تاریخ ثبت</th>
+            <th scope="col" @click="changeSortBy('id')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'id'"></i>
+              #
+            </th>
+            <th scope="col" @click="changeSortBy('name')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'name'"></i>
+              نام
+            </th>
+            <th scope="col" @click="changeSortBy('code')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'code'"></i>
+              کد محصول
+            </th>
+            <th scope="col" @click="changeSortBy('price')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'price'"></i>
+              قیمت
+            </th>
+            <th scope="col" @click="changeSortBy('description')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'description'"></i>
+              توضیحات
+            </th>
+            <th scope="col" @click="changeSortBy('created_at')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'created_at'"></i>
+              تاریخ ثبت
+            </th>
             <th scope="col" colspan="2" class="text-center">تغییرات</th>
           </tr>
         </thead>
@@ -32,7 +50,7 @@
             <td>{{product.code}}</td>
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
-            <td> {{moment(product.created_at).format('jYY/jM/jD')}}</td>
+            <td>{{moment(product.created_at).format('jYY/jM/jD')}}</td>
             <td>
               <router-link
                 class="btn btn-info"
@@ -40,8 +58,11 @@
               >ویرایش</router-link>
             </td>
             <td>
-              <button class="btn btn-danger" @click="deleteProduct({slug:product.slug ,index:index })">حذف</button>
-       <!--       <a class="btn btn-secondary" :href="`/mytest?access_token=${$store.state.auth.token}`">test</a>  -->
+              <button
+                class="btn btn-danger"
+                @click="deleteProduct({slug:product.slug ,index:index })"
+              >حذف</button>
+              <!--       <a class="btn btn-secondary" :href="`/mytest?access_token=${$store.state.auth.token}`">test</a>  -->
             </td>
           </tr>
         </tbody>
@@ -53,26 +74,46 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import moment from 'moment-jalaali'
+import moment from "moment-jalaali";
 export default {
   name: "AdminProductIndex",
   metaInfo: {
     title: "لیست محصولات",
   },
- data() {
-   return {
-     moment
-   }
- },
+  data() {
+    return {
+      moment,
+      currentSortBy: null,
+      currentSortDir: null,
+    };
+  },
   created() {
+    this.currentSortBy =  this.$route.query.sortBy ? this.$route.query.sortBy : "id" ;
+    this.currentSortDir = this.$route.query.sortDir ? this.$route.query.sortDir : "asc";
     this.getProducts(this.$route.query.page);
   },
   computed: {
     ...mapState("product", ["products"]),
+    sortdirection(){
+      return this.currentSortDir === 'asc' ? 'fa-arrow-down' : 'fa-arrow-up'
+    }
   },
   methods: {
-    ...mapActions("product", ["getProducts","deleteProduct"]),
-    
+    ...mapActions("product", ["deleteProduct"]),
+    getProducts(page = 1) {
+      let queries = this.$route.query;
+      queries.page = page;
+      queries.sortBy = this.currentSortBy;
+      queries.sortDir = this.currentSortDir;
+      this.$store.dispatch("product/getProducts", queries);
+    },
+    changeSortBy(sortBy) {
+      if(this.currentSortBy === sortBy){
+        this.currentSortDir = this.currentSortDir === 'desc' ? 'asc' : 'desc';
+      }
+      this.currentSortBy = sortBy;
+      this.getProducts(this.$route.query.page)
+    },
   },
 };
 </script>
@@ -80,5 +121,9 @@ export default {
 <style>
 .btn-create-product {
   background-color: #43a047;
+}
+
+th {
+  cursor: pointer;
 }
 </style>

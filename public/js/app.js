@@ -71704,13 +71704,14 @@ var mutations = {
   }
 };
 var actions = {
-  getProducts: function getProducts(_ref) {
+  getProducts: function getProducts(_ref, queries) {
     var commit = _ref.commit;
-    var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    axios.get("/api/admin/product?page=".concat(payload)).then(function (_ref2) {
+    axios.get("/api/admin/product", {
+      params: queries
+    }).then(function (_ref2) {
       var data = _ref2.data;
       commit('SET_PRODUCTS', data);
-      window.history.pushState('products', 'Products', "/admin/product/index?page=".concat(payload));
+      window.history.pushState('products', 'Products', "/admin/product/index?".concat(data.meta.queries));
     });
   },
   store: function store(_ref3, payload) {

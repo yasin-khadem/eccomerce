@@ -232,6 +232,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -241,14 +262,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_1___default.a
+      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_1___default.a,
+      currentSortBy: null,
+      currentSortDir: null
     };
   },
   created: function created() {
+    this.currentSortBy = this.$route.query.sortBy ? this.$route.query.sortBy : "id";
+    this.currentSortDir = this.$route.query.sortDir ? this.$route.query.sortDir : "asc";
     this.getProducts(this.$route.query.page);
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("product", ["products"])),
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("product", ["getProducts", "deleteProduct"]))
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("product", ["products"])), {}, {
+    sortdirection: function sortdirection() {
+      return this.currentSortDir === 'asc' ? 'fa-arrow-down' : 'fa-arrow-up';
+    }
+  }),
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("product", ["deleteProduct"])), {}, {
+    getProducts: function getProducts() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var queries = this.$route.query;
+      queries.page = page;
+      queries.sortBy = this.currentSortBy;
+      queries.sortDir = this.currentSortDir;
+      this.$store.dispatch("product/getProducts", queries);
+    },
+    changeSortBy: function changeSortBy(sortBy) {
+      if (this.currentSortBy === sortBy) {
+        this.currentSortDir = this.currentSortDir === 'desc' ? 'asc' : 'desc';
+      }
+
+      this.currentSortBy = sortBy;
+      this.getProducts(this.$route.query.page);
+    }
+  })
 });
 
 /***/ }),
@@ -265,7 +311,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.btn-create-product {\r\n  background-color: #43a047;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn-create-product {\r\n  background-color: #43a047;\n}\nth {\r\n  cursor: pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -833,7 +879,180 @@ var render = function() {
       { staticClass: "table-responsive" },
       [
         _c("table", { staticClass: "table table-striped" }, [
-          _vm._m(0),
+          _c("thead", [
+            _c("tr", [
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("id")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "id",
+                        expression: "currentSortBy === 'id'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            #\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("name")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "name",
+                        expression: "currentSortBy === 'name'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            نام\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("code")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "code",
+                        expression: "currentSortBy === 'code'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            کد محصول\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("price")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "price",
+                        expression: "currentSortBy === 'price'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            قیمت\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("description")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "description",
+                        expression: "currentSortBy === 'description'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            توضیحات\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  attrs: { scope: "col" },
+                  on: {
+                    click: function($event) {
+                      return _vm.changeSortBy("created_at")
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.currentSortBy === "created_at",
+                        expression: "currentSortBy === 'created_at'"
+                      }
+                    ],
+                    staticClass: "fa text-info",
+                    class: _vm.sortdirection
+                  }),
+                  _vm._v("\n            تاریخ ثبت\n          ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "th",
+                {
+                  staticClass: "text-center",
+                  attrs: { scope: "col", colspan: "2" }
+                },
+                [_vm._v("تغییرات")]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "tbody",
@@ -851,8 +1070,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [
                   _vm._v(
-                    " " +
-                      _vm._s(_vm.moment(product.created_at).format("jYY/jM/jD"))
+                    _vm._s(_vm.moment(product.created_at).format("jYY/jM/jD"))
                   )
                 ]),
                 _vm._v(" "),
@@ -908,34 +1126,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("نام")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("کد محصول")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("قیمت")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("توضیحات")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ثبت")]),
-        _vm._v(" "),
-        _c(
-          "th",
-          { staticClass: "text-center", attrs: { scope: "col", colspan: "2" } },
-          [_vm._v("تغییرات")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

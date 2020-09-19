@@ -1,4 +1,3 @@
-
 export const namespaced = true;
 export const state = {
     products: {}
@@ -12,10 +11,12 @@ export const mutations = {
     }
 };
 export const actions = {
-    getProducts({ commit }, payload = 1) {
-        axios.get(`/api/admin/product?page=${payload}`).then(({ data }) => {
+    getProducts({ commit }, queries) {
+        axios.get(`/api/admin/product`,{
+            params: queries
+        }).then(({ data }) => {
             commit('SET_PRODUCTS', data)
-            window.history.pushState('products', 'Products',`/admin/product/index?page=${payload}`)
+            window.history.pushState('products', 'Products', `/admin/product/index?${data.meta.queries}`)
         })
     },
     store({ commit }, payload) {
