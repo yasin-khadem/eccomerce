@@ -30,7 +30,7 @@
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
             <td>{{user.type}}</td>
-            <td>{{user.created_at}}</td>
+            <td>{{moment(user.created_at).format('jYY/jM/jD')}}</td>
             <td>
               <router-link
                 :to="{name:'admin-user-edit',params:{url:'edit',id:user.id}}"
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import moment from 'moment-jalaali'
 export default {
   name: "AdminUserIndex",
   metaInfo: {
@@ -57,6 +58,7 @@ export default {
   data() {
     return {
       users: {},
+      moment
     };
   },
   created() {

@@ -32,7 +32,7 @@
             <td>{{product.code}}</td>
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.created_at}}</td>
+            <td> {{moment(product.created_at).format('jYY/jM/jD')}}</td>
             <td>
               <router-link
                 class="btn btn-info"
@@ -41,7 +41,7 @@
             </td>
             <td>
               <button class="btn btn-danger" @click="deleteProduct({slug:product.slug ,index:index })">حذف</button>
-              <a class="btn btn-secondary" :href="`/mytest?access_token=${$store.state.auth.token}`">test</a>
+       <!--       <a class="btn btn-secondary" :href="`/mytest?access_token=${$store.state.auth.token}`">test</a>  -->
             </td>
           </tr>
         </tbody>
@@ -53,12 +53,17 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import moment from 'moment-jalaali'
 export default {
   name: "AdminProductIndex",
   metaInfo: {
     title: "لیست محصولات",
   },
- 
+ data() {
+   return {
+     moment
+   }
+ },
   created() {
     this.getProducts(this.$route.query.page);
   },
