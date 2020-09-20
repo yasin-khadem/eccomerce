@@ -6,13 +6,13 @@ export const mutations = {
     SET_PRODUCTS(state, payload) {
         state.products = payload
     },
-    DELETE_PRODUCT(state,payload){
-        state.products.data.splice(payload,1);
+    DELETE_PRODUCT(state, payload) {
+        state.products.data.splice(payload, 1);
     }
 };
 export const actions = {
     getProducts({ commit }, queries) {
-        axios.get(`/api/admin/product`,{
+        return axios.get(`/api/admin/product`, {
             params: queries
         }).then(({ data }) => {
             commit('SET_PRODUCTS', data)
@@ -22,9 +22,9 @@ export const actions = {
     store({ commit }, payload) {
         return payload.post('/api/admin/product')
     },
-    deleteProduct({commit},payload){
-         axios.delete(`/api/admin/product/${payload.slug}`).then(()=>{
-            commit('DELETE_PRODUCT',payload.index);
+    deleteProduct({ commit }, payload) {
+        axios.delete(`/api/admin/product/${payload.slug}`).then(() => {
+            commit('DELETE_PRODUCT', payload.index);
             swal.message('محصول شما حذف شد');
         })
 

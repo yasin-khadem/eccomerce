@@ -71706,7 +71706,7 @@ var mutations = {
 var actions = {
   getProducts: function getProducts(_ref, queries) {
     var commit = _ref.commit;
-    axios.get("/api/admin/product", {
+    return axios.get("/api/admin/product", {
       params: queries
     }).then(function (_ref2) {
       var data = _ref2.data;

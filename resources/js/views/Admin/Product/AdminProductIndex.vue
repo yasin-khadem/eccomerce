@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <header class="my-3">
+    <header class="mt-3 mb-4">
       <div class="d-flex justify-content-between">
         <h5>لیست محصولات</h5>
         <router-link
@@ -12,6 +12,16 @@
         </router-link>
       </div>
     </header>
+      <h5 class="mb-3 ml-3"> جستجو</h5>
+      <div class="col-md-6 d-flex flex-row mb-3 search-input">
+      
+        <base-input name="search"  v-model="form.search"></base-input>
+     
+        <base-btn :loading="searchLoading" @click="searchProduct" class="ml-2 mb-2">
+          <i class="fa fa-search"></i>
+        </base-btn>
+      </div>
+
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -87,6 +97,8 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import { Form } from "vform";
+
 import moment from "moment-jalaali";
 export default {
   name: "AdminProductIndex",
@@ -98,20 +110,29 @@ export default {
       moment,
       currentSortBy: null,
       currentSortDir: null,
+      searchLoading: false,
+      form: new Form({
+        search: null,
+      }),
     };
   },
   created() {
     let columns = [
-      "id","name", "code", "price", "description", "exist","created_at",
+      "id",
+      "name",
+      "code",
+      "price",
+      "description",
+      "exist",
+      "created_at",
     ];
-    let dir = [
-      "asc","desc"
-    ];
+    let dir = ["asc", "desc"];
 
     let sortBy = this.$route.query.sortBy;
     let sortDir = this.$route.query.sortDir;
     this.currentSortBy = columns.includes(sortBy) ? sortBy : "id";
     this.currentSortDir = dir.includes(sortDir) ? sortDir : "asc";
+    this.form.search = this.$route.query.search;
     this.getProducts(this.$route.query.page);
   },
   computed: {
@@ -120,6 +141,7 @@ export default {
       return this.currentSortDir === "asc" ? "fa-arrow-down" : "fa-arrow-up";
     },
   },
+   
   methods: {
     ...mapActions("product", ["deleteProduct"]),
     getProducts(page = 1) {
@@ -127,7 +149,7 @@ export default {
       queries.page = page;
       queries.sortBy = this.currentSortBy;
       queries.sortDir = this.currentSortDir;
-      this.$store.dispatch("product/getProducts", queries);
+      return this.$store.dispatch("product/getProducts", queries);
     },
     changeSortBy(sortBy) {
       if (this.currentSortBy === sortBy) {
@@ -136,11 +158,19 @@ export default {
       this.currentSortBy = sortBy;
       this.getProducts(this.$route.query.page);
     },
+    searchProduct() {
+      let queries = this.$route.query;
+      queries.search = this.form.search;
+      this.searchLoading = true;
+      this.getProducts(this.$route.query.page).finally(()=>{
+        this.searchLoading = false;
+      });
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .btn-create-product {
   background-color: #43a047;
 }

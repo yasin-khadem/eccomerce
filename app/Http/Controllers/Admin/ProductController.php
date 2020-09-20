@@ -25,7 +25,12 @@ class ProductController extends Controller
     {
         $sortBy = $this->SortingOptions[$request->sortBy] ?? 'id';
         $sortDir = collect(['asc','desc'])->contains($request->sortDir) ? $request->sortDir : 'asc';
-        return new ProductResourceCollection(Product::orderBy($sortBy,$sortDir)->paginate(1));
+        $products = Product::orderBy($sortBy, $sortDir);
+        if($request->search){
+            $products->where('name','LIKE','%'. $request->search .'%')
+            ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+        }
+        return new ProductResourceCollection($products->paginate(1));
     }
 
     public function store(ProductRequest $request)

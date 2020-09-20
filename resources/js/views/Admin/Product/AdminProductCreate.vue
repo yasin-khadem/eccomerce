@@ -16,6 +16,7 @@
         </header>
       </div>
       <div class="col-md-6">
+      
         <form @submit.prevent="storeProduct">
           <base-input name="name" label="نام" v-model="form.name"></base-input>
           <base-input name="code" label="کد محصول" v-model="form.code"></base-input>
