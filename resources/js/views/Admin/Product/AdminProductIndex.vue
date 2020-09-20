@@ -33,11 +33,23 @@
               قیمت
             </th>
             <th scope="col" @click="changeSortBy('description')">
-              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'description'"></i>
+              <i
+                class="fa text-info"
+                :class="sortdirection"
+                v-show="currentSortBy === 'description'"
+              ></i>
               توضیحات
             </th>
+            <th scope="col" @click="changeSortBy('exist')">
+              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'exist'"></i>
+              وضعیت
+            </th>
             <th scope="col" @click="changeSortBy('created_at')">
-              <i class="fa text-info" :class="sortdirection" v-show="currentSortBy === 'created_at'"></i>
+              <i
+                class="fa text-info"
+                :class="sortdirection"
+                v-show="currentSortBy === 'created_at'"
+              ></i>
               تاریخ ثبت
             </th>
             <th scope="col" colspan="2" class="text-center">تغییرات</th>
@@ -50,6 +62,7 @@
             <td>{{product.code}}</td>
             <td>{{product.price}}</td>
             <td>{{product.description}}</td>
+            <td>{{product.is_exist}}</td>
             <td>{{moment(product.created_at).format('jYY/jM/jD')}}</td>
             <td>
               <router-link
@@ -88,15 +101,24 @@ export default {
     };
   },
   created() {
-    this.currentSortBy =  this.$route.query.sortBy ? this.$route.query.sortBy : "id" ;
-    this.currentSortDir = this.$route.query.sortDir ? this.$route.query.sortDir : "asc";
+    let columns = [
+      "id","name", "code", "price", "description", "exist","created_at",
+    ];
+    let dir = [
+      "asc","desc"
+    ];
+
+    let sortBy = this.$route.query.sortBy;
+    let sortDir = this.$route.query.sortDir;
+    this.currentSortBy = columns.includes(sortBy) ? sortBy : "id";
+    this.currentSortDir = dir.includes(sortDir) ? sortDir : "asc";
     this.getProducts(this.$route.query.page);
   },
   computed: {
     ...mapState("product", ["products"]),
-    sortdirection(){
-      return this.currentSortDir === 'asc' ? 'fa-arrow-down' : 'fa-arrow-up'
-    }
+    sortdirection() {
+      return this.currentSortDir === "asc" ? "fa-arrow-down" : "fa-arrow-up";
+    },
   },
   methods: {
     ...mapActions("product", ["deleteProduct"]),
@@ -108,11 +130,11 @@ export default {
       this.$store.dispatch("product/getProducts", queries);
     },
     changeSortBy(sortBy) {
-      if(this.currentSortBy === sortBy){
-        this.currentSortDir = this.currentSortDir === 'desc' ? 'asc' : 'desc';
+      if (this.currentSortBy === sortBy) {
+        this.currentSortDir = this.currentSortDir === "desc" ? "asc" : "desc";
       }
       this.currentSortBy = sortBy;
-      this.getProducts(this.$route.query.page)
+      this.getProducts(this.$route.query.page);
     },
   },
 };

@@ -12,6 +12,7 @@ class Product extends Model
     use Sluggable;
 
     protected $guarded = ['slug', 'exist','image'];
+    protected $appends = ['is_exist'];
     public function sluggable()
     {
         return [
@@ -31,5 +32,9 @@ class Product extends Model
         $this->categories()->sync(
             array_filter(collect($categories)->pluck('key')->toArray())
         );
+    }
+    public function getIsExistAttribute(){
+        return $this->exist ? "موجود" 
+        : "ناموجود";
     }
 }

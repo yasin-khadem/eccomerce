@@ -12,9 +12,20 @@ use Exception;
 
 class ProductController extends Controller
 {
+    protected $SortingOptions = [
+        'id'=>'id',
+        'name'=> 'name',
+        'code'=> 'code',
+        'price'=> 'price',
+        'description'=> 'description',
+        'exist'=> 'exist',
+        'created_at'=> 'created_at'
+    ];
     public function index(Request $request)
     {
-        return new ProductResourceCollection(Product::orderBy($request->sortBy,$request->sortDir)->paginate(1));
+        $sortBy = $this->SortingOptions[$request->sortBy] ?? 'id';
+        $sortDir = collect(['asc','desc'])->contains($request->sortDir) ? $request->sortDir : 'asc';
+        return new ProductResourceCollection(Product::orderBy($sortBy,$sortDir)->paginate(1));
     }
 
     public function store(ProductRequest $request)
