@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use function Symfony\Component\VarDumper\Dumper\esc;
+
 class ProductRequest extends FormRequest
 {
     /**
@@ -23,13 +25,24 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name'=>'required|string',
-            'description'=>'required|string',
-            'code'=> 'required|numeric',
-            // 'image'=>'required|string',
-            'price'=>'required|numeric',
-            'selectedTags.0' => 'required',
-        ];
+        if(request()->method === 'post' || request()->method === 'POST'){
+            return [
+                'name'=>'required|string',
+                'description'=>'required|string',
+                'code'=> 'required|numeric',
+                // 'image'=>'required|string',
+                'price'=>'required|numeric',
+                'selectedTags.0' => 'required',
+            ];
+        }else{
+            return [
+                'name' => 'required|string',
+                'description' => 'required|string',
+                'code' => 'required|numeric',
+                // 'image'=>'required|string',
+                'price' => 'required|numeric',
+                'selectedTags.0' => 'required',
+            ]; 
+        }
     }
 }

@@ -12,7 +12,7 @@ class Product extends Model
     use Sluggable;
 
     protected $guarded = ['slug', 'exist','image'];
-    protected $appends = ['is_exist'];
+    protected $appends = ['is_exist', 'selectedTags'];
     public function sluggable()
     {
         return [
@@ -36,5 +36,10 @@ class Product extends Model
     public function getIsExistAttribute(){
         return $this->exist ? "موجود" 
         : "ناموجود";
+    }
+    public function getSelectedTagsAttribute(){
+        return $this->categories->map(function($item,$key){
+            return ['key'=>$item->id,'value'=>$item->name];
+        });
     }
 }

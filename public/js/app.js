@@ -71691,6 +71691,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "state", function() { return state; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mutations", function() { return mutations; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 var namespaced = true;
 var state = {
   products: {}
@@ -71714,16 +71722,63 @@ var actions = {
       window.history.pushState('products', 'Products', "/admin/product/index?".concat(data.meta.queries));
     });
   },
-  store: function store(_ref3, payload) {
-    var commit = _ref3.commit;
+  getProduct: function getProduct(_ref3, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var state, product, _yield$axios$get, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              state = _ref3.state;
+
+              if (_.isEmpty(state.products)) {
+                _context.next = 5;
+                break;
+              }
+
+              product = state.products.data.find(function (product) {
+                return product.slug === payload;
+              });
+
+              if (!product) {
+                _context.next = 5;
+                break;
+              }
+
+              return _context.abrupt("return", product);
+
+            case 5:
+              _context.next = 7;
+              return axios.get("/api/admin/product/".concat(payload));
+
+            case 7:
+              _yield$axios$get = _context.sent;
+              data = _yield$axios$get.data;
+              return _context.abrupt("return", data);
+
+            case 10:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  store: function store(_ref4, payload) {
+    var commit = _ref4.commit;
     return payload.post('/api/admin/product');
   },
-  deleteProduct: function deleteProduct(_ref4, payload) {
-    var commit = _ref4.commit;
+  deleteProduct: function deleteProduct(_ref5, payload) {
+    var commit = _ref5.commit;
     axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
       commit('DELETE_PRODUCT', payload.index);
       swal.message('محصول شما حذف شد');
     });
+  },
+  updateProduct: function updateProduct(_ref6, payload) {
+    var commit = _ref6.commit;
+    return payload.post("/api/admin/product/".concat(payload.slug));
   }
 };
 

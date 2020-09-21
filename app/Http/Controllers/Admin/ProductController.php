@@ -30,7 +30,11 @@ class ProductController extends Controller
             $products->where('name','LIKE','%'. $request->search .'%')
             ->orWhere('description', 'LIKE', '%' . $request->search . '%');
         }
-        return new ProductResourceCollection($products->paginate(1));
+        return new ProductResourceCollection($products->paginate(1)
+        // ->map(function($item,$key){
+        //     return $item->append('selectedTags');
+        // })
+    );
     }
 
     public function store(ProductRequest $request)
@@ -52,10 +56,25 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        return $product
+        // ->append('selectedTags')
+        ;
     }
 
     public function update(Request $request, Product $product)
     {
+        DB::transaction(function () use ($request, $product) {
+            try {
+                $data = $request->except('selectedTags');
+                $product->update($data);
+                $product->syncCategories($request->selectedTags);
+                return 200;
+            } catch (Exception $exception) {
+                DB::rollBack();
+                return 500;
+            }
+        });
+        return response(['ok'], 200);
     }
 
     public function destroy(Product $product)

@@ -19,6 +19,16 @@ export const actions = {
             window.history.pushState('products', 'Products', `/admin/product/index?${data.meta.queries}`)
         })
     },
+    async getProduct({state},payload){
+        if(! _.isEmpty(state.products)){
+            let product = state.products.data.find(product => product.slug === payload)
+            if(product){
+                return product
+            }
+        }
+        let {data} = await axios.get(`/api/admin/product/${payload}`)
+        return data
+    },
     store({ commit }, payload) {
         return payload.post('/api/admin/product')
     },
@@ -28,6 +38,10 @@ export const actions = {
             swal.message('محصول شما حذف شد');
         })
 
+    },
+    updateProduct({commit},payload){
+        return payload.post(`/api/admin/product/${payload.slug}`)
+        
     }
 };
 
