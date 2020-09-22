@@ -71722,7 +71722,17 @@ var actions = {
       window.history.pushState('products', 'Products', "/admin/product/index?".concat(data.meta.queries));
     });
   },
-  getProduct: function getProduct(_ref3, payload) {
+  getUserProducts: function getUserProducts(_ref3, queries) {
+    var commit = _ref3.commit;
+    return axios.get("/api/product", {
+      params: queries
+    }).then(function (_ref4) {
+      var data = _ref4.data;
+      commit('SET_PRODUCTS', data);
+      window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
+    });
+  },
+  getProduct: function getProduct(_ref5, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var state, product, _yield$axios$get, data;
 
@@ -71730,7 +71740,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              state = _ref3.state;
+              state = _ref5.state;
 
               if (_.isEmpty(state.products)) {
                 _context.next = 5;
@@ -71765,19 +71775,19 @@ var actions = {
       }, _callee);
     }))();
   },
-  store: function store(_ref4, payload) {
-    var commit = _ref4.commit;
+  store: function store(_ref6, payload) {
+    var commit = _ref6.commit;
     return payload.post('/api/admin/product');
   },
-  deleteProduct: function deleteProduct(_ref5, payload) {
-    var commit = _ref5.commit;
+  deleteProduct: function deleteProduct(_ref7, payload) {
+    var commit = _ref7.commit;
     axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
       commit('DELETE_PRODUCT', payload.index);
       swal.message('محصول شما حذف شد');
     });
   },
-  updateProduct: function updateProduct(_ref6, payload) {
-    var commit = _ref6.commit;
+  updateProduct: function updateProduct(_ref8, payload) {
+    var commit = _ref8.commit;
     return payload.post("/api/admin/product/".concat(payload.slug));
   }
 };

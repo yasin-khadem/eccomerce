@@ -20,3 +20,5 @@ Route::group(['middleware' => ['auth:api','admin'] ,
     Route::apiResource('product','ProductController');
     Route::get('categories-search', 'Search\CategoryController@index');
 });
+
+Route::apiResource('product','Product\ProductController');
