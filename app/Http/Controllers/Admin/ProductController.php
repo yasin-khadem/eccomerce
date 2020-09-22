@@ -7,79 +7,37 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResourceCollection;
-use Illuminate\Support\Facades\DB;
-use Exception;
+use App\Traits\MakeProductModel;
+
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class ProductController extends Controller
 {
-    protected $SortingOptions = [
-        'id'=>'id',
-        'name'=> 'name',
-        'code'=> 'code',
-        'price'=> 'price',
-        'description'=> 'description',
-        'exist'=> 'exist',
-        'created_at'=> 'created_at'
-    ];
+    use MakeProductModel;
     public function index(Request $request)
     {
-        $sortBy = $this->SortingOptions[$request->sortBy] ?? 'id';
-        $sortDir = collect(['asc','desc'])->contains($request->sortDir) ? $request->sortDir : 'asc';
-        $products = Product::orderBy($sortBy, $sortDir);
-        if($request->search){
-            $products->where('name','LIKE','%'. $request->search .'%')
-            ->orWhere('description', 'LIKE', '%' . $request->search . '%');
-        }
-        return new ProductResourceCollection($products->paginate(1)
-        // ->map(function($item,$key){
-        //     return $item->append('selectedTags');
-        // })
-    );
+        return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(1));
     }
 
     public function store(ProductRequest $request)
     {
-
-        DB::transaction(function () use ($request){
-            try {
-                $data = $request->except('selectedTags');
-                $product = Product::create($data);
-                $product->syncCategories($request->selectedTags);
-                return 200;
-            } catch (Exception $exception) {
-                DB::rollBack();
-                return 500;
-            }
-        });
-        return response(['ok'], 200);
+        $this->createOrUpdate($request);
     }
 
     public function show(Product $product)
     {
-        return $product
-        // ->append('selectedTags')
-        ;
+        return $product;
     }
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        DB::transaction(function () use ($request, $product) {
-            try {
-                $data = $request->except('selectedTags');
-                $product->update($data);
-                $product->syncCategories($request->selectedTags);
-                return 200;
-            } catch (Exception $exception) {
-                DB::rollBack();
-                return 500;
-            }
-        });
-        return response(['ok'], 200);
+        $this->createOrUpdate($request,$product);
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return response(['ok'],200);
+        return response(['ok'], 200);
     }
+   
 }

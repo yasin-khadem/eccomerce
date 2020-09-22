@@ -1,151 +1,17 @@
 <template>
-  <div>
-  <p>yasin</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
-  <p>home</p>
+  <div class="container">
+  
   </div>
 </template>
 
 <script>
 export default {
-    name: "Home",
-    metaInfo:{
-      title: 'صفحه اصلی'
-    }
-}
+  name: "Home",
+  metaInfo: {
+    title: "صفحه اصلی",
+  },
+};
 </script>
 
-<style>
-
+<style scoped>
 </style>

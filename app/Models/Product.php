@@ -3,16 +3,28 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class Product extends Model
 {
     use HasFactory;
     use Sluggable;
 
-    protected $guarded = ['slug', 'exist','image'];
+    protected $guarded = ['slug', 'exist', 'image'];
     protected $appends = ['is_exist', 'selectedTags'];
+
+    protected $SortingOptions = [
+        'id' => 'id',
+        'name' => 'name',
+        'code' => 'code',
+        'price' => 'price',
+        'description' => 'description',
+        'exist' => 'exist',
+        'created_at' => 'created_at'
+    ];
     public function sluggable()
     {
         return [
@@ -25,21 +37,45 @@ class Product extends Model
     {
         return 'slug';
     }
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
-    public function syncCategories(array $categories){
+    public function syncCategories(array $categories)
+    {
         $this->categories()->sync(
             array_filter(collect($categories)->pluck('key')->toArray())
         );
     }
-    public function getIsExistAttribute(){
-        return $this->exist ? "موجود" 
-        : "ناموجود";
+
+
+    public function scopeSortByUrl(Builder $builder)
+    {
+        $sortBy = $this->SortingOptions[request()->sortBy] ?? 'id';
+        $sortDir = request()->sortDir === 'desc' ? 'desc' : 'asc';
+        $builder->orderBy($sortBy,$sortDir);
     }
-    public function getSelectedTagsAttribute(){
-        return $this->categories->map(function($item,$key){
-            return ['key'=>$item->id,'value'=>$item->name];
+
+    public function scopeSearchByUrl(Builder $builder)
+    {
+        if (request()->search) {
+            $builder->where('name', 'LIKE', '%' . request()->search . '%')
+                ->orWhere('description', 'LIKE', '%' . request()->search . '%')
+                ->orWhere('code', request()->search);
+        }
+        return $builder;
+    }
+
+
+    public function getIsExistAttribute()
+    {
+        return $this->exist ? "موجود"
+            : "ناموجود";
+    }
+    public function getSelectedTagsAttribute()
+    {
+        return $this->categories->map(function ($item, $key) {
+            return ['key' => $item->id, 'value' => $item->name];
         });
     }
 }
