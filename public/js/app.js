@@ -42670,6 +42670,22 @@ var LaravelVuePagination_component = normalizeComponent(
 
 /***/ }),
 
+/***/ "./node_modules/object-to-formdata/dist/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/object-to-formdata/dist/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return r; });
+function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(n){return typeof n}:function(n){return n&&"function"==typeof Symbol&&n.constructor===Symbol&&n!==Symbol.prototype?"symbol":typeof n})(e)}var e=function(n){return void 0===n},t=function(n){return Array.isArray(n)},o=function(n){return n&&"number"==typeof n.size&&"string"==typeof n.type&&"function"==typeof n.slice};function r(i,s,f,u){if((s=s||{}).indices=!e(s.indices)&&s.indices,s.booleansAsIntegers=!e(s.booleansAsIntegers)&&s.booleansAsIntegers,s.nullsAsUndefineds=!e(s.nullsAsUndefineds)&&s.nullsAsUndefineds,f=f||new FormData,e(i))return f;if(null===i)s.nullsAsUndefineds||f.append(u,"");else if(t(i))if(i.length)i.forEach((function(n,e){var t=u+"["+(s.indices?e:"")+"]";r(n,s,f,t)}));else{var l=u+"[]";f.append(l,"")}else!function(n){return n instanceof Date}(i)?!function(n){return"boolean"==typeof n}(i)?!function(n){return n===Object(n)}(i)||function(e){return o(e)&&"string"==typeof e.name&&("object"===n(e.lastModifiedDate)||"number"==typeof e.lastModified)}(i)||o(i)?f.append(u,i):Object.keys(i).forEach((function(n){var e=i[n];if(t(e))for(;n.length>2&&n.lastIndexOf("[]")===n.length-2;)n=n.substring(0,n.length-2);r(e,s,f,u?u+"["+n+"]":n)})):s.booleansAsIntegers?f.append(u,i?1:0):f.append(u,i):f.append(u,i.toISOString());return f}
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
 /*!***************************************************!*\
   !*** ./node_modules/popper.js/dist/esm/popper.js ***!
@@ -71693,11 +71709,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "actions", function() { return actions; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var object_to_formdata__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! object-to-formdata */ "./node_modules/object-to-formdata/dist/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 var namespaced = true;
 var state = {
@@ -71777,18 +71795,26 @@ var actions = {
   },
   store: function store(_ref6, payload) {
     var commit = _ref6.commit;
-    return payload.post('/api/admin/product');
+    return payload.submit('post', '/api/admin/product', {
+      transformRequest: [function (data, header) {
+        return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
+      }]
+    }); // return payload.post('/api/admin/product')
   },
-  deleteProduct: function deleteProduct(_ref7, payload) {
+  updateProduct: function updateProduct(_ref7, payload) {
     var commit = _ref7.commit;
+    return payload.submit('post', "/api/admin/product/".concat(payload.slug), {
+      transformRequest: [function (data, header) {
+        return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
+      }]
+    }); // return payload.post(`/api/admin/product/${payload.slug}`)
+  },
+  deleteProduct: function deleteProduct(_ref8, payload) {
+    var commit = _ref8.commit;
     axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
       commit('DELETE_PRODUCT', payload.index);
       swal.message('محصول شما حذف شد');
     });
-  },
-  updateProduct: function updateProduct(_ref8, payload) {
-    var commit = _ref8.commit;
-    return payload.post("/api/admin/product/".concat(payload.slug));
   }
 };
 

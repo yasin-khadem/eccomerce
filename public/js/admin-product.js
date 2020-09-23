@@ -49,8 +49,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @voerro/vue-tagsinput */ "./node_modules/@voerro/vue-tagsinput/src/main.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
-/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var object_to_formdata__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! object-to-formdata */ "./node_modules/object-to-formdata/dist/index.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -94,6 +95,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -103,13 +121,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     TagsInput: _voerro_vue_tagsinput__WEBPACK_IMPORTED_MODULE_0__["default"],
-    HasError: vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]
+    HasError: vform__WEBPACK_IMPORTED_MODULE_2__["HasError"]
   },
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
+      form: new vform__WEBPACK_IMPORTED_MODULE_2__["Form"]({
         name: null,
         code: null,
+        image: null,
         description: null,
         price: null,
         selectedTags: []
@@ -129,6 +148,11 @@ __webpack_require__.r(__webpack_exports__);
     storeProduct: function storeProduct() {
       var _this2 = this;
 
+      // this.form.submit('post','/api/admin/product',{
+      //               transformRequest: [function (data, header) {
+      //                   return objectToFormData(data);
+      //               }]
+      //           })
       this.$store.dispatch("product/store", this.form).then(function () {
         swal.message("محصول ثبت شد");
 
@@ -139,6 +163,9 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
+    },
+    changeImage: function changeImage(event) {
+      this.form.image = event.target.files[0];
     }
   }
 });
@@ -991,16 +1018,44 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("base-input", {
-                attrs: { name: "description", label: "توضیحات" },
-                model: {
-                  value: _vm.form.description,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "description", $$v)
-                  },
-                  expression: "form.description"
-                }
-              }),
+              _c("div", { staticClass: "form-groupe" }, [
+                _c("label", { attrs: { for: "description" } }, [
+                  _vm._v("توضیحات")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group bmd-form-group" },
+                  [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.description,
+                          expression: "form.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "description", id: "description" },
+                      domProps: { value: _vm.form.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "description", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form, field: "description" }
+                    })
+                  ],
+                  1
+                )
+              ]),
               _vm._v(" "),
               _c("base-input", {
                 attrs: { name: "price", label: "قیمت" },
@@ -1037,6 +1092,24 @@ var render = function() {
               _c("has-error", {
                 attrs: { form: _vm.form, field: "selectedTags.0" }
               }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group mt-3" },
+                [
+                  _c("label", { attrs: { for: "image" } }, [
+                    _vm._v("عکس محصول")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { id: "image", type: "file" },
+                    on: { change: _vm.changeImage }
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { form: _vm.form, field: "image" } })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "base-btn",

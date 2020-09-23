@@ -1,3 +1,5 @@
+import objectToFormData from "object-to-formdata";
+
 export const namespaced = true;
 export const state = {
     products: {}
@@ -27,18 +29,32 @@ export const actions = {
             window.history.pushState('products', 'Products', `?${data.meta.queries}`)
         })
     },
-    async getProduct({state},payload){
-        if(! _.isEmpty(state.products)){
+    async getProduct({ state }, payload) {
+        if (!_.isEmpty(state.products)) {
             let product = state.products.data.find(product => product.slug === payload)
-            if(product){
+            if (product) {
                 return product
             }
         }
-        let {data} = await axios.get(`/api/admin/product/${payload}`)
+        let { data } = await axios.get(`/api/admin/product/${payload}`)
         return data
     },
     store({ commit }, payload) {
-        return payload.post('/api/admin/product')
+        return payload.submit('post', '/api/admin/product', {
+            transformRequest: [function (data, header) {
+                return objectToFormData(data);
+            }]
+        })
+        // return payload.post('/api/admin/product')
+    },
+
+    updateProduct({ commit }, payload) {
+        return payload.submit('post', `/api/admin/product/${payload.slug}`, {
+            transformRequest: [function (data, header) {
+                return objectToFormData(data);
+            }]
+        })
+        // return payload.post(`/api/admin/product/${payload.slug}`)
     },
     deleteProduct({ commit }, payload) {
         axios.delete(`/api/admin/product/${payload.slug}`).then(() => {
@@ -47,9 +63,5 @@ export const actions = {
         })
 
     },
-    updateProduct({commit},payload){
-        return payload.post(`/api/admin/product/${payload.slug}`)
-        
-    }
 };
 

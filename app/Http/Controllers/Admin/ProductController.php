@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductResourceCollection;
+use App\service\ProductService;
 use App\Traits\MakeProductModel;
 
 use Illuminate\Support\Facades\Request as FacadesRequest;
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Request as FacadesRequest;
 class ProductController extends Controller
 {
     use MakeProductModel;
+    public function __construct()
+    {
+        $this->product = new ProductService();
+    }
     public function index(Request $request)
     {
         return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(1));
@@ -22,6 +27,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $this->createOrUpdate($request);
+        return response(['ok'], 200);
     }
 
     public function show(Product $product)
@@ -31,7 +37,8 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $this->createOrUpdate($request,$product);
+        $this->createOrUpdate($request, $product);
+        return response(['ok'], 200);
     }
 
     public function destroy(Product $product)
@@ -39,5 +46,4 @@ class ProductController extends Controller
         $product->delete();
         return response(['ok'], 200);
     }
-   
 }

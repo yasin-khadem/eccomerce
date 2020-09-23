@@ -13,8 +13,8 @@ class Product extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $guarded = ['slug', 'exist', 'image'];
-    protected $appends = ['is_exist', 'selectedTags'];
+    protected $guarded = ['slug', 'exist'];
+    protected $appends = ['is_exist', 'selectedTags', 'image_src'];
 
     protected $SortingOptions = [
         'id' => 'id',
@@ -77,5 +77,9 @@ class Product extends Model
         return $this->categories->map(function ($item, $key) {
             return ['key' => $item->id, 'value' => $item->name];
         });
+    }
+    public function getImageSrcAttribute()
+    {
+        return 'images/' . $this->image;
     }
 }
