@@ -637,7 +637,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("pagination", {
-          attrs: { data: _vm.categories },
+          attrs: { data: _vm.categories, limit: 1 },
           on: { "pagination-change-page": _vm.getCategory }
         })
       ],

@@ -57,7 +57,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Product.vue */ "./resources/js/components/Product.vue");
+/* harmony import */ var _components_Product_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/Product.vue */ "./resources/js/components/Product.vue");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -65,7 +65,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -85,7 +84,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     title: "صفحه اصلی"
   },
   components: {
-    Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -94,7 +93,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])("product", ["products"])),
   created: function created() {
-    this.$store.dispatch("product/getUserProducts");
+    this.fetchProduts(this.$route.query.page);
+  },
+  methods: {
+    fetchProduts: function fetchProduts() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      var queries = this.$route.query;
+      queries.page = page;
+      this.$store.dispatch("product/getUserProducts", queries);
+    }
   }
 });
 
@@ -241,24 +248,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5" }, [
-    _c(
-      "div",
-      {
-        staticClass:
-          "row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
-      },
-      _vm._l(_vm.products.data, function(product, index) {
-        return _c(
-          "div",
-          { key: product.id, staticClass: "col mb-4" },
-          [_c("Product", { attrs: { product: product } })],
-          1
-        )
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "container mt-5" },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
+        },
+        _vm._l(_vm.products.data, function(product, index) {
+          return _c(
+            "div",
+            { key: product.id, staticClass: "col mb-4" },
+            [_c("Product", { attrs: { product: product } })],
+            1
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        attrs: { data: _vm.products, limit: 1 },
+        on: { "pagination-change-page": _vm.fetchProduts }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

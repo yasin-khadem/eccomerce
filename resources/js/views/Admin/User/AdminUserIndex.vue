@@ -43,7 +43,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination :data="users" @pagination-change-page="getUser"></pagination>
+      <pagination :data="users" @pagination-change-page="getUser" :limit="1"></pagination>
     </div>
   </div>
 </template>

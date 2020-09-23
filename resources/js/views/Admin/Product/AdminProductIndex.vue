@@ -90,7 +90,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination :data="products" @pagination-change-page="getProducts"></pagination>
+      <pagination :data="products" @pagination-change-page="getProducts" :limit="1"></pagination>
     </div>
   </div>
 </template>

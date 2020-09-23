@@ -37,7 +37,7 @@
           </tr>
         </tbody>
       </table>
-      <pagination :data="categories" @pagination-change-page="getCategory"></pagination>
+      <pagination :data="categories" @pagination-change-page="getCategory" :limit="1"></pagination>
     </div>
   </div>
 </template>
