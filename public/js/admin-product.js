@@ -148,11 +148,6 @@ __webpack_require__.r(__webpack_exports__);
     storeProduct: function storeProduct() {
       var _this2 = this;
 
-      // this.form.submit('post','/api/admin/product',{
-      //               transformRequest: [function (data, header) {
-      //                   return objectToFormData(data);
-      //               }]
-      //           })
       this.$store.dispatch("product/store", this.form).then(function () {
         swal.message("محصول ثبت شد");
 
@@ -227,6 +222,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -255,6 +258,7 @@ __webpack_require__.r(__webpack_exports__);
         name: data.name,
         slug: data.slug,
         code: data.code,
+        image: null,
         description: data.description,
         price: data.price,
         selectedTags: data.selectedTags,
@@ -279,6 +283,9 @@ __webpack_require__.r(__webpack_exports__);
 
         swal.message('محصول شما ویرایش شد');
       });
+    },
+    changeImage: function changeImage(event) {
+      this.form.image = event.target.files[0];
     }
   }
 });
@@ -1258,6 +1265,24 @@ var render = function() {
               _c("has-error", {
                 attrs: { form: _vm.form, field: "selectedTags.0" }
               }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group mt-3" },
+                [
+                  _c("label", { attrs: { for: "image" } }, [
+                    _vm._v("عکس محصول")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { id: "image", type: "file" },
+                    on: { change: _vm.changeImage }
+                  }),
+                  _vm._v(" "),
+                  _c("has-error", { attrs: { form: _vm.form, field: "image" } })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "base-btn",

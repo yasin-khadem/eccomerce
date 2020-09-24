@@ -32,7 +32,15 @@
             :only-existing-tags="true"
           ></tags-input>
           <has-error :form="form" field="selectedTags.0"></has-error>
+           <div class="form-group mt-3">
 
+
+          <label for="image">عکس محصول</label>
+          <input id="image" type="file"  @change="changeImage" />
+          <has-error :form="form" field="image"></has-error>
+
+
+          </div>
           <base-btn class="mt-3" :loading="form.busy">ذخیره</base-btn>
         </form>
       </div>
@@ -70,6 +78,7 @@ export default {
           name: data.name,
           slug: data.slug,
           code: data.code,
+          image:null,
           description: data.description,
           price: data.price,
           selectedTags: data.selectedTags,
@@ -89,6 +98,9 @@ export default {
           swal.message('محصول شما ویرایش شد');
         });
     },
+    changeImage(event){
+      this.form.image = event.target.files[0];
+    }
   },
 };
 </script>

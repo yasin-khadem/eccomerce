@@ -92,11 +92,7 @@ export default {
   },
   methods: {
     storeProduct() {
-      // this.form.submit('post','/api/admin/product',{
-      //               transformRequest: [function (data, header) {
-      //                   return objectToFormData(data);
-      //               }]
-      //           })
+   
       this.$store.dispatch("product/store", this.form).then(() => {
         swal.message("محصول ثبت شد");
         this.$router.push({ name: "admin-product", params: { url: "index" } });
