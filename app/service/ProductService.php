@@ -4,6 +4,7 @@ namespace App\service;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 
 class ProductService{
@@ -16,12 +17,15 @@ class ProductService{
             public_path('images/'),
             $image_name
         );
+        $image_src = public_path('images/') . $image_name;
+        Image::make($image_src)->fit(500)->save($image_src);
 
         return $image_name;
     }
 
     public function removeFromPublic(string $src): bool
     {
+
         if (File::exists($src)) {
             File::delete($src);
             return true;

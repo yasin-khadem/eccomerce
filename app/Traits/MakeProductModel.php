@@ -17,11 +17,12 @@ trait MakeProductModel
         return DB::transaction(function () use ($request, $product) {
             try {
                 $data = $request->except('selectedTags', 'image');
-                $image_name = $this->makePublicImage($request);
-                if ($image_name) {
-                    $data['image'] = $image_name;
-                }
+               
                 if ($product === null) {
+                    $image_name = $this->makePublicImage($request);
+                    if ($image_name) {
+                        $data['image'] = $image_name;
+                    }
                     $product = Product::create($data);
                 } else {
                     $image_name = $this->makePublicImage($request, $product);

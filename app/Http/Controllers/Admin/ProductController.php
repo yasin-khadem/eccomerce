@@ -43,6 +43,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->product->removeFromPublic($product->image_src);
         $product->delete();
         return response(['ok'], 200);
     }

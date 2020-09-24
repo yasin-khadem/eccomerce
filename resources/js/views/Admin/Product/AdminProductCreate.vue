@@ -42,11 +42,9 @@
 
           <div class="form-group mt-3">
 
-
           <label for="image">عکس محصول</label>
           <input id="image" type="file"  @change="changeImage" />
           <has-error :form="form" field="image"></has-error>
-
 
           </div>
 
