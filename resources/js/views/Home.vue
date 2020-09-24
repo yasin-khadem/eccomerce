@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { formatTooman } from 'prial'
 import Product from "@/components/Product.vue";
 import { mapState } from "vuex";
 export default {
@@ -22,7 +23,7 @@ export default {
   },
   data() {
     return {
-      items: 10,
+      formatToman : require('prial').formatToman
     };
   },
   computed: {
