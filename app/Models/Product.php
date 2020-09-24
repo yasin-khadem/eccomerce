@@ -82,4 +82,5 @@ class Product extends Model
     {
         return 'images/' . $this->image;
     }
+   
 }

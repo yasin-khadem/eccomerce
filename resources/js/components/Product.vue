@@ -1,10 +1,10 @@
 <template>
   <div class="card">
-    <img
-      src="https://mdbootstrap.com/img/Photos/Square/img(6).jpg"
+    <router-link :to="{name: 'product-show',params:{url:'show',slug:product.slug}}"> <img
+      :src="'/' + product.image_src"
       class="card-img-top w-100"
       width="100"
-    />
+    /> </router-link>
     <div class="card-body">
       <h5 class="card-title">{{ product.name }}</h5>
       <h5 class="card-category mb-3">

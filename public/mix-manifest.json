@@ -14,5 +14,7 @@
     "/js/auth-routes.js": "/js/auth-routes.js",
     "/js/home.js": "/js/home.js",
     "/vendors~js/admin-product.js": "/vendors~js/admin-product.js",
-    "/vendors~js/admin-product~js/admin-user.js": "/vendors~js/admin-product~js/admin-user.js"
+    "/vendors~js/admin-product~js/admin-user.js": "/vendors~js/admin-product~js/admin-user.js",
+    "/js/product.js": "/js/product.js",
+    "/js/products.js": "/js/products.js"
 }

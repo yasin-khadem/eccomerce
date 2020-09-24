@@ -14,6 +14,7 @@ const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views
 const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '../views/Admin/Category/AdminCategory.vue');
 const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '../views/Admin/Product/AdminProduct.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
+const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../views/Front/Product/ProductRoutes.vue');
 export default [
     {
         path: '/',
@@ -23,8 +24,22 @@ export default [
             {
                 path: '/',
                 name: 'home',
-                component: Home,
-                
+                component: Home,  
+            },
+            {
+                path: '/product/:url',
+                name: 'products',
+                component: ProductRoutes,
+                props: true,
+                meta:{
+                    middleware:[auth]
+                },
+                children:[
+                    {
+                        path: ':slug',
+                        name: 'product-show'
+                    }
+                ]
             },
             {
                 path: '/auth/:url',

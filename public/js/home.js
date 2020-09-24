@@ -341,47 +341,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("img", {
-      staticClass: "card-img-top w-100",
-      attrs: {
-        src: "https://mdbootstrap.com/img/Photos/Square/img(6).jpg",
-        width: "100"
-      }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("h5", { staticClass: "card-title" }, [
-        _vm._v(_vm._s(_vm.product.name))
+  return _c(
+    "div",
+    { staticClass: "card" },
+    [
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: {
+              name: "product-show",
+              params: { url: "show", slug: _vm.product.slug }
+            }
+          }
+        },
+        [
+          _c("img", {
+            staticClass: "card-img-top w-100",
+            attrs: { src: "/" + _vm.product.image_src, width: "100" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("h5", { staticClass: "card-title" }, [
+          _vm._v(_vm._s(_vm.product.name))
+        ]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "card-category mb-3" }, [
+          _c("small", [
+            _vm._v(
+              "\n        کد:\n        " + _vm._s(_vm.product.code) + "\n      "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("h6", { staticClass: "card-title" }, [
+          _c("strong", [
+            _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
       ]),
       _vm._v(" "),
-      _c("h5", { staticClass: "card-category mb-3" }, [
-        _c("small", [
-          _vm._v(
-            "\n        کد:\n        " + _vm._s(_vm.product.code) + "\n      "
+      _c("div", { staticClass: "card-footer" }, [
+        _c("div", { staticClass: "stats" }, [
+          _c(
+            "strong",
+            { class: [_vm.product.exist ? "text-success" : "text-danger"] },
+            [_vm._v(_vm._s(_vm.product.is_exist))]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("h6", { staticClass: "card-title" }, [
-        _c("strong", [
-          _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "stats" }, [
-        _c(
-          "strong",
-          { class: [_vm.product.exist ? "text-success" : "text-danger"] },
-          [_vm._v(_vm._s(_vm.product.is_exist))]
-        )
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {

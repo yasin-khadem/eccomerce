@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="color-back">
   <navbar></navbar>
   <router-view  :key="$route.fullPath"></router-view>
 </div>
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style scoped>
-
+.color-back{
+  background-color: #eee ;
+}
 </style>

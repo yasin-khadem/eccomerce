@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/home":"js/home","js/auth-routes":"js/auth-routes","vendors~js/admin-product~js/admin-user":"vendors~js/admin-product~js/admin-user","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/home":"js/home","js/auth-routes":"js/auth-routes","js/products":"js/products","vendors~js/admin-product~js/admin-user":"vendors~js/admin-product~js/admin-user","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71479,6 +71479,10 @@ var AdminLayout = function AdminLayout() {
   return Promise.all(/*! import() | js/admin-layout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/admin-layout")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminLayout.vue */ "./resources/js/views/Admin/AdminLayout.vue"));
 };
 
+var ProductRoutes = function ProductRoutes() {
+  return __webpack_require__.e(/*! import() | js/products */ "js/products").then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -71486,6 +71490,18 @@ var AdminLayout = function AdminLayout() {
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/product/:url',
+    name: 'products',
+    component: ProductRoutes,
+    props: true,
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    },
+    children: [{
+      path: ':slug',
+      name: 'product-show'
+    }]
   }, {
     path: '/auth/:url',
     name: 'auth',
@@ -71750,15 +71766,15 @@ var actions = {
       window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
     });
   },
-  getProduct: function getProduct(_ref5, payload) {
+  getUserProduct: function getUserProduct(_ref5, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-      var state, product, _yield$axios$get, data;
+      var commit, product, _yield$axios$get, data;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              state = _ref5.state;
+              commit = _ref5.commit;
 
               if (_.isEmpty(state.products)) {
                 _context.next = 5;
@@ -71778,7 +71794,7 @@ var actions = {
 
             case 5:
               _context.next = 7;
-              return axios.get("/api/admin/product/".concat(payload));
+              return axios.get("/api/product/".concat(payload));
 
             case 7:
               _yield$axios$get = _context.sent;
@@ -71793,24 +71809,67 @@ var actions = {
       }, _callee);
     }))();
   },
-  store: function store(_ref6, payload) {
-    var commit = _ref6.commit;
+  getProduct: function getProduct(_ref6, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var state, product, _yield$axios$get2, data;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              state = _ref6.state;
+
+              if (_.isEmpty(state.products)) {
+                _context2.next = 5;
+                break;
+              }
+
+              product = state.products.data.find(function (product) {
+                return product.slug === payload;
+              });
+
+              if (!product) {
+                _context2.next = 5;
+                break;
+              }
+
+              return _context2.abrupt("return", product);
+
+            case 5:
+              _context2.next = 7;
+              return axios.get("/api/admin/product/".concat(payload));
+
+            case 7:
+              _yield$axios$get2 = _context2.sent;
+              data = _yield$axios$get2.data;
+              return _context2.abrupt("return", data);
+
+            case 10:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  store: function store(_ref7, payload) {
+    var commit = _ref7.commit;
     return payload.submit('post', '/api/admin/product', {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
       }]
     }); // return payload.post('/api/admin/product')
   },
-  updateProduct: function updateProduct(_ref7, payload) {
-    var commit = _ref7.commit;
+  updateProduct: function updateProduct(_ref8, payload) {
+    var commit = _ref8.commit;
     return payload.submit('post', "/api/admin/product/".concat(payload.slug), {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
       }]
     }); // return payload.post(`/api/admin/product/${payload.slug}`)
   },
-  deleteProduct: function deleteProduct(_ref8, payload) {
-    var commit = _ref8.commit;
+  deleteProduct: function deleteProduct(_ref9, payload) {
+    var commit = _ref9.commit;
     axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
       commit('DELETE_PRODUCT', payload.index);
       swal.message('محصول شما حذف شد');

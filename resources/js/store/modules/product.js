@@ -29,6 +29,17 @@ export const actions = {
             window.history.pushState('products', 'Products', `?${data.meta.queries}`)
         })
     },
+    async getUserProduct({ commit }, payload) {
+        if (!_.isEmpty(state.products)) {
+            let product = state.products.data.find(product => product.slug === payload)
+            if (product) {
+                return product
+            }
+        }
+        let { data } = await await axios.get(`/api/product/${payload}`)
+        return data
+
+    },
     async getProduct({ state }, payload) {
         if (!_.isEmpty(state.products)) {
             let product = state.products.data.find(product => product.slug === payload)
