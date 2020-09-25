@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Request;
@@ -53,7 +54,7 @@ class Product extends Model
     {
         $sortBy = $this->SortingOptions[request()->sortBy] ?? 'id';
         $sortDir = request()->sortDir === 'desc' ? 'desc' : 'asc';
-        $builder->orderBy($sortBy,$sortDir);
+        $builder->orderBy($sortBy, $sortDir);
     }
 
     public function scopeSearchByUrl(Builder $builder)
@@ -82,5 +83,10 @@ class Product extends Model
     {
         return 'images/' . $this->image;
     }
-   
+    public function getRelatedProductsAttribute(): Collection
+    {
+        return $this->whereHas('categories', function ($query) {
+            return $query->whereIn('categories.id', $this->categories->pluck('id')->toArray());
+        })->inRandomOrder()->limit(3)->get();
+    }
 }

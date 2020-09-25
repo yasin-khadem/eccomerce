@@ -43,5 +43,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+ .card:hover {
+  -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
+  transition: 500ms;
+}
 </style>

@@ -24,16 +24,16 @@ class ProductController extends Controller
         return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(5));
     }
 
- 
+
     public function store(Request $request)
     {
         //
     }
 
-   
+
     public function show(Product $product)
     {
-        return $product;
+        return $product->append('related_products');
     }
 
     public function update(Request $request, Product $product)
@@ -41,7 +41,7 @@ class ProductController extends Controller
         //
     }
 
-  
+
     public function destroy(Product $product)
     {
         //

@@ -46,6 +46,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prial__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prial__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Product.vue */ "./resources/js/components/Product.vue");
 //
 //
 //
@@ -80,6 +81,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -88,6 +105,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       title: "محصول " + this.slug
     };
+  },
+  components: {
+    Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -100,15 +120,20 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    this.$store.dispatch('product/getUserProduct', this.slug).then(function (data) {
+    // this.$store
+    // .dispatch("product/getUserProduct", this.slug)
+    // .then((data) => {
+    //   this.product = data;
+    // })
+    // .catch((err) => this.$router.push({ name: "not-found" }));
+    axios.get("/api/product/".concat(this.slug)).then(function (_ref) {
+      var data = _ref.data;
       _this.product = data;
     })["catch"](function (err) {
       return _this.$router.push({
         name: "not-found"
       });
-    }); //  axios.get(`/api/product/${this.slug}`).then(({ data }) => {
-    //   this.product = data;
-    // });
+    });
   }
 });
 
@@ -129,165 +154,6 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n\r\n", ""]);
 
 // exports
-
-
-/***/ }),
-
-/***/ "./node_modules/prial/index.js":
-/*!*************************************!*\
-  !*** ./node_modules/prial/index.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-String.prototype.replaceAll = function( token, newToken, ignoreCase ) {
-    var _token;
-    var str = this + "";
-    var i = -1;
-    if ( typeof token === "string" ) {
-        if ( ignoreCase ) {
-            _token = token.toLowerCase();
-            while( (
-                i = str.toLowerCase().indexOf(
-                    token, i >= 0 ? i + newToken.length : 0
-                ) ) !== -1
-            ) {
-                str = str.substring( 0, i ) +
-                    newToken +
-                    str.substring( i + token.length );
-            }
-        } else {
-            return this.split( token ).join( newToken );
-        }
-    }
-	return str;
-};
-
-function Rial( obj ) {
-	if( !this.isEmpty( obj ) )
-	{
-		this.Decimal( obj.decimal );
-		this.Alphabet( obj.alphabet );
-		this.Currency( obj.currency );
-		this.Cut( obj.cut );
-	}
-}
-
-Rial.prototype.Decimal = function (str) {
-	if( !this.isEmpty( str ) )
-		this.decimal = str;
-	else
-		this.decimal = "";
-	return this;
-};
-
-Rial.prototype.Alphabet = function (str) {
-	if( !this.isEmpty( str ) )
-		this.alphabet = str;
-	return this;
-};
-
-Rial.prototype.Currency = function (str) {
-	if( !this.isEmpty( str ) )
-		this.currency = str;
-	return this;
-};
-
-Rial.prototype.Cut = function (str) {
-	if( !this.isEmpty( str ) )
-		this.cut = str;
-	else
-		this.cut = 0;
-	return this;
-};
-
-Rial.prototype.persianAlphabet = function ( str ) {
-  	this.result = str
-		.replaceAll( '0', '۰' )
-		.replaceAll( '1', '۱' )
-		.replaceAll( '2', '۲' )
-		.replaceAll( '3', '۳' )
-		.replaceAll( '4', '۴' )
-		.replaceAll( '5', '۵' )
-		.replaceAll( '6', '۶' )
-		.replaceAll( '7', '۷' )
-		.replaceAll( '8', '۸' )
-		.replaceAll( '9', '۹' );
-};
-
-Rial.prototype.latinAlphabet = function ( str ) {
-	this.result = str
-		.replaceAll( '۰', '0' )
-		.replaceAll( '۱', '1' )
-		.replaceAll( '۲', '2' )
-		.replaceAll( '۳', '3' )
-		.replaceAll( '۴', '4' )
-		.replaceAll( '۵', '5' )
-		.replaceAll( '۶', '6' )
-		.replaceAll( '۷', '7' )
-		.replaceAll( '۸', '8' )
-		.replaceAll( '۹', '9' );
-};
-
-Rial.prototype.isEmpty = function( element ){
-	if( element === undefined || element == null || element=="" )
-		return true;
-	return false;
-}
-
-Rial.prototype.clean = function ( str ) {
-	var chars = "0۰";
-	if ( this.isEmpty( chars ) )
-		chars = "\s";
-	str = str.replace( new RegExp( "^[" + chars + "]+" ), "" );
-	this.result = str.toString().replace( /[^0-9+۰-۹]/g, '' );
-}
-
-Rial.prototype.format = function ( str ) {
-	var _str = str.split( "" ).reverse().join( "" );
-	var n = _str.match( /.{1,3}/g );
-	for ( var i = 0; i < n.length; i++ )
-		n[i] = n[i].split( "" ).reverse().join( "" );
-	_str = n.reverse().join( this.decimal );
-	this.result = _str;
-}
-
-Rial.prototype.slice = function ( str ) {
-	this.result = str.substring( 0, str.length - this.cut );
-}
-
-Rial.prototype.get = function ( str ) {
-	this.result = str;
-	this.clean( this.result );
-	if(this.isEmpty( this.result ))
-		return 0;
-	if( this.alphabet == "en" )
-		this.latinAlphabet( this.result );
-	else
-		this.persianAlphabet( this.result );
-	this.slice( this.result );
-	this.format( this.result );
-	if( !this.isEmpty( this.currency ) )
-		this.result += " " + this.currency;
-
-	return this.result;
-};
-
-function formatToman(value) {
-  var rial = new Rial( {
-			decimal : ",",
-			alphabet : "fa",
-			currency : "تومان",
-			cut : 0,
-			} )
-  return rial.get(value.toString())
-}
-
-
-if ( true && module.exports) {
-  module.exports.Rial = Rial;
-  module.exports.formatToman = formatToman;
-}
 
 
 /***/ }),
@@ -378,25 +244,27 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
+              _c("strong", [_vm._v("\n            کد:\n          ")]),
               _vm._v(
-                "\n            کد:\n            " +
-                  _vm._s(_vm.product.code) +
-                  "\n          "
+                "\n            " + _vm._s(_vm.product.code) + "\n          "
               )
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
+              _c("strong", [_vm._v("\n            توضیحات:\n          ")]),
               _vm._v(
-                "\n            توضیحات:\n            " +
+                "\n            " +
                   _vm._s(_vm.product.description) +
                   "\n          "
               )
             ]),
             _vm._v(" "),
             _c("h6", { staticClass: "card-title" }, [
-              _vm._v("\n            قیمت:\n            "),
               _c("strong", [
-                _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)))
+                _vm._v(
+                  "  قیمت:\n            " +
+                    _vm._s(_vm.formatToman(_vm.product.price))
+                )
               ])
             ]),
             _vm._v(" "),
@@ -406,10 +274,38 @@ var render = function() {
           ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
+      },
+      _vm._l(_vm.product.related_products, function(product, index) {
+        return _c(
+          "div",
+          { key: product.id, staticClass: "col mb-4" },
+          [_c("Product", { attrs: { product: product } })],
+          1
+        )
+      }),
+      0
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
+      _c("h3", [_vm._v("فایل های مربوطه")])
+    ])
+  }
+]
 render._withStripped = true
 
 

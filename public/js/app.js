@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/home":"js/home","js/auth-routes":"js/auth-routes","js/products":"js/products","vendors~js/admin-product~js/admin-user":"vendors~js/admin-product~js/admin-user","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/admin-product~js/admin-user":"vendors~js/admin-product~js/admin-user","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71436,7 +71436,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return __webpack_require__.e(/*! import() | js/home */ "js/home").then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var AppLayout = function AppLayout() {
@@ -71444,7 +71444,7 @@ var AppLayout = function AppLayout() {
 };
 
 var AuthRoutes = function AuthRoutes() {
-  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
 var DashboardIndex = function DashboardIndex() {
@@ -71480,7 +71480,7 @@ var AdminLayout = function AdminLayout() {
 };
 
 var ProductRoutes = function ProductRoutes() {
-  return __webpack_require__.e(/*! import() | js/products */ "js/products").then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
+  return Promise.all(/*! import() | js/products */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/products")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
