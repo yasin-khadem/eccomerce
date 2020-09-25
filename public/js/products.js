@@ -91,11 +91,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -116,6 +111,11 @@ __webpack_require__.r(__webpack_exports__);
       product: {},
       slug: this.$route.params.slug
     };
+  },
+  computed: {
+    showTitle: function showTitle() {
+      return _.isEmpty(this.product.related_products) ? false : true;
+    }
   },
   created: function created() {
     var _this = this;
@@ -151,7 +151,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n", ""]);
 
 // exports
 
@@ -244,14 +244,14 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v("\n            کد:\n          ")]),
+              _c("strong", [_vm._v(" کد: ")]),
               _vm._v(
                 "\n            " + _vm._s(_vm.product.code) + "\n          "
               )
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v("\n            توضیحات:\n          ")]),
+              _c("strong", [_vm._v(" توضیحات: ")]),
               _vm._v(
                 "\n            " +
                   _vm._s(_vm.product.description) +
@@ -261,10 +261,7 @@ var render = function() {
             _vm._v(" "),
             _c("h6", { staticClass: "card-title" }, [
               _c("strong", [
-                _vm._v(
-                  "  قیمت:\n            " +
-                    _vm._s(_vm.formatToman(_vm.product.price))
-                )
+                _vm._v(" قیمت: " + _vm._s(_vm.formatToman(_vm.product.price)))
               ])
             ]),
             _vm._v(" "),
@@ -276,7 +273,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
+      _vm.showTitle ? _c("h3", [_vm._v("فایل های مربوطه")]) : _vm._e()
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -296,16 +295,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
-      _c("h3", [_vm._v("فایل های مربوطه")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

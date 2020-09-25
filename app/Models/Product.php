@@ -85,7 +85,7 @@ class Product extends Model
     }
     public function getRelatedProductsAttribute(): Collection
     {
-        return $this->where('id','!=',$this->id)->whereHas('categories', function ($query) {
+        return $this->where('id','!=',$this->id)->whereExist(1)->whereHas('categories', function ($query) {
             return $query->whereIn('categories.id', $this->categories->pluck('id')->toArray());
         })->inRandomOrder()->limit(3)->get();
     }

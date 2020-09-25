@@ -9,20 +9,15 @@
           <div class="card-block p-3">
             <h4 class="card-title">نام محصول: {{ product.name }}</h4>
             <p class="card-text">
-            <strong>
-              کد:
-            </strong>
+              <strong> کد: </strong>
               {{ product.code }}
             </p>
             <p class="card-text">
-            <strong>
-              توضیحات:
-            </strong>
+              <strong> توضیحات: </strong>
               {{ product.description }}
             </p>
             <h6 class="card-title">
-             <strong>  قیمت:
-              {{ formatToman(product.price) }}</strong>
+              <strong> قیمت: {{ formatToman(product.price) }}</strong>
             </h6>
 
             <a href="#" class="btn btn-primary">سفارش</a>
@@ -31,7 +26,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center mt-5">
-      <h3>فایل های مربوطه</h3>
+      <h3 v-if="showTitle">فایل های مربوطه</h3>
     </div>
     <div
       class="mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
@@ -59,6 +54,7 @@ export default {
       title: "محصول " + this.slug,
     };
   },
+ 
   components: {
     Product,
   },
@@ -70,17 +66,24 @@ export default {
       slug: this.$route.params.slug,
     };
   },
+  computed: {
+    showTitle() {
+      return _.isEmpty(this.product.related_products) ? false : true;
+    },
+  },
   created() {
     // this.$store
-      // .dispatch("product/getUserProduct", this.slug)
-      // .then((data) => {
-      //   this.product = data;
-      // })
-      // .catch((err) => this.$router.push({ name: "not-found" }));
-    axios.get(`/api/product/${this.slug}`)
+    // .dispatch("product/getUserProduct", this.slug)
+    // .then((data) => {
+    //   this.product = data;
+    // })
+    // .catch((err) => this.$router.push({ name: "not-found" }));
+    axios
+      .get(`/api/product/${this.slug}`)
       .then(({ data }) => {
         this.product = data;
-      }).catch((err) => this.$router.push({ name: "not-found" }));
+      })
+      .catch((err) => this.$router.push({ name: "not-found" }));
   },
 };
 </script>
@@ -92,5 +95,4 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   transition: 500ms;
 }
-
 </style>
