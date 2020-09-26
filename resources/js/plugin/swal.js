@@ -1,19 +1,20 @@
 import Swal from 'sweetalert2'
 
 class sweetalert {
-    message(title = 'با موفقیت انجام شد', type = 'success') {
+    message(title = 'با موفقیت انجام شد', type = 'success', timer = 1500) {
         Swal.fire({
             position: 'center',
             icon: type,
             title,
             showConfirmButton: false,
-            timer: 1500
+            timer
         })
     }
+  
     error(title = 'به مشکل خوردیم', type = 'error') {
         this.message(title, type)
     }
-    confirm(title = 'آیا مطمئن هستید؟',type = "warning",text = "قادر به بازیابی نیستید!") {
+    confirm(title = 'آیا مطمئن هستید؟', type = "warning", text = "قادر به بازیابی نیستید!") {
         return Swal.fire({
             title,
             text,

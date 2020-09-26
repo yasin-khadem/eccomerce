@@ -91,6 +91,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -107,33 +175,55 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       formatToman: __webpack_require__(/*! prial */ "./node_modules/prial/index.js").formatToman,
-      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({}),
+      form: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
+        product: {},
+        phone_number: null,
+        mobile_number: null,
+        post_code: null,
+        address: null
+      }),
       product: {},
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
+      orderForm: false,
+      showBuyBotton: false
     };
   },
   computed: {
     showTitle: function showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
+    },
+    csrf: function csrf() {
+      return window.csrf;
     }
   },
   created: function created() {
     var _this = this;
 
-    // this.$store
-    // .dispatch("product/getUserProduct", this.slug)
-    // .then((data) => {
-    //   this.product = data;
-    // })
-    // .catch((err) => this.$router.push({ name: "not-found" }));
     axios.get("/api/product/".concat(this.slug)).then(function (_ref) {
       var data = _ref.data;
-      _this.product = data;
+      _this.product = data; //test
+
+      _this.form.product = data; //end test
     })["catch"](function (err) {
       return _this.$router.push({
         name: "not-found"
       });
     });
+  },
+  methods: {
+    showOrderForm: function showOrderForm() {
+      this.orderForm = true;
+      window.scrollTo(0, 1000);
+    },
+    continueToBuy: function continueToBuy() {
+      if (this.form.address && this.form.phone_number && this.form.post_code && this.form.mobile_number) {
+        this.showBuyBotton = true;
+        swal.message("با اطلاعاتی که وارد کردید خرید خود را انجام دهید", "success", 2500);
+      } else {
+        swal.message("لطفا فرم را کامل کنید", "warning");
+        this.showBuyBotton = false;
+      }
+    }
   }
 });
 
@@ -151,7 +241,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-7fd85062] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\r\n", ""]);
 
 // exports
 
@@ -227,75 +317,254 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5" }, [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c("img", {
-            staticClass: "card-img-top w-100",
-            attrs: { src: "/" + _vm.product.image_src }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card-block p-3" }, [
-            _c("h4", { staticClass: "card-title" }, [
-              _vm._v("نام محصول: " + _vm._s(_vm.product.name))
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v(" کد: ")]),
-              _vm._v(
-                "\n            " + _vm._s(_vm.product.code) + "\n          "
+  return _c(
+    "div",
+    { staticClass: "container mt-5" },
+    [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("img", {
+              staticClass: "card-img-top w-100",
+              attrs: { src: "/" + _vm.product.image_src }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "card-block p-3" }, [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v("نام محصول: " + _vm._s(_vm.product.name))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _c("strong", [_vm._v(" کد: ")]),
+                _vm._v(
+                  "\n            " + _vm._s(_vm.product.code) + "\n          "
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _c("strong", [_vm._v(" توضیحات: ")]),
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.product.description) +
+                    "\n          "
+                )
+              ]),
+              _vm._v(" "),
+              _c("h6", { staticClass: "card-title" }, [
+                _c("strong", [
+                  _vm._v(" قیمت: " + _vm._s(_vm.formatToman(_vm.product.price)))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary up-show-card",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.showOrderForm($event)
+                    }
+                  }
+                },
+                [_vm._v("سفارش")]
               )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v(" توضیحات: ")]),
-              _vm._v(
-                "\n            " +
-                  _vm._s(_vm.product.description) +
-                  "\n          "
-              )
-            ]),
-            _vm._v(" "),
-            _c("h6", { staticClass: "card-title" }, [
-              _c("strong", [
-                _vm._v(" قیمت: " + _vm._s(_vm.formatToman(_vm.product.price)))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
-              _vm._v("سفارش")
             ])
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
-      _vm.showTitle ? _c("h3", [_vm._v("فایل های مربوطه")]) : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
-      },
-      _vm._l(_vm.product.related_products, function(product, index) {
-        return _c(
-          "div",
-          { key: product.id, staticClass: "col mb-4" },
-          [_c("Product", { attrs: { product: product } })],
-          1
-        )
-      }),
-      0
-    )
-  ])
+      ]),
+      _vm._v(" "),
+      _vm.orderForm
+        ? [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("a", { staticClass: "down-show-card", attrs: { href: "#" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card mt-3 py-3 px-2" }, [
+              _c("div", { staticClass: "col-md-6 mx-auto" }, [
+                _c(
+                  "div",
+                  { staticClass: "d-flex flex-column" },
+                  [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.continueToBuy($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("base-input", {
+                          attrs: {
+                            name: "mobile_number",
+                            type: "number",
+                            label: "شماره موبایل"
+                          },
+                          model: {
+                            value: _vm.form.mobile_number,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "mobile_number", $$v)
+                            },
+                            expression: "form.mobile_number"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("base-input", {
+                          attrs: {
+                            name: "phone_number",
+                            type: "number",
+                            label: "شماره تلفن"
+                          },
+                          model: {
+                            value: _vm.form.phone_number,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "phone_number", $$v)
+                            },
+                            expression: "form.phone_number"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("base-input", {
+                          attrs: {
+                            name: "post_code",
+                            type: "number",
+                            label: "کد پستی",
+                            min: "10"
+                          },
+                          model: {
+                            value: _vm.form.post_code,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "post_code", $$v)
+                            },
+                            expression: "form.post_code"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("base-input", {
+                          attrs: {
+                            name: "address",
+                            type: "text",
+                            label: "آدرس"
+                          },
+                          model: {
+                            value: _vm.form.address,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "address", $$v)
+                            },
+                            expression: "form.address"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("base-btn", { attrs: { loading: _vm.form.busy } }, [
+                          _vm._v("ثبت")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm.showBuyBotton
+                      ? [
+                          _c(
+                            "form",
+                            {
+                              staticClass: "d-flex justify-content-center mt-2",
+                              attrs: { action: "/buy", method: "POST" }
+                            },
+                            [
+                              _c("input", {
+                                attrs: { type: "hidden", name: "_token" },
+                                domProps: { value: _vm.csrf }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "product_id" },
+                                domProps: { value: _vm.form.product.id }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "access_token" },
+                                domProps: { value: _vm.$store.state.auth.token }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                { staticClass: "btn btn-primary btn-round" },
+                                [_vm._v("خرید")]
+                              )
+                            ]
+                          )
+                        ]
+                      : _vm._e()
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ])
+          ]
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
+        _vm.showTitle ? _c("h3", [_vm._v("فایل های مربوطه")]) : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
+        },
+        _vm._l(_vm.product.related_products, function(product, index) {
+          return _c(
+            "div",
+            { key: product.id, staticClass: "col mb-4" },
+            [_c("Product", { attrs: { product: product } })],
+            1
+          )
+        }),
+        0
+      )
+    ],
+    2
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
+      _c("div", { staticClass: "card order-card text-white" }, [
+        _c("h3", [_vm._v("ثبت سفارش")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "mt-3" }, [
+      _c("li", { staticClass: "text-danger" }, [
+        _c("strong", [_vm._v(" لطفا کد پستی و آدرس را با دقت وارد کنید ")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "text-danger" }, [
+        _c("strong", [
+          _vm._v(
+            "بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک کردن روی آن به صفحه ی پرداخت وارد می شوید"
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

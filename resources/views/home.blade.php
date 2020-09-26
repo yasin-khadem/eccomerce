@@ -6,12 +6,20 @@
     <title>ecommerce</title>
   <link href="/css/app.css" rel="stylesheet" />
   <style>
+    html {
+    scroll-behavior: smooth;
+    }
     body{
       background-color: #eee
     }
   </style>
+  <script>
+    window.csrf = '{{ csrf_token() }}';
+
+  </script>
 </head>
 <body>
+  @csrf
     <div id="app">
         <router-view></router-view>
     </div>
