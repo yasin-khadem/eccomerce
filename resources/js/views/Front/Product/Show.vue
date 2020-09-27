@@ -210,15 +210,18 @@ export default {
   methods: {
     showOrderForm() {
       this.orderForm = true;
-      // swal.confirm()
-      swal.confirm('آیا مایل به ثبت سفارش هستید').then((result) => {
-        if (result.value) {
-      window.scrollTo(0, 600);
-        }else{
+      if ($(document).width() > 750) {
+        window.scrollTo(0, 600);
+      } else {
+        swal.confirm("آیا مایل به ثبت سفارش هستید").then((result) => {
+          if (result.value) {
+            window.scrollTo(0, 700);
+          } else {
             this.orderForm = false;
-        }
-    })
-   },
+          }
+        });
+      }
+    },
     continueToBuy() {
       if (this.formComplete) {
         this.showBuyBotton = true;

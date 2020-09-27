@@ -255,15 +255,19 @@ __webpack_require__.r(__webpack_exports__);
     showOrderForm: function showOrderForm() {
       var _this2 = this;
 
-      this.orderForm = true; // swal.confirm()
+      this.orderForm = true;
 
-      swal.confirm('آیا مایل به ثبت سفارش هستید').then(function (result) {
-        if (result.value) {
-          window.scrollTo(0, 600);
-        } else {
-          _this2.orderForm = false;
-        }
-      });
+      if ($(document).width() > 750) {
+        window.scrollTo(0, 600);
+      } else {
+        swal.confirm("آیا مایل به ثبت سفارش هستید").then(function (result) {
+          if (result.value) {
+            window.scrollTo(0, 700);
+          } else {
+            _this2.orderForm = false;
+          }
+        });
+      }
     },
     continueToBuy: function continueToBuy() {
       if (this.formComplete) {
