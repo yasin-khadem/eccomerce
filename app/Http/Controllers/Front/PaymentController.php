@@ -22,14 +22,15 @@ class PaymentController extends Controller
 
         $results = Zarinpal::request(
             url(route('callback')),
-            $amount,                                  
-            'testing' . $product->name,                             
+            $amount,
+            $product->name,
         );
-        dd($results);
-
+        // dd($results);
+        if (isset($results['Authority']) && !empty($results['Authority'])) {
+            Zarinpal::redirect();
+        }
 
         // save $results['Authority'] for verifying step
-        // Zarinpal::redirect();
         // redirect user to zarinpal
 
         // after that verify transaction by that $results['Authority']
@@ -38,6 +39,5 @@ class PaymentController extends Controller
 
     public function callback()
     {
-
     }
 }
