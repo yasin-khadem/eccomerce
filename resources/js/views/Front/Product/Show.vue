@@ -20,7 +20,10 @@
               <strong> قیمت: {{ formatToman(product.price) }}</strong>
             </h6>
 
-            <a href="#" class="btn btn-primary up-show-card" @click.prevent="showOrderForm"
+            <a
+              href="#"
+              class="btn btn-primary up-show-card"
+              @click.prevent="showOrderForm"
               >سفارش</a
             >
           </div>
@@ -39,7 +42,6 @@
       <div class="card mt-3 py-3 px-2">
         <div class="col-md-6 mx-auto">
           <div class="d-flex flex-column">
-           
             <!-- <form action="/buy" method="POST"> -->
             <form @submit.prevent="continueToBuy">
               <base-input
@@ -68,26 +70,61 @@
                 label="آدرس"
                 v-model="form.address"
               ></base-input>
-              <base-btn :loading="form.busy">ثبت</base-btn>
+              <base-btn btn="success" :loading="form.busy"
+                >ثبت و ادامه</base-btn
+              >
             </form>
             <template v-if="showBuyBotton">
               <form
-                action="/buy" method="POST" class="d-flex justify-content-center mt-2">
-              <input type="hidden" name="_token" :value="csrf">
-              <input type="hidden" name="product_id" :value="form.product.id">
-            <input type="hidden" name="access_token" :value="$store.state.auth.token"> 
-                <button class="btn btn-primary btn-round">خرید</button>
+                action="/buy"
+                method="POST"
+                class="d-flex justify-content-center mt-2"
+              >
+                <input type="hidden" name="_token" :value="csrf" />
+                <input
+                  type="hidden"
+                  name="product_id"
+                  :value="form.product.id"
+                />
+                <input
+                  type="hidden"
+                  name="access_token"
+                  :value="$store.state.auth.token"
+                />
+                <input type="hidden" name="price" :value="form.product.price" />
+
+                <!-- orders table -->
+                <input
+                  type="hidden"
+                  name="mobile_number"
+                  :value="form.mobile_number"
+                />
+                <input
+                  type="hidden"
+                  name="phone_number"
+                  :value="form.phone_number"
+                />
+                <input type="hidden" name="address" :value="form.address" />
+                <input type="hidden" name="post_code" :value="form.post_code" />
+                <!-- orders table -->
+
+                <button class="btn btn-primary btn-round" v-if="formComplete">
+                  خرید
+                </button>
               </form>
             </template>
           </div>
-           <ul class="mt-3">
-              <li class="text-danger">
-                <strong> لطفا کد پستی و آدرس را با دقت وارد کنید </strong>
-              </li>
-              <li class="text-danger">
-                <strong>بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک کردن روی آن به صفحه ی پرداخت وارد می شوید</strong>
-              </li>
-            </ul>
+          <ul class="mt-3">
+            <li class="text-danger">
+              <strong> لطفا کد پستی و آدرس را با دقت وارد کنید </strong>
+            </li>
+            <li class="text-danger">
+              <strong
+                >بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک
+                کردن روی آن به صفحه ی پرداخت وارد می شوید</strong
+              >
+            </li>
+          </ul>
         </div>
       </div>
     </template>
@@ -96,8 +133,9 @@
     <div class="d-flex justify-content-center mt-5">
       <h3 v-if="showTitle">فایل های مربوطه</h3>
     </div>
+    <hr />
     <div
-      class="mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
+      class="mt-3 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
     >
       <div
         class="col mb-4"
@@ -146,9 +184,17 @@ export default {
     showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
-    csrf(){
+    csrf() {
       return window.csrf;
-    }
+    },
+    formComplete() {
+      return this.form.address &&
+        this.form.phone_number &&
+        this.form.post_code &&
+        this.form.mobile_number
+        ? true
+        : false;
+    },
   },
   created() {
     axios
@@ -162,19 +208,19 @@ export default {
       .catch((err) => this.$router.push({ name: "not-found" }));
   },
   methods: {
-    showOrderForm(){
+    showOrderForm() {
       this.orderForm = true;
-      window.scrollTo(0,1000);
-    },
-      
-  
+      // swal.confirm()
+      swal.confirm('آیا مایل به ثبت سفارش هستید').then((result) => {
+        if (result.value) {
+      window.scrollTo(0, 600);
+        }else{
+            this.orderForm = false;
+        }
+    })
+   },
     continueToBuy() {
-      if (
-        this.form.address &&
-        this.form.phone_number &&
-        this.form.post_code &&
-        this.form.mobile_number
-      ) {
+      if (this.formComplete) {
         this.showBuyBotton = true;
         swal.message(
           "با اطلاعاتی که وارد کردید خرید خود را انجام دهید",

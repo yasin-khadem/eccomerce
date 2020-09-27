@@ -42,7 +42,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Product",
@@ -324,13 +323,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer" }, [
-        _c("div", { staticClass: "stats" }, [
-          _c(
-            "strong",
-            { class: [_vm.product.exist ? "text-success" : "text-danger"] },
-            [_vm._v(_vm._s(_vm.product.is_exist))]
-          )
-        ])
+        _c(
+          "strong",
+          { class: [_vm.product.exist ? "text-success" : "text-danger"] },
+          [_vm._v(_vm._s(_vm.product.is_exist))]
+        )
       ])
     ],
     1

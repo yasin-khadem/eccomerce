@@ -11,7 +11,8 @@ class PaymentController extends Controller
     public function buy(Request $request){
         $product = Product::findOrFail($request->product_id);
         // dd($product);
-        dd($request->user());
+        dd($request->address);
+        // dd($request->user());
         // dd($request->all());
 
     }

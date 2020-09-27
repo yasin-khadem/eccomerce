@@ -21,11 +21,10 @@
       </h6>
     </div>
     <div class="card-footer">
-      <div class="stats">
         <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{
           product.is_exist
         }}</strong>
-      </div>
+      
     </div>
   </div>
 </template>

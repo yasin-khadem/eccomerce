@@ -68,10 +68,14 @@ export const actions = {
         // return payload.post(`/api/admin/product/${payload.slug}`)
     },
     deleteProduct({ commit }, payload) {
-        axios.delete(`/api/admin/product/${payload.slug}`).then(() => {
-            commit('DELETE_PRODUCT', payload.index);
-            swal.message('محصول شما حذف شد');
-        })
+        swal.confirm().then((result) => {
+            if (result.value) { 
+                axios.delete(`/api/admin/product/${payload.slug}`).then(() => {
+                    commit('DELETE_PRODUCT', payload.index);
+                    swal.message('محصول شما حذف شد');
+                })
+             }})
+       
 
     },
 };

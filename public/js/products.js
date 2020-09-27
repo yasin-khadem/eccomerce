@@ -159,6 +159,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -194,6 +232,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     csrf: function csrf() {
       return window.csrf;
+    },
+    formComplete: function formComplete() {
+      return this.form.address && this.form.phone_number && this.form.post_code && this.form.mobile_number ? true : false;
     }
   },
   created: function created() {
@@ -212,11 +253,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showOrderForm: function showOrderForm() {
-      this.orderForm = true;
-      window.scrollTo(0, 1000);
+      var _this2 = this;
+
+      this.orderForm = true; // swal.confirm()
+
+      swal.confirm('آیا مایل به ثبت سفارش هستید').then(function (result) {
+        if (result.value) {
+          window.scrollTo(0, 600);
+        } else {
+          _this2.orderForm = false;
+        }
+      });
     },
     continueToBuy: function continueToBuy() {
-      if (this.form.address && this.form.phone_number && this.form.post_code && this.form.mobile_number) {
+      if (this.formComplete) {
         this.showBuyBotton = true;
         swal.message("با اطلاعاتی که وارد کردید خرید خود را انجام دهید", "success", 2500);
       } else {
@@ -461,9 +511,11 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _c("base-btn", { attrs: { loading: _vm.form.busy } }, [
-                          _vm._v("ثبت")
-                        ])
+                        _c(
+                          "base-btn",
+                          { attrs: { btn: "success", loading: _vm.form.busy } },
+                          [_vm._v("ثبت و ادامه")]
+                        )
                       ],
                       1
                     ),
@@ -492,11 +544,47 @@ var render = function() {
                                 domProps: { value: _vm.$store.state.auth.token }
                               }),
                               _vm._v(" "),
-                              _c(
-                                "button",
-                                { staticClass: "btn btn-primary btn-round" },
-                                [_vm._v("خرید")]
-                              )
+                              _c("input", {
+                                attrs: { type: "hidden", name: "price" },
+                                domProps: { value: _vm.form.product.price }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: {
+                                  type: "hidden",
+                                  name: "mobile_number"
+                                },
+                                domProps: { value: _vm.form.mobile_number }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "phone_number" },
+                                domProps: { value: _vm.form.phone_number }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "address" },
+                                domProps: { value: _vm.form.address }
+                              }),
+                              _vm._v(" "),
+                              _c("input", {
+                                attrs: { type: "hidden", name: "post_code" },
+                                domProps: { value: _vm.form.post_code }
+                              }),
+                              _vm._v(" "),
+                              _vm.formComplete
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary btn-round"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                خرید\n              "
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
                             ]
                           )
                         ]
@@ -515,11 +603,13 @@ var render = function() {
         _vm.showTitle ? _c("h3", [_vm._v("فایل های مربوطه")]) : _vm._e()
       ]),
       _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
       _c(
         "div",
         {
           staticClass:
-            "mt-5 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
+            "mt-3 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
         },
         _vm._l(_vm.product.related_products, function(product, index) {
           return _c(
@@ -558,7 +648,7 @@ var staticRenderFns = [
       _c("li", { staticClass: "text-danger" }, [
         _c("strong", [
           _vm._v(
-            "بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک کردن روی آن به صفحه ی پرداخت وارد می شوید"
+            "بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک\n              کردن روی آن به صفحه ی پرداخت وارد می شوید"
           )
         ])
       ])

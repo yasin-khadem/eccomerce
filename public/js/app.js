@@ -71871,9 +71871,13 @@ var actions = {
   },
   deleteProduct: function deleteProduct(_ref9, payload) {
     var commit = _ref9.commit;
-    axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
-      commit('DELETE_PRODUCT', payload.index);
-      swal.message('محصول شما حذف شد');
+    swal.confirm().then(function (result) {
+      if (result.value) {
+        axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
+          commit('DELETE_PRODUCT', payload.index);
+          swal.message('محصول شما حذف شد');
+        });
+      }
     });
   }
 };
