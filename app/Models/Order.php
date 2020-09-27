@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -10,7 +11,7 @@ class Order extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $guarded = [];
+    protected $guarded = ['slug'];
 
     public function sluggable()
     {

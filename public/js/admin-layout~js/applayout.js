@@ -210,7 +210,7 @@ var render = function() {
           _c(
             "router-link",
             { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-            [_vm._v("وب آموز")]
+            [_vm._v("فروشگاه")]
           ),
           _vm._v(" "),
           _vm._m(0),

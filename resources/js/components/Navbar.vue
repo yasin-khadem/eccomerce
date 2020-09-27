@@ -2,7 +2,7 @@
   <div class="w-100" id="bg-navbar">
     <div class="container">
       <nav class="row navbar navbar-expand-lg navbar-dark bg-dark" dir="ltr">
-        <router-link class="navbar-brand" :to="{ name: 'home' }">وب آموز</router-link>
+        <router-link class="navbar-brand" :to="{ name: 'home' }">فروشگاه</router-link>
         <button
           class="navbar-toggler"
           type="button"
