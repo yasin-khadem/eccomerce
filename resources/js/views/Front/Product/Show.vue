@@ -24,8 +24,12 @@
               href="#"
               class="btn btn-primary up-show-card"
               @click.prevent="showOrderForm"
+              v-if="ProductExist"
               >سفارش</a
             >
+            <p v-if="!ProductExist" class="text-danger">
+              <strong> این محصول قبلا فروخته شده </strong>
+            </p>
           </div>
         </div>
       </div>
@@ -63,7 +67,6 @@
                 min="10"
                 v-model="form.post_code"
               ></base-input>
-
               <base-input
                 name="address"
                 type="text"
@@ -181,6 +184,9 @@ export default {
     };
   },
   computed: {
+    ProductExist() {
+      return this.product.exist ? true : false;
+    },
     showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
@@ -224,12 +230,21 @@ export default {
     },
     continueToBuy() {
       if (this.formComplete) {
-        this.showBuyBotton = true;
-        swal.message(
-          "با اطلاعاتی که وارد کردید خرید خود را انجام دهید",
-          "success",
-          2500
-        );
+        return this.form
+          .post(`/api/order`, this.form)
+          .then(() => {
+            this.showBuyBotton = true;
+            swal.message(
+              "با اطلاعاتی که وارد کردید خرید خود را انجام دهید",
+              "success",
+              2500
+            );
+          })
+          .catch((e) => {
+            console.log(e);
+            this.showBuyBotton = false;
+            swal.message("اطلاعات ثبت نشد", "error", 2500);
+          });
       } else {
         swal.message("لطفا فرم را کامل کنید", "warning");
         this.showBuyBotton = false;

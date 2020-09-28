@@ -14,7 +14,7 @@ class Product extends Model
     use HasFactory;
     use Sluggable;
 
-    protected $guarded = ['slug', 'exist'];
+    protected $guarded = ['slug'];
     protected $appends = ['is_exist', 'selectedTags', 'image_src'];
 
     protected $SortingOptions = [

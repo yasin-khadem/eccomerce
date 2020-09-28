@@ -20,13 +20,13 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->foreign('payment_id')->references('id')->on('payments');
             $table->string('customer_name');
-            $table->string('address');
+            $table->longText('address');
             $table->string('post_code');
             $table->string('phone_number');
             $table->string('mobile_number');
             $table->string('slug')->unique();
-            $table->string('product_name');
-            $table->unsignedInteger('product_code');
+            $table->string('product_name')->nullable();
+            $table->unsignedInteger('product_code')->nullable();
             $table->boolean('delivered')->default(false);
             $table->timestamps();
         });

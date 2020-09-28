@@ -22,3 +22,4 @@ Route::group(['middleware' => ['auth:api','admin'] ,
 });
 
 Route::apiResource('product','Product\ProductController');
+Route::apiResource('order', 'Order\OrderController')->middleware(['auth:api']);

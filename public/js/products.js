@@ -197,6 +197,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -227,6 +230,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    ProductExist: function ProductExist() {
+      return this.product.exist ? true : false;
+    },
     showTitle: function showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
@@ -270,9 +276,17 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     continueToBuy: function continueToBuy() {
+      var _this3 = this;
+
       if (this.formComplete) {
-        this.showBuyBotton = true;
-        swal.message("با اطلاعاتی که وارد کردید خرید خود را انجام دهید", "success", 2500);
+        return this.form.post("/api/order", this.form).then(function () {
+          _this3.showBuyBotton = true;
+          swal.message("با اطلاعاتی که وارد کردید خرید خود را انجام دهید", "success", 2500);
+        })["catch"](function (e) {
+          console.log(e);
+          _this3.showBuyBotton = false;
+          swal.message("اطلاعات ثبت نشد", "error", 2500);
+        });
       } else {
         swal.message("لطفا فرم را کامل کنید", "warning");
         this.showBuyBotton = false;
@@ -412,20 +426,28 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary up-show-card",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.showOrderForm($event)
-                    }
-                  }
-                },
-                [_vm._v("سفارش")]
-              )
+              _vm.ProductExist
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary up-show-card",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.showOrderForm($event)
+                        }
+                      }
+                    },
+                    [_vm._v("سفارش")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.ProductExist
+                ? _c("p", { staticClass: "text-danger" }, [
+                    _c("strong", [_vm._v(" این محصول قبلا فروخته شده ")])
+                  ])
+                : _vm._e()
             ])
           ])
         ])
