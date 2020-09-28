@@ -15,13 +15,13 @@
   </style>
   <script>
     window.csrf = '{{ csrf_token() }}';
-
   </script>
 </head>
 <body>
   @csrf
     <div id="app">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
+        <notify :data='@json(session('notify'))' />
     </div>
   <script src="/js/app.js"></script>
 </body>

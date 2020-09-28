@@ -82,7 +82,7 @@
                 >ثبت و ادامه</base-btn
               >
             </form>
-            <template v-if="showBuyBotton">
+            <template v-if="showBuyBotton && checkForBuyButton">
               <form
                 action="/buy"
                 method="POST"
@@ -139,7 +139,7 @@
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
 
     <div class="d-flex justify-content-center mt-5">
-      <h3 v-if="showTitle">فایل های مربوطه</h3>
+      <h3 v-if="showTitle">محصولات مربوطه</h3>
     </div>
     <hr />
     <div
@@ -186,6 +186,12 @@ export default {
       slug: this.$route.params.slug,
       orderForm: false,
       showBuyBotton: false,
+      currentOrderData: {
+        phone_number: null,
+        mobile_number: null,
+        post_code: null,
+        address: null,
+      }
     };
   },
   computed: {
@@ -206,6 +212,16 @@ export default {
         ? true
         : false;
     },
+    checkForBuyButton(){
+      if(this.currentOrderData.address ===  this.form.address &&
+      this.currentOrderData.post_code === this.form.post_code &&
+      this.currentOrderData.mobile_number === this.form.mobile_number &&
+      this.currentOrderData.phone_number === this.form.address.phone_number){
+        return true;
+      }else{
+        return false;
+      }
+    }
   },
   created() {
     axios
@@ -234,6 +250,10 @@ export default {
       }
     },
     continueToBuy() {
+      this.currentOrderData.address =  this.form.address
+      this.currentOrderData.post_code = this.form.post_code
+      this.currentOrderData.mobile_number = this.form.mobile_number
+      this.currentOrderData.phone_number = this.form.address.phone_number
       if (this.formComplete) {
         return this.form
           .post(`/api/order`, this.form)

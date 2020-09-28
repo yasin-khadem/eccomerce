@@ -231,7 +231,13 @@ __webpack_require__.r(__webpack_exports__);
       product: {},
       slug: this.$route.params.slug,
       orderForm: false,
-      showBuyBotton: false
+      showBuyBotton: false,
+      currentOrderData: {
+        phone_number: null,
+        mobile_number: null,
+        post_code: null,
+        address: null
+      }
     };
   },
   computed: {
@@ -246,6 +252,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     formComplete: function formComplete() {
       return this.form.address && this.form.phone_number && this.form.post_code && this.form.mobile_number ? true : false;
+    },
+    checkForBuyButton: function checkForBuyButton() {
+      if (this.currentOrderData.address === this.form.address && this.currentOrderData.post_code === this.form.post_code && this.currentOrderData.mobile_number === this.form.mobile_number && this.currentOrderData.phone_number === this.form.address.phone_number) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   created: function created() {
@@ -282,6 +295,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     continueToBuy: function continueToBuy() {
       var _this3 = this;
+
+      this.currentOrderData.address = this.form.address;
+      this.currentOrderData.post_code = this.form.post_code;
+      this.currentOrderData.mobile_number = this.form.mobile_number;
+      this.currentOrderData.phone_number = this.form.address.phone_number;
 
       if (this.formComplete) {
         return this.form.post("/api/order", this.form).then(function () {
@@ -550,7 +568,7 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm.showBuyBotton
+                    _vm.showBuyBotton && _vm.checkForBuyButton
                       ? [
                           _c(
                             "form",
@@ -630,7 +648,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
-        _vm.showTitle ? _c("h3", [_vm._v("فایل های مربوطه")]) : _vm._e()
+        _vm.showTitle ? _c("h3", [_vm._v("محصولات مربوطه")]) : _vm._e()
       ]),
       _vm._v(" "),
       _c("hr"),

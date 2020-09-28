@@ -24,7 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile_number'=>'required|max:11',
+            'mobile_number'=>'required|min:11|max:11',
             'phone_number'=>'required',
             'address'=>'required',
             'post_code'=>'required|min:10|max:10'

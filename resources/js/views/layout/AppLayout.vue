@@ -10,7 +10,8 @@ import Navbar from '@/components/Navbar'
 export default {
     name:"AppLayout",
     components:{
-        Navbar
+        Navbar,
+
     },
     data() {
       return {

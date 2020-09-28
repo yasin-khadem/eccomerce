@@ -15,51 +15,72 @@ class PaymentController extends Controller
 {
     public function buy(Request $request)
     {
-        // dd($request->all());
         $product = Product::findOrFail($request->product_id);
-        $order = Order::firstWhere('product_code', $product->code);
+
+        $order = Order::where('product_code', $product->code)
+        ->where('address',$request->address)->where('phone_number',$request->phone_number)
+        ->where('mobile_number',$request->mobile_number)->where('post_code',$request->post_code)->first();
+
         $amount = $product->price;
+
         $user = $request->user();
 
         if ($product->exist) {
-
             $results = Zarinpal::request(
                 url(route('callback')),
                 $amount,
                 $product->name,
             );
-            if (isset($results['Authority']) && !empty($results['Authority'])) {
 
+            if (isset($results['Authority']) && !empty($results['Authority'])) {
                 Payment::create([
                     'price' => $amount,
                     'user_id' => $user->id,
                     'product_id' => $product->id,
+                    'order_id' => $order->id,
                     'product_code' => $product->code,
                     'authority' => $results['Authority']
                 ]);
 
                 Zarinpal::redirect();
+
+            }else{
+                session()->flash('notify',[
+                    'title'=>'به مشکل خوردیم!',
+                    'text'=>'در ارتباط با زرین پال به مشکل خوردیم!',
+                    'icon'=>'error',
+                    'confirm_text'=> 'بعدا خرید میکنم'
+                ]);
+                return redirect(url('/'));
             }
+
+
         } else {
             $order->delete();
             return redirect(url('/'));
         }
 
-        // save $results['Authority'] for verifying step
-        // redirect user to zarinpal
-
-        // after that verify transaction by that $results['Authority']
-        // Zarinpal::verify('OK',1000,$results['Authority']);
     }
 
     public function callback(Request $request)
     {
         $authority =  request('Authority');
+        $status = request('Status');
         $payment = Payment::firstWhere('authority', $authority);
+
+        if(is_null($authority) || is_null($status) || is_null($payment)){
+            session()->flash('notify', [
+                'title' => 'به مشکل خوردیم!',
+                'text' => 'اطلاعات کافی نیست',
+                'icon' => 'error',
+                'confirm_text' => 'بعدا خرید میکنم'
+            ]);
+            return redirect(url('/'));
+        }
 
         $product = Product::firstWhere('code', $payment->product_code);
 
-        $order = Order::firstWhere('product_code', $payment->product_code);
+        $order = Order::findOrFail($payment->order_id);
 
 
         if($order){
@@ -84,14 +105,33 @@ class PaymentController extends Controller
             $product->update([
                 'exist' => false
             ]);
+            session()->flash('notify', [
+                'title' => 'محصول خریداری شد',
+                'text' => 'شناسه خرید:' . $verified_request['RefID'],
+                'icon' => 'success',
+                'confirm_text' => 'اوکی'
+            ]);
+            return redirect(url('/')); //TODO redirect to Shopping list
 
-            return "درخواست با موفقیت انجام شد";
+
         } elseif ($verified_request['Status'] === 'verified_before') {
-            return "درخواست قبلا تایید شده است";
+            session()->flash('notify', [
+                'title' => 'مشکل به وجود آمد',
+                'text' => 'درخواست قبلا تایید شده است',
+                'icon' => 'error',
+                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+            ]);
+            return redirect(url('/'));
         } else {
             $order->delete();
             $payment->delete();
-            return "پرداخت شما به مشکل خورد";
+            session()->flash('notify', [
+                'title' => 'مشکل به وجود آمد',
+                'text' => 'پرداخت شما به مشکل خورد',
+                'icon' => 'error',
+                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+            ]);
+            return redirect(url('/'));
         }
     }
 }

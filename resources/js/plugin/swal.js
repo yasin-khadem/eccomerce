@@ -10,6 +10,15 @@ class sweetalert {
             timer
         })
     }
+    fire(title,text,icon='info', confirmButtonText='اوکی') {
+        Swal.fire({
+            icon,
+            text,
+            title,
+            confirmButtonText,
+            position: 'center',
+        })
+    }
   
     error(title = 'به مشکل خوردیم', type = 'error') {
         this.message(title, type)

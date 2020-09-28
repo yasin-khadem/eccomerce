@@ -34,6 +34,7 @@ return [
         'merchantID' => env('MERCHANT_ID','XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'),
         'zarinGate' => env('ZARIN_GATE',false),
         'sandbox' => env('SANDBOX',false) 
+        // 'sandbox' => false
     ],
 
 ];
