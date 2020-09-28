@@ -23,7 +23,6 @@ class OrderController extends Controller
     
     public function store(OrderRequest $request)
     {
-        // dd($request->all());
         Order::create([
             'user_id' => $request->user()->id,
             'customer_name' => $request->user()->name,

@@ -73,6 +73,11 @@
                 label="آدرس"
                 v-model="form.address"
               ></base-input>
+             <!--  <input
+                  type="hidden"
+                  name="access_token"
+                  :value="$store.state.auth.token"
+                />   -->
               <base-btn btn="success" :loading="form.busy"
                 >ثبت و ادامه</base-btn
               >
@@ -241,7 +246,6 @@ export default {
             );
           })
           .catch((e) => {
-            console.log(e);
             this.showBuyBotton = false;
             swal.message("اطلاعات ثبت نشد", "error", 2500);
           });
@@ -250,7 +254,7 @@ export default {
         this.showBuyBotton = false;
       }
     },
-  },
+  }
 };
 </script>
 <style scoped>

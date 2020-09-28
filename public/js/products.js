@@ -200,6 +200,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -283,7 +288,6 @@ __webpack_require__.r(__webpack_exports__);
           _this3.showBuyBotton = true;
           swal.message("با اطلاعاتی که وارد کردید خرید خود را انجام دهید", "success", 2500);
         })["catch"](function (e) {
-          console.log(e);
           _this3.showBuyBotton = false;
           swal.message("اطلاعات ثبت نشد", "error", 2500);
         });

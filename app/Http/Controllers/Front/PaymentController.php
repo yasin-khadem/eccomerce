@@ -15,6 +15,7 @@ class PaymentController extends Controller
 {
     public function buy(Request $request)
     {
+        // dd($request->all());
         $product = Product::findOrFail($request->product_id);
         $order = Order::firstWhere('product_code', $product->code);
         $amount = $product->price;
@@ -22,25 +23,11 @@ class PaymentController extends Controller
 
         if ($product->exist) {
 
-            // Order::create([
-            //     'user_id' => $user->id,
-            //     'customer_name' => $user->name,
-            //     'address' => $request->address,
-            //     'post_code' => $request->post_code,
-            //     'phone_number' => $request->phone_number,
-            //     'mobile_number' => $request->mobile_number,
-            //     'product_name' => $product->name,
-            //     'product_code' => $product->code,
-            // ]);
-
-
-
             $results = Zarinpal::request(
                 url(route('callback')),
                 $amount,
                 $product->name,
             );
-            // dd($results);
             if (isset($results['Authority']) && !empty($results['Authority'])) {
 
                 Payment::create([
@@ -74,7 +61,14 @@ class PaymentController extends Controller
 
         $order = Order::firstWhere('product_code', $payment->product_code);
 
-        $verified_request = Zarinpal::verify('OK', $payment->price, $authority);
+
+        if($order){
+            $verified_request = Zarinpal::verify('OK', $payment->price, $authority);
+        } else{
+            $payment->delete();
+            return "پرداخت شما به مشکل خورد";
+        }
+
 
         if ($verified_request['Status'] === 'success') {
             $payment->update([

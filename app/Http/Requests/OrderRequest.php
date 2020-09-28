@@ -27,7 +27,7 @@ class OrderRequest extends FormRequest
             'mobile_number'=>'required|max:11',
             'phone_number'=>'required',
             'address'=>'required',
-            'post_code'=>'required|max:10'
+            'post_code'=>'required|min:10|max:10'
         ];
     }
 }
