@@ -284,7 +284,7 @@ __webpack_require__.r(__webpack_exports__);
       if ($(document).width() > 750) {
         window.scrollTo(0, 600);
       } else {
-        swal.confirm("آیا مایل به ثبت سفارش هستید").then(function (result) {
+        swal.confirm("آیا مایل به ثبت سفارش هستید", "info", "برای ثبت سفارش تایید را بزنید").then(function (result) {
           if (result.value) {
             window.scrollTo(0, 700);
           } else {

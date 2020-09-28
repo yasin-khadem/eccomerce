@@ -240,7 +240,7 @@ export default {
       if ($(document).width() > 750) {
         window.scrollTo(0, 600);
       } else {
-        swal.confirm("آیا مایل به ثبت سفارش هستید").then((result) => {
+        swal.confirm("آیا مایل به ثبت سفارش هستید","info","برای ثبت سفارش تایید را بزنید").then((result) => {
           if (result.value) {
             window.scrollTo(0, 700);
           } else {
