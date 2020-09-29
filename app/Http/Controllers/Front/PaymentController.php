@@ -25,7 +25,7 @@ class PaymentController extends Controller
 
         $user = $request->user();
 
-        if ($product->exist) {
+        if ($product->exist && $order) {
             $results = Zarinpal::request(
                 url(route('callback')),
                 $amount,

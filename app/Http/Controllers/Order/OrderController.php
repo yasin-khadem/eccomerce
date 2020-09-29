@@ -7,6 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -20,9 +21,11 @@ class OrderController extends Controller
         //
     }
 
-    
+
     public function store(OrderRequest $request)
     {
+        DB::table('orders')->whereNull('payment_id')
+            ->where('created_at', '<', now()->subHour(1))->delete();
         Order::create([
             'user_id' => $request->user()->id,
             'customer_name' => $request->user()->name,
@@ -33,7 +36,7 @@ class OrderController extends Controller
             'product_name' => $request->product['name'],
             'product_code' => $request->product['code'],
         ]);
-        return response(['ok'],200);
+        return response(['ok'], 200);
     }
 
     /**
