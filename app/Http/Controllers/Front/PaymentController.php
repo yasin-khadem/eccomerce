@@ -6,59 +6,60 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
+use App\service\BuyPaymentService;
 use Illuminate\Http\Request;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
-use function PHPUnit\Framework\returnSelf;
-
 class PaymentController extends Controller
 {
-    public function buy(Request $request)
+    // public function buy(Request $request)
+    public function buy(BuyPaymentService $buyPaymentService)
     {
-        $product = Product::findOrFail($request->product_id);
+        return $buyPaymentService->redirectToZarinpal();
+        // $product = Product::findOrFail($request->product_id);
 
-        $order = Order::where('product_code', $product->code)
-        ->where('address',$request->address)->where('phone_number',$request->phone_number)
-        ->where('mobile_number',$request->mobile_number)->where('post_code',$request->post_code)->first();
+        // $order = Order::where('product_code', $product->code)
+        // ->where('address',$request->address)->where('phone_number',$request->phone_number)
+        // ->where('mobile_number',$request->mobile_number)->where('post_code',$request->post_code)->first();
 
-        $amount = $product->price;
+        // $amount = $product->price;
 
-        $user = $request->user();
+        // $user = $request->user();
 
-        if ($product->exist && $order) {
-            $results = Zarinpal::request(
-                url(route('callback')),
-                $amount,
-                $product->name,
-            );
+        // if ($product->exist && $order) {
+        //     $results = Zarinpal::request(
+        //         url(route('callback')),
+        //         $amount,
+        //         $product->name,
+        //     );
 
-            if (isset($results['Authority']) && !empty($results['Authority'])) {
-                Payment::create([
-                    'price' => $amount,
-                    'user_id' => $user->id,
-                    'product_id' => $product->id,
-                    'order_id' => $order->id,
-                    'product_code' => $product->code,
-                    'authority' => $results['Authority']
-                ]);
+        //     if (isset($results['Authority']) && !empty($results['Authority'])) {
+        //         Payment::create([
+        //             'price' => $amount,
+        //             'user_id' => $user->id,
+        //             'product_id' => $product->id,
+        //             'order_id' => $order->id,
+        //             'product_code' => $product->code,
+        //             'authority' => $results['Authority']
+        //         ]);
 
-                Zarinpal::redirect();
+        //         Zarinpal::redirect();
 
-            }else{
-                session()->flash('notify',[
-                    'title'=>'به مشکل خوردیم!',
-                    'text'=>'در ارتباط با زرین پال به مشکل خوردیم!',
-                    'icon'=>'error',
-                    'confirm_text'=> 'بعدا خرید میکنم'
-                ]);
-                return redirect(url('/'));
-            }
+        //     }else{
+        //         session()->flash('notify',[
+        //             'title'=>'به مشکل خوردیم!',
+        //             'text'=>'در ارتباط با زرین پال به مشکل خوردیم!',
+        //             'icon'=>'error',
+        //             'confirm_text'=> 'بعدا خرید میکنم'
+        //         ]);
+        //         return redirect(url('/'));
+        //     }
 
 
-        } else {
-            $order->delete();
-            return redirect(url('/'));
-        }
+        // } else {
+        //     $order->delete();
+        //     return redirect(url('/'));
+        // }
 
     }
 
