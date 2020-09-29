@@ -9,7 +9,6 @@ use Zarinpal\Laravel\Facade\Zarinpal;
 
 class BuyPaymentService
 {
-
     protected $product;
     protected $order;
     protected $amount;

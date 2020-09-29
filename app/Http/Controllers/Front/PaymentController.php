@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use App\service\BuyPaymentService;
+use App\service\VerifyPaymentService;
 use Illuminate\Http\Request;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
@@ -63,76 +64,78 @@ class PaymentController extends Controller
 
     }
 
-    public function callback(Request $request)
+    // public function callback(Request $request)
+    public function callback(VerifyPaymentService $verifyPaymentService)
     {
-        $authority =  request('Authority');
-        $status = request('Status');
-        $payment = Payment::firstWhere('authority', $authority);
+       return $verifyPaymentService->verifyRequest();
+        // $authority =  request('Authority');
+        // $status = request('Status');
+        // $payment = Payment::firstWhere('authority', $authority);
 
-        if(is_null($authority) || is_null($status) || is_null($payment)){
-            session()->flash('notify', [
-                'title' => 'به مشکل خوردیم!',
-                'text' => 'اطلاعات کافی نیست',
-                'icon' => 'error',
-                'confirm_text' => 'بعدا خرید میکنم'
-            ]);
-            return redirect(url('/'));
-        }
+        // if(is_null($authority) || is_null($status) || is_null($payment)){
+        //     session()->flash('notify', [
+        //         'title' => 'به مشکل خوردیم!',
+        //         'text' => 'اطلاعات کافی نیست',
+        //         'icon' => 'error',
+        //         'confirm_text' => 'بعدا خرید میکنم'
+        //     ]);
+        //     return redirect(url('/'));
+        // }
 
-        $product = Product::firstWhere('code', $payment->product_code);
+        // $product = Product::firstWhere('code', $payment->product_code);
 
-        $order = Order::findOrFail($payment->order_id);
-
-
-        if($order){
-            $verified_request = Zarinpal::verify('OK', $payment->price, $authority);
-        } else{
-            $payment->delete();
-            return "پرداخت شما به مشکل خورد";
-        }
+        // $order = Order::findOrFail($payment->order_id);
 
 
-        if ($verified_request['Status'] === 'success') {
-            $payment->update([
-                'is_paid' => true,
-                'ref_id' => $verified_request['RefID'],
-                'extra_details' => $verified_request['ExtraDetail']
-            ]);
-
-            $order->update([
-                'payment_id' => $payment->id
-            ]);
-
-            $product->update([
-                'exist' => false
-            ]);
-            session()->flash('notify', [
-                'title' => 'محصول خریداری شد',
-                'text' => 'شناسه خرید:' . $verified_request['RefID'],
-                'icon' => 'success',
-                'confirm_text' => 'اوکی'
-            ]);
-            return redirect(url('/')); //TODO redirect to Shopping list
+        // if($order){
+        //     $verified_request = Zarinpal::verify('OK', $payment->price, $authority);
+        // } else{
+        //     $payment->delete();
+        //     return "پرداخت شما به مشکل خورد";
+        // }
 
 
-        } elseif ($verified_request['Status'] === 'verified_before') {
-            session()->flash('notify', [
-                'title' => 'مشکل به وجود آمد',
-                'text' => 'درخواست قبلا تایید شده است',
-                'icon' => 'error',
-                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
-            ]);
-            return redirect(url('/'));
-        } else {
-            $order->delete();
-            $payment->delete();
-            session()->flash('notify', [
-                'title' => 'مشکل به وجود آمد',
-                'text' => 'پرداخت شما به مشکل خورد',
-                'icon' => 'error',
-                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
-            ]);
-            return redirect(url('/'));
-        }
+        // if ($verified_request['Status'] === 'success') {
+        //     $payment->update([
+        //         'is_paid' => true,
+        //         'ref_id' => $verified_request['RefID'],
+        //         'extra_details' => $verified_request['ExtraDetail']
+        //     ]);
+
+        //     $order->update([
+        //         'payment_id' => $payment->id
+        //     ]);
+
+        //     $product->update([
+        //         'exist' => false
+        //     ]);
+        //     session()->flash('notify', [
+        //         'title' => 'محصول خریداری شد',
+        //         'text' => 'شناسه خرید:' . $verified_request['RefID'],
+        //         'icon' => 'success',
+        //         'confirm_text' => 'اوکی'
+        //     ]);
+        //     return redirect(url('/')); //TODO redirect to Shopping list
+
+
+        // } elseif ($verified_request['Status'] === 'verified_before') {
+        //     session()->flash('notify', [
+        //         'title' => 'مشکل به وجود آمد',
+        //         'text' => 'درخواست قبلا تایید شده است',
+        //         'icon' => 'error',
+        //         'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+        //     ]);
+        //     return redirect(url('/'));
+        // } else {
+        //     $order->delete();
+        //     $payment->delete();
+        //     session()->flash('notify', [
+        //         'title' => 'مشکل به وجود آمد',
+        //         'text' => 'پرداخت شما به مشکل خورد',
+        //         'icon' => 'error',
+        //         'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+        //     ]);
+        //     return redirect(url('/'));
+        // }
     }
 }
