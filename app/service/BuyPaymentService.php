@@ -18,8 +18,8 @@ class BuyPaymentService
 
     public function handle()
     {
-        return $this->setProps()->isProductExist()->isOrderExist()
-        ->getResponseFromZarinpal()->tryToConnectToZarinpal()->getResponse();
+        return $this->setProps()->checkAmountMoreThanThousand()->isProductExist()->isOrderExist()
+            ->getResponseFromZarinpal()->tryToConnectToZarinpal()->getResponse();
     }
     public function redirectToZarinpal()
     {
@@ -86,17 +86,29 @@ class BuyPaymentService
      */
     protected function tryToConnectToZarinpal()
     {
-        if($this->isResponseSet()){
+        if ($this->isResponseSet()) {
 
             if ($this->isAuthoritySet()) {
                 $this->savePayment();
-                
+
                 Zarinpal::redirect();
-            } 
+            }
             $this->connectionFail();
-            
         }
-        
+
+        return $this;
+    }
+    protected function checkAmountMoreThanThousand()
+    {
+        if ($this->amount < 1000) {
+            session()->flash('notify', [
+                'title' => 'به مشکل خوردیم!',
+                'text' => 'قیمت نباید کمتر از هزار تومان باشد',
+                'icon' => 'error',
+                'confirm_text' => 'اوکی'
+            ]);
+            $this->response = back();
+        }
         return $this;
     }
 
@@ -107,7 +119,6 @@ class BuyPaymentService
     protected function isResponseSet()
     {
         return !isset($this->response) && empty($this->response);
-    
     }
     /**
      * 
@@ -128,7 +139,8 @@ class BuyPaymentService
             'authority' => $this->results['Authority']
         ]);
     }
-    protected function connectionFail(){
+    protected function connectionFail()
+    {
         session()->flash('notify', [
             'title' => 'به مشکل خوردیم!',
             'text' => 'در ارتباط با زرین پال به مشکل خوردیم!',
@@ -137,7 +149,8 @@ class BuyPaymentService
         ]);
         $this->response = back();
     }
-    protected function getResponse(){
+    protected function getResponse()
+    {
         return $this->response;
     }
 }

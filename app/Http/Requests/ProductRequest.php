@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
                 'description'=>'required|string',
                 'code'=> 'required|numeric',
                 // 'image'=>'required|string',
-                'price'=>'required|numeric',
+                'price'=> 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
             ];
         }else{
@@ -40,7 +40,7 @@ class ProductRequest extends FormRequest
                 'description' => 'required|string',
                 'code' => 'required|numeric',
                 // 'image'=>'required|string',
-                'price' => 'required|numeric',
+                'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
             ]; 
         }
