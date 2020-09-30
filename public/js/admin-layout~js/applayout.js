@@ -105,6 +105,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -270,7 +281,8 @@ var render = function() {
                                 [_vm._v("محصولات")],
                                 _vm._v(" "),
                                 _c("i", {
-                                  staticClass: "fas fa-shopping-cart mx-2"
+                                  staticClass: "fa fa-shopping-cart mx-2",
+                                  attrs: { "aria-hidden": "true" }
                                 })
                               ],
                               2
@@ -298,6 +310,32 @@ var render = function() {
                                 [_vm._v("دسته بندی ها")],
                                 _vm._v(" "),
                                 _c("i", { staticClass: "fa fa-list-alt mx-2" })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: {
+                                  to: {
+                                    name: "admin-order",
+                                    params: { url: "index" }
+                                  }
+                                }
+                              },
+                              [
+                                [_vm._v("سفارش ها")],
+                                _vm._v(" "),
+                                _c("i", { staticClass: "fas fa-scroll mx-2" })
                               ],
                               2
                             )

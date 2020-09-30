@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/admin-product~js/admin-user":"vendors~js/admin-product~js/admin-user","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/admin-order~js/admin-product~js/admin-user":"vendors~js/admin-order~js/admin-product~js/admin-user","js/admin-order":"js/admin-order","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71240,7 +71240,7 @@ function auth(_ref) {
 
     if (isLoggedIn !== undefined && !isLoggedIn) {
       store.dispatch('auth/logout');
-      _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('برای دسترسی ثبت نام کنید', 'warning');
+      _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('ابتدا وارد سایت شوید.', 'warning');
       return next({
         name: 'auth',
         params: {
@@ -71603,7 +71603,7 @@ var AdminDashboard = function AdminDashboard() {
 };
 
 var AdminUser = function AdminUser() {
-  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
+  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
 };
 
 var AdminCategory = function AdminCategory() {
@@ -71611,7 +71611,7 @@ var AdminCategory = function AdminCategory() {
 };
 
 var AdminProduct = function AdminProduct() {
-  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
+  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
 };
 
 var AdminLayout = function AdminLayout() {
@@ -71620,6 +71620,10 @@ var AdminLayout = function AdminLayout() {
 
 var ProductRoutes = function ProductRoutes() {
   return Promise.all(/*! import() | js/products */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/products")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
+};
+
+var AdminOrder = function AdminOrder() {
+  return Promise.all(/*! import() | js/admin-order */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-order")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrder.vue */ "./resources/js/views/Admin/Order/AdminOrder.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -71700,6 +71704,15 @@ var ProductRoutes = function ProductRoutes() {
     path: 'product/:url',
     name: 'admin-product',
     component: AdminProduct,
+    props: true,
+    children: [{
+      path: ':slug',
+      name: 'admin-product-edit'
+    }]
+  }, {
+    path: 'order/:url',
+    name: 'admin-order',
+    component: AdminOrder,
     props: true,
     children: [{
       path: ':slug',

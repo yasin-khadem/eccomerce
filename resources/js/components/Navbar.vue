@@ -30,7 +30,7 @@
                   :to="{ name: 'admin-product',params: {url: 'index'} }"
                 >
                   <template class="mr-2">محصولات</template>
-                  <i class="fas fa-shopping-cart mx-2"></i>
+                  <i class="fa fa-shopping-cart mx-2" aria-hidden="true"></i>
                 </router-link>
               </li>
               
@@ -41,6 +41,17 @@
                 >
                   <template class="mr-2">دسته بندی ها</template>
                   <i class="fa fa-list-alt mx-2"></i>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link
+                  class="nav-link"
+                  :to="{ name: 'admin-order' , params: {url: 'index'}}"
+                >
+                  <template class="mr-2">سفارش ها</template>
+                  <i class="fas fa-scroll mx-2"></i>
+                  
                 </router-link>
               </li>
 

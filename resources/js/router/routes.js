@@ -15,6 +15,7 @@ const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '
 const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '../views/Admin/Product/AdminProduct.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../views/Front/Product/ProductRoutes.vue');
+const AdminOrder = () => import(/* webpackChunkName: "js/admin-order" */ '../views/Admin/Order/AdminOrder.vue');
 export default [
     {
         path: '/',
@@ -137,6 +138,18 @@ export default [
                         name: 'admin-product-edit',
                     }
 
+                ]
+            },
+            {
+                path: 'order/:url',
+                name: 'admin-order',
+                component: AdminOrder,
+                props:true,
+                children:[
+                    {
+                        path: ':slug',
+                        name: 'admin-product-edit'
+                    }
                 ]
             }
         ]

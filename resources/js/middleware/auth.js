@@ -6,7 +6,7 @@ export default function auth({ next, store }) {
             let isLoggedIn = store.getters['auth/isLoggedIn'];
             if (isLoggedIn !== undefined && !isLoggedIn) {
                 store.dispatch('auth/logout');
-                swal.message('برای دسترسی ثبت نام کنید', 'warning')
+                swal.message('ابتدا وارد سایت شوید.', 'warning')
                 return next({ name: 'auth', params: { url: 'login' } });
             }
             return next();

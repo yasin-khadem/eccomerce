@@ -12,6 +12,8 @@ class Order extends Model
     use Sluggable;
 
     protected $guarded = ['slug'];
+    protected $appends = ['is_delivered'];
+
 
     public function sluggable()
     {
@@ -24,5 +26,10 @@ class Order extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+    public function getIsDeliveredAttribute()
+    {
+        return $this->delivered ? 'ارسال شده' 
+        : 'در انتظار';
     }
 }
