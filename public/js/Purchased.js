@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get("/api/purchased?page".concat(page)).then(function (_ref) {
+      axios.get("/api/purchased?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.purchased = data;
         window.history.pushState('purchased', 'Purchased', "/purchased/index?page=".concat(page));
@@ -576,7 +576,7 @@ var render = function() {
                 _c("td", [
                   _c("img", {
                     attrs: {
-                      src: "/" + purchase[2].image_src,
+                      src: "/" + purchase.image_src,
                       width: "100",
                       alt: ""
                     }
@@ -584,24 +584,22 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(purchase[0].product_name))
+                  _vm._v(_vm._s(purchase.product_name))
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(purchase[0].product_code))
+                  _vm._v(_vm._s(purchase.product_code))
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(_vm.formatToman(purchase[1].price)))
+                  _vm._v(_vm._s(_vm.formatToman(purchase.price)))
                 ]),
                 _vm._v(" "),
                 _c("td", { staticClass: "align-middle" }, [
                   _vm._v(
                     "\n            " +
                       _vm._s(
-                        _vm
-                          .moment(purchase[1].created_at)
-                          .format("jYYYY/jMM/jDD")
+                        _vm.moment(purchase.created_at).format("jYYYY/jMM/jDD")
                       ) +
                       "\n          "
                   )

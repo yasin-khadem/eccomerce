@@ -5,6 +5,7 @@ namespace App\service;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\purchased;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
 
@@ -90,6 +91,27 @@ class VerifyPaymentService
             $this->product->update([
                 'exist' => false
             ]);
+
+
+
+            // create purchased list
+
+
+
+            purchased::create([
+                'user_id'=> $this->order->user_id,
+                'product_name'=>$this->product->name,
+                'product_code'=> $this->product->code,
+                'price'=>$this->payment->price,
+                'order_data'=>$this->order->created_at,
+                'image_src'=>$this->product->image_src,
+            ]);
+
+
+
+            // create purchased list
+
+
             session()->flash('notify', [
                 'title' => 'محصول خریداری شد',
                 'text' => 'شناسه خرید:' . $this->verified_request['RefID'],

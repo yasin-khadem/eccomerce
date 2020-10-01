@@ -10,6 +10,8 @@ class Payment extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $appends = [];
+
 
     protected $casts = [
         'is_paid' => 'boolean',
@@ -24,7 +26,9 @@ class Payment extends Model
     {
         return $this->belongsTo(Order::class);
     }
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
+  
 }
