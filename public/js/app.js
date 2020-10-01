@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/admin-order~js/admin-product~js/admin-user":"vendors~js/admin-order~js/admin-product~js/admin-user","js/admin-order":"js/admin-order","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-order":"js/admin-order","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71603,7 +71603,7 @@ var AdminDashboard = function AdminDashboard() {
 };
 
 var AdminUser = function AdminUser() {
-  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
+  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
 };
 
 var AdminCategory = function AdminCategory() {
@@ -71611,7 +71611,7 @@ var AdminCategory = function AdminCategory() {
 };
 
 var AdminProduct = function AdminProduct() {
-  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
+  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
 };
 
 var AdminLayout = function AdminLayout() {
@@ -71623,7 +71623,11 @@ var ProductRoutes = function ProductRoutes() {
 };
 
 var AdminOrder = function AdminOrder() {
-  return Promise.all(/*! import() | js/admin-order */[__webpack_require__.e("vendors~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-order")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrder.vue */ "./resources/js/views/Admin/Order/AdminOrder.vue"));
+  return Promise.all(/*! import() | js/admin-order */[__webpack_require__.e("vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-order")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrder.vue */ "./resources/js/views/Admin/Order/AdminOrder.vue"));
+};
+
+var Purchased = function Purchased() {
+  return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -71633,6 +71637,13 @@ var AdminOrder = function AdminOrder() {
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/purchased/index',
+    name: 'purchased',
+    component: Purchased,
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    }
   }, {
     path: '/product/:url',
     name: 'products',

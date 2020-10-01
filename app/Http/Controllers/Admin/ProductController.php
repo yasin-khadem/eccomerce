@@ -21,7 +21,7 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
-        return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(1));
+        return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(10));
     }
 
     public function store(ProductRequest $request)

@@ -116,6 +116,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -262,112 +287,150 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  to: {
-                                    name: "admin-product",
-                                    params: { url: "index" }
-                                  }
-                                }
-                              },
-                              [
-                                [_vm._v("محصولات")],
-                                _vm._v(" "),
-                                _c("i", {
-                                  staticClass: "fa fa-shopping-cart mx-2",
-                                  attrs: { "aria-hidden": "true" }
-                                })
-                              ],
-                              2
-                            )
-                          ],
-                          1
-                        ),
+                        !_vm.$store.state.auth.user.is_admin
+                          ? [
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: { to: { name: "purchased" } }
+                                    },
+                                    [
+                                      [_vm._v("خرید های شما")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-shopping-bag mx-2",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  to: {
-                                    name: "admin-category",
-                                    params: { url: "index" }
-                                  }
-                                }
-                              },
-                              [
-                                [_vm._v("دسته بندی ها")],
-                                _vm._v(" "),
-                                _c("i", { staticClass: "fa fa-list-alt mx-2" })
-                              ],
-                              2
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  to: {
-                                    name: "admin-order",
-                                    params: { url: "index" }
-                                  }
-                                }
-                              },
-                              [
-                                [_vm._v("سفارش ها")],
-                                _vm._v(" "),
-                                _c("i", { staticClass: "fas fa-scroll mx-2" })
-                              ],
-                              2
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
-                                attrs: {
-                                  to: {
-                                    name: "admin-user",
-                                    params: { url: "index" }
-                                  }
-                                }
-                              },
-                              [
-                                [_vm._v("کاربران")],
-                                _vm._v(" "),
-                                _c("i", { staticClass: "fa fa-users mx-2" })
-                              ],
-                              2
-                            )
-                          ],
-                          1
-                        ),
+                        _vm.$store.state.auth.user.is_admin
+                          ? [
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "admin-product",
+                                          params: { url: "index" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("محصولات")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fa fa-shopping-cart mx-2",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "admin-category",
+                                          params: { url: "index" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("دسته بندی ها")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fa fa-list-alt mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "admin-order",
+                                          params: { url: "index" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("سفارش ها")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-scroll mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "admin-user",
+                                          params: { url: "index" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("کاربران")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fa fa-users mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("li", { staticClass: "nav-item" }, [
                           _c(
@@ -460,7 +523,13 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v(_vm._s(_vm.user.name))]
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(_vm.user.name) +
+                                    "\n              "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(

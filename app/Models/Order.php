@@ -32,4 +32,13 @@ class Order extends Model
         return $this->delivered ? 'ارسال شده' 
         : 'در انتظار';
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function payment(){
+        return $this->belongsTo(Payment::class);
+    }
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

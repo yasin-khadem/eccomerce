@@ -2,7 +2,9 @@
   <div class="w-100" id="bg-navbar">
     <div class="container">
       <nav class="row navbar navbar-expand-lg navbar-dark bg-dark" dir="ltr">
-        <router-link class="navbar-brand" :to="{ name: 'home' }">فروشگاه</router-link>
+        <router-link class="navbar-brand" :to="{ name: 'home' }"
+          >فروشگاه</router-link
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -24,44 +26,60 @@
                   <i class="fa fa-tachometer-alt mx-2"></i>
                 </router-link>
               </li>
-              <li class="nav-item">
-                <router-link
-                  class="nav-link"
-                  :to="{ name: 'admin-product',params: {url: 'index'} }"
-                >
-                  <template class="mr-2">محصولات</template>
-                  <i class="fa fa-shopping-cart mx-2" aria-hidden="true"></i>
-                </router-link>
-              </li>
-              
-              <li class="nav-item">
-                <router-link
-                  class="nav-link"
-                  :to="{ name: 'admin-category' , params: {url: 'index'}}"
-                >
-                  <template class="mr-2">دسته بندی ها</template>
-                  <i class="fa fa-list-alt mx-2"></i>
-                </router-link>
-              </li>
+              <template v-if="!$store.state.auth.user.is_admin">
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'purchased' }"
+                  >
+                    <template class="mr-2">خرید های شما</template>
+                    <i class="fas fa-shopping-bag mx-2" aria-hidden="true"></i>
+                  </router-link>
+                </li>
+              </template>
+              <!-- admin -->
+              <template v-if="$store.state.auth.user.is_admin">
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-product', params: { url: 'index' } }"
+                  >
+                    <template class="mr-2">محصولات</template>
+                    <i class="fa fa-shopping-cart mx-2" aria-hidden="true"></i>
+                  </router-link>
+                </li>
 
-              <li class="nav-item">
-                <router-link
-                  class="nav-link"
-                  :to="{ name: 'admin-order' , params: {url: 'index'}}"
-                >
-                  <template class="mr-2">سفارش ها</template>
-                  <i class="fas fa-scroll mx-2"></i>
-                  
-                </router-link>
-              </li>
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-category', params: { url: 'index' } }"
+                  >
+                    <template class="mr-2">دسته بندی ها</template>
+                    <i class="fa fa-list-alt mx-2"></i>
+                  </router-link>
+                </li>
 
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'admin-user' , params: {url: 'index'}}">
-                  <template class="mr-2">کاربران</template>
-                  <i class="fa fa-users mx-2"></i>
-                </router-link>
-              </li>
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-order', params: { url: 'index' } }"
+                  >
+                    <template class="mr-2">سفارش ها</template>
+                    <i class="fas fa-scroll mx-2"></i>
+                  </router-link>
+                </li>
 
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-user', params: { url: 'index' } }"
+                  >
+                    <template class="mr-2">کاربران</template>
+                    <i class="fa fa-users mx-2"></i>
+                  </router-link>
+                </li>
+              </template>
+              <!-- admin -->
               <li class="nav-item">
                 <a class="nav-link" @click.prevent="logout">
                   <template class="mr-2">خروج</template>
@@ -71,11 +89,13 @@
             </template>
           </ul>
           <div class="form-inline my-2 my-lg-0" dir="rtl">
-            <template v-if="! isLoggedIn">
+            <template v-if="!isLoggedIn">
               <router-link :to="{ name: 'auth', params: { url: 'register' } }">
-                <base-btn class="my-2 my-sm-0 mr-2" btn="success">ثبت نام</base-btn>
+                <base-btn class="my-2 my-sm-0 mr-2" btn="success"
+                  >ثبت نام</base-btn
+                >
               </router-link>
-              <router-link :to="{ name: 'auth', params: { url: 'login'} }">
+              <router-link :to="{ name: 'auth', params: { url: 'login' } }">
                 <base-btn class="my-2 my-sm-0 mr-2">ورود</base-btn>
               </router-link>
             </template>
@@ -83,9 +103,14 @@
               <div class="dropdown background-dropdown-color">
                 <button
                   class="btn dropdown-toggle text-white"
-                  @click="dropDownShow = dropDownShow ?  null : 'show'"
-                >{{ user.name }}</button>
-                <div class="dropdown-menu background-dropdown-menu-color" :class="dropDownShow">
+                  @click="dropDownShow = dropDownShow ? null : 'show'"
+                >
+                  {{ user.name }}
+                </button>
+                <div
+                  class="dropdown-menu background-dropdown-menu-color"
+                  :class="dropDownShow"
+                >
                   <a class="dropdown-item" href="#">پروفایل</a>
                   <a class="dropdown-item" href="#" @click="logout">خروج</a>
                 </div>

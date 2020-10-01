@@ -14,6 +14,8 @@ class Product extends Model
     use HasFactory;
     use Sluggable;
 
+    
+
     protected $guarded = ['slug'];
     protected $appends = ['is_exist', 'selectedTags', 'image_src'];
 
@@ -89,4 +91,6 @@ class Product extends Model
             return $query->whereIn('categories.id', $this->categories->pluck('id')->toArray());
         })->inRandomOrder()->limit(3)->get();
     }
+    
+ 
 }

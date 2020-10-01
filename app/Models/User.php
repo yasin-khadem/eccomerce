@@ -48,4 +48,11 @@ class User extends Authenticatable
         return $this->is_admin ? 'ادمین' 
         : 'کاربر عادی';
     }
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
