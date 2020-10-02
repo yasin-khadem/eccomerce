@@ -16855,7 +16855,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: iransans !important;
+  font-family: iransans, Arial, Helvetica, sans-serif !important;
 }
 
 #bg-navbar {

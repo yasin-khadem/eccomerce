@@ -62,7 +62,7 @@
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
-                    :to="{ name: 'admin-order', params: { url: 'index' } }"
+                    :to="{ name: 'admin-orders' }"
                   >
                     <template class="mr-2">سفارش ها</template>
                     <i class="fas fa-scroll mx-2"></i>

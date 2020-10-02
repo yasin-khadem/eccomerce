@@ -14,10 +14,10 @@ class Product extends Model
     use HasFactory;
     use Sluggable;
 
-    
+
 
     protected $guarded = ['slug'];
-    protected $appends = ['is_exist', 'selectedTags', 'image_src'];
+    protected $appends = ['is_exist', 'selectedTags', 'image_src', 'url_path'];
 
     protected $SortingOptions = [
         'id' => 'id',
@@ -87,10 +87,12 @@ class Product extends Model
     }
     public function getRelatedProductsAttribute(): Collection
     {
-        return $this->where('id','!=',$this->id)->whereExist(1)->whereHas('categories', function ($query) {
+        return $this->where('id', '!=', $this->id)->whereExist(1)->whereHas('categories', function ($query) {
             return $query->whereIn('categories.id', $this->categories->pluck('id')->toArray());
         })->inRandomOrder()->limit(3)->get();
     }
-    
- 
+    public function getUrlPathAttribute()
+    {
+        return url("product/show/{$this->slug}");
+    }
 }

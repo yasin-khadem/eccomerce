@@ -382,12 +382,7 @@ var render = function() {
                                     "router-link",
                                     {
                                       staticClass: "nav-link",
-                                      attrs: {
-                                        to: {
-                                          name: "admin-order",
-                                          params: { url: "index" }
-                                        }
-                                      }
+                                      attrs: { to: { name: "admin-orders" } }
                                     },
                                     [
                                       [_vm._v("سفارش ها")],

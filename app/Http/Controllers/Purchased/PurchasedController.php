@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\DB;
 
 class PurchasedController extends Controller
 {
-    public function getPurchased(){
-        $user = request()->user(); 
+    public function getPurchased()
+    {
+        // $user = request()->user(); 
         // $orders =  Order::where('user_id', $user->id)->whereNotNull('payment_id')->orderBy('created_at','desc')->get();
         // $payments = Payment::where('user_id', $user->id)->where('is_paid',true)->orderBy('created_at', 'desc')->get();
         // $ids = [];
@@ -30,17 +31,14 @@ class PurchasedController extends Controller
         // $purchased = collect([]);
         // $purchased = $purchased->union([$orders,$payments,$products])->toArray();
         // $MainPurchased = [];
-
         // for($i=0;$i<count($orders);$i++){
         //     for($j=0;$j<count($purchased);$j++){
         //         $MainPurchased[$i][$j] = $purchased[$j][$i];
         //     }
         // }
         // $MainPurchased = collect($MainPurchased);
-
         // return new PurchasedCollection($MainPurchased->all());
-        return new PurchasedCollection(purchased::where('user_id',$user->id)->orderBy('created_at','desc')->paginate(15));
+        $user = request()->user();
+        return new PurchasedCollection(purchased::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(15));
     }
-
-
 }

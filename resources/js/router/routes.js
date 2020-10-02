@@ -15,7 +15,7 @@ const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '
 const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '../views/Admin/Product/AdminProduct.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../views/Front/Product/ProductRoutes.vue');
-const AdminOrder = () => import(/* webpackChunkName: "js/admin-order" */ '../views/Admin/Order/AdminOrder.vue');
+const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '../views/Admin/Order/AdminOrderIndex.vue');
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
 
 export default [
@@ -151,16 +151,9 @@ export default [
                 ]
             },
             {
-                path: 'order/:url',
-                name: 'admin-order',
-                component: AdminOrder,
-                props:true,
-                children:[
-                    {
-                        path: ':slug',
-                        name: 'admin-product-edit'
-                    }
-                ]
+                path: 'order/index',
+                name: 'admin-orders',
+                component: AdminOrderIndex,
             }
         ]
 

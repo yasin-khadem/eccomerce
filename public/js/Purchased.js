@@ -54,6 +54,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -71,6 +73,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getPurchase(this.$route.query.page);
   },
+  computed: {
+    showTable: function showTable() {
+      return _.isEmpty(this.purchased.data) ? false : true;
+    }
+  },
   methods: {
     getPurchase: function getPurchase() {
       var _this = this;
@@ -79,7 +86,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/purchased?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.purchased = data;
-        window.history.pushState('purchased', 'Purchased', "/purchased/index?page=".concat(page));
+        window.history.pushState("purchased", "Purchased", "/purchased/index?page=".concat(page));
+
+        if (_.isEmpty(_this.purchased.data)) {
+          swal.message("هنوز خرید نکرده اید", "warning");
+        }
       });
     }
   }
@@ -559,65 +570,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "table-responsive" },
-      [
-        _c("table", { staticClass: "table" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.purchased.data, function(purchase, index) {
-              return _c("tr", { key: purchase.id }, [
-                _c("td", [
-                  _c("img", {
-                    attrs: {
-                      src: "/" + purchase.image_src,
-                      width: "100",
-                      alt: ""
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(purchase.product_name))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(purchase.product_code))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(_vm._s(_vm.formatToman(purchase.price)))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "align-middle" }, [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(
-                        _vm.moment(purchase.created_at).format("jYYYY/jMM/jDD")
-                      ) +
-                      "\n          "
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm.showTable
+        ? [
+            _c(
+              "div",
+              { staticClass: "table-responsive" },
+              [
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.purchased.data, function(purchase, index) {
+                      return _c("tr", { key: purchase.id }, [
+                        _c("td", [
+                          _c("img", {
+                            attrs: {
+                              src: "/" + purchase.image_src,
+                              width: "100",
+                              alt: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "align-middle" }, [
+                          _vm._v(_vm._s(purchase.product_name))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "align-middle" }, [
+                          _vm._v(_vm._s(purchase.product_code))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "align-middle" }, [
+                          _vm._v(_vm._s(_vm.formatToman(purchase.price)))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "align-middle" }, [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(
+                                _vm
+                                  .moment(purchase.created_at)
+                                  .format("jYYYY/jMM/jDD")
+                              ) +
+                              "\n          "
+                          )
+                        ])
+                      ])
+                    }),
+                    0
                   )
-                ])
-              ])
-            }),
-            0
-          )
-        ]),
-        _vm._v(" "),
-        _c("pagination", {
-          attrs: { data: _vm.purchased, limit: 1 },
-          on: { "pagination-change-page": _vm.getPurchase }
-        })
-      ],
-      1
-    )
-  ])
+                ]),
+                _vm._v(" "),
+                _c("pagination", {
+                  attrs: { data: _vm.purchased, limit: 1 },
+                  on: { "pagination-change-page": _vm.getPurchase }
+                })
+              ],
+              1
+            )
+          ]
+        : _vm._e()
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {

@@ -5,8 +5,9 @@
         <h5>لیست خرید های شما</h5>
       </div>
     </header>
-    <div class="table-responsive">
-      <table class="table">
+    <template v-if="showTable">
+    <div  class="table-responsive">
+      <table  class="table">
         <thead class="thead-dark">
           <tr>
             <th class="align-middle" scope="col">عکس</th>
@@ -25,7 +26,7 @@
             <td class="align-middle">{{ purchase.product_code }}</td>
             <td class="align-middle">{{ formatToman(purchase.price) }}</td>
             <td class="align-middle">
-              {{  moment(purchase.created_at).format("jYYYY/jMM/jDD") }}
+              {{ moment(purchase.created_at).format("jYYYY/jMM/jDD") }}
             </td>
           </tr>
         </tbody>
@@ -36,7 +37,8 @@
         :limit="1"
       ></pagination>
     </div>
-  </div>   
+    </template>
+  </div>
 </template>
 
 <script>
@@ -57,13 +59,26 @@ export default {
   },
   created() {
     this.getPurchase(this.$route.query.page);
-   
+  },
+  computed: {
+    showTable() {
+      return _.isEmpty(this.purchased.data) ? false : true
+    }
   },
   methods: {
     getPurchase(page = 1) {
       axios.get(`/api/purchased?page=${page}`).then(({ data }) => {
-      this.purchased = data;
-      window.history.pushState('purchased','Purchased',`/purchased/index?page=${page}`)
+        
+          this.purchased = data;
+          window.history.pushState(
+            "purchased",
+            "Purchased",
+            `/purchased/index?page=${page}`
+          );
+        if(_.isEmpty(this.purchased.data)){
+
+          swal.message("هنوز خرید نکرده اید", "warning");
+        }
       });
     },
   },
@@ -71,5 +86,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

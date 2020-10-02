@@ -118,7 +118,7 @@ class VerifyPaymentService
                 'icon' => 'success',
                 'confirm_text' => 'اوکی'
             ]);
-            $this->response = redirect(url('/')); //TODO redirect to Shopping list
+            $this->response = $this->product ? redirect("/purchased/index") : redirect('/'); //TODO redirect to Shopping list
 
 
         } elseif ($this->verified_request['Status'] === 'verified_before') {
@@ -128,7 +128,7 @@ class VerifyPaymentService
                 'icon' => 'error',
                 'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
             ]);
-            $this->response = redirect(url('/')); //TODO redirect to Shopping list
+            $this->response = $this->product ? redirect($this->product->url_path) : redirect('/');
         } else {
             if($this->order->payment_id === null || $this->order->payment_id !== $this->payment->id){
                 $this->order->delete();
@@ -142,7 +142,7 @@ class VerifyPaymentService
                 'icon' => 'error',
                 'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
             ]);
-            $this->response = redirect(url('/')); //TODO redirect to Shopping list
+            $this->response = $this->product ? redirect($this->product->url_path) : redirect('/'); //TODO redirect to Shopping list
         }
         return $this;
     }
