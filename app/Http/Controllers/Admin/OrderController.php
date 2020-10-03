@@ -15,7 +15,7 @@ class OrderController extends Controller
     
     public function index()
     {
-        return new OrderCollection(Order::whereNotNull('payment_id')->paginate(15));
+        return new OrderCollection(Order::whereNotNull('payment_id')->orderBy('created_at','desc')->paginate(15));
     }
 
     

@@ -202,9 +202,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -570,71 +567,89 @@ var render = function() {
                     _vm._v(" "),
                     _vm.showBuyBotton && _vm.checkForBuyButton
                       ? [
-                          _c(
-                            "form",
-                            {
-                              staticClass: "d-flex justify-content-center mt-2",
-                              attrs: { action: "/buy", method: "POST" }
-                            },
-                            [
-                              _c("input", {
-                                attrs: { type: "hidden", name: "_token" },
-                                domProps: { value: _vm.csrf }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "product_id" },
-                                domProps: { value: _vm.form.product.id }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "access_token" },
-                                domProps: { value: _vm.$store.state.auth.token }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "price" },
-                                domProps: { value: _vm.form.product.price }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: {
-                                  type: "hidden",
-                                  name: "mobile_number"
+                          _vm.checkForBuyButton
+                            ? _c(
+                                "form",
+                                {
+                                  staticClass:
+                                    "d-flex justify-content-center mt-2",
+                                  attrs: { action: "/buy", method: "POST" }
                                 },
-                                domProps: { value: _vm.form.mobile_number }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "phone_number" },
-                                domProps: { value: _vm.form.phone_number }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "address" },
-                                domProps: { value: _vm.form.address }
-                              }),
-                              _vm._v(" "),
-                              _c("input", {
-                                attrs: { type: "hidden", name: "post_code" },
-                                domProps: { value: _vm.form.post_code }
-                              }),
-                              _vm._v(" "),
-                              _vm.formComplete
-                                ? _c(
-                                    "button",
-                                    {
-                                      staticClass: "btn btn-primary btn-round"
+                                [
+                                  _c("input", {
+                                    attrs: { type: "hidden", name: "_token" },
+                                    domProps: { value: _vm.csrf }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "product_id"
                                     },
-                                    [
-                                      _vm._v(
-                                        "\n                خرید\n              "
+                                    domProps: { value: _vm.form.product.id }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "access_token"
+                                    },
+                                    domProps: {
+                                      value: _vm.$store.state.auth.token
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: { type: "hidden", name: "price" },
+                                    domProps: { value: _vm.form.product.price }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "mobile_number"
+                                    },
+                                    domProps: { value: _vm.form.mobile_number }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "phone_number"
+                                    },
+                                    domProps: { value: _vm.form.phone_number }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: { type: "hidden", name: "address" },
+                                    domProps: { value: _vm.form.address }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "post_code"
+                                    },
+                                    domProps: { value: _vm.form.post_code }
+                                  }),
+                                  _vm._v(" "),
+                                  _vm.formComplete
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "btn btn-primary btn-round"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                خرید\n              "
+                                          )
+                                        ]
                                       )
-                                    ]
-                                  )
-                                : _vm._e()
-                            ]
-                          )
+                                    : _vm._e()
+                                ]
+                              )
+                            : _vm._e()
                         ]
                       : _vm._e()
                   ],

@@ -9,7 +9,7 @@
     "/js/admin-category.js": "/js/admin-category.js",
     "/js/admin-layout.js": "/js/admin-layout.js",
     "/js/admin-layout~js/applayout.js": "/js/admin-layout~js/applayout.js",
-    "/js/admin-order.js": "/js/admin-order.js",
+    "/js/admin-orders.js": "/js/admin-orders.js",
     "/js/admin-product.js": "/js/admin-product.js",
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/applayout.js": "/js/applayout.js",
@@ -17,9 +17,9 @@
     "/js/auth-routes~js/home~js/products.js": "/js/auth-routes~js/home~js/products.js",
     "/js/home.js": "/js/home.js",
     "/js/products.js": "/js/products.js",
-    "/vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-order~js/admin-product~js/admin-user.js",
+    "/vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user.js",
     "/vendors~js/admin-product.js": "/vendors~js/admin-product.js",
-    "/vendors~js/admin-order~js/admin-product~js/admin-user.js": "/vendors~js/admin-order~js/admin-product~js/admin-user.js",
-    "/js/admin-orders.js": "/js/admin-orders.js",
-    "/vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user.js"
+    "/js/admin-payments.js": "/js/admin-payments.js",
+    "/vendors~js/Purchased~js/admin-orders~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-user.js",
+    "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js"
 }

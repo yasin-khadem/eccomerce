@@ -28,10 +28,7 @@
               </li>
               <template v-if="!$store.state.auth.user.is_admin">
                 <li class="nav-item">
-                  <router-link
-                    class="nav-link"
-                    :to="{ name: 'purchased' }"
-                  >
+                  <router-link class="nav-link" :to="{ name: 'purchased' }">
                     <template class="mr-2">خرید های شما</template>
                     <i class="fas fa-shopping-bag mx-2" aria-hidden="true"></i>
                   </router-link>
@@ -58,12 +55,16 @@
                     <i class="fa fa-list-alt mx-2"></i>
                   </router-link>
                 </li>
-
+                <!-- paymnet -->
                 <li class="nav-item">
-                  <router-link
-                    class="nav-link"
-                    :to="{ name: 'admin-orders' }"
-                  >
+                  <router-link class="nav-link" :to="{ name: 'admin-payments' }">
+                    <template class="mr-2">تراکنش ها</template>
+                    <i class="fas fa-exchange-alt mx-2"></i>
+                  </router-link>
+                </li>
+                <!-- paymnet -->
+                <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'admin-orders' }">
                     <template class="mr-2">سفارش ها</template>
                     <i class="fas fa-scroll mx-2"></i>
                   </router-link>

@@ -73,11 +73,7 @@
                 label="آدرس"
                 v-model="form.address"
               ></base-input>
-             <!--  <input
-                  type="hidden"
-                  name="access_token"
-                  :value="$store.state.auth.token"
-                />   -->
+             
               <base-btn btn="success" :loading="form.busy"
                 >ثبت و ادامه</base-btn
               >
@@ -87,6 +83,7 @@
                 action="/buy"
                 method="POST"
                 class="d-flex justify-content-center mt-2"
+                v-if="checkForBuyButton"
               >
                 <input type="hidden" name="_token" :value="csrf" />
                 <input

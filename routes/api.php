@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth:api','admin'] ,
     Route::apiResource('categories','CategoryController');
     Route::apiResource('product','ProductController');
     Route::apiResource('order','OrderController');
+    Route::get('payment','PaymentController@index');
     Route::patch('order/deliver/{order}', 'OrderController@deliver');
     Route::get('categories-search', 'Search\CategoryController@index');
 });

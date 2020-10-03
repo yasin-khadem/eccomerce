@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71603,7 +71603,7 @@ var AdminDashboard = function AdminDashboard() {
 };
 
 var AdminUser = function AdminUser() {
-  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
+  return Promise.all(/*! import() | js/admin-user */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-user")]).then(__webpack_require__.bind(null, /*! ../views/Admin/User/AdminUser.vue */ "./resources/js/views/Admin/User/AdminUser.vue"));
 };
 
 var AdminCategory = function AdminCategory() {
@@ -71611,7 +71611,7 @@ var AdminCategory = function AdminCategory() {
 };
 
 var AdminProduct = function AdminProduct() {
-  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
+  return Promise.all(/*! import() | js/admin-product */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("vendors~js/admin-product"), __webpack_require__.e("js/admin-product")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Product/AdminProduct.vue */ "./resources/js/views/Admin/Product/AdminProduct.vue"));
 };
 
 var AdminLayout = function AdminLayout() {
@@ -71623,11 +71623,15 @@ var ProductRoutes = function ProductRoutes() {
 };
 
 var AdminOrderIndex = function AdminOrderIndex() {
-  return Promise.all(/*! import() | js/admin-orders */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-orders")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrderIndex.vue */ "./resources/js/views/Admin/Order/AdminOrderIndex.vue"));
+  return Promise.all(/*! import() | js/admin-orders */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-orders")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrderIndex.vue */ "./resources/js/views/Admin/Order/AdminOrderIndex.vue"));
+};
+
+var AdminPaymentIndex = function AdminPaymentIndex() {
+  return Promise.all(/*! import() | js/admin-payments */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-payments")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Payment/AdminPaymentIndex.vue */ "./resources/js/views/Admin/Payment/AdminPaymentIndex.vue"));
 };
 
 var Purchased = function Purchased() {
-  return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
+  return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -71724,6 +71728,10 @@ var Purchased = function Purchased() {
     path: 'order/index',
     name: 'admin-orders',
     component: AdminOrderIndex
+  }, {
+    path: 'payment/index',
+    name: 'admin-payments',
+    component: AdminPaymentIndex
   }]
 }, {
   path: '*',

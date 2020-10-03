@@ -10,7 +10,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = [];
+    protected $appends = ['status'];
 
 
     protected $casts = [
@@ -30,5 +30,8 @@ class Payment extends Model
     {
         return $this->belongsTo(Product::class);
     }
-  
+    public function getStatusAttribute(){
+        return $this->is_paid ? "پرداخت شده" 
+        : "به مشکل خورده";
+    }
 }
