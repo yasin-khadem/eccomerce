@@ -18,20 +18,20 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">نام</th>
-            <th scope="col" colspan="2">تغییرات</th>
+            <th scope="col" colspan="2" class="text-center">تغییرات</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(category,index) in categories.data" :key="category.id">
             <td>{{category.id}}</td>
             <td>{{category.name}}</td>
-            <td>
-              <router-link
+            <td  class="text-center">
+              <router-link 
                 :to="{name:'admin-category-edit',params:{url:'edit',slug:category.slug}}"
                 class="btn btn-info"
               >ویرایش</router-link>
             </td>
-            <td>
+            <td  class="text-center">
               <button class="btn btn-danger" @click="deleteCategory(category.slug,index)">حذف</button>
             </td>
           </tr>

@@ -598,6 +598,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "td",
+                  { staticClass: "text-center" },
                   [
                     _c(
                       "router-link",
@@ -616,7 +617,7 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _c("td", [
+                _c("td", { staticClass: "text-center" }, [
                   _c(
                     "button",
                     {
@@ -656,7 +657,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("نام")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col", colspan: "2" } }, [_vm._v("تغییرات")])
+        _c(
+          "th",
+          { staticClass: "text-center", attrs: { scope: "col", colspan: "2" } },
+          [_vm._v("تغییرات")]
+        )
       ])
     ])
   }

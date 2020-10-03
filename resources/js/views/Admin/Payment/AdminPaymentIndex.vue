@@ -2,9 +2,9 @@
   <div class="container">
     <header class="my-3">
       <div class="d-flex justify-content-center">
-      <div class="card">
-        <h5>لیست تراکنش ها</h5>
-      </div>
+        <div class="card">
+          <h5>لیست تراکنش ها</h5>
+        </div>
       </div>
     </header>
     <div class="table-responsive">
@@ -33,7 +33,11 @@
             <td>{{ payment.product_id }}</td>
             <td>{{ formatToman(payment.price) }}</td>
             <td>{{ moment(payment.created_at).format("jYYYY/jMM/jDD") }}</td>
-            <td :class="[payment.is_paid ? 'text-success' : 'text-danger']">{{ payment.status }}</td>
+            <td :class="[payment.is_paid ? 'text-success' : 'text-danger']">
+              <strong>
+                {{ payment.status }}
+              </strong>
+            </td>
             <td>{{ payment.ref_id }}</td>
           </tr>
         </tbody>
@@ -56,7 +60,7 @@ export default {
     return {
       payments: {},
       formatToman: require("prial").formatToman,
-      moment
+      moment,
     };
   },
   created() {
@@ -78,12 +82,12 @@ export default {
 </script>
 
 <style scoped>
-.card{
-   background-color: #9c27b0;
+.card {
+  background-color: #9c27b0;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
   color: #fff;
 }
-.text-success{
-    color: rgb(40, 153, 40) !important;
+.text-success {
+  color: rgb(40, 153, 40) !important;
 }
 </style>

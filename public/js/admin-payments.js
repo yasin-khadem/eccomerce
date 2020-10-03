@@ -70,6 +70,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -131,7 +135,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-261004c3]{\r\n   background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.text-success[data-v-261004c3]{\r\n    color: rgb(40, 153, 40) !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-261004c3] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.text-success[data-v-261004c3] {\r\n  color: rgb(40, 153, 40) !important;\n}\r\n", ""]);
 
 // exports
 
@@ -679,7 +683,15 @@ var render = function() {
                 _c(
                   "td",
                   { class: [payment.is_paid ? "text-success" : "text-danger"] },
-                  [_vm._v(_vm._s(payment.status))]
+                  [
+                    _c("strong", [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(payment.status) +
+                          "\n            "
+                      )
+                    ])
+                  ]
                 ),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(payment.ref_id))])
