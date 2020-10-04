@@ -63,6 +63,9 @@ export default {
       moment,
     };
   },
+  metaInfo:{
+    title: 'لیست تراکنش ها'
+  },
   created() {
     this.getPayments(this.$route.query.page);
   },

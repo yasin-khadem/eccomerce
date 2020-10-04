@@ -29,6 +29,14 @@ export const actions = {
             window.history.pushState('products', 'Products', `?${data.meta.queries}`)
         })
     },
+    getTaggedProducts({ commit }, {queries,params}) {
+        return axios.get(`/api/product/tagged/${params.slug}`, {
+            params: queries
+        }).then(({ data }) => {
+            commit('SET_PRODUCTS', data)
+            window.history.pushState('products', 'Products', `?${data.meta.queries}`)
+        })
+    },
     async getUserProduct({ commit }, payload) {
         if (!_.isEmpty(state.products)) {
             let product = state.products.data.find(product => product.slug === payload)

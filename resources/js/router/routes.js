@@ -18,6 +18,7 @@ const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../vie
 const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '../views/Admin/Order/AdminOrderIndex.vue');
 const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" */ '../views/Admin/Payment/AdminPaymentIndex.vue');
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
+const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
 
 export default [
     {
@@ -29,6 +30,11 @@ export default [
                 path: '/',
                 name: 'home',
                 component: Home,  
+            },
+            {
+                path: '/tagged/:slug',
+                name: 'home-tagged',
+                component: HomeTagged,  
             },
             {
                 path: '/purchased/index',

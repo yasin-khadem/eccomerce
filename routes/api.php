@@ -25,5 +25,6 @@ Route::group(['middleware' => ['auth:api','admin'] ,
 });
 
 Route::apiResource('product','Product\ProductController');
+Route::get('product/tagged/{category}','Product\ProductTaggedController@index');
 Route::apiResource('order', 'Order\OrderController')->middleware(['auth:api']);
 Route::get('purchased', 'Purchased\PurchasedController@getPurchased')->middleware(['auth:api']);

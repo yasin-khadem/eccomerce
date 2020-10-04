@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/auth-routes~js/home~js/products"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/auth-routes~js/home~js/home-tagged~js/products"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Product.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\

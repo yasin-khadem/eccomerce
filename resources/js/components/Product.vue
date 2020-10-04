@@ -16,9 +16,7 @@
       <h6 class="card-title">
         <strong> {{ formatToman(product.price) }} </strong>
       </h6>
-      <h6 class="card-category">
-        <small>دسته بندی</small>
-      </h6>
+    
     </div>
     <div class="card-footer">
         <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{

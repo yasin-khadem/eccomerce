@@ -85,6 +85,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_2___default.a
     };
   },
+  metaInfo: {
+    title: 'لیست تراکنش ها'
+  },
   created: function created() {
     this.getPayments(this.$route.query.page);
   },

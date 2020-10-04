@@ -19,10 +19,23 @@
             <h6 class="card-title">
               <strong> قیمت: {{ formatToman(product.price) }}</strong>
             </h6>
+            <h6>
+              <strong>دسته بندی:</strong>
+            </h6>
+            <div class="row ml-3">
+              <router-link
+                v-for="category in product.categories"
+                :key="category.slug"
+                class="mx-1"
+                :to="{name: 'home-tagged', params:{slug:category.slug }}"
+              >
+                <a class="badge badge-tags">{{ category.name }}</a>
+              </router-link>
+            </div>
 
             <a
               href="#"
-              class="btn btn-primary up-show-card"
+              class="btn btn-primary up-show-card mt-3"
               @click.prevent="showOrderForm"
               v-if="ProductExist"
               >سفارش</a
@@ -73,7 +86,7 @@
                 label="آدرس"
                 v-model="form.address"
               ></base-input>
-             
+
               <base-btn btn="success" :loading="form.busy"
                 >ثبت و ادامه</base-btn
               >
@@ -188,7 +201,7 @@ export default {
         mobile_number: null,
         post_code: null,
         address: null,
-      }
+      },
     };
   },
   computed: {
@@ -209,16 +222,18 @@ export default {
         ? true
         : false;
     },
-    checkForBuyButton(){
-      if(this.currentOrderData.address ===  this.form.address &&
-      this.currentOrderData.post_code === this.form.post_code &&
-      this.currentOrderData.mobile_number === this.form.mobile_number &&
-      this.currentOrderData.phone_number === this.form.address.phone_number){
+    checkForBuyButton() {
+      if (
+        this.currentOrderData.address === this.form.address &&
+        this.currentOrderData.post_code === this.form.post_code &&
+        this.currentOrderData.mobile_number === this.form.mobile_number &&
+        this.currentOrderData.phone_number === this.form.address.phone_number
+      ) {
         return true;
-      }else{
+      } else {
         return false;
       }
-    }
+    },
   },
   created() {
     axios
@@ -237,20 +252,26 @@ export default {
       if ($(document).width() > 750) {
         window.scrollTo(0, 600);
       } else {
-        swal.confirm("آیا مایل به ثبت سفارش هستید","info","برای ثبت سفارش تایید را بزنید").then((result) => {
-          if (result.value) {
-            window.scrollTo(0, 700);
-          } else {
-            this.orderForm = false;
-          }
-        });
+        swal
+          .confirm(
+            "آیا مایل به ثبت سفارش هستید",
+            "info",
+            "برای ثبت سفارش تایید را بزنید"
+          )
+          .then((result) => {
+            if (result.value) {
+              window.scrollTo(0, 700);
+            } else {
+              this.orderForm = false;
+            }
+          });
       }
     },
     continueToBuy() {
-      this.currentOrderData.address =  this.form.address
-      this.currentOrderData.post_code = this.form.post_code
-      this.currentOrderData.mobile_number = this.form.mobile_number
-      this.currentOrderData.phone_number = this.form.address.phone_number
+      this.currentOrderData.address = this.form.address;
+      this.currentOrderData.post_code = this.form.post_code;
+      this.currentOrderData.mobile_number = this.form.mobile_number;
+      this.currentOrderData.phone_number = this.form.address.phone_number;
       if (this.formComplete) {
         return this.form
           .post(`/api/order`, this.form)
@@ -271,7 +292,7 @@ export default {
         this.showBuyBotton = false;
       }
     },
-  }
+  },
 };
 </script>
 <style scoped>
@@ -284,5 +305,11 @@ export default {
 .order-card {
   background-color: #9c27b0;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
+}
+.badge-tags {
+  background-color: #9c27b0;
+  color: #fff;
+  font-weight: 300;
+  font-size: 15px;
 }
 </style>

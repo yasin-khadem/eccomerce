@@ -37,7 +37,7 @@
               ></i>
               #
             </th>
-            <th scope="col" @click="changeSortBy('name')">
+            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('name')">
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -45,7 +45,7 @@
               ></i>
               نام
             </th>
-            <th scope="col" @click="changeSortBy('code')">
+            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('code')">
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -53,7 +53,7 @@
               ></i>
               کد محصول
             </th>
-            <th scope="col" @click="changeSortBy('price')">
+            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('price')">
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -61,7 +61,7 @@
               ></i>
               قیمت
             </th>
-            <th scope="col" @click="changeSortBy('description')">
+            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('description')">
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -69,15 +69,15 @@
               ></i>
               توضیحات
             </th>
-            <th scope="col" @click="changeSortBy('exist')">
+            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('exist')">
               <i
-                class="fa text-info"
+                class="fa text-info "
                 :class="sortdirection"
                 v-show="currentSortBy === 'exist'"
               ></i>
               وضعیت
             </th>
-            <th scope="col" @click="changeSortBy('created_at')">
+            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('created_at')">
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -85,18 +85,18 @@
               ></i>
               تاریخ ثبت
             </th>
-            <th scope="col" colspan="2" class="text-center">تغییرات</th>
+            <th class="table-heading-padding text-center" scope="col" colspan="2" >تغییرات</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(product, index) in products.data" :key="product.id">
             <td>{{ product.id }}</td>
-            <td>{{ product.name }}</td>
-            <td>{{ product.code }}</td>
-            <td>{{ formatToman(product.price) }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.is_exist }}</td>
-            <td>{{ moment(product.created_at).format("jYY/jM/jD") }}</td>
+            <td class="text-center">{{ product.name }}</td>
+            <td class="text-center">{{ product.code }}</td>
+            <td class="text-center">{{ formatToman(product.price) }}</td>
+            <td class="text-center">{{ product.description }}</td>
+            <td class="text-center">{{ product.is_exist }}</td>
+            <td class="text-center">{{ moment(product.created_at).format("jYY/jM/jD") }}</td>
             <td>
               <router-link
                 class="btn btn-info"
@@ -209,7 +209,10 @@ export default {
 .btn-create-product {
   background-color: #43a047;
 }
-
+.table-heading-padding{
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+}
 th {
   cursor: pointer;
 }

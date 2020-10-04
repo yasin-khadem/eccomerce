@@ -202,6 +202,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -328,7 +341,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-7fd85062] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-7fd85062] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-7fd85062] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\r\n", ""]);
 
 // exports
 
@@ -445,11 +458,39 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row ml-3" },
+                _vm._l(_vm.product.categories, function(category) {
+                  return _c(
+                    "router-link",
+                    {
+                      key: category.slug,
+                      staticClass: "mx-1",
+                      attrs: {
+                        to: {
+                          name: "home-tagged",
+                          params: { slug: category.slug }
+                        }
+                      }
+                    },
+                    [
+                      _c("a", { staticClass: "badge badge-tags" }, [
+                        _vm._v(_vm._s(category.name))
+                      ])
+                    ]
+                  )
+                }),
+                1
+              ),
+              _vm._v(" "),
               _vm.ProductExist
                 ? _c(
                     "a",
                     {
-                      staticClass: "btn btn-primary up-show-card",
+                      staticClass: "btn btn-primary up-show-card mt-3",
                       attrs: { href: "#" },
                       on: {
                         click: function($event) {
@@ -474,7 +515,7 @@ var render = function() {
       _vm._v(" "),
       _vm.orderForm
         ? [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("a", { staticClass: "down-show-card", attrs: { href: "#" } }),
             _vm._v(" "),
@@ -656,7 +697,7 @@ var render = function() {
                   2
                 ),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(2)
               ])
             ])
           ]
@@ -689,6 +730,12 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("strong", [_vm._v("دسته بندی:")])])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

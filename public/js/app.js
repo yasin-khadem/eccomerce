@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/products":"js/auth-routes~js/home~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/products":"js/products","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/home-tagged":"js/home-tagged","js/products":"js/products","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71575,7 +71575,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var AppLayout = function AppLayout() {
@@ -71583,7 +71583,7 @@ var AppLayout = function AppLayout() {
 };
 
 var AuthRoutes = function AuthRoutes() {
-  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
 var DashboardIndex = function DashboardIndex() {
@@ -71619,7 +71619,7 @@ var AdminLayout = function AdminLayout() {
 };
 
 var ProductRoutes = function ProductRoutes() {
-  return Promise.all(/*! import() | js/products */[__webpack_require__.e("js/auth-routes~js/home~js/products"), __webpack_require__.e("js/products")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
+  return Promise.all(/*! import() | js/products */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/products")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
 };
 
 var AdminOrderIndex = function AdminOrderIndex() {
@@ -71634,6 +71634,10 @@ var Purchased = function Purchased() {
   return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
 };
 
+var HomeTagged = function HomeTagged() {
+  return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -71641,6 +71645,10 @@ var Purchased = function Purchased() {
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/tagged/:slug',
+    name: 'home-tagged',
+    component: HomeTagged
   }, {
     path: '/purchased/index',
     name: 'purchased',
@@ -71932,7 +71940,19 @@ var actions = {
       window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
     });
   },
-  getUserProduct: function getUserProduct(_ref5, payload) {
+  getTaggedProducts: function getTaggedProducts(_ref5, _ref6) {
+    var commit = _ref5.commit;
+    var queries = _ref6.queries,
+        params = _ref6.params;
+    return axios.get("/api/product/tagged/".concat(params.slug), {
+      params: queries
+    }).then(function (_ref7) {
+      var data = _ref7.data;
+      commit('SET_PRODUCTS', data);
+      window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
+    });
+  },
+  getUserProduct: function getUserProduct(_ref8, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var commit, product, _yield$axios$get, data;
 
@@ -71940,7 +71960,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              commit = _ref5.commit;
+              commit = _ref8.commit;
 
               if (_.isEmpty(state.products)) {
                 _context.next = 5;
@@ -71975,7 +71995,7 @@ var actions = {
       }, _callee);
     }))();
   },
-  getProduct: function getProduct(_ref6, payload) {
+  getProduct: function getProduct(_ref9, payload) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       var state, product, _yield$axios$get2, data;
 
@@ -71983,7 +72003,7 @@ var actions = {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              state = _ref6.state;
+              state = _ref9.state;
 
               if (_.isEmpty(state.products)) {
                 _context2.next = 5;
@@ -72018,24 +72038,24 @@ var actions = {
       }, _callee2);
     }))();
   },
-  store: function store(_ref7, payload) {
-    var commit = _ref7.commit;
+  store: function store(_ref10, payload) {
+    var commit = _ref10.commit;
     return payload.submit('post', '/api/admin/product', {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
       }]
     }); // return payload.post('/api/admin/product')
   },
-  updateProduct: function updateProduct(_ref8, payload) {
-    var commit = _ref8.commit;
+  updateProduct: function updateProduct(_ref11, payload) {
+    var commit = _ref11.commit;
     return payload.submit('post', "/api/admin/product/".concat(payload.slug), {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
       }]
     }); // return payload.post(`/api/admin/product/${payload.slug}`)
   },
-  deleteProduct: function deleteProduct(_ref9, payload) {
-    var commit = _ref9.commit;
+  deleteProduct: function deleteProduct(_ref12, payload) {
+    var commit = _ref12.commit;
     swal.confirm().then(function (result) {
       if (result.value) {
         axios["delete"]("/api/admin/product/".concat(payload.slug)).then(function () {
