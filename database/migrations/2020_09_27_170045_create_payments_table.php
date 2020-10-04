@@ -17,9 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('price');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('order_id');
+            // $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->unsignedInteger('product_code');
             $table->string('authority')->nullable();
             $table->string('ref_id')->nullable();

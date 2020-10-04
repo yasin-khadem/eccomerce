@@ -16,6 +16,9 @@ class CreatePurchasedsTable extends Migration
         Schema::create('purchaseds', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('product_name');
             $table->string('product_code');
             $table->unsignedBigInteger('price');

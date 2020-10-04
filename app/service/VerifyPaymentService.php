@@ -100,6 +100,7 @@ class VerifyPaymentService
 
             purchased::create([
                 'user_id'=> $this->order->user_id,
+                'product_id'=> $this->product->id,
                 'product_name'=>$this->product->name,
                 'product_code'=> $this->product->code,
                 'price'=>$this->payment->price,

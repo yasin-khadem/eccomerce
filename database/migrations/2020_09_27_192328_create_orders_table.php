@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('payment_id')->nullable();
-            $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->string('customer_name');
             $table->longText('address');
             $table->string('post_code');
