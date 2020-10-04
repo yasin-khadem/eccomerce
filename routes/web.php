@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/auth/login', function(){
+    return view('home');
+})->name('login');
+
 Route::fallback(function () {
     return view('home');
 });
