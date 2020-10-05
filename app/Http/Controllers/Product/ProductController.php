@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return new ProductResourceCollection(Product::sortByUrl()->searchByUrl()->paginate(10));
+        return new ProductResourceCollection(Product::with('categories')->sortByUrl()->searchByUrl()->paginate(10));
     }
 
 
@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return $product->append('related_products');
+        return $product->load('categories')->append('related_products');
     }
 
     public function update(Request $request, Product $product)

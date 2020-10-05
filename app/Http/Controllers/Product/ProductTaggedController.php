@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 
 class ProductTaggedController extends Controller
 {
-    public function index(Category $category){
+    public function index(Category $category)
+    {
         return new ProductResourceCollection(
-            Product::whereHas('categories',function($query) use ($category){
-                $query->where('slug',$category->slug);
-            })->inRandomOrder()->sortByUrl()->searchByUrl()->paginate(10));
-
+            Product::with('categories')
+            ->whereHas('categories', function ($query) use ($category) {
+                $query->where('slug', $category->slug);
+            })->inRandomOrder()->sortByUrl()->searchByUrl()->paginate(10)
+        );
     }
 }
