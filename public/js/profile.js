@@ -109,6 +109,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -120,18 +131,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', ['user'])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])("auth", ["user"])),
   created: function created() {
     this.form = new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+      id: this.user.id,
       name: this.user.name,
       email: this.user.email,
       password: null,
-      profile: this.user.profile_src
+      profile: this.user.profile_src,
+      profile_name: null
     });
   },
   methods: {
     changeProfile: function changeProfile() {
-      this.form.patch("/api/dashboard/profile/".concat(this.user.id));
+      this.form.patch("/api/profile/".concat(this.user.id));
+    },
+    changeProfileSrc: function changeProfileSrc(event) {
+      this.form.profile_name = event;
     }
   }
 });
@@ -201,7 +217,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container " }, [
+  return _c("div", { staticClass: "container" }, [
     _c(
       "div",
       { staticClass: "d-flex flex-column align-items-center mx-auto" },
@@ -222,7 +238,7 @@ var render = function() {
                   },
                   [
                     _c("i", { staticClass: "fa fa-arrow-left" }),
-                    _vm._v("\n          بازگشت\n        ")
+                    _vm._v("\n            بازگشت\n          ")
                   ]
                 )
               ],
@@ -282,6 +298,7 @@ var render = function() {
               _vm._v(" "),
               _c("base-photo-input", {
                 attrs: { name: "profile" },
+                on: { src: _vm.changeProfileSrc },
                 model: {
                   value: _vm.form.profile,
                   callback: function($$v) {

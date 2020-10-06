@@ -58,6 +58,7 @@ export default {
   methods: {
     UploadProfile(event) {
       let file = event.target.files[0];
+      this.$emit('src', file.name)
       let reader = new FileReader();
       reader.onload = () => {
         this.file = reader.result;

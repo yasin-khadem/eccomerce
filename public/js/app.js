@@ -2341,6 +2341,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var file = event.target.files[0];
+      this.$emit('src', file.name);
       var reader = new FileReader();
 
       reader.onload = function () {

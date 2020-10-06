@@ -28,7 +28,10 @@
               </li>
               <template v-if="!$store.state.auth.user.is_admin">
                 <li class="nav-item">
-                  <router-link class="nav-link" :to="{ name: 'profile',params:{url:'show'} }">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'profile', params: { url: 'show' } }"
+                  >
                     <template class="mr-2">پروفایل من</template>
                     <i class="fas fa-user mx-2" aria-hidden="true"></i>
                   </router-link>
@@ -63,7 +66,10 @@
                 </li>
 
                 <li class="nav-item">
-                  <router-link class="nav-link" :to="{ name: 'admin-payments' }">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-payments' }"
+                  >
                     <template class="mr-2">تراکنش ها</template>
                     <i class="fas fa-exchange-alt mx-2"></i>
                   </router-link>
@@ -118,7 +124,12 @@
                   class="dropdown-menu background-dropdown-menu-color"
                   :class="dropDownShow"
                 >
-                  <a class="dropdown-item" href="#">پروفایل</a>
+                  <router-link
+                    class="dropdown-item"
+                    :to="{ name: 'profile', params: { url: 'show' } }"
+                  >
+                    پروفایل
+                  </router-link>
                   <a class="dropdown-item" href="#" @click="logout">خروج</a>
                 </div>
               </div>

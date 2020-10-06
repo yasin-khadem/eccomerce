@@ -148,6 +148,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -593,12 +604,21 @@ var render = function() {
                               },
                               [
                                 _c(
-                                  "a",
+                                  "router-link",
                                   {
                                     staticClass: "dropdown-item",
-                                    attrs: { href: "#" }
+                                    attrs: {
+                                      to: {
+                                        name: "profile",
+                                        params: { url: "show" }
+                                      }
+                                    }
                                   },
-                                  [_vm._v("پروفایل")]
+                                  [
+                                    _vm._v(
+                                      "\n                  پروفایل\n                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -610,7 +630,8 @@ var render = function() {
                                   },
                                   [_vm._v("خروج")]
                                 )
-                              ]
+                              ],
+                              1
                             )
                           ]
                         )
