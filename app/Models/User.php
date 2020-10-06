@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name', 'email', 'password', 'is_admin'
     ];
     protected $appends = [
-        'type'
+        'type', 'profile_src'
     ];
 
     /**
@@ -41,18 +41,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function setPasswordAttribute($password){
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = bcrypt($password);
     }
-    public function getTypeAttribute(){
-        return $this->is_admin ? 'ادمین' 
-        : 'کاربر عادی';
+    public function getTypeAttribute()
+    {
+        return $this->is_admin ? 'ادمین'
+            : 'کاربر عادی';
     }
-    public function payments(){
+    public function payments()
+    {
         return $this->hasMany(Payment::class);
     }
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function getProfileSrcAttribute()
+    {
+        return $this->profile ? "/profile/{$this->profile}" : "/profile/avatar.png";
     }
 }

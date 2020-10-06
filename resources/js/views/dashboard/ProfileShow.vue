@@ -16,13 +16,13 @@
       </header>
     </div>
     <div class="col-md-6">
-      <form @submit.prevent="storeUser">
+      <form @submit.prevent="changeProfile">
         <base-input name="name" label="نام" v-model="form.name"></base-input>
         <base-input name="email" label="ایمیل" type="email" v-model="form.email"></base-input>
         <base-input name="password" label="رمز عبور" type="password" v-model="form.password"></base-input>
-        <input class="my-3" type="file">
+        <base-photo-input v-model="form.profile" name="profile"></base-photo-input>
         <br>
-        <base-btn :loading="form.busy">ذخیره</base-btn>
+        <base-btn :loading="form.busy">ثبت تغییرات</base-btn>
       </form>
     </div>
     </div>
@@ -31,13 +31,32 @@
 
 <script>
 import { Form } from "vform";
+import { mapGetters } from "vuex";
 
 export default {
 name: "ProfileShow",
   data() {
     return {
-      form: new Form({}),
+      form: new Form({
+        profile : null
+      }),
     };
+  },
+  computed: {
+  ...mapGetters('auth',['user'])
+  },
+  created(){
+    this.form = new Form({
+      name: this.user.name,
+      email: this.user.email,
+      password: null,
+      profile: this.user.profile_src,
+    })
+  },
+  methods: {
+    changeProfile() {
+      this.form.patch(`/api/dashboard/profile/${this.user.id}`);
+    }
   },
 }
 </script>

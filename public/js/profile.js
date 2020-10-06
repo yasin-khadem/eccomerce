@@ -71,6 +71,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -103,12 +110,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProfileShow",
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({})
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        profile: null
+      })
     };
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])('auth', ['user'])),
+  created: function created() {
+    this.form = new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+      name: this.user.name,
+      email: this.user.email,
+      password: null,
+      profile: this.user.profile_src
+    });
+  },
+  methods: {
+    changeProfile: function changeProfile() {
+      this.form.patch("/api/dashboard/profile/".concat(this.user.id));
+    }
   }
 });
 
@@ -214,7 +238,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.storeUser($event)
+                  return _vm.changeProfile($event)
                 }
               }
             },
@@ -256,12 +280,21 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("input", { staticClass: "my-3", attrs: { type: "file" } }),
+              _c("base-photo-input", {
+                attrs: { name: "profile" },
+                model: {
+                  value: _vm.form.profile,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "profile", $$v)
+                  },
+                  expression: "form.profile"
+                }
+              }),
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
               _c("base-btn", { attrs: { loading: _vm.form.busy } }, [
-                _vm._v("ذخیره")
+                _vm._v("ثبت تغییرات")
               ])
             ],
             1
