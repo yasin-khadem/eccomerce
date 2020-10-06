@@ -142,6 +142,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -273,14 +279,12 @@ var render = function() {
                               "router-link",
                               {
                                 staticClass: "nav-link",
-                                attrs: { to: { name: "dashboard-index" } }
+                                attrs: { to: { name: "home" } }
                               },
                               [
-                                [_vm._v("داشبورد")],
+                                [_vm._v("صفحه اصلی")],
                                 _vm._v(" "),
-                                _c("i", {
-                                  staticClass: "fa fa-tachometer-alt mx-2"
-                                })
+                                _c("i", { staticClass: "fas fa-home mx-2" })
                               ],
                               2
                             )
@@ -298,10 +302,39 @@ var render = function() {
                                     "router-link",
                                     {
                                       staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "profile",
+                                          params: { url: "show" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("پروفایل من")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-user mx-2",
+                                        attrs: { "aria-hidden": "true" }
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
                                       attrs: { to: { name: "purchased" } }
                                     },
                                     [
-                                      [_vm._v("خرید های شما")],
+                                      [_vm._v("خرید های من")],
                                       _vm._v(" "),
                                       _c("i", {
                                         staticClass: "fas fa-shopping-bag mx-2",

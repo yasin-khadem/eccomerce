@@ -21,15 +21,21 @@
           <ul class="mt-2 navbar-nav mr-auto">
             <template v-if="isLoggedIn">
               <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
-                  <template class="mr-2">داشبورد</template>
-                  <i class="fa fa-tachometer-alt mx-2"></i>
+                <router-link class="nav-link" :to="{ name: 'home' }">
+                  <template class="mr-2">صفحه اصلی</template>
+                  <i class="fas fa-home mx-2"></i>
                 </router-link>
               </li>
               <template v-if="!$store.state.auth.user.is_admin">
                 <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'profile',params:{url:'show'} }">
+                    <template class="mr-2">پروفایل من</template>
+                    <i class="fas fa-user mx-2" aria-hidden="true"></i>
+                  </router-link>
+                </li>
+                <li class="nav-item">
                   <router-link class="nav-link" :to="{ name: 'purchased' }">
-                    <template class="mr-2">خرید های شما</template>
+                    <template class="mr-2">خرید های من</template>
                     <i class="fas fa-shopping-bag mx-2" aria-hidden="true"></i>
                   </router-link>
                 </li>
@@ -55,14 +61,14 @@
                     <i class="fa fa-list-alt mx-2"></i>
                   </router-link>
                 </li>
-                <!-- paymnet -->
+
                 <li class="nav-item">
                   <router-link class="nav-link" :to="{ name: 'admin-payments' }">
                     <template class="mr-2">تراکنش ها</template>
                     <i class="fas fa-exchange-alt mx-2"></i>
                   </router-link>
                 </li>
-                <!-- paymnet -->
+
                 <li class="nav-item">
                   <router-link class="nav-link" :to="{ name: 'admin-orders' }">
                     <template class="mr-2">سفارش ها</template>

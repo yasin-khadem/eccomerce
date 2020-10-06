@@ -18,30 +18,31 @@ const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../vie
 const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '../views/Admin/Order/AdminOrderIndex.vue');
 const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" */ '../views/Admin/Payment/AdminPaymentIndex.vue');
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
+const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dashboard/Profile.vue');
 const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
 
 export default [
     {
         path: '/',
         component: AppLayout,
-        children:[
-            
+        children: [
+
             {
                 path: '/',
                 name: 'home',
-                component: Home,  
+                component: Home,
             },
             {
                 path: '/tagged/:slug',
                 name: 'home-tagged',
-                component: HomeTagged,  
+                component: HomeTagged,
             },
             {
                 path: '/purchased/index',
                 name: 'purchased',
                 component: Purchased,
-                meta:{
-                    middleware:[auth]
+                meta: {
+                    middleware: [auth]
                 }
             },
             {
@@ -49,10 +50,10 @@ export default [
                 name: 'products',
                 component: ProductRoutes,
                 props: true,
-                meta:{
-                    middleware:[auth]
+                meta: {
+                    middleware: [auth]
                 },
-                children:[
+                children: [
                     {
                         path: ':slug',
                         name: 'product-show'
@@ -71,20 +72,31 @@ export default [
                 }
             },
             {
-                path: '/dashboard',
-                component: Dashboard ,
+                path: 'profile/:url',
+                name: 'profile',
+                component: Profile,
+                props: true,
                 meta: {
                     middleware: [
                         auth
                     ]
-                },   
-                children:[
+                },
+            },
+            {
+                path: '/dashboard',
+                component: Dashboard,
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                },
+                children: [
                     {
                         path: 'index',
                         name: 'dashboard-index',
                         component: DashboardIndex,
-                                          
                     },
+
                 ]
             },
             {
@@ -100,12 +112,12 @@ export default [
                         path: 'index',
                         name: 'admin-dashboard-index',
                         component: AdminDashboardIndex,
-                       
+
 
                     },
-                         ]
+                ]
             },
-            
+
         ]
     },
     {
@@ -116,16 +128,16 @@ export default [
                 admin
             ]
         },
-        children:[
-             {
+        children: [
+            {
                 path: 'user/:url',
                 name: 'admin-user',
                 component: AdminUser,
-                props: true,              
-                children:[
+                props: true,
+                children: [
                     {
                         path: ':id',
-                        name: 'admin-user-edit',                      
+                        name: 'admin-user-edit',
                     }
 
                 ]

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/Purchased"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/pr"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/dashboard/Purchased.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/home-tagged":"js/home-tagged","js/products":"js/products","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71326,7 +71326,7 @@ function guest(_ref) {
       store = _ref.store;
 
   if (store.getters['auth/isLoggedIn']) {
-    _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('شما قبلا وارد شده اید', 'warning');
+    _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('قبلا وارد شده اید', 'warning');
     return next({
       name: 'home'
     });
@@ -71634,6 +71634,10 @@ var Purchased = function Purchased() {
   return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
 };
 
+var Profile = function Profile() {
+  return __webpack_require__.e(/*! import() | js/profile */ "js/profile").then(__webpack_require__.bind(null, /*! ../views/dashboard/Profile.vue */ "./resources/js/views/dashboard/Profile.vue"));
+};
+
 var HomeTagged = function HomeTagged() {
   return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
 };
@@ -71675,6 +71679,14 @@ var HomeTagged = function HomeTagged() {
     component: AuthRoutes,
     meta: {
       middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_3__["default"]]
+    }
+  }, {
+    path: 'profile/:url',
+    name: 'profile',
+    component: Profile,
+    props: true,
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
     }
   }, {
     path: '/dashboard',

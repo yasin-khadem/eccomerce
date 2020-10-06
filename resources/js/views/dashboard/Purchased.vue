@@ -76,8 +76,8 @@ export default {
             `/purchased/index?page=${page}`
           );
         if(_.isEmpty(this.purchased.data)){
-
           swal.message("هنوز خرید نکرده اید", "warning");
+            window.history.back();
         }
       });
     },
