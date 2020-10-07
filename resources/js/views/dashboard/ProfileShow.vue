@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     changeProfile() {
-      this.form.patch(`/api/profile/${this.user.id}`);
+      this.$store.dispatch('auth/profile',this.form);
     },
     changeProfileSrc(event) {
       this.form.profile_name = event;

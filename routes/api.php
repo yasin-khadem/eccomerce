@@ -10,6 +10,7 @@ Route::middleware('auth:api')->get('/me', function (Request $request) {
 });
 Route::group(['namespace' => 'Auth'], function () {
     Route::post('login', 'LoginController@login');
+    Route::post('refresh-token', 'LoginController@refreshToken');
     Route::post('register', 'RegisterController@register');
 });
 Route::group(['middleware' => ['auth:api','admin'] , 

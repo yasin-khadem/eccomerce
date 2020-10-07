@@ -144,7 +144,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     changeProfile: function changeProfile() {
-      this.form.patch("/api/profile/".concat(this.user.id));
+      this.$store.dispatch('auth/profile', this.form);
     },
     changeProfileSrc: function changeProfileSrc(event) {
       this.form.profile_name = event;

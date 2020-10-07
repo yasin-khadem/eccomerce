@@ -19,9 +19,10 @@ class ProfileController extends Controller
         }
 
         if ($request->profile && $request->profile_name) {
-            $data['profile'] = request()->user()->id . '.' .Str::afterLast( $request->profile_name, '.');
-            $src = public_path('profile/') . $data['profile'];
+            $profile_image = request()->user()->id . '.' .Str::afterLast( $request->profile_name, '.');
+            $src = public_path('profile/') . $profile_image;
             Image::make($request->profile)->fit(100)->save($src);
+            $data['profile'] = $profile_image . '?' . Str::random(10);
         }
         $user->update($data);
         return response(['ok'],200);
