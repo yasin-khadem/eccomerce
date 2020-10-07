@@ -72012,12 +72012,16 @@ var mutations = {
     localStorage.setItem('user', JSON.stringify(user));
   },
   SET_TOKEN: function SET_TOKEN(state, token) {
-    state.token = token;
+    state.token = token; //test
+
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token; //test
+
     localStorage.setItem('token', token);
   },
   SET_TOKEN_REFRESH_TOKEN: function SET_TOKEN_REFRESH_TOKEN(state, data) {
     state.token = data.access_token;
     state.refresh_token = data.refresh_token;
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
     localStorage.setItem('token', data.access_token);
     localStorage.setItem('refresh_token', data.refresh_token);
   },
@@ -72041,7 +72045,7 @@ var actions = {
         localStorage.setItem('refresh_token', data.data.refresh_token);
       }
 
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
+      window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
     });
   },
   register: function register(_ref3, form) {
@@ -72050,7 +72054,7 @@ var actions = {
       var data = _ref4.data;
       commit('SET_USER', data.data);
       commit('SET_TOKEN', data.data.token);
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
+      window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
     });
   },
   profile: function profile(_ref5, payload) {
