@@ -35,5 +35,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.card {
+  -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+}
 </style>
