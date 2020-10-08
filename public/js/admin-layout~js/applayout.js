@@ -303,7 +303,7 @@ var render = function() {
                           1
                         ),
                         _vm._v(" "),
-                        !_vm.$store.state.auth.user.is_admin
+                        _vm.isLoggedIn && !_vm.user.is_admin
                           ? [
                               _c(
                                 "li",
@@ -360,7 +360,7 @@ var render = function() {
                             ]
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.$store.state.auth.user.is_admin
+                        _vm.isLoggedIn && _vm.user.is_admin
                           ? [
                               _c(
                                 "li",

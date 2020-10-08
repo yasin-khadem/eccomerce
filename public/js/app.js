@@ -71410,23 +71410,28 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return admin; });
+// export default function admin({ next, store }) {
+//     return store.dispatch('auth/getUser')
+//         .then(() => {
+//             let isAdmin = store.getters['auth/user'].is_admin;
+//             if (isAdmin !== undefined && !isAdmin) {
+//                 return next({ name: 'access-denied' })
+//             }
+//             return next();
+//         }).catch(() => {
+//             return next({ name: 'access-denied' })
+//         })
+// }
 function admin(_ref) {
   var next = _ref.next,
       store = _ref.store;
-  return store.dispatch('auth/getUser').then(function () {
-    var isAdmin = store.getters['auth/user'].is_admin;
 
-    if (isAdmin !== undefined && !isAdmin) {
-      return next({
-        name: 'access-denied'
-      });
-    }
-
+  if (store.getters['auth/user'] && store.getters['auth/user'].is_admin) {
     return next();
-  })["catch"](function () {
-    return next({
-      name: 'access-denied'
-    });
+  }
+
+  return next({
+    name: 'access-denied'
   });
 }
 
@@ -71443,26 +71448,35 @@ function admin(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return auth; });
 /* harmony import */ var _plugin_swal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugin/swal */ "./resources/js/plugin/swal.js");
+ // export default function auth({ next, store }) {
+//     return store.dispatch('auth/getUser')
+//         .then(() => {
+//             let isLoggedIn = store.getters['auth/isLoggedIn'];
+//             if (isLoggedIn !== undefined && !isLoggedIn) {
+//                 store.dispatch('auth/logout');
+//                 swal.message('ابتدا وارد سایت شوید.', 'warning')
+//                 return next({ name: 'auth', params: { url: 'login' } });
+//             }
+//             return next();
+//         }).catch(()=>{
+//         })
+// }
 
 function auth(_ref) {
   var next = _ref.next,
       store = _ref.store;
-  return store.dispatch('auth/getUser').then(function () {
-    var isLoggedIn = store.getters['auth/isLoggedIn'];
 
-    if (isLoggedIn !== undefined && !isLoggedIn) {
-      store.dispatch('auth/logout');
-      _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('ابتدا وارد سایت شوید.', 'warning');
-      return next({
-        name: 'auth',
-        params: {
-          url: 'login'
-        }
-      });
-    }
+  if (!store.getters['auth/isLoggedIn']) {
+    _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('ابتدا وارد سایت شوید.', 'warning');
+    return next({
+      name: 'auth',
+      params: {
+        url: 'login'
+      }
+    });
+  }
 
-    return next();
-  })["catch"](function () {});
+  return next();
 }
 
 /***/ }),
@@ -71485,6 +71499,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+// export default async function checkAuth({ next, store }) {
+//     if (store.getters['auth/isLoggedIn']) {
+//        await store.dispatch('auth/getUser')
+//     }
+//     return next();
+// }
 function checkAuth(_x) {
   return _checkAuth.apply(this, arguments);
 }
@@ -71532,6 +71552,13 @@ function _checkAuth() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return guest; });
 /* harmony import */ var _plugin_swal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugin/swal */ "./resources/js/plugin/swal.js");
+ // export default function guest({ next, store }) {
+//     if (store.getters['auth/isLoggedIn']) {
+//         swal.message('قبلا وارد شده اید','warning');
+//         return next({name: 'home'})
+//     }
+//     return next();
+// }
 
 function guest(_ref) {
   var next = _ref.next,
@@ -72014,7 +72041,7 @@ var mutations = {
   SET_TOKEN: function SET_TOKEN(state, token) {
     state.token = token; //test
 
-    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token; //test
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token; //test
 
     localStorage.setItem('token', token);
   },
@@ -72042,7 +72069,7 @@ var actions = {
       commit('SET_TOKEN', data.data.token);
 
       if (form.remember) {
-        localStorage.setItem('refresh_token', data.data.refresh_token);
+        commit('SET_TOKEN_REFRESH_TOKEN', data.data);
       }
 
       window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
@@ -72054,6 +72081,7 @@ var actions = {
       var data = _ref4.data;
       commit('SET_USER', data.data);
       commit('SET_TOKEN', data.data.token);
+      commit('SET_TOKEN_REFRESH_TOKEN', data.data);
       window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
     });
   },
@@ -72076,18 +72104,18 @@ var actions = {
       commit('SET_USER', data);
     })["catch"](function (_ref10) {
       var response = _ref10.response;
-      swal.message('احراز هویت', 'warning');
 
       if (response.status === 401) {
+        swal.message('احراز هویت', 'warning');
         axios.post('/api/refresh-token', {
           refresh_token: state.refresh_token
         }).then(function (_ref11) {
           var data = _ref11.data;
           commit('SET_TOKEN_REFRESH_TOKEN', data.data);
-          location.reload();
         })["catch"](function () {
           swal.message('لاگین نیستید', 'warning');
           commit('LOGOUT_USER');
+          window.location.href = document.location.origin + "/auth/login";
         });
       }
     });

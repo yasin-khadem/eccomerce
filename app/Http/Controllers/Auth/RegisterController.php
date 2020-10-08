@@ -22,7 +22,7 @@ class RegisterController extends Controller
             return $response;
         }
 
-        return new UserResource($user, $this->getContent());
+        return new UserResource($user, $this->getTokenContent());
     }
     protected function createUser($request)
     {

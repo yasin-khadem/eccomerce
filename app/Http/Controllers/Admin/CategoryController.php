@@ -19,18 +19,16 @@ class CategoryController extends Controller
  
     public function store(Request $request)
     {
-        $request->validate(['name'=>'required|string|max:255']);
+        $request->validate(['name'=> 'required|string|max:255|unique:categories']);
         Category::create($request->only('name'));
 
         return response(['ok'],200);
     }
-
   
     public function show(Category $category)
     {
         return $category;
     }
-
  
     public function update(Request $request, Category $category)
     {

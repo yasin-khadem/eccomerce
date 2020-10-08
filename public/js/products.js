@@ -279,8 +279,9 @@ __webpack_require__.r(__webpack_exports__);
       _this.product = data; //test
 
       _this.form.product = data; //end test
-    })["catch"](function (err) {
-      return _this.$router.push({
+    })["catch"](function (_ref2) {
+      var response = _ref2.response;
+      if (response.status === 404) _this.$router.push({
         name: "not-found"
       });
     });

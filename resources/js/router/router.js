@@ -16,6 +16,8 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
+    
+
     let parentMiddleware = [];
     to.matched.some(parentMeta => parentMiddleware = parentMeta.meta.middleware);
     if (to.meta.middleware === undefined && !parentMiddleware === undefined) {

@@ -26,7 +26,7 @@
                   <i class="fas fa-home mx-2"></i>
                 </router-link>
               </li>
-              <template v-if="!$store.state.auth.user.is_admin">
+              <template v-if="isLoggedIn && !user.is_admin">
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
@@ -44,7 +44,7 @@
                 </li>
               </template>
               <!-- admin -->
-              <template v-if="$store.state.auth.user.is_admin">
+              <template v-if="isLoggedIn && user.is_admin">
                 <li class="nav-item">
                   <router-link
                     class="nav-link"

@@ -27,7 +27,7 @@
                 v-for="category in product.categories"
                 :key="category.slug"
                 class="mx-1"
-                :to="{name: 'home-tagged', params:{slug:category.slug }}"
+                :to="{ name: 'home-tagged', params: { slug: category.slug } }"
               >
                 <a class="badge badge-tags">{{ category.name }}</a>
               </router-link>
@@ -244,7 +244,10 @@ export default {
         this.form.product = data;
         //end test
       })
-      .catch((err) => this.$router.push({ name: "not-found" }));
+      .catch(({ response }) => {
+        if(response.status === 404 )
+        this.$router.push({ name: "not-found" });
+      });
   },
   methods: {
     showOrderForm() {
