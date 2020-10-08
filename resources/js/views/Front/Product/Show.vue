@@ -152,17 +152,10 @@
       <h3 v-if="showTitle">محصولات مربوطه</h3>
     </div>
     <hr />
-    <div
-      class="mt-3 row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 d-flex justify-content-center"
-    >
-      <div
-        class="col mb-4"
-        v-for="(product, index) in product.related_products"
-        :key="product.id"
-      >
-        <Product :product="product" />
-      </div>
-    </div>
+
+    <related-products v-if="product.related_products" :product="product"></related-products>
+
+   
   </div>
 </template>
 
@@ -170,6 +163,7 @@
 import { formatTooman } from "prial";
 import { Form } from "vform";
 import Product from "@/components/Product.vue";
+import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
 
 export default {
   name: "Show",
@@ -181,6 +175,7 @@ export default {
 
   components: {
     Product,
+    RelatedProducts,
   },
   data() {
     return {
@@ -245,8 +240,7 @@ export default {
         //end test
       })
       .catch(({ response }) => {
-        if(response.status === 404 )
-        this.$router.push({ name: "not-found" });
+        if (response.status === 404) this.$router.push({ name: "not-found" });
       });
   },
   methods: {
