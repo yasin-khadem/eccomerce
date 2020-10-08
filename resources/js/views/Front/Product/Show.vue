@@ -66,6 +66,7 @@
 <script>
 import { formatTooman } from "prial";
 import { Form } from "vform";
+import { mapState } from "vuex";
 import Product from "@/components/Product.vue";
 import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
 import OrderForm from "@/views/Front/Product/OrderForm.vue";
@@ -97,9 +98,7 @@ export default {
     showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
-    csrf() {
-      return window.csrf;
-    },
+    
   },
   created() {
     axios

@@ -141,7 +141,7 @@ class VerifyPaymentService
                 'title' => 'مشکل به وجود آمد',
                 'text' => 'پرداخت شما به مشکل خورد',
                 'icon' => 'error',
-                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+                'confirm_text' => 'اوکی برمیگردم'
             ]);
             $this->response = $this->product ? redirect($this->product->url_path) : redirect('/'); //TODO redirect to Shopping list
         }

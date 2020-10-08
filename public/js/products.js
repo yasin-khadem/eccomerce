@@ -98,10 +98,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "OrderForm",
@@ -129,7 +125,6 @@ __webpack_require__.r(__webpack_exports__);
         post_code: null,
         address: null
       }),
-      product: this.product,
       currentOrderData: {
         phone_number: null,
         mobile_number: null,
@@ -162,6 +157,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    token: function token() {
+      return this.$store.state.auth.token;
+    },
     formComplete: function formComplete() {
       return this.form.address && this.form.phone_number && this.form.post_code && this.form.mobile_number ? true : false;
     },
@@ -271,9 +269,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prial__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prial__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
 /* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Product.vue */ "./resources/js/components/Product.vue");
-/* harmony import */ var _views_Front_Product_RelatedProducts_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/views/Front/Product/RelatedProducts.vue */ "./resources/js/views/Front/Product/RelatedProducts.vue");
-/* harmony import */ var _views_Front_Product_OrderForm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/Front/Product/OrderForm.vue */ "./resources/js/views/Front/Product/OrderForm.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Product_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/Product.vue */ "./resources/js/components/Product.vue");
+/* harmony import */ var _views_Front_Product_RelatedProducts_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/views/Front/Product/RelatedProducts.vue */ "./resources/js/views/Front/Product/RelatedProducts.vue");
+/* harmony import */ var _views_Front_Product_OrderForm_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/views/Front/Product/OrderForm.vue */ "./resources/js/views/Front/Product/OrderForm.vue");
 //
 //
 //
@@ -339,6 +338,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -352,9 +352,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    RelatedProducts: _views_Front_Product_RelatedProducts_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    OrderForm: _views_Front_Product_OrderForm_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    RelatedProducts: _views_Front_Product_RelatedProducts_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    OrderForm: _views_Front_Product_OrderForm_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -371,9 +371,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     showTitle: function showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
-    },
-    csrf: function csrf() {
-      return window.csrf;
     }
   },
   created: function created() {
@@ -685,7 +682,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("input", {
                             attrs: { type: "hidden", name: "access_token" },
-                            domProps: { value: _vm.$store.state.auth.token }
+                            domProps: { value: _vm.token }
                           }),
                           _vm._v(" "),
                           _c("input", {

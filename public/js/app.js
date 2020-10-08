@@ -72046,10 +72046,10 @@ var mutations = {
     localStorage.setItem('token', token);
   },
   SET_TOKEN_REFRESH_TOKEN: function SET_TOKEN_REFRESH_TOKEN(state, data) {
-    state.token = data.access_token;
+    state.token = data.token;
     state.refresh_token = data.refresh_token;
-    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
-    localStorage.setItem('token', data.access_token);
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
+    localStorage.setItem('token', data.token);
     localStorage.setItem('refresh_token', data.refresh_token);
   },
   LOGOUT_USER: function LOGOUT_USER(state) {

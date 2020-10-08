@@ -22,12 +22,12 @@ export const mutations = {
         localStorage.setItem('token', token)
     },
     SET_TOKEN_REFRESH_TOKEN(state, data) {
-        state.token = data.access_token
+        state.token = data.token
         state.refresh_token = data.refresh_token
 
-        window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
+        window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
 
-        localStorage.setItem('token', data.access_token)
+        localStorage.setItem('token', data.token)
         localStorage.setItem('refresh_token', data.refresh_token)
 
     },
@@ -45,6 +45,7 @@ export const actions = {
             .then(({ data }) => {
                 commit('SET_USER', data.data)
                 commit('SET_TOKEN', data.data.token)
+
                 if (form.remember) {
                     commit('SET_TOKEN_REFRESH_TOKEN', data.data)
                 }

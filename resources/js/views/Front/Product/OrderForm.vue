@@ -47,11 +47,7 @@
             >
               <input type="hidden" name="_token" :value="csrf" />
               <input type="hidden" name="product_id" :value="product.id" />
-              <input
-                type="hidden"
-                name="access_token"
-                :value="$store.state.auth.token"
-              />
+              <input type="hidden" name="access_token" :value="token" />
               <input type="hidden" name="price" :value="product.price" />
 
               <input
@@ -94,6 +90,7 @@ import { Form } from "vform";
 export default {
   name: "OrderForm",
   props: {
+   
     orderForm: {
       type: Boolean,
       required: true,
@@ -117,7 +114,6 @@ export default {
         post_code: null,
         address: null,
       }),
-      product: this.product,
       currentOrderData: {
         phone_number: null,
         mobile_number: null,
@@ -155,6 +151,9 @@ export default {
   },
 
   computed: {
+    token() {
+      return this.$store.state.auth.token;
+    },
     formComplete() {
       return this.form.address &&
         this.form.phone_number &&

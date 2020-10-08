@@ -19,8 +19,6 @@ class LoginController extends Controller
     {
 
         $user = $this->getUser($request);
-
-
         $response = $this->getToken($request);
 
 
