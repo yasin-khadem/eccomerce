@@ -27,19 +27,16 @@
                 v-for="category in product.categories"
                 :key="category.slug"
                 class="mx-1"
-                :to="{ name: 'home-tagged', params: { slug: category.slug } }"
-              >
+                :to="{ name: 'home-tagged', params: { slug: category.slug } }">
                 <a class="badge badge-tags">{{ category.name }}</a>
               </router-link>
             </div>
-
             <a
               href="#"
               class="btn btn-primary up-show-card mt-3"
               @click.prevent="showOrderForm"
               v-if="ProductExist"
-              >سفارش</a
-            >
+              >سفارش</a>
             <p v-if="!ProductExist" class="text-danger">
               <strong> این محصول قبلا فروخته شده </strong>
             </p>
@@ -47,124 +44,31 @@
         </div>
       </div>
     </div>
-
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
-    <template v-if="orderForm">
-      <div class="d-flex justify-content-center mt-5">
-        <div class="card order-card text-white">
-          <h3>ثبت سفارش</h3>
-        </div>
-      </div>
-      <a href="#" class="down-show-card"></a>
-      <div class="card mt-3 py-3 px-2">
-        <div class="col-md-6 mx-auto">
-          <div class="d-flex flex-column">
-            <!-- <form action="/buy" method="POST"> -->
-            <form @submit.prevent="continueToBuy">
-              <base-input
-                name="mobile_number"
-                type="number"
-                label="شماره موبایل"
-                v-model="form.mobile_number"
-              ></base-input>
-              <base-input
-                name="phone_number"
-                type="number"
-                label="شماره تلفن"
-                v-model="form.phone_number"
-              ></base-input>
-              <base-input
-                name="post_code"
-                type="number"
-                label="کد پستی"
-                min="10"
-                v-model="form.post_code"
-              ></base-input>
-              <base-input
-                name="address"
-                type="text"
-                label="آدرس"
-                v-model="form.address"
-              ></base-input>
-
-              <base-btn btn="success" :loading="form.busy"
-                >ثبت و ادامه</base-btn
-              >
-            </form>
-            <template v-if="showBuyBotton && checkForBuyButton">
-              <form
-                action="/buy"
-                method="POST"
-                class="d-flex justify-content-center mt-2"
-                v-if="checkForBuyButton"
-              >
-                <input type="hidden" name="_token" :value="csrf" />
-                <input
-                  type="hidden"
-                  name="product_id"
-                  :value="form.product.id"
-                />
-                <input
-                  type="hidden"
-                  name="access_token"
-                  :value="$store.state.auth.token"
-                />
-                <input type="hidden" name="price" :value="form.product.price" />
-
-                <!-- orders table -->
-                <input
-                  type="hidden"
-                  name="mobile_number"
-                  :value="form.mobile_number"
-                />
-                <input
-                  type="hidden"
-                  name="phone_number"
-                  :value="form.phone_number"
-                />
-                <input type="hidden" name="address" :value="form.address" />
-                <input type="hidden" name="post_code" :value="form.post_code" />
-                <!-- orders table -->
-
-                <button class="btn btn-primary btn-round" v-if="formComplete">
-                  خرید
-                </button>
-              </form>
-            </template>
-          </div>
-          <ul class="mt-3">
-            <li class="text-danger">
-              <strong> لطفا کد پستی و آدرس را با دقت وارد کنید </strong>
-            </li>
-            <li class="text-danger">
-              <strong
-                >بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک
-                کردن روی آن به صفحه ی پرداخت وارد می شوید</strong
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </template>
+    <order-form
+      v-if="orderForm"
+      :orderForm="orderForm"
+      :formProduct="formProduct"
+      :product="product"
+    >
+    </order-form>
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
-
     <div class="d-flex justify-content-center mt-5">
       <h3 v-if="showTitle">محصولات مربوطه</h3>
     </div>
     <hr />
-
-    <related-products v-if="product.related_products" :product="product"></related-products>
-
-   
+    <related-products
+      v-if="product.related_products"
+      :product="product"
+    ></related-products>
   </div>
 </template>
-
 <script>
 import { formatTooman } from "prial";
 import { Form } from "vform";
 import Product from "@/components/Product.vue";
 import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
-
+import OrderForm from "@/views/Front/Product/OrderForm.vue";
 export default {
   name: "Show",
   metaInfo() {
@@ -172,31 +76,18 @@ export default {
       title: "محصول " + this.slug,
     };
   },
-
   components: {
     Product,
     RelatedProducts,
+    OrderForm,
   },
   data() {
     return {
       formatToman: require("prial").formatToman,
-      form: new Form({
-        product: {},
-        phone_number: null,
-        mobile_number: null,
-        post_code: null,
-        address: null,
-      }),
       product: {},
       slug: this.$route.params.slug,
       orderForm: false,
-      showBuyBotton: false,
-      currentOrderData: {
-        phone_number: null,
-        mobile_number: null,
-        post_code: null,
-        address: null,
-      },
+      formProduct: {},
     };
   },
   computed: {
@@ -209,35 +100,13 @@ export default {
     csrf() {
       return window.csrf;
     },
-    formComplete() {
-      return this.form.address &&
-        this.form.phone_number &&
-        this.form.post_code &&
-        this.form.mobile_number
-        ? true
-        : false;
-    },
-    checkForBuyButton() {
-      if (
-        this.currentOrderData.address === this.form.address &&
-        this.currentOrderData.post_code === this.form.post_code &&
-        this.currentOrderData.mobile_number === this.form.mobile_number &&
-        this.currentOrderData.phone_number === this.form.address.phone_number
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
   },
   created() {
     axios
       .get(`/api/product/${this.slug}`)
       .then(({ data }) => {
         this.product = data;
-        //test
-        this.form.product = data;
-        //end test
+        this.formProduct = data;
       })
       .catch(({ response }) => {
         if (response.status === 404) this.$router.push({ name: "not-found" });
@@ -262,31 +131,6 @@ export default {
               this.orderForm = false;
             }
           });
-      }
-    },
-    continueToBuy() {
-      this.currentOrderData.address = this.form.address;
-      this.currentOrderData.post_code = this.form.post_code;
-      this.currentOrderData.mobile_number = this.form.mobile_number;
-      this.currentOrderData.phone_number = this.form.address.phone_number;
-      if (this.formComplete) {
-        return this.form
-          .post(`/api/order`, this.form)
-          .then(() => {
-            this.showBuyBotton = true;
-            swal.message(
-              "با اطلاعاتی که وارد کردید خرید خود را انجام دهید",
-              "success",
-              2500
-            );
-          })
-          .catch((e) => {
-            this.showBuyBotton = false;
-            swal.message("اطلاعات ثبت نشد", "error", 2500);
-          });
-      } else {
-        swal.message("لطفا فرم را کامل کنید", "warning");
-        this.showBuyBotton = false;
       }
     },
   },
