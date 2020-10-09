@@ -89,8 +89,7 @@
 import { Form } from "vform";
 export default {
   name: "OrderForm",
-  props: {
-   
+  props: { 
     orderForm: {
       type: Boolean,
       required: true,

@@ -1,49 +1,7 @@
 <template>
   <div class="container mt-5">
-    <div class="card">
-      <div class="row">
-        <div class="col-md-4">
-          <img :src="'/' + product.image_src" class="card-img-top w-100" />
-        </div>
-        <div class="col-md-8">
-          <div class="card-block p-3">
-            <h4 class="card-title">نام محصول: {{ product.name }}</h4>
-            <p class="card-text">
-              <strong> کد: </strong>
-              {{ product.code }}
-            </p>
-            <p class="card-text">
-              <strong> توضیحات: </strong>
-              {{ product.description }}
-            </p>
-            <h6 class="card-title">
-              <strong> قیمت: {{ formatToman(product.price) }}</strong>
-            </h6>
-            <h6>
-              <strong>دسته بندی:</strong>
-            </h6>
-            <div class="row ml-3">
-              <router-link
-                v-for="category in product.categories"
-                :key="category.slug"
-                class="mx-1"
-                :to="{ name: 'home-tagged', params: { slug: category.slug } }">
-                <a class="badge badge-tags">{{ category.name }}</a>
-              </router-link>
-            </div>
-            <a
-              href="#"
-              class="btn btn-primary up-show-card mt-3"
-              @click.prevent="showOrderForm"
-              v-if="ProductExist"
-              >سفارش</a>
-            <p v-if="!ProductExist" class="text-danger">
-              <strong> این محصول قبلا فروخته شده </strong>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <main-product-show :product="product" @setOrderForm="setOrderForm"></main-product-show>
+
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
     <order-form
       v-if="orderForm"
@@ -70,6 +28,7 @@ import { mapState } from "vuex";
 import Product from "@/components/Product.vue";
 import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
 import OrderForm from "@/views/Front/Product/OrderForm.vue";
+import MainProductShow from "@/views/Front/Product/MainProductShow.vue";
 export default {
   name: "Show",
   metaInfo() {
@@ -81,6 +40,7 @@ export default {
     Product,
     RelatedProducts,
     OrderForm,
+    MainProductShow,
   },
   data() {
     return {
@@ -92,13 +52,9 @@ export default {
     };
   },
   computed: {
-    ProductExist() {
-      return this.product.exist ? true : false;
-    },
     showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
-    
   },
   created() {
     axios
@@ -112,26 +68,9 @@ export default {
       });
   },
   methods: {
-    showOrderForm() {
-      this.orderForm = true;
-      if ($(document).width() > 750) {
-        window.scrollTo(0, 600);
-      } else {
-        swal
-          .confirm(
-            "آیا مایل به ثبت سفارش هستید",
-            "info",
-            "برای ثبت سفارش تایید را بزنید"
-          )
-          .then((result) => {
-            if (result.value) {
-              window.scrollTo(0, 700);
-            } else {
-              this.orderForm = false;
-            }
-          });
-      }
-    },
+    setOrderForm(event){
+      this.orderForm = event
+    }
   },
 };
 </script>
@@ -146,10 +85,5 @@ export default {
   background-color: #9c27b0;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
 }
-.badge-tags {
-  background-color: #9c27b0;
-  color: #fff;
-  font-weight: 300;
-  font-size: 15px;
-}
+
 </style>

@@ -72046,6 +72046,13 @@ var mutations = {
     localStorage.setItem('token', token);
   },
   SET_TOKEN_REFRESH_TOKEN: function SET_TOKEN_REFRESH_TOKEN(state, data) {
+    state.token = data.access_token;
+    state.refresh_token = data.refresh_token;
+    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.access_token;
+    localStorage.setItem('token', data.access_token);
+    localStorage.setItem('refresh_token', data.refresh_token);
+  },
+  SET_REFRESH_TOKEN: function SET_REFRESH_TOKEN(state, data) {
     state.token = data.token;
     state.refresh_token = data.refresh_token;
     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
@@ -72069,7 +72076,7 @@ var actions = {
       commit('SET_TOKEN', data.data.token);
 
       if (form.remember) {
-        commit('SET_TOKEN_REFRESH_TOKEN', data.data);
+        commit('SET_REFRESH_TOKEN', data.data);
       }
 
       window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
@@ -72081,7 +72088,7 @@ var actions = {
       var data = _ref4.data;
       commit('SET_USER', data.data);
       commit('SET_TOKEN', data.data.token);
-      commit('SET_TOKEN_REFRESH_TOKEN', data.data);
+      commit('SET_REFRESH_TOKEN', data.data);
       window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.data.token;
     });
   },
