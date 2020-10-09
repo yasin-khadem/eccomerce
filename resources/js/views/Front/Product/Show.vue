@@ -81,9 +81,6 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   transition: 500ms;
 }
-.order-card {
-  background-color: #9c27b0;
-  padding: 0.35rem 0.75rem 0.15rem 0.75rem;
-}
+
 
 </style>

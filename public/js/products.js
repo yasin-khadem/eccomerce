@@ -528,7 +528,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-7fd85062] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n\r\n\r\n", ""]);
 
 // exports
 

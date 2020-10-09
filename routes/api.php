@@ -30,3 +30,4 @@ Route::get('product/tagged/{category}','Product\ProductTaggedController@index');
 Route::apiResource('order', 'Order\OrderController')->middleware(['auth:api']);
 Route::get('purchased', 'Purchased\PurchasedController@getPurchased')->middleware(['auth:api']);
 Route::patch('profile/{user}', 'Front\ProfileController@update')->middleware(['auth:api']);
+Route::post('comment','Front\CommentController@store')->middleware(['auth:api']);
