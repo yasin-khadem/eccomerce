@@ -402,6 +402,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -425,6 +458,10 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       formatToman: __webpack_require__(/*! prial */ "./node_modules/prial/index.js").formatToman,
+      comment: new vform__WEBPACK_IMPORTED_MODULE_1__["Form"]({
+        body: null,
+        product_id: null
+      }),
       product: {},
       slug: this.$route.params.slug,
       orderForm: false,
@@ -443,6 +480,7 @@ __webpack_require__.r(__webpack_exports__);
       var data = _ref.data;
       _this.product = data;
       _this.formProduct = data;
+      _this.comment.product_id = data.id;
     })["catch"](function (_ref2) {
       var response = _ref2.response;
       if (response.status === 404) _this.$router.push({
@@ -453,6 +491,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setOrderForm: function setOrderForm(event) {
       this.orderForm = event;
+    },
+    submitComment: function submitComment() {
+      var _this2 = this;
+
+      this.comment.post("/api/comment").then(function (_ref3) {
+        var data = _ref3.data;
+        swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+        _this2.comment.body = null;
+      })["catch"](function (e) {
+        swal.message("نظر شما ارسال نشد", "error");
+      });
     }
   }
 });
@@ -528,7 +577,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\ntextarea[data-v-7fd85062] {\r\n  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);\n}\n.comment-btn[data-v-7fd85062] {\r\n  background-color: #2579ff;\n}\r\n", ""]);
 
 // exports
 
@@ -1076,6 +1125,57 @@ var render = function() {
           })
         : _vm._e(),
       _vm._v(" "),
+      _c("div", [
+        _c(
+          "div",
+          { staticClass: "form-group mt-5 col-md-6" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.comment.body,
+                  expression: "comment.body"
+                }
+              ],
+              staticClass: "form-control p-2",
+              attrs: {
+                name: "comment",
+                id: "comment",
+                placeholder: "نظر خود را بنویسید...",
+                cols: "15",
+                rows: "7"
+              },
+              domProps: { value: _vm.comment.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.comment, "body", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.comment.body
+              ? _c(
+                  "base-btn",
+                  {
+                    staticClass: "comment-btn mt-2",
+                    attrs: { loading: _vm.comment.busy },
+                    on: { click: _vm.submitComment }
+                  },
+                  [_vm._v("ثبت")]
+                )
+              : _vm._e()
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
         _vm.showTitle ? _c("h3", [_vm._v("محصولات مربوطه")]) : _vm._e()
       ]),
@@ -1089,7 +1189,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "comment" } }, [
+      _c("h4", [_c("strong", [_vm._v(" ثبت نظر: ")])])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -1,6 +1,9 @@
 <template>
   <div class="container mt-5">
-    <main-product-show :product="product" @setOrderForm="setOrderForm"></main-product-show>
+    <main-product-show
+      :product="product"
+      @setOrderForm="setOrderForm"
+    ></main-product-show>
 
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
     <order-form
@@ -11,6 +14,36 @@
     >
     </order-form>
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
+
+    <!-- محل کامنت -->
+    <div>
+      <div class="form-group mt-5 col-md-6">
+        <label for="comment">
+          <h4>
+            <strong> ثبت نظر: </strong>
+          </h4>
+        </label>
+        <textarea
+          name="comment"
+          id="comment"
+          placeholder="نظر خود را بنویسید..."
+          class="form-control p-2"
+          v-model="comment.body"
+          cols="15"
+          rows="7"
+        ></textarea>
+        <base-btn
+          class="comment-btn mt-2"
+          v-if="comment.body"
+          :loading="comment.busy"
+          @click="submitComment"
+          >ثبت</base-btn
+        >
+      </div>
+    </div>
+
+    <!-- محل کامنت -->
+
     <div class="d-flex justify-content-center mt-5">
       <h3 v-if="showTitle">محصولات مربوطه</h3>
     </div>
@@ -45,6 +78,10 @@ export default {
   data() {
     return {
       formatToman: require("prial").formatToman,
+      comment: new Form({
+        body: null,
+        product_id: null,
+      }),
       product: {},
       slug: this.$route.params.slug,
       orderForm: false,
@@ -62,15 +99,27 @@ export default {
       .then(({ data }) => {
         this.product = data;
         this.formProduct = data;
+        this.comment.product_id = data.id;
       })
       .catch(({ response }) => {
         if (response.status === 404) this.$router.push({ name: "not-found" });
       });
   },
   methods: {
-    setOrderForm(event){
-      this.orderForm = event
-    }
+    setOrderForm(event) {
+      this.orderForm = event;
+    },
+    submitComment() {
+      this.comment
+        .post("/api/comment")
+        .then(({ data }) => {
+          swal.message("نظر شما پس از تایید ثبت میشود", "info",3000);
+          this.comment.body = null
+        })
+        .catch((e) => {
+          swal.message("نظر شما ارسال نشد", "error");
+        });
+    },
   },
 };
 </script>
@@ -81,6 +130,12 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   transition: 500ms;
 }
-
-
+textarea {
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+}
+.comment-btn {
+  background-color: #2579ff;
+}
 </style>
