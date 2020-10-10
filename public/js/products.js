@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('setOrderForm', true);
 
       if ($(document).width() > 750) {
-        window.scrollTo(0, 600);
+        window.scrollTo(0, 500);
       } else {
         swal.confirm("آیا مایل به ثبت سفارش هستید", "info", "برای ثبت سفارش تایید را بزنید").then(function (result) {
           if (result.value) {

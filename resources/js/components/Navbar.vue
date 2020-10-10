@@ -42,6 +42,13 @@
                     <i class="fas fa-shopping-bag mx-2" aria-hidden="true"></i>
                   </router-link>
                 </li>
+                
+                <li class="nav-item">
+                <a class="nav-link" @click.prevent="logout">
+                  <template class="mr-2">خروج</template>
+                  <i class="fa fa-sign-out-alt mx-2"></i>
+                </a>
+              </li>
               </template>
               <!-- admin -->
               <template v-if="isLoggedIn && user.is_admin">
@@ -81,7 +88,15 @@
                     <i class="fas fa-scroll mx-2"></i>
                   </router-link>
                 </li>
-
+                 <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-comment'}"
+                  >
+                    <template class="mr-2">نظرات</template>
+                    <i class="fa fa-comment mx-2"></i>
+                  </router-link>
+                </li>
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
@@ -93,12 +108,7 @@
                 </li>
               </template>
               <!-- admin -->
-              <li class="nav-item">
-                <a class="nav-link" @click.prevent="logout">
-                  <template class="mr-2">خروج</template>
-                  <i class="fa fa-sign-out-alt mx-2"></i>
-                </a>
-              </li>
+              
             </template>
           </ul>
           <div class="form-inline my-2 my-lg-0" dir="rtl">

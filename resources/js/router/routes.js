@@ -16,6 +16,7 @@ const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '..
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
 const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../views/Front/Product/ProductRoutes.vue');
 const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '../views/Admin/Order/AdminOrderIndex.vue');
+const AdminCommentIndex = () => import(/* webpackChunkName: "js/admin-comments" */ '../views/Admin/Comment/AdminCommentIndex.vue');
 const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" */ '../views/Admin/Payment/AdminPaymentIndex.vue');
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
 const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dashboard/Profile.vue');
@@ -129,6 +130,11 @@ export default [
             ]
         },
         children: [
+            {
+                path: 'comment/index',
+                name: 'admin-comment',
+                component: AdminCommentIndex
+            },
             {
                 path: 'user/:url',
                 name: 'admin-user',

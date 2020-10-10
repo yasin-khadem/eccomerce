@@ -73,7 +73,7 @@ export default {
       this.orderForm = true;
       this.$emit('setOrderForm', true);
       if ($(document).width() > 750) {
-        window.scrollTo(0, 600);
+        window.scrollTo(0, 500);
       } else {
         swal
           .confirm(
