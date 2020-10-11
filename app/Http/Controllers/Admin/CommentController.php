@@ -17,7 +17,7 @@ class CommentController extends Controller
     public function index()
     {
         return new CommentCollection(
-            Comment::with('user','product')->whereIsConfirmed(false)->orderBy('id','desc')->paginate(1)
+            Comment::with('user','product')->whereIsConfirmed(false)->orderBy('id','desc')->paginate(10)
         );
     }
 

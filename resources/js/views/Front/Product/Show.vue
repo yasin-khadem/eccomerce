@@ -41,7 +41,14 @@
         >
       </div>
     </div>
-
+    <div id="comments" class="my-5 pr-2 py-2" v-if="showComments">
+      <product-comment
+        v-for="comment in product.confirmed_comments"
+        :key="comment.id"
+        :comment="comment"
+        @delete-comment="hideComment"
+      ></product-comment>
+    </div>
     <!-- محل کامنت -->
 
     <div class="d-flex justify-content-center mt-5">
@@ -62,6 +69,7 @@ import Product from "@/components/Product.vue";
 import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
 import OrderForm from "@/views/Front/Product/OrderForm.vue";
 import MainProductShow from "@/views/Front/Product/MainProductShow.vue";
+import ProductComment from "@/views/Front/Product/ProductComment.vue";
 export default {
   name: "Show",
   metaInfo() {
@@ -74,6 +82,7 @@ export default {
     RelatedProducts,
     OrderForm,
     MainProductShow,
+    ProductComment,
   },
   data() {
     return {
@@ -91,6 +100,9 @@ export default {
   computed: {
     showTitle() {
       return _.isEmpty(this.product.related_products) ? false : true;
+    },
+    showComments() {
+      return _.isEmpty(this.product.confirmed_comments) ? false : true;
     },
   },
   created() {
@@ -113,12 +125,16 @@ export default {
       this.comment
         .post("/api/comment")
         .then(({ data }) => {
-          swal.message("نظر شما پس از تایید ثبت میشود", "info",3000);
-          this.comment.body = null
+          swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+          this.comment.body = null;
         })
         .catch((e) => {
           swal.message("نظر شما ارسال نشد", "error");
         });
+    },
+    hideComment(comment) {
+      let index = this.product.confirmed_comments.indexOf(comment);
+      this.product.confirmed_comments.splice(index, 1);
     },
   },
 };
@@ -137,5 +153,11 @@ textarea {
 }
 .comment-btn {
   background-color: #2579ff;
+}
+#comments {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
 }
 </style>

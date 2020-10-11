@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return $product->load('categories')->append('related_products');
+        return $product->load('categories', 'confirmed_comments.user')->append('related_products');
     }
 
     public function update(Request $request, Product $product)

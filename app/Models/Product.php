@@ -95,4 +95,11 @@ class Product extends Model
     {
         return url("product/show/{$this->slug}");
     }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    public function confirmed_comments()
+    {
+        return $this->hasMany(Comment::class)->whereIsConfirmed(true)->whereNull('comment_id');
+    }
 }

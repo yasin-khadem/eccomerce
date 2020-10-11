@@ -16,7 +16,7 @@
             {{ product.description }}
           </p>
           <h6 class="card-title">
-            <strong> قیمت: {{ formatToman(product.price) }}</strong>
+            <strong> قیمت: {{ formatToman(parseInt(product.price)) }}</strong>
           </h6>
           <h6>
             <strong>دسته بندی:</strong>

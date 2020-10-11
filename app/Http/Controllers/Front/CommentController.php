@@ -18,4 +18,8 @@ class CommentController extends Controller
         ]);
         return response(['ok'],200);
     }
+    public function destroy(Comment $comment){
+        $comment->delete();
+        return response(['ok'], 200);
+    }
 }
