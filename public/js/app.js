@@ -71637,12 +71637,14 @@ var sweetalert = /*#__PURE__*/function () {
       var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'با موفقیت انجام شد';
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
       var timer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1500;
+      var text = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
       sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire({
         position: 'center',
         icon: type,
         title: title,
         showConfirmButton: false,
-        timer: timer
+        timer: timer,
+        text: text
       });
     }
   }, {

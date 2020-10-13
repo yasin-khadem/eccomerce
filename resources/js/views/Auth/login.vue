@@ -10,7 +10,7 @@
                     label="مرا به خاطر بسپار"
                     v-model="form.remember"></base-check>
     
-    <a href="#" class="my-2">ایا رمز عبور خود را فراموش کرده اید؟</a>
+    <router-link :to="{name:'auth',params:{url:'forget-password'}}" class="my-2">ایا رمز عبور خود را فراموش کرده اید؟</router-link>
 
     <base-btn :loading="form.busy" class="btn-block mt-3">ورود</base-btn>
   </form>

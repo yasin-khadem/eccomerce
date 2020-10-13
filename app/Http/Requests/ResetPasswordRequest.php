@@ -26,7 +26,18 @@ class ResetPasswordRequest extends FormRequest
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:6',
         ];
     }
+    public function messages()
+    {
+        return [
+            'email.required'=>'ایمیل الزامی است',
+            'email.email'=>'لطفا ایمیل معتبر وارد کنید',
+            'password.required'=>'رمز عبور الزامی است',
+            'password.confirmed'=>'رمز عبور با تکرار رمز عبور یکسان نیست',
+            'password.min'=>'رمز عبور باید حداقل 6 کاراکتری باشد',
+        ];
+    }
+
 }

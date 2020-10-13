@@ -1,16 +1,17 @@
 import Swal from 'sweetalert2'
 
 class sweetalert {
-    message(title = 'با موفقیت انجام شد', type = 'success', timer = 1500) {
+    message(title = 'با موفقیت انجام شد', type = 'success', timer = 1500, text = null) {
         Swal.fire({
             position: 'center',
             icon: type,
             title,
             showConfirmButton: false,
-            timer
+            timer,
+            text
         })
     }
-    fire(title,text,icon='info', confirmButtonText='اوکی') {
+    fire(title, text, icon = 'info', confirmButtonText = 'اوکی') {
         Swal.fire({
             icon,
             text,
@@ -19,7 +20,7 @@ class sweetalert {
             position: 'center',
         })
     }
-  
+
     error(title = 'به مشکل خوردیم', type = 'error') {
         this.message(title, type)
     }

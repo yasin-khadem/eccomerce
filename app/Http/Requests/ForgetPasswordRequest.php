@@ -27,4 +27,11 @@ class ForgetPasswordRequest extends FormRequest
             'email'=>'required|email'
         ];
     }
+    public function messages()
+    {
+        return [
+            'email.required' => 'وارد کردن ایمیل الزامی است',
+            'email.email' => 'لطفا ایمیل معتبر وارد کنید',
+        ];
+    }
 }

@@ -43,9 +43,9 @@ class ResetPasswordNotification extends Notification
     {
         $forgetPasswordUrl = config('frontend.reset_password_url') . "?token={$this->token}";
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Reset password', $forgetPasswordUrl)
-                    ->line('Thank you for using our application!');
+                    ->line('برای بازیابی رمز از لینک زیر استفاده کنید.')
+                    ->action('بازیابی رمز', $forgetPasswordUrl)
+                    ->line('ممنون از عضویت شما در وبسایت ما');
     }
 
     /**
