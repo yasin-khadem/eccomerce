@@ -2,24 +2,30 @@
 
 namespace App\Notifications;
 
+use App\Mail\ResetPassword;
+use App\Mail\ResetPasswordMarkdown;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Message;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Mail;
 
 class ResetPasswordNotification extends Notification
 {
     use Queueable;
 
     public $token;
+    public $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token,$user)
     {
         $this->token = $token;
+        $this->user = $user;
     }
 
     /**
@@ -41,13 +47,17 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $forgetPasswordUrl = config('frontend.reset_password_url') . "?token={$this->token}";
-        return (new MailMessage)
-                    ->line('برای بازیابی رمز از لینک زیر استفاده کنید.')
-                    ->action('بازیابی رمز', $forgetPasswordUrl)
-                    ->line('ممنون از عضویت شما در وبسایت ما');
+        $ressetPasswordUrl = config('frontend.reset_password_url') . "?token={$this->token}";
+        // $data = ['name'=> $this->user->name, 'email' => $this->user->email,'link'=> $ressetPasswordUrl];
+      
+        Mail::send(new ResetPasswordMarkdown($ressetPasswordUrl, $this->user->name,$this->user->email,$this->token));
+        dump('sending email');
+        return response(['ok'],200);
+        // return (new MailMessage)
+        //             ->line('برای بازیابی رمز از لینک زیر استفاده کنید.')
+        //             ->action('بازیابی رمز', $ressetPasswordUrl)
+        //             ->line('ممنون از عضویت شما در وبسایت ما');
     }
-
     /**
      * Get the array representation of the notification.
      *

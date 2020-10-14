@@ -217,14 +217,31 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     resetPassword: function resetPassword() {
+      var _this = this;
+
       this.form.post("/api/reset-password").then(function (_ref) {
         var data = _ref.data;
         //  window.location.href =
         //   document.location.origin + "/auth/login";
-        swal.message("با موفقیت انجام شد", "success", 2500, "رمز شما تغییر کرد به صفحه بروید");
+        swal.message("با موفقیت انجام شد", "success", 2500, "رمز شما تغییر کرد به صفحه ورود بروید");
+
+        _this.$router.push({
+          name: "auth",
+          params: {
+            url: "login"
+          }
+        });
       })["catch"](function (e) {
-        swal.message("دوباره تلاش کنید", "warning", 2500, "تلاش قبلی شما ناموفق بود"); // window.location.href =
+        swal.message("دوباره تلاش کنید", "warning", 2500, "تلاش قبلی شما ناموفق بود");
+
+        _this.$router.push({
+          name: "auth",
+          params: {
+            url: "forget-password"
+          }
+        }); // window.location.href =
         //   document.location.origin + "/auth/forget-password";
+
       });
     }
   }
@@ -820,7 +837,7 @@ var render = function() {
         }),
         _vm._v(" "),
         _c("base-input", {
-          attrs: { name: "password", type: "password", label: "رمز عبور" },
+          attrs: { name: "password", type: "password", label: "رمز جدید" },
           model: {
             value: _vm.form.password,
             callback: function($$v) {
@@ -834,7 +851,7 @@ var render = function() {
           attrs: {
             name: "password_confirmation",
             type: "password",
-            label: "تایید رمز عبور"
+            label: "تکرار رمز جدید"
           },
           model: {
             value: _vm.form.password_confirmation,

@@ -14,13 +14,13 @@
       <base-input
         name="password"
         type="password"
-        label="رمز عبور"
+        label="رمز جدید"
         v-model="form.password"
       ></base-input>
       <base-input
         name="password_confirmation"
         type="password"
-        label="تایید رمز عبور"
+        label="تکرار رمز جدید"
         v-model="form.password_confirmation"
       ></base-input>
       <base-btn :loading="form.busy" class="btn-block" btn="success mr-top"
@@ -62,8 +62,9 @@ export default {
             "با موفقیت انجام شد",
             "success",
             2500,
-            "رمز شما تغییر کرد به صفحه بروید"
+            "رمز شما تغییر کرد به صفحه ورود بروید"
           );
+          this.$router.push({name: "auth",params:{url:"login"}});
         })
         .catch((e) => {
           swal.message(
@@ -72,6 +73,7 @@ export default {
             2500,
             "تلاش قبلی شما ناموفق بود"
           );
+           this.$router.push({name: "auth",params:{url:"forget-password"}});
           // window.location.href =
           //   document.location.origin + "/auth/forget-password";
         });
