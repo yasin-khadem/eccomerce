@@ -17,7 +17,7 @@
             <th scope="col"># پرداخت</th>
             <th scope="col">نام محصول</th>
             <th scope="col">کد محصول</th>
-            <th scope="col">آدرس</th>
+            <th class="heading-padding text-center" scope="col">آدرس</th>
             <th scope="col">شماره موبایل</th>
             <th scope="col">شماره تلفن</th>
             <th scope="col">کد پستی</th>
@@ -117,5 +117,8 @@ export default {
    background-color: #9c27b0;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
   color: #fff;
+}
+.heading-padding{
+  padding: 1rem 3rem;
 }
 </style>

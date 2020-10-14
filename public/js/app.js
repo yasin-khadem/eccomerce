@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/auth-routes":"js/auth-routes","js/home":"js/home","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71824,7 +71824,7 @@ var AppLayout = function AppLayout() {
 };
 
 var AuthRoutes = function AuthRoutes() {
-  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
 var DashboardIndex = function DashboardIndex() {

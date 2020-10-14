@@ -1,17 +1,31 @@
 <template>
-  <div class="container mt-5">
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-      <div class="col mb-4" v-for="(product,index) in products.data" :key="product.id">
-        <Product :product="product" />
+  <div>
+    <div class="container mt-5">
+      <div
+        class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
+      >
+        <div
+          class="col mb-4"
+          v-for="(product, index) in products.data"
+          :key="product.id"
+        >
+          <Product :product="product" />
+        </div>
       </div>
+      <pagination
+        :data="products"
+        @pagination-change-page="fetchProduts"
+        :limit="1"
+      ></pagination>
     </div>
-        <pagination :data="products" @pagination-change-page="fetchProduts" :limit="1"></pagination>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import { formatTooman } from 'prial'
+import { formatTooman } from "prial";
 import Product from "@/components/Product.vue";
+import Footer from "@/components/Footer.vue";
 import { mapState } from "vuex";
 export default {
   name: "Home",
@@ -19,11 +33,11 @@ export default {
     title: "صفحه اصلی",
   },
   components: {
-    Product,
+    Product,Footer
   },
   data() {
     return {
-      formatToman : require('prial').formatToman
+      formatToman: require("prial").formatToman,
     };
   },
   computed: {
@@ -34,8 +48,8 @@ export default {
   },
   methods: {
     fetchProduts(page = 1) {
-      let queries =  this.$route.query
-      queries.page = page
+      let queries = this.$route.query;
+      queries.page = page;
       this.$store.dispatch("product/getUserProducts", queries);
     },
   },

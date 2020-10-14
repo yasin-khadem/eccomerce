@@ -133,7 +133,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-72208fc3]{\r\n   background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-72208fc3]{\r\n   background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.heading-padding[data-v-72208fc3]{\r\n  padding: 1rem 3rem;\n}\r\n", ""]);
 
 // exports
 
@@ -599,7 +599,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("کد محصول")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("آدرس")]),
+        _c(
+          "th",
+          {
+            staticClass: "heading-padding text-center",
+            attrs: { scope: "col" }
+          },
+          [_vm._v("آدرس")]
+        ),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("شماره موبایل")]),
         _vm._v(" "),

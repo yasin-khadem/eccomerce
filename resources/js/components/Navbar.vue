@@ -191,8 +191,7 @@ export default {
   -moz-box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);
   box-shadow: 0px 0px 32px -1px rgba(0, 0, 0, 0.57);
 }
-ul > li {
-}
+
 ul > li:hover {
   background: #9b27b0;
   transition: 500ms;
