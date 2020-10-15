@@ -91,7 +91,7 @@ export const actions = {
                 }).catch(() => {
                     swal.message('لاگین نیستید', 'warning')
                     commit('LOGOUT_USER');
-                    // window.location.href = document.location.origin + "/auth/login";
+                    window.location.href = document.location.origin + "/";
                 })
             }
         })

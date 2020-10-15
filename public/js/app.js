@@ -72131,7 +72131,8 @@ var actions = {
           commit('SET_TOKEN_REFRESH_TOKEN', data.data);
         })["catch"](function () {
           swal.message('لاگین نیستید', 'warning');
-          commit('LOGOUT_USER'); // window.location.href = document.location.origin + "/auth/login";
+          commit('LOGOUT_USER');
+          window.location.href = document.location.origin + "/";
         });
       }
     });

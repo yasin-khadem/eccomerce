@@ -197,6 +197,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -294,7 +333,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-63cd6604]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-63cd6604] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.search-btn[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-63cd6604]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-63cd6604] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.search-btn[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.bg-carousel[data-v-63cd6604] {\r\n  background-color: #eee;\n}\n#prev-icon[data-v-63cd6604]{\r\n  color: #0276fd !important;\n}\r\n", ""]);
 
 // exports
 
@@ -447,7 +486,7 @@ var render = function() {
               "mt-3 mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
           },
           [
-            _c("div", { staticClass: "mx-auto mt-1" }, [
+            _c("div", { staticClass: "mx-auto mt-2 mb-5" }, [
               _vm._m(0),
               _vm._v(" "),
               _c(
@@ -668,7 +707,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "container mt-3" },
+        { staticClass: "container mt-5" },
         [
           _c(
             "div",

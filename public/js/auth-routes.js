@@ -278,6 +278,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
@@ -377,7 +383,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\n.register-link[data-v-295e81a1], .forget-password-link[data-v-295e81a1]{\r\n  color:  #0276fd;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -799,7 +805,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "d-flex flex-column align-items-center mt-5 py-5 login-width mx-auto container",
+        "d-flex flex-column align-items-center mt-4 py-5 login-width mx-auto container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -850,16 +856,29 @@ var render = function() {
       _c(
         "router-link",
         {
-          staticClass: "my-2",
-          attrs: { to: { name: "auth", params: { url: "forget-password" } } }
+          staticClass: "register-link my-2",
+          attrs: { to: { name: "auth", params: { url: "register" } } }
         },
-        [_vm._v("ایا رمز عبور خود را فراموش کرده اید؟")]
+        [
+          _c("strong", [
+            _vm._v("\n      ثبت نام نکرده اید؟ اینجا کلیک کنید\n      ")
+          ])
+        ]
       ),
       _vm._v(" "),
       _c(
         "base-btn",
         { staticClass: "btn-block mt-3", attrs: { loading: _vm.form.busy } },
         [_vm._v("ورود")]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        {
+          staticClass: "forget-password-link my-2",
+          attrs: { to: { name: "auth", params: { url: "forget-password" } } }
+        },
+        [_vm._v("ایا رمز عبور خود را فراموش کرده اید؟")]
       )
     ],
     1

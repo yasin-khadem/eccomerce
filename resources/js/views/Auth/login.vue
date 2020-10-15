@@ -1,6 +1,6 @@
 <template>
   <form
-    class="d-flex flex-column align-items-center mt-5 py-5 login-width mx-auto container"
+    class="d-flex flex-column align-items-center mt-4 py-5 login-width mx-auto container"
     @submit.prevent="login">
     <h2>فرم ورود</h2>
     <base-input name="email" type="email" label="ایمیل" v-model="form.email"></base-input>
@@ -9,10 +9,16 @@
                     field="remember"
                     label="مرا به خاطر بسپار"
                     v-model="form.remember"></base-check>
-    
-    <router-link :to="{name:'auth',params:{url:'forget-password'}}" class="my-2">ایا رمز عبور خود را فراموش کرده اید؟</router-link>
+    <router-link :to="{name:'auth',params:{url:'register'}}" class="register-link my-2"> 
+        <strong>
+        ثبت نام نکرده اید؟ اینجا کلیک کنید
+        </strong>
+        </router-link>
 
     <base-btn :loading="form.busy" class="btn-block mt-3">ورود</base-btn>
+            <router-link :to="{name:'auth',params:{url:'forget-password'}}" class="forget-password-link my-2">ایا رمز عبور خود را فراموش کرده اید؟</router-link>
+
+
   </form>
 </template>
 
@@ -45,6 +51,9 @@ export default {
 <style scoped>
 .login-width {
   max-width: 360px;
+}
+.register-link, .forget-password-link{
+  color:  #0276fd;
 }
 
 

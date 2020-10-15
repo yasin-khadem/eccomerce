@@ -1,10 +1,49 @@
 <template>
   <div>
+ <!--   <div
+      id="demo"
+      class="carousel mt-5 slide bg-carousel text-white"
+      data-ride="carousel"
+    >
+      <ul class="carousel-indicators text-center">
+        <li data-target="#demo" data-slide-to="0"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+      <div class="carousel-inner text-center">
+        <div class="carousel-item active">
+          <img
+            src="images/wakeley.jpg"
+            width="350"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="images/Red.jpg"
+            width="350"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="images/herriny.jpg"
+            width="350"
+          />
+        </div>
+      </div>
+
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>   -->
+
     <div>
       <div
         class="mt-3 mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
       >
-        <div class="mx-auto mt-1">
+        <div class="mx-auto mt-2 mb-5">
           <label class="my-1 mr-2">
             <h4><strong>جست و جو</strong></h4>
           </label>
@@ -24,8 +63,8 @@
             </base-btn>
           </div>
           <div class="flex flex-row" v-if="refreshShowAll">
-          <label class="my-1 mr-2">
-            <h5><strong>نمایش همه</strong></h5>
+            <label class="my-1 mr-2">
+              <h5><strong>نمایش همه</strong></h5>
             </label>
             <base-btn
               class="ml-2 mb-2 search-btn"
@@ -34,9 +73,9 @@
             >
               <i class="fas fa-sync"></i>
             </base-btn>
-          
           </div>
         </div>
+
         <div class="mx-auto">
           <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
             <h4><strong> مرتب سازی </strong></h4>
@@ -95,7 +134,7 @@
         </div>
       </div>
     </div>
-    <div class="container mt-3">
+    <div class="container mt-5">
       <div
         class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
       >
@@ -136,7 +175,7 @@ export default {
   data() {
     return {
       // sortBy: 'newest',
-      refresh:false,
+      refresh: false,
       searchLoading: false,
       currentExist: "both",
       currentSortBy: "",
@@ -148,11 +187,11 @@ export default {
   },
   computed: {
     ...mapState("product", ["products"]),
-    refreshShowAll(){
-      if(this.form.search || this.$route.query.search){
+    refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
         return true;
       }
-    }
+    },
   },
   created() {
     let columns = ["expensive", "cheapest", "newest", "oldest"];
@@ -172,15 +211,13 @@ export default {
       queries.sortBy = this.currentSortBy;
       return this.$store.dispatch("product/getUserProducts", queries);
     },
-    refreshProduct(){
-      this.form.search = null
+    refreshProduct() {
+      this.form.search = null;
       this.$route.query.search = null;
       this.refresh = true;
       this.fetchProducts(this.$route.query.page).finally(() => {
         this.refresh = false;
       });
-
-
     },
     onChange(event) {
       this.fetchProducts(this.$route.query.page);
@@ -207,6 +244,7 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   transition: 500ms;
 }
+
 .card {
   -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
@@ -218,5 +256,11 @@ html[dir="rtl"] .custom-select {
 }
 .search-btn {
   background-color: #0276fd;
+}
+.bg-carousel {
+  background-color: #eee;
+}
+#prev-icon{
+  color: #0276fd !important;
 }
 </style>
