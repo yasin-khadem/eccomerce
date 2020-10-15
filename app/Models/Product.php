@@ -28,6 +28,20 @@ class Product extends Model
         'exist' => 'exist',
         'created_at' => 'created_at'
     ];
+    protected $SortingOptionsHome = [
+        'expensive' => 'price',
+        'cheapest' => 'price',
+        'newest' => 'created_at',
+        'oldest' => 'created_at'
+    ];
+    protected $SortingDirHome = [
+        'expensive' => 'desc',
+        'cheapest' =>  'asc',
+        'newest' => 'desc',
+        'oldest' => 'asc'
+    ];
+    public $exists = ["available"=> "available", "unavailable"=> "unavailable", "both"=>"both"];
+
     public function sluggable()
     {
         return [
@@ -51,13 +65,36 @@ class Product extends Model
         );
     }
 
-
+    public function scopeSortByUrlHome(Builder $builder)
+    {
+        $sortBy = $this->SortingOptionsHome[request()->sortBy] ?? 'newest';
+        $sortDir = $this->SortingDirHome[request()->sortBy] ?? 'asc';
+        $builder->orderBy($sortBy, $sortDir);
+    }
+    public function scopeFilterHome(Builder $builder)
+    {
+        $existing = $this->exists[request()->existing] ?? "both";
+        switch ($existing) {
+            case "both":
+                return $builder;
+                break;
+            case "available":
+                return $builder->whereExist(1);
+                break;
+            case "unavailable":
+                return $builder->whereExist(0);
+                break;
+            default:
+                return $builder;
+        }
+    }
     public function scopeSortByUrl(Builder $builder)
     {
         $sortBy = $this->SortingOptions[request()->sortBy] ?? 'id';
         $sortDir = request()->sortDir === 'desc' ? 'desc' : 'asc';
         $builder->orderBy($sortBy, $sortDir);
     }
+
 
     public function scopeSearchByUrl(Builder $builder)
     {
@@ -95,7 +132,8 @@ class Product extends Model
     {
         return url("product/show/{$this->slug}");
     }
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
     public function confirmed_comments()

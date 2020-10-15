@@ -21,7 +21,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return new ProductResourceCollection(Product::with('categories')->sortByUrl()->searchByUrl()->paginate(10));
+        return new ProductResourceCollection(
+            Product::with('categories')->sortByUrlHome()->FilterHome()->searchByUrl()->paginate(10)
+        );
     }
 
 
