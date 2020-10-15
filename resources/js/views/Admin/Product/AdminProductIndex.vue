@@ -15,7 +15,6 @@
     <h5 class="mb-3 ml-3">جستجو</h5>
     <div class="col-md-6 d-flex flex-row mb-3 search-input">
       <base-input name="search" v-model="form.search"></base-input>
-
       <base-btn
         :loading="searchLoading"
         @click="searchProduct"

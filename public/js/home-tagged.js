@@ -176,7 +176,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "container mt-2" },
+      { staticClass: "container mt-4" },
       [
         _c(
           "div",
