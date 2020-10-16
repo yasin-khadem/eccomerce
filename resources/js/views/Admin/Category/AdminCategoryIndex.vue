@@ -145,8 +145,7 @@ export default {
       this.form.search = null;
       this.$route.query.search = null;
       this.refresh = true;
-      this.getCategory(this.$route.query.page)
-      .finally(() => {
+      this.getCategory(this.$route.query.page).finally(() => {
       this.refresh = false;
       });
     }

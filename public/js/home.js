@@ -296,6 +296,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.search = null;
       this.$route.query.search = null;
       this.refresh = true;
+      this.currentExist = "both";
       this.fetchProducts(this.$route.query.page)["finally"](function () {
         _this.refresh = false;
       });

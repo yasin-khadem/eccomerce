@@ -215,6 +215,7 @@ export default {
       this.form.search = null;
       this.$route.query.search = null;
       this.refresh = true;
+      this.currentExist = "both";
       this.fetchProducts(this.$route.query.page).finally(() => {
         this.refresh = false;
       });
@@ -229,6 +230,7 @@ export default {
       let queries = this.$route.query;
       queries.search = this.form.search;
       this.searchLoading = true;
+      
       this.fetchProducts(this.$route.query.page).finally(() => {
         this.searchLoading = false;
       });
