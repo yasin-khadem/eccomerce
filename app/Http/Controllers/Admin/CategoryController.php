@@ -13,7 +13,7 @@ class CategoryController extends Controller
     
     public function index()
     {
-        return new CategoryCollection(Category::orderBy('created_at','desc')->paginate(5));
+        return new CategoryCollection(Category::orderBy('created_at','desc')->searchFromUrl()->paginate(10));
     }
 
  

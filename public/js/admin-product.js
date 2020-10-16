@@ -441,6 +441,43 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -559,7 +596,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.btn-create-product[data-v-1caa3623] {\r\n  background-color: #43a047;\n}\n.table-heading-padding[data-v-1caa3623]{\r\n  padding-right: 2.5rem;\r\n  padding-left: 2.5rem;\n}\nth[data-v-1caa3623] {\r\n  cursor: pointer;\n}\r\n", ""]);
+exports.push([module.i, "\n.btn-create-product[data-v-1caa3623] {\r\n  background-color: #43a047;\n}\n.table-heading-padding[data-v-1caa3623] {\r\n  padding-right: 2.5rem;\r\n  padding-left: 2.5rem;\n}\nth[data-v-1caa3623] {\r\n  cursor: pointer;\n}\r\n", ""]);
 
 // exports
 
@@ -1576,7 +1613,7 @@ var render = function() {
                         expression: "currentSortBy === 'exist'"
                       }
                     ],
-                    staticClass: "fa text-info ",
+                    staticClass: "fa text-info",
                     class: _vm.sortdirection
                   }),
                   _vm._v("\n            وضعیت\n          ")
@@ -1617,7 +1654,7 @@ var render = function() {
                   staticClass: "table-heading-padding text-center",
                   attrs: { scope: "col", colspan: "2" }
                 },
-                [_vm._v("تغییرات")]
+                [_vm._v("\n            تغییرات\n          ")]
               )
             ])
           ]),
@@ -1644,13 +1681,22 @@ var render = function() {
                   _vm._v(_vm._s(product.description))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "text-center" }, [
-                  _vm._v(_vm._s(product.is_exist))
-                ]),
+                _c(
+                  "td",
+                  {
+                    staticClass: "text-center",
+                    class: [product.exist ? "text-success" : "text-danger"]
+                  },
+                  [_c("strong", [_vm._v(" " + _vm._s(product.is_exist) + " ")])]
+                ),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
                   _vm._v(
-                    _vm._s(_vm.moment(product.created_at).format("jYY/jM/jD"))
+                    "\n            " +
+                      _vm._s(
+                        _vm.moment(product.created_at).format("jYY/jM/jD")
+                      ) +
+                      "\n          "
                   )
                 ]),
                 _vm._v(" "),

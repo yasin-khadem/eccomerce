@@ -36,7 +36,11 @@
               ></i>
               #
             </th>
-            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('name')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('name')"
+            >
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -44,7 +48,11 @@
               ></i>
               نام
             </th>
-            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('code')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('code')"
+            >
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -52,7 +60,11 @@
               ></i>
               کد محصول
             </th>
-            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('price')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('price')"
+            >
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -60,7 +72,11 @@
               ></i>
               قیمت
             </th>
-            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('description')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('description')"
+            >
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -68,15 +84,23 @@
               ></i>
               توضیحات
             </th>
-            <th class="table-heading-padding text-center" scope="col" @click="changeSortBy('exist')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('exist')"
+            >
               <i
-                class="fa text-info "
+                class="fa text-info"
                 :class="sortdirection"
                 v-show="currentSortBy === 'exist'"
               ></i>
               وضعیت
             </th>
-            <th class="table-heading-padding text-center"  scope="col" @click="changeSortBy('created_at')">
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              @click="changeSortBy('created_at')"
+            >
               <i
                 class="fa text-info"
                 :class="sortdirection"
@@ -84,7 +108,13 @@
               ></i>
               تاریخ ثبت
             </th>
-            <th class="table-heading-padding text-center" scope="col" colspan="2" >تغییرات</th>
+            <th
+              class="table-heading-padding text-center"
+              scope="col"
+              colspan="2"
+            >
+              تغییرات
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -94,8 +124,15 @@
             <td class="text-center">{{ product.code }}</td>
             <td class="text-center">{{ formatToman(product.price) }}</td>
             <td class="text-center">{{ product.description }}</td>
-            <td class="text-center">{{ product.is_exist }}</td>
-            <td class="text-center">{{ moment(product.created_at).format("jYY/jM/jD") }}</td>
+            <td
+              class="text-center"
+              :class="[product.exist ? 'text-success' : 'text-danger']"
+            >
+              <strong> {{ product.is_exist }} </strong>
+            </td>
+            <td class="text-center">
+              {{ moment(product.created_at).format("jYY/jM/jD") }}
+            </td>
             <td>
               <router-link
                 class="btn btn-info"
@@ -208,7 +245,7 @@ export default {
 .btn-create-product {
   background-color: #43a047;
 }
-.table-heading-padding{
+.table-heading-padding {
   padding-right: 2.5rem;
   padding-left: 2.5rem;
 }

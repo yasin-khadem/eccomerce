@@ -72178,11 +72178,13 @@ var actions = {
     var commit = _ref2.commit;
     return axios["delete"]("/api/admin/categories/".concat(payload));
   },
-  getCategory: function getCategory(_ref3, payload) {
+  getCategories: function getCategories(_ref3, queries) {
     var commit = _ref3.commit;
-    return axios.get("/api/admin/categories/".concat(payload));
+    return axios.get("/api/admin/categories", {
+      params: queries
+    });
   },
-  getCategories: function getCategories(_ref4, payload) {
+  getCategory: function getCategory(_ref4, payload) {
     var commit = _ref4.commit;
     return axios.get("/api/admin/categories?page=".concat(payload));
   },
