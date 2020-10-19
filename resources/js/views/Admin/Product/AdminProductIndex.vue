@@ -12,15 +12,27 @@
         </router-link>
       </div>
     </header>
-    <h5 class="mb-3 ml-3">جستجو</h5>
+    <h5 class="mb-2 ml-3">جستجو</h5>
     <div class="col-md-6 d-flex flex-row mb-3 search-input">
       <base-input name="search" v-model="form.search"></base-input>
       <base-btn
         :loading="searchLoading"
         @click="searchProduct"
-        class="ml-2 mb-2"
+        class="ml-2 mb-1"
       >
         <i class="fa fa-search"></i>
+      </base-btn>
+    </div>
+    <div class="flex flex-row ml-3 mb-2" v-if="refreshShowAll">
+      <label class="mr-2">
+        <h5><strong>نمایش همه</strong></h5>
+      </label>
+      <base-btn
+        class="ml-2 search-btn"
+        :loading="refresh"
+        @click="refreshProduct"
+      >
+        <i class="fas fa-sync"></i>
       </base-btn>
     </div>
 
@@ -177,6 +189,7 @@ export default {
   },
   data() {
     return {
+      refresh: false,
       moment,
       currentSortBy: null,
       currentSortDir: null,
@@ -202,7 +215,7 @@ export default {
     let sortBy = this.$route.query.sortBy;
     let sortDir = this.$route.query.sortDir;
     this.currentSortBy = columns.includes(sortBy) ? sortBy : "id";
-    this.currentSortDir = dir.includes(sortDir) ? sortDir : "asc";
+    this.currentSortDir = dir.includes(sortDir) ? sortDir : "desc";
     this.form.search = this.$route.query.search;
     this.getProducts(this.$route.query.page);
   },
@@ -210,6 +223,11 @@ export default {
     ...mapState("product", ["products"]),
     sortdirection() {
       return this.currentSortDir === "asc" ? "fa-arrow-down" : "fa-arrow-up";
+    },
+    refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
+        return true;
+      }
     },
   },
 
@@ -222,6 +240,17 @@ export default {
       queries.sortDir = this.currentSortDir;
       return this.$store.dispatch("product/getProducts", queries);
     },
+    refreshProduct() {
+      let queries = this.$route.query;
+      queries.search = null;
+      this.form.search = null;
+      this.currentSortBy = "id";
+      this.currentSortDir = "desc";
+      this.refresh = true;
+      this.getProducts().finally(() => {
+        this.refresh = false;
+      });
+    },
     changeSortBy(sortBy) {
       if (this.currentSortBy === sortBy) {
         this.currentSortDir = this.currentSortDir === "desc" ? "asc" : "desc";
@@ -233,7 +262,7 @@ export default {
       let queries = this.$route.query;
       queries.search = this.form.search;
       this.searchLoading = true;
-      this.getProducts(this.$route.query.page).finally(() => {
+      this.getProducts().finally(() => {
         this.searchLoading = false;
       });
     },

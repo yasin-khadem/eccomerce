@@ -1,12 +1,26 @@
 <template>
   <div class="card">
-    <router-link :to="{name: 'product-show',params:{url:'show',slug:product.slug}}"> <img
-      :src="'/' + product.image_src"
-      class="card-img-top w-100"
-      width="100"
-    /> </router-link>
+    <router-link
+      :to="{
+        name: 'product-show',
+        params: { url: 'show', slug: product.slug },
+      }"
+    >
+      <img
+        :src="'/' + product.image_src"
+        class="card-img-top w-100"
+        width="100"
+      />
+    </router-link>
     <div class="card-body">
-      <h5 class="card-title">{{ product.name }}</h5>
+      <router-link class="link-name-router"
+        :to="{
+          name: 'product-show',
+          params: { url: 'show', slug: product.slug },
+        }"
+      >
+        <h5 class="card-title link-name">{{ product.name }}</h5></router-link
+      >
       <h5 class="card-category mb-3">
         <small>
           کد:
@@ -16,13 +30,11 @@
       <h6 class="card-title">
         <strong> {{ formatToman(product.price) }} </strong>
       </h6>
-    
     </div>
     <div class="card-footer">
-        <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{
-          product.is_exist
-        }}</strong>
-      
+      <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{
+        product.is_exist
+      }}</strong>
     </div>
   </div>
 </template>
@@ -46,5 +58,12 @@ export default {
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   transition: 500ms;
+}
+.link-name{
+  color: black;
+}
+.link-name-router{
+  text-decoration: none;
+
 }
 </style>

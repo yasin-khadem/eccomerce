@@ -25,16 +25,7 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        if(request()->method === 'post' || request()->method === 'POST'){
-            return [
-                'name'=>'required|string',
-                'description'=>'required|string',
-                'code'=> 'required|numeric',
-                // 'image'=>'required|string',
-                'price'=> 'required|numeric|min:1000',
-                'selectedTags.0' => 'required',
-            ];
-        }else{
+        if (request()->method === 'post' || request()->method === 'POST') {
             return [
                 'name' => 'required|string',
                 'description' => 'required|string',
@@ -42,7 +33,31 @@ class ProductRequest extends FormRequest
                 // 'image'=>'required|string',
                 'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
-            ]; 
+            ];
+        } else {
+            return [
+                'name' => 'required|string',
+                'description' => 'required|string',
+                'code' => 'required|numeric',
+                // 'image'=>'required|string',
+                'price' => 'required|numeric|min:1000',
+                'selectedTags.0' => 'required',
+            ];
         }
+    }
+    public function messages()
+    {
+        return [
+            'selectedTags.0.required'=>'بخش تگ الزامی است',
+            'price.required'=> 'قیمت الزامی است',
+            'price.numeric'=> 'قیمت باید عدد باشد',
+            'price.min'=> 'قیمت نباید کمتر از هزار تومان باشد',
+            'name.required' => 'نام الزامی است',
+            'name.string' => 'نام باید رشته باشد',
+            'code.required' => 'کد محصول الزامی است',
+            'code.numeric' => 'کد محصول باید عدد باشد',
+            'description.required' => 'توضیحات الزامی است',
+            'description.string' => 'توضیحات باید رشته باشد',
+        ];
     }
 }

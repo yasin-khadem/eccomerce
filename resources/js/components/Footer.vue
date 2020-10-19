@@ -9,7 +9,7 @@
               We are a young company always looking for new and creative ideas
               to help you with our products in your everyday work.
             </p>
-            <p><a href="#">Our Team</a></p>
+            <h5><router-link :to="{name: 'about-us'}" class="about-us ml-3">ادامه</router-link></h5>
           </div>
           <div class="col-md-4 col-lg-3 my-3 footer-social">
             <h4>مارا دنبال کنید</h4>
@@ -46,6 +46,8 @@ name:"Footer",
 }
 </script>
 
-<style>
-
+<style scoped>
+  .about-us{
+    color: rgb(50, 180, 255);
+  }
 </style>

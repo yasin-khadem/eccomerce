@@ -3,7 +3,7 @@
     class="d-flex flex-column align-items-center mt-4 py-5 login-width mx-auto container"
     @submit.prevent="login">
     <h2>فرم ورود</h2>
-    <base-input name="email" type="email" label="ایمیل" v-model="form.email"></base-input>
+    <base-input name="email" label="ایمیل" v-model="form.email"></base-input>
     <base-input name="password" type="password" label="رمز عبور" v-model="form.password"></base-input>
       <base-check name="remember"
                     field="remember"
@@ -52,8 +52,11 @@ export default {
 .login-width {
   max-width: 360px;
 }
-.register-link, .forget-password-link{
+.register-link{
   color:  #0276fd;
+}
+.forget-password-link{
+  color: #0062d1;
 }
 
 

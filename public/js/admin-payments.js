@@ -110,7 +110,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 3:
                 _yield$axios$get = _context.sent;
                 data = _yield$axios$get.data;
-                window.history.pushState("payment", "Payment", "/admin/payment/index?page=".concat(page));
+                window.history.replaceState("payment", "Payment", "/admin/payment/index?page=".concat(page));
                 _this.payments = data;
 
               case 7:

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/auth-routes~js/home~js/home-tagged~js/products"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/aboutus~js/auth-routes~js/home~js/products"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Product.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
@@ -77,7 +77,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7e94e6d4]:hover {\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\n  transition: 500ms;\n}\n.link-name[data-v-7e94e6d4]{\n  color: black;\n}\n.link-name-router[data-v-7e94e6d4]{\n  text-decoration: none;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-7e94e6d4]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.link-name[data-v-7e94e6d4]{\r\n  color: black;\n}\n.link-name-router[data-v-7e94e6d4]{\r\n  text-decoration: none;\n}\r\n", ""]);
 
 // exports
 

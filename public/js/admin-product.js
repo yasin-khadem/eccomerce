@@ -478,6 +478,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -489,6 +501,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      refresh: false,
       moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_3___default.a,
       currentSortBy: null,
       currentSortDir: null,
@@ -505,13 +518,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var sortBy = this.$route.query.sortBy;
     var sortDir = this.$route.query.sortDir;
     this.currentSortBy = columns.includes(sortBy) ? sortBy : "id";
-    this.currentSortDir = dir.includes(sortDir) ? sortDir : "asc";
+    this.currentSortDir = dir.includes(sortDir) ? sortDir : "desc";
     this.form.search = this.$route.query.search;
     this.getProducts(this.$route.query.page);
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])("product", ["products"])), {}, {
     sortdirection: function sortdirection() {
       return this.currentSortDir === "asc" ? "fa-arrow-down" : "fa-arrow-up";
+    },
+    refreshShowAll: function refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
+        return true;
+      }
     }
   }),
   methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])("product", ["deleteProduct"])), {}, {
@@ -523,6 +541,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       queries.sortDir = this.currentSortDir;
       return this.$store.dispatch("product/getProducts", queries);
     },
+    refreshProduct: function refreshProduct() {
+      var _this = this;
+
+      var queries = this.$route.query;
+      queries.search = null;
+      this.form.search = null;
+      this.currentSortBy = "id";
+      this.currentSortDir = "desc";
+      this.refresh = true;
+      this.getProducts()["finally"](function () {
+        _this.refresh = false;
+      });
+    },
     changeSortBy: function changeSortBy(sortBy) {
       if (this.currentSortBy === sortBy) {
         this.currentSortDir = this.currentSortDir === "desc" ? "asc" : "desc";
@@ -532,13 +563,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getProducts(this.$route.query.page);
     },
     searchProduct: function searchProduct() {
-      var _this = this;
+      var _this2 = this;
 
       var queries = this.$route.query;
       queries.search = this.form.search;
       this.searchLoading = true;
-      this.getProducts(this.$route.query.page)["finally"](function () {
-        _this.searchLoading = false;
+      this.getProducts()["finally"](function () {
+        _this2.searchLoading = false;
       });
     }
   })
@@ -1416,7 +1447,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("h5", { staticClass: "mb-3 ml-3" }, [_vm._v("جستجو")]),
+    _c("h5", { staticClass: "mb-2 ml-3" }, [_vm._v("جستجو")]),
     _vm._v(" "),
     _c(
       "div",
@@ -1436,7 +1467,7 @@ var render = function() {
         _c(
           "base-btn",
           {
-            staticClass: "ml-2 mb-2",
+            staticClass: "ml-2 mb-1",
             attrs: { loading: _vm.searchLoading },
             on: { click: _vm.searchProduct }
           },
@@ -1445,6 +1476,27 @@ var render = function() {
       ],
       1
     ),
+    _vm._v(" "),
+    _vm.refreshShowAll
+      ? _c(
+          "div",
+          { staticClass: "flex flex-row ml-3 mb-2" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "base-btn",
+              {
+                staticClass: "ml-2 search-btn",
+                attrs: { loading: _vm.refresh },
+                on: { click: _vm.refreshProduct }
+              },
+              [_c("i", { staticClass: "fas fa-sync" })]
+            )
+          ],
+          1
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -1752,7 +1804,16 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "mr-2" }, [
+      _c("h5", [_c("strong", [_vm._v("نمایش همه")])])
+    ])
+  }
+]
 render._withStripped = true
 
 

@@ -383,7 +383,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\n.register-link[data-v-295e81a1], .forget-password-link[data-v-295e81a1]{\r\n  color:  #0276fd;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\n.register-link[data-v-295e81a1]{\r\n  color:  #0276fd;\n}\n.forget-password-link[data-v-295e81a1]{\r\n  color: #0062d1;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
 
 // exports
 
@@ -634,7 +634,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("base-input", {
-        attrs: { name: "email", type: "email", label: "ایمیل" },
+        attrs: { name: "email", label: "ایمیل" },
         model: {
           value: _vm.form.email,
           callback: function($$v) {
@@ -817,7 +817,7 @@ var render = function() {
       _c("h2", [_vm._v("فرم ورود")]),
       _vm._v(" "),
       _c("base-input", {
-        attrs: { name: "email", type: "email", label: "ایمیل" },
+        attrs: { name: "email", label: "ایمیل" },
         model: {
           value: _vm.form.email,
           callback: function($$v) {

@@ -21,17 +21,17 @@
           </base-btn>
         </div>
         <div class="mt-3 flex flex-row" v-if="refreshShowAll">
-            <label class="my-1 mr-2">
-              <h5><strong>نمایش همه</strong></h5>
-            </label>
-            <base-btn
-              class="ml-2 mb-2 search-btn"
-              :loading="refresh"
-              @click="refreshCategories"
-            >
-              <i class="fas fa-sync"></i>
-            </base-btn>
-          </div>
+          <label class="my-1 mr-2">
+            <h5><strong>نمایش همه</strong></h5>
+          </label>
+          <base-btn
+            class="ml-2 mb-2 search-btn"
+            :loading="refresh"
+            @click="refreshCategories"
+          >
+            <i class="fas fa-sync"></i>
+          </base-btn>
+        </div>
       </div>
     </header>
     <div class="table-responsive">
@@ -90,7 +90,7 @@ export default {
   data() {
     return {
       categories: {},
-      refresh:false,
+      refresh: false,
       searchLoading: false,
       form: new Form({
         search: null,
@@ -112,14 +112,16 @@ export default {
     getCategory(page = 1) {
       let queries = this.$route.query;
       queries.page = page;
-     return this.$store.dispatch("category/getCategories", queries).then(({ data }) => {
-        this.categories = data;
-        window.history.pushState(
-          "categories",
-          "Categories",
-          `/admin/category/index?${data.meta.queries}`
-        );
-      });
+      return this.$store
+        .dispatch("category/getCategories", queries)
+        .then(({ data }) => {
+          this.categories = data;
+          window.history.replaceState(
+            "categories",
+            "Categories",
+            `/admin/category/index?${data.meta.queries}`
+          );
+        });
     },
     deleteCategory(slug, index) {
       swal.confirm().then((result) => {
@@ -132,12 +134,11 @@ export default {
         }
       });
     },
-    searchCategory(){
+    searchCategory() {
       let queries = this.$route.query;
       queries.search = this.form.search;
       this.searchLoading = true;
-      this.getCategory(this.$route.query.page)
-      .finally(() => {
+      this.getCategory().finally(() => {
         this.searchLoading = false;
       });
     },
@@ -146,9 +147,9 @@ export default {
       this.$route.query.search = null;
       this.refresh = true;
       this.getCategory(this.$route.query.page).finally(() => {
-      this.refresh = false;
+        this.refresh = false;
       });
-    }
+    },
   },
 };
 </script>

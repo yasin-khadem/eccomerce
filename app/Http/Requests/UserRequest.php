@@ -23,15 +23,14 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        if(request()->method === 'POST' || request()->method === 'post'){
-
+        if (request()->method === 'POST' || request()->method === 'post') {
             return [
                 'name' => 'required|max:255|string',
                 'email' => 'required|max:255|email|unique:users,email',
                 'password' => 'required',
                 'is_admin' => 'bool',
             ];
-        }else{
+        } else {
             return [
                 'name' => 'required|max:255|string',
                 'email' => 'required|max:255|email|unique:users,email,' . request('id'),
@@ -39,5 +38,5 @@ class UserRequest extends FormRequest
                 'is_admin' => 'bool',
             ];
         }
-        }
     }
+}

@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         return new ProductResourceCollection(
-            Product::with('categories')->sortByUrlHome()->FilterHome()->searchByUrl()->paginate(10)
+            Product::with('categories')->searchByUrl()->sortByUrlHome()->FilterHome()->paginate(10)
         );
     }
 

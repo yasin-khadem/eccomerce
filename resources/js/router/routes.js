@@ -21,6 +21,7 @@ const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" 
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
 const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dashboard/Profile.vue');
 const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
+const AboutUs = () => import(/* webpackChunkName: "js/aboutus" */ '../views/Front/AboutUs.vue');
 
 export default [
     {
@@ -32,6 +33,11 @@ export default [
                 path: '/',
                 name: 'home',
                 component: Home,
+            },
+            {
+                path: '/about-us',
+                name: 'about-us',
+                component: AboutUs
             },
             {
                 path: '/tagged/:slug',

@@ -580,6 +580,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -637,6 +640,7 @@ __webpack_require__.r(__webpack_exports__);
         name: "not-found"
       });
     });
+    window.scrollTo(0, 0);
   },
   methods: {
     setOrderForm: function setOrderForm(event) {

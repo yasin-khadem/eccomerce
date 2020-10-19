@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/admin/order?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.orders = data;
-        window.history.pushState("orders", "Orders", "/admin/order/index?page=".concat(page));
+        window.history.replaceState("orders", "Orders", "/admin/order/index?page=".concat(page));
       });
     },
     sendingProduct: function sendingProduct(slug, index) {

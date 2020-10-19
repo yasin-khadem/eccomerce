@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71887,6 +71887,10 @@ var HomeTagged = function HomeTagged() {
   return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
 };
 
+var AboutUs = function AboutUs() {
+  return __webpack_require__.e(/*! import() | js/aboutus */ "js/aboutus").then(__webpack_require__.bind(null, /*! ../views/Front/AboutUs.vue */ "./resources/js/views/Front/AboutUs.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -71894,6 +71898,10 @@ var HomeTagged = function HomeTagged() {
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/about-us',
+    name: 'about-us',
+    component: AboutUs
   }, {
     path: '/tagged/:slug',
     name: 'home-tagged',
@@ -72084,6 +72092,8 @@ var actions = {
       var data = _ref2.data;
       commit('SET_USER', data.data);
       commit('SET_TOKEN', data.data.token);
+      localStorage.removeItem('refresh_token');
+      state.refresh_token = data.refresh_token;
 
       if (form.remember) {
         commit('SET_REFRESH_TOKEN', data.data);
@@ -72128,11 +72138,11 @@ var actions = {
           refresh_token: state.refresh_token
         }).then(function (_ref11) {
           var data = _ref11.data;
-          commit('SET_TOKEN_REFRESH_TOKEN', data.data);
+          commit('SET_TOKEN_REFRESH_TOKEN', data.data); //    location.reload();
         })["catch"](function () {
           swal.message('لاگین نیستید', 'warning');
           commit('LOGOUT_USER');
-          window.location.href = document.location.origin + "/";
+          window.location.href = document.location.origin + "/auth/login";
         });
       }
     });
@@ -72239,7 +72249,7 @@ var actions = {
     }).then(function (_ref2) {
       var data = _ref2.data;
       commit('SET_PRODUCTS', data);
-      window.history.pushState('products', 'Products', "/admin/product/index?".concat(data.meta.queries));
+      window.history.replaceState('products', 'Products', "/admin/product/index?".concat(data.meta.queries));
     });
   },
   getUserProducts: function getUserProducts(_ref3, queries) {
@@ -72248,7 +72258,8 @@ var actions = {
       params: queries
     }).then(function (_ref4) {
       var data = _ref4.data;
-      commit('SET_PRODUCTS', data);
+      commit('SET_PRODUCTS', data); // window.history.pushState('products', 'Products', `?${data.meta.queries}`)
+
       window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
     });
   },
@@ -72260,8 +72271,9 @@ var actions = {
       params: queries
     }).then(function (_ref7) {
       var data = _ref7.data;
-      commit('SET_PRODUCTS', data);
-      window.history.pushState('products', 'Products', "?".concat(data.meta.queries));
+      commit('SET_PRODUCTS', data); // this.$router.push({path:`?${data.meta.queries}`})
+
+      window.history.replaceState('TaggedProducts', 'taggedproducts', "?".concat(data.meta.queries));
     });
   },
   getUserProduct: function getUserProduct(_ref8, payload) {

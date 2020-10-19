@@ -53,6 +53,8 @@ export const actions = {
             .then(({ data }) => {
                 commit('SET_USER', data.data)
                 commit('SET_TOKEN', data.data.token)
+                localStorage.removeItem('refresh_token')
+                state.refresh_token = data.refresh_token
                 if (form.remember) {
                     commit('SET_REFRESH_TOKEN', data.data)
                 }
@@ -88,10 +90,11 @@ export const actions = {
                     refresh_token: state.refresh_token
                 }).then(({ data }) => {
                     commit('SET_TOKEN_REFRESH_TOKEN', data.data)
+                //    location.reload();
                 }).catch(() => {
                     swal.message('لاگین نیستید', 'warning')
                     commit('LOGOUT_USER');
-                    window.location.href = document.location.origin + "/";
+                    window.location.href = document.location.origin + "/auth/login";
                 })
             }
         })

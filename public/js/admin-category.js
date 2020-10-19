@@ -322,7 +322,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.dispatch("category/getCategories", queries).then(function (_ref) {
         var data = _ref.data;
         _this.categories = data;
-        window.history.pushState("categories", "Categories", "/admin/category/index?".concat(data.meta.queries));
+        window.history.replaceState("categories", "Categories", "/admin/category/index?".concat(data.meta.queries));
       });
     },
     deleteCategory: function deleteCategory(slug, index) {
@@ -344,7 +344,7 @@ __webpack_require__.r(__webpack_exports__);
       var queries = this.$route.query;
       queries.search = this.form.search;
       this.searchLoading = true;
-      this.getCategory(this.$route.query.page)["finally"](function () {
+      this.getCategory()["finally"](function () {
         _this3.searchLoading = false;
       });
     },

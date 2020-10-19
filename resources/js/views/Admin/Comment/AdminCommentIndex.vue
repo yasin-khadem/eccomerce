@@ -77,7 +77,7 @@ export default {
     getComments(page = 1) {
       axios.get(`/api/admin/comment?page=${page}`).then(({ data }) => {
         this.comments = data;
-        window.history.pushState(
+        window.history.replaceState(
           "comments",
           "Comments",
           `/admin/comment/index?page=${page}`

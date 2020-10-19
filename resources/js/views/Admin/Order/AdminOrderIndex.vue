@@ -86,7 +86,7 @@ export default {
     getOrders(page = 1) {
       axios.get(`/api/admin/order?page=${page}`).then(({ data }) => {
         this.orders = data;
-        window.history.pushState(
+        window.history.replaceState(
           "orders",
           "Orders",
           `/admin/order/index?page=${page}`

@@ -302,7 +302,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/admin/users?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.users = data;
-        window.history.pushState("users", "Users", "/admin/user/index?page=".concat(page));
+        window.history.replaceState("users", "Users", "/admin/user/index?page=".concat(page));
       });
     },
     deleteUser: function deleteUser(id, index) {

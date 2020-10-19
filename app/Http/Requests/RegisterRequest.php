@@ -29,4 +29,19 @@ class RegisterRequest extends FormRequest
             'password' => 'required|confirmed|min:6'
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.required' => 'نام الزامیست',
+            'name.max' => 'بیش از 255 کاراکتر مجاز نیست',
+            'name.string' => 'نام باید رشته باشد',
+            'email.required' => 'نام الزامیست',
+            'email.max' => 'بیش از 255 کاراکتر مجاز نیست',
+            'email.email' => 'ایمیل باید معتبر باشد',
+            'email.unique' => 'این ایمیل قبلا استفاده شده',
+            'password.required' => 'رمز عبور الزامیست',
+            'password.confirmed' => 'رمز عبور و تکرار آن یکسان نیست',
+            'password.min' => 'رمز عبور باید حداقل 6 کاراکتر باشد'
+        ];
+    }
 }

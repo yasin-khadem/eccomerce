@@ -18,7 +18,7 @@ export const actions = {
             params: queries
         }).then(({ data }) => {
             commit('SET_PRODUCTS', data)
-            window.history.pushState('products', 'Products', `/admin/product/index?${data.meta.queries}`)
+            window.history.replaceState('products', 'Products', `/admin/product/index?${data.meta.queries}`)
         })
     },
     getUserProducts({ commit }, queries) {
@@ -26,6 +26,7 @@ export const actions = {
             params: queries
         }).then(({ data }) => {
             commit('SET_PRODUCTS', data)
+            // window.history.pushState('products', 'Products', `?${data.meta.queries}`)
             window.history.pushState('products', 'Products', `?${data.meta.queries}`)
         })
     },
@@ -34,7 +35,9 @@ export const actions = {
             params: queries
         }).then(({ data }) => {
             commit('SET_PRODUCTS', data)
-            window.history.pushState('products', 'Products', `?${data.meta.queries}`)
+            // this.$router.push({path:`?${data.meta.queries}`})
+            window.history.replaceState('TaggedProducts', 'taggedproducts', `?${data.meta.queries}`)
+            
         })
     },
     async getUserProduct({ commit }, payload) {

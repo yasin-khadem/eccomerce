@@ -5,7 +5,7 @@
   >
     <h3>فرم ثبت نام</h3>
     <base-input name="name" type="name" label="نام" v-model="form.name"></base-input>
-    <base-input name="email" type="email" label="ایمیل" v-model="form.email"></base-input>
+    <base-input name="email" label="ایمیل" v-model="form.email"></base-input>
     <base-input name="password" type="password" label="رمز عبور" v-model="form.password"></base-input>
     <base-input
       name="password_confirmation"

@@ -49,7 +49,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.color-back[data-v-4901ede5]{\r\n  background-color: #eee ;\n}\r\n", ""]);
+exports.push([module.i, "\n.color-back[data-v-4901ede5]{\r\n  background-color:  rgb(242, 242, 242);\n}\r\n", ""]);
 
 // exports
 

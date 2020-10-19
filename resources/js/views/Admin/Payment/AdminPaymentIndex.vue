@@ -73,7 +73,7 @@ export default {
   methods: {
     async getPayments(page = 1) {
       let { data } = await axios.get(`/api/admin/payment?page=${page}`);
-      window.history.pushState(
+      window.history.replaceState(
         "payment",
         "Payment",
         `/admin/payment/index?page=${page}`

@@ -29,4 +29,10 @@ class CommentRequst extends FormRequest
             'body'=>'required',
         ];
     }
+    public function messages()
+    {
+        return [
+            'body.required'=>'متن الزامیست'
+        ];
+    }
 }

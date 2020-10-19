@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/admin/comment?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.comments = data;
-        window.history.pushState("comments", "Comments", "/admin/comment/index?page=".concat(page));
+        window.history.replaceState("comments", "Comments", "/admin/comment/index?page=".concat(page));
       });
     },
     confirmComment: function confirmComment(id, index) {

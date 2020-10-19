@@ -169,6 +169,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -367,6 +376,33 @@ var render = function() {
                                 ],
                                 1
                               ),
+                              _vm._v(" "),
+                              _c("li", { staticClass: "nav-item" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "mx-auto" },
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "nav-link",
+                                        attrs: { to: { name: "about-us" } }
+                                      },
+                                      [
+                                        [_vm._v("درباره ما")],
+                                        _vm._v(" "),
+                                        _c("i", {
+                                          staticClass:
+                                            "fas fa-info-circle mx-2",
+                                          attrs: { "aria-hidden": "true" }
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]),
                               _vm._v(" "),
                               _c("li", { staticClass: "nav-item" }, [
                                 _c(

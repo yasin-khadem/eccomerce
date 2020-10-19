@@ -1,9 +1,12 @@
 <template>
   <div class="container mt-5">
+    <!--  محل نمایش محصول    -->
+
     <main-product-show
       :product="product"
       @setOrderForm="setOrderForm"
     ></main-product-show>
+    <!--  محل نمایش محصول    -->
 
     <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
     <order-form
@@ -116,6 +119,7 @@ export default {
       .catch(({ response }) => {
         if (response.status === 404) this.$router.push({ name: "not-found" });
       });
+    window.scrollTo(0, 0);
   },
   methods: {
     setOrderForm(event) {

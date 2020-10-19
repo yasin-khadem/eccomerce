@@ -18,7 +18,7 @@ class ProductService{
             $image_name
         );
         $image_src = public_path('images/') . $image_name;
-        Image::make($image_src)->fit(500)->save($image_src);
+        Image::make($image_src)->fit(1000)->save($image_src);
 
         return $image_name;
     }

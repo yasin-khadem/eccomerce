@@ -40,6 +40,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Product",
@@ -65,7 +77,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-7e94e6d4]:hover {\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\n  transition: 500ms;\n}\n", ""]);
+exports.push([module.i, "\n.card[data-v-7e94e6d4]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.link-name[data-v-7e94e6d4]{\r\n  color: black;\n}\n.link-name-router[data-v-7e94e6d4]{\r\n  text-decoration: none;\n}\r\n", ""]);
 
 // exports
 
@@ -298,25 +310,46 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.product.name))
-        ]),
-        _vm._v(" "),
-        _c("h5", { staticClass: "card-category mb-3" }, [
-          _c("small", [
-            _vm._v(
-              "\n        کد:\n        " + _vm._s(_vm.product.code) + "\n      "
-            )
+      _c(
+        "div",
+        { staticClass: "card-body" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "link-name-router",
+              attrs: {
+                to: {
+                  name: "product-show",
+                  params: { url: "show", slug: _vm.product.slug }
+                }
+              }
+            },
+            [
+              _c("h5", { staticClass: "card-title link-name" }, [
+                _vm._v(_vm._s(_vm.product.name))
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("h5", { staticClass: "card-category mb-3" }, [
+            _c("small", [
+              _vm._v(
+                "\n        کد:\n        " +
+                  _vm._s(_vm.product.code) +
+                  "\n      "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("h6", { staticClass: "card-title" }, [
+            _c("strong", [
+              _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("h6", { staticClass: "card-title" }, [
-          _c("strong", [
-            _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
-          ])
-        ])
-      ]),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer" }, [
         _c(

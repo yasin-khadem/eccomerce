@@ -46,6 +46,7 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "ProfileShow",
+  
   data() {
     return {
       form: new Form({
@@ -68,7 +69,7 @@ export default {
   },
   methods: {
     changeProfile() {
-      this.$store.dispatch('auth/profile',this.form);
+      this.$store.dispatch('auth/profile',this.form)
     },
     changeProfileSrc(event) {
       this.form.profile_name = event;

@@ -44,6 +44,15 @@
                 </li>
                 
                 <li class="nav-item">
+                <div class="mx-auto">
+                  <router-link class="nav-link" :to="{ name: 'about-us' }">
+                    <template class="mr-2">درباره ما</template>
+                    <i class="fas fa-info-circle mx-2" aria-hidden="true"></i>
+                  </router-link>
+                </div>
+                </li>
+
+                <li class="nav-item">
                 <a class="nav-link" @click.prevent="logout">
                   <template class="mr-2">خروج</template>
                   <i class="fa fa-sign-out-alt mx-2"></i>

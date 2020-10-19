@@ -28,4 +28,12 @@ class LoginRequest extends FormRequest
             'password'=>'required'
         ];
     }
+    public function messages()
+    {
+        return [
+            'email.required' => 'ایمیل الزامی است',
+            'email.email' => 'ایمیل باید معتبر باشد',
+            'password.required' => 'رمز عبور الزامی است',
+        ];
+    }
 }

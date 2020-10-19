@@ -68,7 +68,7 @@ export default {
     getUser(page = 1) {
       axios.get(`/api/admin/users?page=${page}`).then(({ data }) => {
         this.users = data;
-        window.history.pushState(
+        window.history.replaceState(
           "users",
           "Users",
           `/admin/user/index?page=${page}`

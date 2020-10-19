@@ -1,6 +1,6 @@
 <template>
   <div>
- <!--   <div
+    <!-- <div
       id="demo"
       class="carousel mt-5 slide bg-carousel text-white"
       data-ride="carousel"
@@ -146,13 +146,15 @@
           <Product :product="product" />
         </div>
       </div>
+    </div>
+    <div>
       <pagination
         :data="products"
         @pagination-change-page="fetchProducts"
         :limit="1"
       ></pagination>
     </div>
-    <Footer></Footer>
+    <Footer class="footer-style"></Footer>
   </div>
 </template>
 
@@ -216,21 +218,24 @@ export default {
       this.$route.query.search = null;
       this.refresh = true;
       this.currentExist = "both";
+      this.$route.query.page = 1;
       this.fetchProducts(this.$route.query.page).finally(() => {
         this.refresh = false;
       });
     },
     onChange(event) {
+      this.$route.query.page = 1;
       this.fetchProducts(this.$route.query.page);
     },
     setExisting() {
+      this.$route.query.page = 1;
       this.fetchProducts(this.$route.query.page);
     },
     searchProduct() {
       let queries = this.$route.query;
       queries.search = this.form.search;
+      this.$route.query.page = 1;
       this.searchLoading = true;
-      
       this.fetchProducts(this.$route.query.page).finally(() => {
         this.searchLoading = false;
       });
@@ -260,9 +265,14 @@ html[dir="rtl"] .custom-select {
   background-color: #0276fd;
 }
 .bg-carousel {
-  background-color: #eee;
+  background-color:#eee;
 }
-#prev-icon{
+#prev-icon {
   color: #0276fd !important;
 }
+.footer-style{
+  margin-bottom: 0;
+
+}
+
 </style>

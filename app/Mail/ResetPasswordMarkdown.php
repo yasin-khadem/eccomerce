@@ -36,7 +36,7 @@ class ResetPasswordMarkdown extends Mailable
     public function build()
     {
         return $this->markdown('emails.reset-markdown')
-                    ->subject('بازیابی رمز')
+                    ->subject('ساختن رمز جدید')
                     ->to($this->email, $this->name);
     }
 }

@@ -117,7 +117,7 @@ class VerifyPaymentService
                 'title' => 'محصول خریداری شد',
                 'text' => 'شناسه خرید:' . $this->verified_request['RefID'],
                 'icon' => 'success',
-                'confirm_text' => 'اوکی'
+                'confirm_text' => 'باشه'
             ]);
             $this->response = $this->product ? redirect("/purchased/index") : redirect('/'); //TODO redirect to Shopping list
 
@@ -127,7 +127,7 @@ class VerifyPaymentService
                 'title' => 'مشکل به وجود آمد',
                 'text' => 'درخواست قبلا تایید شده است',
                 'icon' => 'error',
-                'confirm_text' => 'اوکی برمیگردم به صفحه اصلی'
+                'confirm_text' => 'برمیگردم به صفحه اصلی'
             ]);
             $this->response = $this->product ? redirect($this->product->url_path) : redirect('/');
         } else {
@@ -141,14 +141,12 @@ class VerifyPaymentService
                 'title' => 'مشکل به وجود آمد',
                 'text' => 'پرداخت شما به مشکل خورد',
                 'icon' => 'error',
-                'confirm_text' => 'اوکی برمیگردم'
+                'confirm_text' => 'برمیگردم به صفحه اصلی'
             ]);
             $this->response = $this->product ? redirect($this->product->url_path) : redirect('/'); //TODO redirect to Shopping list
         }
         return $this;
     }
-
-
     /**
      * 
      * 
