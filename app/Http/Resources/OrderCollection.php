@@ -16,4 +16,12 @@ class OrderCollection extends ResourceCollection
     {
         return $this->collection->toArray();
     }
+    public function with($request)
+    {
+        return [
+            'meta'=>[
+                'queries'=> $request->getQueryString()
+            ]
+        ];
+    }
 }

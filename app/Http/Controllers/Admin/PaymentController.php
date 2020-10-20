@@ -12,7 +12,10 @@ class PaymentController extends Controller
     public function index()
     {
         return new PaymentCollection(
-            Payment::with('user')->orderBy('is_paid', 'desc')->orderBy('created_at','desc')->paginate(10)
+            Payment::with('user')
+                ->orderBy('is_paid', 'desc')
+                ->orderBy('created_at', 'desc')
+                ->searchByUrl()->paginate(10)
         );
     }
 }

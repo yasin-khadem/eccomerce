@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,5 +34,12 @@ class Payment extends Model
     public function getStatusAttribute(){
         return $this->is_paid ? "پرداخت شده" 
         : "به مشکل خورده";
+    }
+    public function scopeSearchByUrl(Builder $builder){
+        if(request()->search){
+            $builder->where('ref_id', request()->search )
+                ->orWhere('product_code', request()->search);
+        }
+        return $builder;
     }
 }

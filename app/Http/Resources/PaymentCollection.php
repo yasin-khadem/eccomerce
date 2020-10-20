@@ -15,6 +15,13 @@ class PaymentCollection extends ResourceCollection
     public function toArray($request)
     {
         return $this->collection->toArray();
-        
+    }
+    public function with($request)
+    {
+        return [
+            'meta' => [
+                'queries' => $request->getQueryString()
+            ]
+        ];
     }
 }

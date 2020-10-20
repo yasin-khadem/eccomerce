@@ -6,6 +6,32 @@
           <h5>لیست سفارش ها</h5>
         </div>
       </div>
+
+      <div class="mt-3">
+        <h4>جست و جو</h4>
+        <div class="col-md-6 d-flex flex-row mb-3 search-input">
+          <base-input
+            name="search"
+            placeholder="کد و نام محصول یا کد پستی"
+            v-model="form.search"
+          ></base-input>
+          <base-btn @click="searchOrder" class="ml-2 mb-2">
+            <i class="fa fa-search"></i>
+          </base-btn>
+        </div>
+        <div class="mt-3 flex flex-row" v-if="refreshShowAll">
+          <label class="my-1 mr-2">
+            <h5><strong>نمایش همه</strong></h5>
+          </label>
+          <base-btn
+            class="ml-2 mb-2 search-btn"
+            :loading="refresh"
+            @click="refreshOrders"
+          >
+            <i class="fas fa-sync"></i>
+          </base-btn>
+        </div>
+      </div>
     </header>
     <div class="table-responsive">
       <table class="table table-striped">
@@ -66,14 +92,25 @@
 </template>
 
 <script>
+
+import { Form } from "vform";
+
 import moment from "moment-jalaali";
 export default {
   name: "AdminOrderIndex",
+  components: {
+    Form,
+  },
   metaInfo: {
     title: "لیست سفارش ها",
   },
   data() {
     return {
+      refresh: false,
+      searchLoading: false,
+      form: new Form({
+        search: null,
+      }),
       orders: {},
       moment,
     };
@@ -81,15 +118,25 @@ export default {
   created() {
     this.getOrders(this.$route.query.page);
   },
-  computed: {},
+  computed: {
+    refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
+        return true;
+      }
+    },
+  },
   methods: {
     getOrders(page = 1) {
-      axios.get(`/api/admin/order?page=${page}`).then(({ data }) => {
+      let queries = this.$route.query;
+      queries.page = page;
+      // axios.get(`/api/admin/order?page=${page}`).then(({ data }) => {
+      return axios.get(`/api/admin/order`,{params:queries}).then(({ data }) => {
         this.orders = data;
         window.history.replaceState(
           "orders",
           "Orders",
-          `/admin/order/index?page=${page}`
+          // `/admin/order/index?page=${page}`
+          `/admin/order/index?${data.meta.queries}`
         );
       });
     },
@@ -108,17 +155,33 @@ export default {
           }
         });
     },
+    searchOrder() {
+      let queries = this.$route.query;
+      queries.search = this.form.search;
+      this.searchLoading = true;
+      this.getOrders().finally(() => {
+        this.searchLoading = false;
+      });
+    },
+    refreshOrders() {
+      this.form.search = null;
+      this.$route.query.search = null;
+      this.refresh = true;
+      this.getOrders().finally(() => {
+        this.refresh = false;
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-.card{
-   background-color: #9c27b0;
+.card {
+  background-color: #9c27b0;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
   color: #fff;
 }
-.heading-padding{
+.heading-padding {
   padding: 1rem 3rem;
 }
 </style>

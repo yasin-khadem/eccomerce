@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_admin','profile'
+        'name', 'email', 'password', 'is_admin', 'profile'
     ];
     protected $appends = [
         'type', 'profile_src'
@@ -66,6 +67,14 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $user = $this;
-        $this->notify(new ResetPasswordNotification($token,$user));
+        $this->notify(new ResetPasswordNotification($token, $user));
+    }
+    public function scopeSearchByUrl(Builder $builder)
+    {
+        if (request()->search) {
+            $builder->where('email', 'LIKE', '%' . request()->search . '%')
+                ->orWhere('name', 'LIKE', '%' . request()->search . '%');
+        }
+        return $builder;
     }
 }

@@ -9,8 +9,36 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment-jalaali */ "./node_modules/moment-jalaali/index.js");
-/* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment_jalaali__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vform */ "./node_modules/vform/dist/vform.common.js");
+/* harmony import */ var vform__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vform__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment-jalaali */ "./node_modules/moment-jalaali/index.js");
+/* harmony import */ var moment_jalaali__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment_jalaali__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -79,30 +107,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AdminOrderIndex",
+  components: {
+    Form: vform__WEBPACK_IMPORTED_MODULE_0__["Form"]
+  },
   metaInfo: {
     title: "لیست سفارش ها"
   },
   data: function data() {
     return {
+      refresh: false,
+      searchLoading: false,
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        search: null
+      }),
       orders: {},
-      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_0___default.a
+      moment: moment_jalaali__WEBPACK_IMPORTED_MODULE_1___default.a
     };
   },
   created: function created() {
     this.getOrders(this.$route.query.page);
   },
-  computed: {},
+  computed: {
+    refreshShowAll: function refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
+        return true;
+      }
+    }
+  },
   methods: {
     getOrders: function getOrders() {
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get("/api/admin/order?page=".concat(page)).then(function (_ref) {
+      var queries = this.$route.query;
+      queries.page = page; // axios.get(`/api/admin/order?page=${page}`).then(({ data }) => {
+
+      return axios.get("/api/admin/order", {
+        params: queries
+      }).then(function (_ref) {
         var data = _ref.data;
         _this.orders = data;
-        window.history.replaceState("orders", "Orders", "/admin/order/index?page=".concat(page));
+        window.history.replaceState("orders", "Orders", // `/admin/order/index?page=${page}`
+        "/admin/order/index?".concat(data.meta.queries));
       });
     },
     sendingProduct: function sendingProduct(slug, index) {
@@ -114,6 +163,26 @@ __webpack_require__.r(__webpack_exports__);
             _this2.getOrders(_this2.$route.query.page);
           });
         }
+      });
+    },
+    searchOrder: function searchOrder() {
+      var _this3 = this;
+
+      var queries = this.$route.query;
+      queries.search = this.form.search;
+      this.searchLoading = true;
+      this.getOrders()["finally"](function () {
+        _this3.searchLoading = false;
+      });
+    },
+    refreshOrders: function refreshOrders() {
+      var _this4 = this;
+
+      this.form.search = null;
+      this.$route.query.search = null;
+      this.refresh = true;
+      this.getOrders()["finally"](function () {
+        _this4.refresh = false;
       });
     }
   }
@@ -133,7 +202,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-72208fc3]{\r\n   background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.heading-padding[data-v-72208fc3]{\r\n  padding: 1rem 3rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-72208fc3] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.heading-padding[data-v-72208fc3] {\r\n  padding: 1rem 3rem;\n}\r\n", ""]);
 
 // exports
 
@@ -484,14 +553,68 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _vm._m(0),
+    _c("header", { staticClass: "my-3" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "mt-3" }, [
+        _c("h4", [_vm._v("جست و جو")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-md-6 d-flex flex-row mb-3 search-input" },
+          [
+            _c("base-input", {
+              attrs: {
+                name: "search",
+                placeholder: "کد و نام محصول یا کد پستی"
+              },
+              model: {
+                value: _vm.form.search,
+                callback: function($$v) {
+                  _vm.$set(_vm.form, "search", $$v)
+                },
+                expression: "form.search"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "base-btn",
+              { staticClass: "ml-2 mb-2", on: { click: _vm.searchOrder } },
+              [_c("i", { staticClass: "fa fa-search" })]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm.refreshShowAll
+          ? _c(
+              "div",
+              { staticClass: "mt-3 flex flex-row" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "base-btn",
+                  {
+                    staticClass: "ml-2 mb-2 search-btn",
+                    attrs: { loading: _vm.refresh },
+                    on: { click: _vm.refreshOrders }
+                  },
+                  [_c("i", { staticClass: "fas fa-sync" })]
+                )
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "table-responsive" },
       [
         _c("table", { staticClass: "table table-striped" }, [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c(
             "tbody",
@@ -573,12 +696,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "my-3" }, [
-      _c("div", { staticClass: "d-flex justify-content-center" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("h5", [_vm._v("لیست سفارش ها")])
-        ])
-      ])
+    return _c("div", { staticClass: "d-flex justify-content-center" }, [
+      _c("div", { staticClass: "card" }, [_c("h5", [_vm._v("لیست سفارش ها")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "my-1 mr-2" }, [
+      _c("h5", [_c("strong", [_vm._v("نمایش همه")])])
     ])
   },
   function() {

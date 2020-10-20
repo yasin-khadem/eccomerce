@@ -6,6 +6,28 @@
           <h5>لیست تراکنش ها</h5>
         </div>
       </div>
+
+      <div class="mt-3">
+        <h4>جست و جو</h4>
+        <div class="col-md-6 d-flex flex-row mb-3 search-input">
+          <base-input name="search" placeholder="بر اساس شناسه پرداخت یا کد محصول" v-model="form.search"></base-input>
+          <base-btn @click="searchPayment" class="ml-2 mb-2">
+            <i class="fa fa-search"></i>
+          </base-btn>
+        </div>
+        <div class="mt-3 flex flex-row" v-if="refreshShowAll">
+          <label class="my-1 mr-2">
+            <h5><strong>نمایش همه</strong></h5>
+          </label>
+          <base-btn
+            class="ml-2 mb-2 search-btn"
+            :loading="refresh"
+            @click="refreshPayments"
+          >
+            <i class="fas fa-sync"></i>
+          </base-btn>
+        </div>
+      </div>
     </header>
     <div class="table-responsive">
       <table class="table table-striped">
@@ -50,35 +72,70 @@
     </div>
   </div>
 </template>
-
 <script>
+import { Form } from "vform";
 import { formatTooman } from "prial";
 import moment from "moment-jalaali";
 export default {
   name: "AdminPaymentIndex",
+  components: {
+    Form,
+  },
   data() {
     return {
+      refresh: false,
+      searchLoading: false,
+      form: new Form({
+        search: null,
+      }),
       payments: {},
       formatToman: require("prial").formatToman,
       moment,
     };
   },
-  metaInfo:{
-    title: 'لیست تراکنش ها'
+  metaInfo: {
+    title: "لیست تراکنش ها",
   },
   created() {
+    this.form.search = this.$route.query.search;
     this.getPayments(this.$route.query.page);
   },
-
+  computed: {
+    refreshShowAll() {
+      if (this.form.search || this.$route.query.search) {
+        return true;
+      }
+    },
+  },
   methods: {
     async getPayments(page = 1) {
-      let { data } = await axios.get(`/api/admin/payment?page=${page}`);
+      let queries = this.$route.query;
+      queries.page = page;
+      // let { data } = await axios.get(`/api/admin/payment?page=${page}`);
+      let { data } = await axios.get(`/api/admin/payment`, {params: queries});
       window.history.replaceState(
         "payment",
         "Payment",
-        `/admin/payment/index?page=${page}`
+        // `/admin/payment/index?page=${page}`
+        `/admin/payment/index?${data.meta.queries}`
       );
       this.payments = data;
+    },
+    searchPayment() {
+      let queries = this.$route.query;
+      queries.search = this.form.search;
+      this.searchLoading = true;
+      this.getPayments().finally(() => {
+        this.searchLoading = false;
+      });
+    },
+    refreshPayments() {
+      this.form.search = null;
+      this.$route.query.search = null;
+      this.refresh = true;
+      this.getPayments().finally(() => {
+        this.refresh = false;
+      });
     },
   },
 };

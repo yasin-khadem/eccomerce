@@ -16,10 +16,11 @@ class ProductResourceCollection extends ResourceCollection
     {
         return $this->collection->toArray();
     }
-    public function with($request){
+    public function with($request)
+    {
         return [
-            'meta'=>[
-                'queries'=> $request->getQueryString()
+            'meta' => [
+                'queries' => $request->getQueryString()
             ]
         ];
     }
