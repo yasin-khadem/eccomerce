@@ -1,7 +1,10 @@
 import NotFound from "../views/errors/NotFound"
 import AccessDenied from "../views/errors/AccessDenied"
-import auth from '../middleware/auth'
-import guest from '../middleware/guest'
+import auth from '../middleware/auth';
+import guestShowPage from '../middleware/guest-show-page';
+
+
+import guest from '../middleware/guest';
 import admin from "../middleware/admin";
 const Home = () => import(/* webpackChunkName: "js/home" */ '../views/Home.vue');
 const AppLayout = () => import(/* webpackChunkName: "js/applayout" */ '../views/layout/AppLayout.vue');
@@ -14,7 +17,6 @@ const AdminUser = () => import(/* webpackChunkName: "js/admin-user" */ '../views
 const AdminCategory = () => import(/* webpackChunkName: "js/admin-category" */ '../views/Admin/Category/AdminCategory.vue');
 const AdminProduct = () => import(/* webpackChunkName: "js/admin-product" */ '../views/Admin/Product/AdminProduct.vue');
 const AdminLayout = () => import(/* webpackChunkName: "js/admin-layout" */ '../views/Admin/AdminLayout.vue');
-const ProductRoutes = () => import(/* webpackChunkName: "js/products" */ '../views/Front/Product/ProductRoutes.vue');
 const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '../views/Admin/Order/AdminOrderIndex.vue');
 const AdminCommentIndex = () => import(/* webpackChunkName: "js/admin-comments" */ '../views/Admin/Comment/AdminCommentIndex.vue');
 const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" */ '../views/Admin/Payment/AdminPaymentIndex.vue');
@@ -22,13 +24,14 @@ const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/
 const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dashboard/Profile.vue');
 const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
 const AboutUs = () => import(/* webpackChunkName: "js/aboutus" */ '../views/Front/AboutUs.vue');
+const Show = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/Show.vue');
+const ShowGuest = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/ShowGuest.vue');
 
 export default [
     {
         path: '/',
         component: AppLayout,
         children: [
-
             {
                 path: '/',
                 name: 'home',
@@ -53,9 +56,24 @@ export default [
                 }
             },
             {
-                path: '/product/:url',
-                name: 'products',
-                component: ProductRoutes,
+                path: '/product/show-guest',
+                name: 'product-show-guest',
+                component: ShowGuest,
+                props: true,
+                meta: {
+                    middleware: [guestShowPage]
+                },
+                children: [
+                    {
+                        path: ':slug',
+                        name: 'product-show-slug-guest'
+                    }
+                ]
+            },
+            {
+                path: '/product/show',
+                name: 'product-show',
+                component: Show,
                 props: true,
                 meta: {
                     middleware: [auth]
@@ -63,7 +81,7 @@ export default [
                 children: [
                     {
                         path: ':slug',
-                        name: 'product-show'
+                        name: 'product-show-slug'
                     }
                 ]
             },
@@ -119,8 +137,6 @@ export default [
                         path: 'index',
                         name: 'admin-dashboard-index',
                         component: AdminDashboardIndex,
-
-
                     },
                 ]
             },

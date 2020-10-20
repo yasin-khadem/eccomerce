@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/products":"js/auth-routes~js/home~js/home-tagged~js/products","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/products":"js/products","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show":"js/auth-routes~js/home~js/home-tagged~js/show","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show":"js/show","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71541,6 +71541,34 @@ function _checkAuth() {
 
 /***/ }),
 
+/***/ "./resources/js/middleware/guest-show-page.js":
+/*!****************************************************!*\
+  !*** ./resources/js/middleware/guest-show-page.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return guest; });
+/* harmony import */ var _plugin_swal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../plugin/swal */ "./resources/js/plugin/swal.js");
+
+function guest(_ref) {
+  var next = _ref.next,
+      store = _ref.store;
+
+  if (store.getters['auth/isLoggedIn']) {
+    _plugin_swal__WEBPACK_IMPORTED_MODULE_0__["default"].message('عضو هستید', 'warning', '3500', 'آدرس قبل برای مهمان هاست');
+    return next({
+      name: 'home'
+    });
+  }
+
+  return next();
+}
+
+/***/ }),
+
 /***/ "./resources/js/middleware/guest.js":
 /*!******************************************!*\
   !*** ./resources/js/middleware/guest.js ***!
@@ -71807,8 +71835,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_errors_NotFound__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/errors/NotFound */ "./resources/js/views/errors/NotFound.vue");
 /* harmony import */ var _views_errors_AccessDenied__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/errors/AccessDenied */ "./resources/js/views/errors/AccessDenied.vue");
 /* harmony import */ var _middleware_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../middleware/auth */ "./resources/js/middleware/auth.js");
-/* harmony import */ var _middleware_guest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../middleware/guest */ "./resources/js/middleware/guest.js");
-/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../middleware/admin */ "./resources/js/middleware/admin.js");
+/* harmony import */ var _middleware_guest_show_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../middleware/guest-show-page */ "./resources/js/middleware/guest-show-page.js");
+/* harmony import */ var _middleware_guest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../middleware/guest */ "./resources/js/middleware/guest.js");
+/* harmony import */ var _middleware_admin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../middleware/admin */ "./resources/js/middleware/admin.js");
+
 
 
 
@@ -71816,7 +71846,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var AppLayout = function AppLayout() {
@@ -71824,7 +71854,7 @@ var AppLayout = function AppLayout() {
 };
 
 var AuthRoutes = function AuthRoutes() {
-  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
 var DashboardIndex = function DashboardIndex() {
@@ -71859,10 +71889,6 @@ var AdminLayout = function AdminLayout() {
   return Promise.all(/*! import() | js/admin-layout */[__webpack_require__.e("js/admin-layout~js/applayout"), __webpack_require__.e("js/admin-layout")]).then(__webpack_require__.bind(null, /*! ../views/Admin/AdminLayout.vue */ "./resources/js/views/Admin/AdminLayout.vue"));
 };
 
-var ProductRoutes = function ProductRoutes() {
-  return Promise.all(/*! import() | js/products */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/products")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductRoutes.vue */ "./resources/js/views/Front/Product/ProductRoutes.vue"));
-};
-
 var AdminOrderIndex = function AdminOrderIndex() {
   return Promise.all(/*! import() | js/admin-orders */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/admin-orders")]).then(__webpack_require__.bind(null, /*! ../views/Admin/Order/AdminOrderIndex.vue */ "./resources/js/views/Admin/Order/AdminOrderIndex.vue"));
 };
@@ -71884,11 +71910,19 @@ var Profile = function Profile() {
 };
 
 var HomeTagged = function HomeTagged() {
-  return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/products"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
+  return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
 };
 
 var AboutUs = function AboutUs() {
   return __webpack_require__.e(/*! import() | js/aboutus */ "js/aboutus").then(__webpack_require__.bind(null, /*! ../views/Front/AboutUs.vue */ "./resources/js/views/Front/AboutUs.vue"));
+};
+
+var Show = function Show() {
+  return Promise.all(/*! import() | js/show */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/show")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/Show.vue */ "./resources/js/views/Front/Product/Show.vue"));
+};
+
+var ShowGuest = function ShowGuest() {
+  return Promise.all(/*! import() | js/show */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/show")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ShowGuest.vue */ "./resources/js/views/Front/Product/ShowGuest.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -71914,16 +71948,28 @@ var AboutUs = function AboutUs() {
       middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
     }
   }, {
-    path: '/product/:url',
-    name: 'products',
-    component: ProductRoutes,
+    path: '/product/show-guest',
+    name: 'product-show-guest',
+    component: ShowGuest,
+    props: true,
+    meta: {
+      middleware: [_middleware_guest_show_page__WEBPACK_IMPORTED_MODULE_3__["default"]]
+    },
+    children: [{
+      path: ':slug',
+      name: 'product-show-slug-guest'
+    }]
+  }, {
+    path: '/product/show',
+    name: 'product-show',
+    component: Show,
     props: true,
     meta: {
       middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
     },
     children: [{
       path: ':slug',
-      name: 'product-show'
+      name: 'product-show-slug'
     }]
   }, {
     path: '/auth/:url',
@@ -71931,7 +71977,7 @@ var AboutUs = function AboutUs() {
     props: true,
     component: AuthRoutes,
     meta: {
-      middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_3__["default"]]
+      middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_4__["default"]]
     }
   }, {
     path: 'profile/:url',
@@ -71956,7 +72002,7 @@ var AboutUs = function AboutUs() {
     path: '/admin/dashboard',
     component: AdminDashboard,
     meta: {
-      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
+      middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_5__["default"]]
     },
     children: [{
       path: 'index',
@@ -71968,7 +72014,7 @@ var AboutUs = function AboutUs() {
   path: '/admin',
   component: AdminLayout,
   meta: {
-    middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_4__["default"]]
+    middleware: [_middleware_admin__WEBPACK_IMPORTED_MODULE_5__["default"]]
   },
   children: [{
     path: 'comment/index',

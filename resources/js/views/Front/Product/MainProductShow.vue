@@ -31,14 +31,24 @@
               <a class="badge badge-tags">{{ category.name }}</a>
             </router-link>
           </div>
-          <a
-            href="#"
-            class="btn btn-primary up-show-card mt-3"
-            @click.prevent="showOrderForm"
-            v-if="ProductExist"
-            >سفارش</a
-          >
-          <p v-if="!ProductExist" class="text-danger">
+          <template v-if="isLoggedIn">
+            <a
+              href="#"
+              class="btn btn-primary up-show-card mt-3"
+              @click.prevent="showOrderForm"
+              v-if="ProductExist"
+              >سفارش</a
+            >
+          </template>
+          <template v-if="!isLoggedIn">
+            <router-link
+              :to="{ name: 'auth', params: { url: 'login' } }"
+              class="btn btn-primary up-show-card mt-3"
+            >
+              سفارش
+            </router-link>
+          </template>
+          <p v-if="!ProductExist" class="text-danger mt-3">
             <strong> این محصول قبلا فروخته شده </strong>
           </p>
         </div>
@@ -48,6 +58,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { formatTooman } from "prial";
 
 export default {
@@ -63,7 +74,10 @@ export default {
       formatToman: require("prial").formatToman,
     };
   },
+
   computed: {
+    ...mapGetters("auth", ["user", "isLoggedIn"]),
+
     ProductExist() {
       return this.product.exist ? true : false;
     },
@@ -71,7 +85,7 @@ export default {
   methods: {
     showOrderForm() {
       this.orderForm = true;
-      this.$emit('setOrderForm', true);
+      this.$emit("setOrderForm", true);
       if ($(document).width() > 750) {
         window.scrollTo(0, 500);
       } else {
@@ -86,7 +100,7 @@ export default {
               window.scrollTo(0, 700);
             } else {
               this.orderForm = false;
-              this.$emit('setOrderForm', false);
+              this.$emit("setOrderForm", false);
             }
           });
       }
