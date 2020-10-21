@@ -2,8 +2,75 @@
   <div class="card">
     <div class="row">
       <div class="col-md-4">
-        <img :src="'/' + product.image_src" class="card-img-top w-100" />
-      </div>
+     <!--   <div
+          id="carousel-thumb"
+          class="carousel slide carousel-fade carousel-thumbnails"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                src="/images/Red.jpg"
+                alt="First slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="/images/herriny.jpg"
+                alt="Second slide"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                class="d-block w-100"
+                src="/images/wakeley.jpg"
+                alt="Third slide"
+              />
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carousel-thumb"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carousel-thumb"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+          <ol class="carousel-indicators  pb-2 mr-5">
+            <li data-target="#carousel-thumb" data-slide-to="0" class="active">
+              <img
+                class="d-block w-100 img-fluid"
+                src="/images/Red.jpg"
+              />
+            </li>
+            <li data-target="#carousel-thumb" data-slide-to="1">
+              <img
+                class="d-block w-100 img-fluid"
+                src="/images/herriny.jpg"
+              />
+            </li>
+            <li data-target="#carousel-thumb" data-slide-to="2">
+              <img
+                class="d-block w-100 img-fluid"
+                src="/images/wakeley.jpg"
+              />
+            </li>
+          </ol>
+        </div> -->
+        <img :src="'/' + product.image_src" class="card-img-top w-100" />  
+      </div> 
       <div class="col-md-8">
         <div class="card-block p-3">
           <h4 class="card-title">نام محصول: {{ product.name }}</h4>
@@ -40,7 +107,7 @@
               >سفارش</a
             >
           </template>
-          <template v-if="!isLoggedIn">
+          <template v-if="!isLoggedIn && ProductExist">
             <router-link
               :to="{ name: 'auth', params: { url: 'login' } }"
               class="btn btn-primary up-show-card mt-3"

@@ -1,44 +1,5 @@
 <template>
   <div>
-    <!-- <div
-      id="demo"
-      class="carousel mt-5 slide bg-carousel text-white"
-      data-ride="carousel"
-    >
-      <ul class="carousel-indicators text-center">
-        <li data-target="#demo" data-slide-to="0"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
-      <div class="carousel-inner text-center">
-        <div class="carousel-item active">
-          <img
-            src="images/wakeley.jpg"
-            width="350"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="images/Red.jpg"
-            width="350"
-          />
-        </div>
-        <div class="carousel-item">
-          <img
-            src="images/herriny.jpg"
-            width="350"
-          />
-        </div>
-      </div>
-
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>   -->
-
     <div>
       <div
         class="mt-3 mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
