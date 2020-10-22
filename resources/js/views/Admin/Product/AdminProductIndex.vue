@@ -7,7 +7,7 @@
           class="btn btn-create-product text-white"
           :to="{ name: 'admin-product', params: { url: 'create' } }"
         >
-          <i class="fa fa-user-plus"></i>
+          <i class="fa fa-shopping-cart"></i>
           ثبت محصول جدید
         </router-link>
       </div>

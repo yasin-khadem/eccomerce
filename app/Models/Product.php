@@ -17,7 +17,7 @@ class Product extends Model
 
 
     protected $guarded = ['slug'];
-    protected $appends = ['is_exist', 'selectedTags', 'image_src', 'url_path'];
+    protected $appends = ['related_images','is_exist', 'selectedTags', 'image_src', 'url_path'];
 
     protected $SortingOptions = [
         'id' => 'id',
@@ -57,6 +57,14 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
+    public function getRelatedImagesAttribute()
+    {   
+        $images = Image::where('product_code',$this->code)->get();
+        return $images;
     }
     public function syncCategories(array $categories)
     {

@@ -135,7 +135,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-67d52023] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.table-heading-padding[data-v-67d52023] {\r\n  padding-right: 3.5rem;\r\n  padding-left: 3.5rem;\n}\n.table-comment-padding[data-v-67d52023] {\r\n  max-width: 100px;\r\n  overflow: auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-67d52023] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\r\n  color: #fff;\n}\n.table-heading-padding[data-v-67d52023] {\r\n  padding-right: 3.5rem;\r\n  padding-left: 3.5rem;\n}\n.table-comment-padding[data-v-67d52023] {\r\n  max-width: 100px;\n}\n.table-comment[data-v-67d52023]{\r\n  overflow: auto;\n}\r\n", ""]);
 
 // exports
 
@@ -217,11 +217,18 @@ var render = function() {
                   _vm._v(_vm._s(comment.product.name))
                 ]),
                 _vm._v(" "),
-                _c("td", { staticClass: "text-center table-comment-padding" }, [
-                  _vm._v(
-                    "\n            " + _vm._s(comment.body) + "\n          "
-                  )
-                ]),
+                _c(
+                  "td",
+                  {
+                    staticClass:
+                      "text-center table-comment-padding table-comment"
+                  },
+                  [
+                    _vm._v(
+                      "\n            " + _vm._s(comment.body) + "\n          "
+                    )
+                  ]
+                ),
                 _vm._v(" "),
                 _c("td", { staticClass: "text-center" }, [
                   _c("div", { staticClass: "d-flex justify-content-around" }, [

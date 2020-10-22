@@ -178,6 +178,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -301,29 +308,31 @@ var render = function() {
                 [
                   _vm.isLoggedIn
                     ? [
-                        _c(
-                          "li",
-                          { staticClass: "nav-item" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "nav-link",
-                                attrs: { to: { name: "home" } }
-                              },
-                              [
-                                [_vm._v("صفحه اصلی")],
-                                _vm._v(" "),
-                                _c("i", { staticClass: "fas fa-home mx-2" })
-                              ],
-                              2
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
                         _vm.isLoggedIn && !_vm.user.is_admin
                           ? [
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: { to: { name: "home" } }
+                                    },
+                                    [
+                                      [_vm._v("صفحه اصلی")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fas fa-home mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
                                 "li",
                                 { staticClass: "nav-item" },
@@ -431,6 +440,34 @@ var render = function() {
                         _vm._v(" "),
                         _vm.isLoggedIn && _vm.user.is_admin
                           ? [
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: {
+                                        to: {
+                                          name: "admin-gallery",
+                                          params: { url: "index" }
+                                        }
+                                      }
+                                    },
+                                    [
+                                      [_vm._v("گالری")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "far fa-images mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
                               _c(
                                 "li",
                                 { staticClass: "nav-item" },

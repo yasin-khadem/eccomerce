@@ -7,7 +7,7 @@
           class="btn btn-create-category text-white"
           :to="{ name: 'admin-category', params: { url: 'create' } }"
         >
-          <i class="fa fa-user-plus"></i>
+          <i class="fa fa-list-alt"></i>
           ایجاد دسته بندی جدید
         </router-link>
       </div>
@@ -16,7 +16,7 @@
         <h4>جست و جو</h4>
         <div class="col-md-6 d-flex flex-row mb-3 search-input">
           <base-input name="search" v-model="form.search"></base-input>
-          <base-btn @click="searchCategory" class="ml-2 mb-2">
+          <base-btn :loading="searchLoading" @click="searchCategory" class="ml-2 mb-2">
             <i class="fa fa-search"></i>
           </base-btn>
         </div>

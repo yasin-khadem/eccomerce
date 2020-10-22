@@ -15,7 +15,7 @@
             placeholder="کد و نام محصول یا کد پستی"
             v-model="form.search"
           ></base-input>
-          <base-btn @click="searchOrder" class="ml-2 mb-2">
+          <base-btn :loading="searchLoading" @click="searchOrder" class="ml-2 mb-2">
             <i class="fa fa-search"></i>
           </base-btn>
         </div>

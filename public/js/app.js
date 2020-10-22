@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show":"js/auth-routes~js/home~js/home-tagged~js/show","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show":"js/show","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71846,7 +71846,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
+  return Promise.all(/*! import() | js/home */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"), __webpack_require__.e("js/home")]).then(__webpack_require__.bind(null, /*! ../views/Home.vue */ "./resources/js/views/Home.vue"));
 };
 
 var AppLayout = function AppLayout() {
@@ -71854,7 +71854,7 @@ var AppLayout = function AppLayout() {
 };
 
 var AuthRoutes = function AuthRoutes() {
-  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
+  return Promise.all(/*! import() | js/auth-routes */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"), __webpack_require__.e("js/home"), __webpack_require__.e("js/auth-routes")]).then(__webpack_require__.bind(null, /*! ../views/Auth/AuthRoutes.vue */ "./resources/js/views/Auth/AuthRoutes.vue"));
 };
 
 var DashboardIndex = function DashboardIndex() {
@@ -71910,7 +71910,7 @@ var Profile = function Profile() {
 };
 
 var HomeTagged = function HomeTagged() {
-  return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
+  return Promise.all(/*! import() | js/home-tagged */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"), __webpack_require__.e("js/home-tagged")]).then(__webpack_require__.bind(null, /*! ../views/Front/HomeTagged.vue */ "./resources/js/views/Front/HomeTagged.vue"));
 };
 
 var AboutUs = function AboutUs() {
@@ -71918,11 +71918,15 @@ var AboutUs = function AboutUs() {
 };
 
 var Show = function Show() {
-  return Promise.all(/*! import() | js/show */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/show")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/Show.vue */ "./resources/js/views/Front/Product/Show.vue"));
+  return Promise.all(/*! import() | js/show */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"), __webpack_require__.e("js/show~js/show-guest"), __webpack_require__.e("js/show")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/Show.vue */ "./resources/js/views/Front/Product/Show.vue"));
 };
 
 var ShowGuest = function ShowGuest() {
-  return Promise.all(/*! import() | js/show */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show"), __webpack_require__.e("js/show")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ShowGuest.vue */ "./resources/js/views/Front/Product/ShowGuest.vue"));
+  return Promise.all(/*! import() | js/show-guest */[__webpack_require__.e("js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"), __webpack_require__.e("js/show~js/show-guest"), __webpack_require__.e("js/show-guest")]).then(__webpack_require__.bind(null, /*! ../views/Front/Product/ShowGuest.vue */ "./resources/js/views/Front/Product/ShowGuest.vue"));
+};
+
+var AdminGallery = function AdminGallery() {
+  return __webpack_require__.e(/*! import() | js/admin-gallery */ "js/admin-gallery").then(__webpack_require__.bind(null, /*! ../views/Admin/Gallery/AdminGallery.vue */ "./resources/js/views/Admin/Gallery/AdminGallery.vue"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
@@ -72029,6 +72033,11 @@ var ShowGuest = function ShowGuest() {
       path: ':id',
       name: 'admin-user-edit'
     }]
+  }, {
+    path: 'gallery/:url',
+    name: 'admin-gallery',
+    component: AdminGallery,
+    props: true
   }, {
     path: 'category/:url',
     name: 'admin-category',

@@ -11,7 +11,7 @@
         <h4>جست و جو</h4>
         <div class="col-md-6 d-flex flex-row mb-3 search-input">
           <base-input name="search" placeholder="بر اساس شناسه پرداخت یا کد محصول" v-model="form.search"></base-input>
-          <base-btn @click="searchPayment" class="ml-2 mb-2">
+          <base-btn :loading="searchLoading" @click="searchPayment" class="ml-2 mb-2">
             <i class="fa fa-search"></i>
           </base-btn>
         </div>

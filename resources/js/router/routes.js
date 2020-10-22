@@ -25,7 +25,9 @@ const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dash
 const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
 const AboutUs = () => import(/* webpackChunkName: "js/aboutus" */ '../views/Front/AboutUs.vue');
 const Show = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/Show.vue');
-const ShowGuest = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/ShowGuest.vue');
+const ShowGuest = () => import(/* webpackChunkName: "js/show-guest" */ '../views/Front/Product/ShowGuest.vue');
+const AdminGallery = () => import(/* webpackChunkName: "js/admin-gallery" */ '../views/Admin/Gallery/AdminGallery.vue');
+ 
 
 export default [
     {
@@ -169,7 +171,12 @@ export default [
                     }
 
                 ]
-
+            },
+            {
+                path: 'gallery/:url',
+                name: 'admin-gallery',
+                component: AdminGallery,
+                props: true,  
             },
             {
                 path: 'category/:url',

@@ -20,13 +20,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="mt-2 navbar-nav mr-auto">
             <template v-if="isLoggedIn">
-              <li class="nav-item">
+             
+              <template v-if="isLoggedIn && !user.is_admin">
+               <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'home' }">
                   <template class="mr-2">صفحه اصلی</template>
                   <i class="fas fa-home mx-2"></i>
                 </router-link>
               </li>
-              <template v-if="isLoggedIn && !user.is_admin">
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
@@ -61,6 +62,12 @@
               </template>
               <!-- admin -->
               <template v-if="isLoggedIn && user.is_admin">
+               <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'admin-gallery', params:{url:'index'} }">
+                  <template class="mr-2">گالری</template>
+                  <i class="far fa-images mx-2"></i>
+                </router-link>
+              </li>
                 <li class="nav-item">
                   <router-link
                     class="nav-link"

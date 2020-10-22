@@ -50,12 +50,9 @@ export default {
     },
   },
   created() {
-    console.log('ghaabl')
     axios
       .get(`/api/product-guest/${this.slug}`)
       .then(({ data }) => {
-            console.log('baad')
-
         this.product = data;
       })
       .catch(({ response }) => {

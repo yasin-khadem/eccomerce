@@ -648,7 +648,7 @@ var render = function() {
               }
             },
             [
-              _c("i", { staticClass: "fa fa-user-plus" }),
+              _c("i", { staticClass: "fa fa-list-alt" }),
               _vm._v("\n        ایجاد دسته بندی جدید\n      ")
             ]
           )
@@ -676,7 +676,11 @@ var render = function() {
             _vm._v(" "),
             _c(
               "base-btn",
-              { staticClass: "ml-2 mb-2", on: { click: _vm.searchCategory } },
+              {
+                staticClass: "ml-2 mb-2",
+                attrs: { loading: _vm.searchLoading },
+                on: { click: _vm.searchCategory }
+              },
               [_c("i", { staticClass: "fa fa-search" })]
             )
           ],

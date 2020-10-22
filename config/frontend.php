@@ -1,5 +1,5 @@
 <?php 
 
 return [
-    'reset_password_url'=> env('FRONT_APP') . env('FRONT_FORGET_PASSWORD')
+    'reset_password_url'=> env('APP_URL') . env('FRONT_FORGET_PASSWORD')
 ];

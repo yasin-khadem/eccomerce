@@ -24,6 +24,7 @@ Route::group([
 ],   function () {
     Route::apiResource('users', 'UserController');
     Route::apiResource('categories', 'CategoryController');
+    Route::apiResource('image', 'ImageGalleryController')->only('index','store','destroy');
     Route::apiResource('product', 'ProductController');
     Route::apiResource('order', 'OrderController');
     Route::apiResource('comment', 'CommentController')->only('index', 'update', 'destroy');

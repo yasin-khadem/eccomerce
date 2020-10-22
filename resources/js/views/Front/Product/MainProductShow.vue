@@ -2,75 +2,96 @@
   <div class="card">
     <div class="row">
       <div class="col-md-4">
-     <!--   <div
-          id="carousel-thumb"
-          class="carousel slide carousel-fade carousel-thumbnails"
-          data-ride="carousel"
-        >
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                src="/images/Red.jpg"
-                alt="First slide"
-              />
+        <template v-if="ShowCarousel">
+          <div
+            id="carousel-thumb"
+            class="carousel slide carousel-fade carousel-thumbnails"
+            data-ride="carousel"
+          >
+            <div class="carousel-inner" role="listbox">
+              <div class="carousel-item active">
+                <a :href="'/' + product.image_src">
+                  <img
+                    class="d-block w-100"
+                    :src="'/' + product.image_src"
+                    alt="First slide"
+                  />
+                </a>
+              </div>
+
+              <div
+                v-for="(item, index) in product.related_images"
+                :key="item.id"
+                class="carousel-item"
+              >
+                <a :href="'/' + item.gallery_src">
+                  <img
+                    class="d-block w-100"
+                    :src="'/' + item.gallery_src"
+                    alt="Second slide"
+                  />
+                </a>
+              </div>
             </div>
-            <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src="/images/herriny.jpg"
-                alt="Second slide"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                class="d-block w-100"
-                src="/images/wakeley.jpg"
-                alt="Third slide"
-              />
-            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carousel-thumb"
+              role="button"
+              data-slide="prev"
+            >
+              <div class="slider-background-prev">
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carousel-thumb"
+              role="button"
+              data-slide="next"
+            >
+              <div class="slider-background-next">
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <span class="sr-only">Next</span>
+            </a>
+            <ol class="carousel-indicators pb-2 mr-5">
+              <li
+                data-target="#carousel-thumb"
+                data-slide-to="0"
+                class="active"
+              >
+                <img
+                  class="d-block w-100 img-fluid"
+                  :src="'/' + product.image_src"
+                />
+              </li>
+              <li
+                v-for="(item, index) in product.related_images"
+                :key="item.id"
+                data-target="#carousel-thumb"
+                :data-slide-to="index + 1"
+              >
+                <img
+                  class="d-block w-100 img-fluid"
+                  :src="'/' + item.gallery_src"
+                />
+              </li>
+            </ol>
           </div>
-          <a
-            class="carousel-control-prev"
-            href="#carousel-thumb"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+        </template>
+        <template v-if="!ShowCarousel">
+          <a :href="'/' + product.image_src">
+            <img :src="'/' + product.image_src" class="card-img-top w-100" />
           </a>
-          <a
-            class="carousel-control-next"
-            href="#carousel-thumb"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-          <ol class="carousel-indicators  pb-2 mr-5">
-            <li data-target="#carousel-thumb" data-slide-to="0" class="active">
-              <img
-                class="d-block w-100 img-fluid"
-                src="/images/Red.jpg"
-              />
-            </li>
-            <li data-target="#carousel-thumb" data-slide-to="1">
-              <img
-                class="d-block w-100 img-fluid"
-                src="/images/herriny.jpg"
-              />
-            </li>
-            <li data-target="#carousel-thumb" data-slide-to="2">
-              <img
-                class="d-block w-100 img-fluid"
-                src="/images/wakeley.jpg"
-              />
-            </li>
-          </ol>
-        </div> -->
-        <img :src="'/' + product.image_src" class="card-img-top w-100" />  
-      </div> 
+        </template>
+      </div>
       <div class="col-md-8">
         <div class="card-block p-3">
           <h4 class="card-title">نام محصول: {{ product.name }}</h4>
@@ -108,12 +129,12 @@
             >
           </template>
           <template v-if="!isLoggedIn && ProductExist">
-            <router-link
-              :to="{ name: 'auth', params: { url: 'login' } }"
+            <button
+              @click.prevent="redirectToLogin"
               class="btn btn-primary up-show-card mt-3"
             >
               سفارش
-            </router-link>
+            </button>
           </template>
           <p v-if="!ProductExist" class="text-danger mt-3">
             <strong> این محصول قبلا فروخته شده </strong>
@@ -144,12 +165,18 @@ export default {
 
   computed: {
     ...mapGetters("auth", ["user", "isLoggedIn"]),
-
+    ShowCarousel() {
+      return _.isEmpty(this.product.related_images) ? false : true;
+    },
     ProductExist() {
       return this.product.exist ? true : false;
     },
   },
   methods: {
+    redirectToLogin(){
+      swal.message('برای سفارش باید وارد سایت شوید','warning',2700)
+      this.$router.push({name: 'auth', params:{url:'login'}})
+    },
     showOrderForm() {
       this.orderForm = true;
       this.$emit("setOrderForm", true);
@@ -192,5 +219,19 @@ export default {
   color: #fff;
   font-weight: 300;
   font-size: 15px;
+}
+.slider-background-prev {
+  height: 30px;
+  width: 30px;
+  padding: 5px 3px 6px 4px;
+  background-color: black;
+  border-radius: 50%;
+}
+.slider-background-next {
+  height: 30px;
+  width: 30px;
+  padding: 4px 3px 6px 6px;
+  background-color: black;
+  border-radius: 50%;
 }
 </style>

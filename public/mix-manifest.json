@@ -9,6 +9,7 @@
     "/js/admin-Dashboard-index.js": "/js/admin-Dashboard-index.js",
     "/js/admin-category.js": "/js/admin-category.js",
     "/js/admin-comments.js": "/js/admin-comments.js",
+    "/js/admin-gallery.js": "/js/admin-gallery.js",
     "/js/admin-layout.js": "/js/admin-layout.js",
     "/js/admin-layout~js/applayout.js": "/js/admin-layout~js/applayout.js",
     "/js/admin-orders.js": "/js/admin-orders.js",
@@ -17,11 +18,13 @@
     "/js/admin-user.js": "/js/admin-user.js",
     "/js/applayout.js": "/js/applayout.js",
     "/js/auth-routes.js": "/js/auth-routes.js",
-    "/js/auth-routes~js/home~js/home-tagged~js/show.js": "/js/auth-routes~js/home~js/home-tagged~js/show.js",
+    "/js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest.js": "/js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest.js",
     "/js/home.js": "/js/home.js",
     "/js/home-tagged.js": "/js/home-tagged.js",
     "/js/profile.js": "/js/profile.js",
     "/js/show.js": "/js/show.js",
+    "/js/show-guest.js": "/js/show-guest.js",
+    "/js/show~js/show-guest.js": "/js/show~js/show-guest.js",
     "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js",
     "/vendors~js/admin-product.js": "/vendors~js/admin-product.js"
 }

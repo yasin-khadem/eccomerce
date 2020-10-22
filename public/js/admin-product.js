@@ -1438,7 +1438,7 @@ var render = function() {
               }
             },
             [
-              _c("i", { staticClass: "fa fa-user-plus" }),
+              _c("i", { staticClass: "fa fa-shopping-cart" }),
               _vm._v("\n        ثبت محصول جدید\n      ")
             ]
           )

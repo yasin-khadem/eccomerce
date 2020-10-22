@@ -740,7 +740,11 @@ var render = function() {
             _vm._v(" "),
             _c(
               "base-btn",
-              { staticClass: "ml-2 mb-2", on: { click: _vm.searchPayment } },
+              {
+                staticClass: "ml-2 mb-2",
+                attrs: { loading: _vm.searchLoading },
+                on: { click: _vm.searchPayment }
+              },
               [_c("i", { staticClass: "fa fa-search" })]
             )
           ],

@@ -30,7 +30,7 @@
             <td class="text-center">{{ comment.user.name }}</td>
             <td class="text-center">{{ comment.product.id }}</td>
             <td class="text-center">{{ comment.product.name }}</td>
-            <td class="text-center table-comment-padding">
+            <td class="text-center table-comment-padding table-comment">
               {{ comment.body }}
             </td>
             <td class="text-center">
@@ -122,6 +122,8 @@ export default {
 }
 .table-comment-padding {
   max-width: 100px;
+}
+.table-comment{
   overflow: auto;
 }
 </style>
