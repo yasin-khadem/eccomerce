@@ -69,7 +69,10 @@ export default {
   },
   methods: {
     changeProfile() {
-      this.$store.dispatch('auth/profile',this.form)
+      this.$store.dispatch('auth/profile',this.form).then(()=>{
+        swal.message('تغییرات ثبت شد');
+        this.$router.push({name:'home'});
+      })
     },
     changeProfileSrc(event) {
       this.form.profile_name = event;

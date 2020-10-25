@@ -12,7 +12,7 @@
             <base-input
               class=""
               name="search"
-              placeholder="جست و جو"
+              placeholder="محصول مورد نظر شما"
               v-model="form.search"
             ></base-input>
             <base-btn
@@ -212,7 +212,6 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   transition: 500ms;
 }
-
 .card {
   -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
@@ -226,14 +225,12 @@ html[dir="rtl"] .custom-select {
   background-color: #0276fd;
 }
 .bg-carousel {
-  background-color:#eee;
+  background-color: #eee;
 }
 #prev-icon {
   color: #0276fd !important;
 }
-.footer-style{
+.footer-style {
   margin-bottom: 0;
-
 }
-
 </style>

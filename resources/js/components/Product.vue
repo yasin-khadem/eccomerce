@@ -13,7 +13,7 @@
           width="100"
         />
       </router-link>
-    </template>  
+    </template>
     <template v-if="!isLoggedIn">
       <router-link
         :to="{
@@ -30,7 +30,7 @@
     </template>
 
     <div class="card-body">
-     <template v-if="isLoggedIn">
+      <template v-if="isLoggedIn">
         <router-link
           class="link-name-router"
           :to="{
@@ -40,7 +40,7 @@
         >
           <h5 class="card-title link-name">{{ product.name }}</h5>
         </router-link>
-      </template>  
+      </template>
       <template v-if="!isLoggedIn">
         <router-link
           class="link-name-router"
@@ -51,7 +51,7 @@
         >
           <h5 class="card-title link-name">{{ product.name }}</h5>
         </router-link>
-      </template>   
+      </template>
       <h5 class="card-category mb-3">
         <small>
           کد:
@@ -78,12 +78,14 @@ export default {
   computed: {
     ...mapGetters("auth", ["user", "isLoggedIn"]),
   },
+  props: ["product"],
   data() {
     return {
       formatToman: require("prial").formatToman,
     };
   },
-  props: ["product"],
+  created() {},
+  methods: {},
 };
 </script>
 

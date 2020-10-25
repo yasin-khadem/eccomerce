@@ -188,7 +188,7 @@ export default {
   transition: 500ms;
 }
 .order-card {
-  background-color: #9c27b0;
+  background-color: #0276fd;
   padding: 0.35rem 0.75rem 0.15rem 0.75rem;
 }
 </style>

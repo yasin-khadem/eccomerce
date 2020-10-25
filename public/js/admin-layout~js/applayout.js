@@ -289,8 +289,11 @@ var render = function() {
         [
           _c(
             "router-link",
-            { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
-            [_vm._v("فروشگاه")]
+            {
+              staticClass: "navbar-brand mt-1",
+              attrs: { to: { name: "home" } }
+            },
+            [_c("h4", [_c("strong", [_vm._v("DorvanGem")])])]
           ),
           _vm._v(" "),
           _vm._m(0),
@@ -298,13 +301,13 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "collapse navbar-collapse",
+              staticClass: "collapse navbar-collapse mb-1",
               attrs: { id: "navbarSupportedContent" }
             },
             [
               _c(
                 "ul",
-                { staticClass: "mt-2 navbar-nav mr-auto" },
+                { staticClass: "mt-2 navbar-nav mr-auto " },
                 [
                   _vm.isLoggedIn
                     ? [

@@ -13,7 +13,7 @@ class Order extends Model
     use Sluggable;
 
     protected $guarded = ['slug'];
-    protected $appends = ['is_delivered'];
+    protected $appends = ['is_delivered', 'display_code'];
 
 
     public function sluggable()
@@ -53,5 +53,13 @@ class Order extends Model
                 ->orWhere('product_code', request()->search);
         }
         return $builder;
+    }
+    public function getDisplayCodeAttribute()
+    {
+        $code = $this->product_code . "";
+        for ($i = 0; $i < 4 - strlen($code); $i++) {
+            $code = "0" . $code;
+            return $code;
+        }
     }
 }

@@ -228,6 +228,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -259,6 +274,7 @@ __webpack_require__.r(__webpack_exports__);
         image: null,
         description: data.description,
         price: data.price,
+        exist: data.exist,
         selectedTags: data.selectedTags,
         _method: "patch"
       });
@@ -268,18 +284,41 @@ __webpack_require__.r(__webpack_exports__);
     title: "ویرایش محصول"
   },
   methods: {
-    updateProduct: function updateProduct() {
+    changeExisting: function changeExisting() {
       var _this2 = this;
 
+      swal.confirm("آیا مطمئن هستید؟", "warning", " ").then(function (result) {
+        if (result.value) {
+          // return 0;
+          return axios.patch("/api/admin/product-update/".concat(_this2.form.slug), {
+            exist: _this2.form.exist
+          }).then(function (_ref2) {
+            var data = _ref2.data;
+
+            _this2.$router.push({
+              name: "admin-product",
+              params: {
+                url: "index"
+              }
+            });
+
+            swal.message("محصول شما ویرایش شد");
+          });
+        }
+      });
+    },
+    updateProduct: function updateProduct() {
+      var _this3 = this;
+
       this.$store.dispatch("product/updateProduct", this.form).then(function () {
-        _this2.$router.push({
-          name: 'admin-product',
+        _this3.$router.push({
+          name: "admin-product",
           params: {
-            url: 'index'
+            url: "index"
           }
         });
 
-        swal.message('محصول شما ویرایش شد');
+        swal.message("محصول شما ویرایش شد");
       });
     },
     changeImage: function changeImage(event) {
@@ -1332,6 +1371,20 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary my-2",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.changeExisting($event)
+                    }
+                  }
+                },
+                [_vm._v("\n          تغییر موجودیت\n        ")]
+              ),
+              _vm._v(" "),
               _c("base-input", {
                 attrs: { name: "price", label: "قیمت" },
                 model: {
@@ -1454,7 +1507,10 @@ var render = function() {
       { staticClass: "col-md-6 d-flex flex-row mb-3 search-input" },
       [
         _c("base-input", {
-          attrs: { name: "search" },
+          attrs: {
+            name: "search",
+            placeholder: "براساس کد ، نام و توضیحات محصول"
+          },
           model: {
             value: _vm.form.search,
             callback: function($$v) {

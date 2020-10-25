@@ -24,7 +24,7 @@ class GalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'product_code'=> 'required|numeric',
+            'product_code'=> 'required|string',
             'image'=> 'required|mimes:jpeg,jpg,png'
         ];
     }

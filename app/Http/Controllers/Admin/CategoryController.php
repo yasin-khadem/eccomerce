@@ -19,7 +19,11 @@ class CategoryController extends Controller
  
     public function store(Request $request)
     {
-        $request->validate(['name'=> 'required|string|max:255|unique:categories']);
+        $request->validate(['name'=> 'required|string|max:255|unique:categories']
+        ,['name.required'=>'نام الزامی است',
+        'name.string'=>'نام باید رشته باشد',
+        'name.max'=>'حداکثر تا 255 کاراکتر الزامی است',
+        'name.unique'=>'نام ذکر شده تکراری است']);
         Category::create($request->only('name'));
 
         return response(['ok'],200);

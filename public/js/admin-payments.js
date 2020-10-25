@@ -793,7 +793,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(payment.order_id))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(payment.product_code))]),
+                _c("td", [_vm._v(_vm._s(payment.display_code))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(payment.product_id))]),
                 _vm._v(" "),

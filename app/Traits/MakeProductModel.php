@@ -17,7 +17,6 @@ trait MakeProductModel
         return DB::transaction(function () use ($request, $product) {
             try {
                 $data = $request->except('selectedTags', 'image');
-               
                 if ($product === null) {
                     $image_name = $this->makePublicImage($request);
                     if ($image_name) {

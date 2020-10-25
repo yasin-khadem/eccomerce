@@ -520,7 +520,7 @@ var render = function() {
         { staticClass: "col-md-6 d-flex flex-row mb-3 search-input" },
         [
           _c("base-input", {
-            attrs: { name: "search" },
+            attrs: { name: "search", placeholder: "جست و جو کد محصول" },
             model: {
               value: _vm.form.search,
               callback: function($$v) {

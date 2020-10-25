@@ -446,6 +446,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    localStorage.removeItem('nextUrl');
     axios.get("/api/product/".concat(this.slug)).then(function (_ref) {
       var data = _ref.data;
       _this.product = data;
@@ -495,7 +496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-ce5e8cc6] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-ce5e8cc6] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-ce5e8cc6] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-ce5e8cc6] {\r\n  background-color: #0276fd;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\r\n", ""]);
 
 // exports
 
@@ -1072,7 +1073,7 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "d-flex justify-content-center mt-5" }, [
-        _vm.showTitle ? _c("h3", [_vm._v("محصولات مربوطه")]) : _vm._e()
+        _vm.showTitle ? _c("h3", [_vm._v("محصولات مشابه")]) : _vm._e()
       ]),
       _vm._v(" "),
       _c("hr"),

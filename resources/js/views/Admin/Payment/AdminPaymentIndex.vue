@@ -51,7 +51,7 @@
             <td>{{ payment.user.name }}</td>
             <td>{{ payment.user.id }}</td>
             <td>{{ payment.order_id }}</td>
-            <td>{{ payment.product_code }}</td>
+            <td>{{ payment.display_code }}</td>
             <td>{{ payment.product_id }}</td>
             <td>{{ formatToman(payment.price) }}</td>
             <td>{{ moment(payment.created_at).format("jYYYY/jMM/jDD") }}</td>

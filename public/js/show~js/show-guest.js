@@ -165,6 +165,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -190,6 +198,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     redirectToLogin: function redirectToLogin() {
+      localStorage.setItem('nextUrl', window.location.origin + '/product/show/' + this.product.slug);
       swal.message('برای سفارش باید وارد سایت شوید', 'warning', 2700);
       this.$router.push({
         name: 'auth',
@@ -280,7 +289,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 4px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 2px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.width-80[data-v-f1a2d284]{\r\n  width: 85%;\n}\r\n", ""]);
 
 // exports
 
@@ -381,7 +390,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "card width-80 mx-auto" }, [
     _c("div", { staticClass: "row" }, [
       _c(
         "div",
@@ -525,28 +534,34 @@ var render = function() {
               _vm._v("نام محصول: " + _vm._s(_vm.product.name))
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v(" کد: ")]),
-              _vm._v("\n          " + _vm._s(_vm.product.code) + "\n        ")
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "card-text" }, [
-              _c("strong", [_vm._v(" توضیحات: ")]),
-              _vm._v(
-                "\n          " + _vm._s(_vm.product.description) + "\n        "
-              )
-            ]),
-            _vm._v(" "),
-            _c("h6", { staticClass: "card-title" }, [
-              _c("strong", [
+            _c("div", { staticClass: "card-text" }, [
+              _c("div", [
+                _c("strong", [_vm._v(" کد: ")]),
+                _vm._v("\n          " + _vm._s(_vm.product.code) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "mt-1" }, [
+                _c("strong", [_vm._v(" توضیحات: ")]),
                 _vm._v(
-                  " قیمت: " +
-                    _vm._s(_vm.formatToman(parseInt(_vm.product.price)))
+                  "\n          " +
+                    _vm._s(_vm.product.description) +
+                    "\n          "
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "my-2" }, [
+                _c("h6", [
+                  _c("strong", [
+                    _vm._v(
+                      " قیمت: " +
+                        _vm._s(_vm.formatToman(parseInt(_vm.product.price)))
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
             ]),
-            _vm._v(" "),
-            _vm._m(2),
             _vm._v(" "),
             _c(
               "div",
@@ -674,7 +689,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h6", [_c("strong", [_vm._v("دسته بندی:")])])
+    return _c("h6", [
+      _c("strong", [_vm._v("\n          برچسب ها:\n          ")]),
+      _vm._v(
+        "\n          (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)\n        "
+      )
+    ])
   }
 ]
 render._withStripped = true

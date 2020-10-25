@@ -72251,7 +72251,7 @@ var actions = {
   },
   getCategory: function getCategory(_ref4, payload) {
     var commit = _ref4.commit;
-    return axios.get("/api/admin/categories?page=".concat(payload));
+    return axios.get("/api/admin/categories/".concat(payload));
   },
   updateCategory: function updateCategory(_ref5, payload) {
     var commit = _ref5.commit;
@@ -72423,7 +72423,7 @@ var actions = {
       transformRequest: [function (data, header) {
         return Object(object_to_formdata__WEBPACK_IMPORTED_MODULE_1__["default"])(data);
       }]
-    }); // return payload.post('/api/admin/product')
+    });
   },
   updateProduct: function updateProduct(_ref11, payload) {
     var commit = _ref11.commit;

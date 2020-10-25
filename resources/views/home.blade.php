@@ -12,6 +12,9 @@
     body{
       background-color:rgb(242, 242, 242)
     }
+    .display-h{
+      display: none;
+    }
   </style>
   <script>
     window.csrf = '{{ csrf_token() }}';
@@ -22,6 +25,9 @@
     <div id="app">
         <router-view :key="$route.fullPath"></router-view>
         <notify :data='@json(session('notify'))' />
+    </div>
+    <div class="display-h">
+      <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
     </div>
   <script src="/js/app.js"></script>
 </body>

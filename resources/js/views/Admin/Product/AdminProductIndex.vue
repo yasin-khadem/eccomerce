@@ -14,7 +14,7 @@
     </header>
     <h5 class="mb-2 ml-3">جستجو</h5>
     <div class="col-md-6 d-flex flex-row mb-3 search-input">
-      <base-input name="search" v-model="form.search"></base-input>
+      <base-input name="search" placeholder="براساس کد ، نام و توضیحات محصول" v-model="form.search"></base-input>
       <base-btn
         :loading="searchLoading"
         @click="searchProduct"

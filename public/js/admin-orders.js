@@ -634,7 +634,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(order.product_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.product_code))]),
+                _c("td", [_vm._v(_vm._s(order.display_code))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(order.address))]),
                 _vm._v(" "),

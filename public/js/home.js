@@ -50,6 +50,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Footer"
 });
@@ -301,7 +318,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.about-us[data-v-61a7c374]{\n  color: rgb(50, 180, 255);\n}\n", ""]);
+exports.push([module.i, "\n.about-us[data-v-61a7c374] {\r\n  color: rgb(50, 180, 255);\n}\n.zarinpal[data-v-61a7c374] {\r\n  margin: auto;\n}\n.zarinpal img[data-v-61a7c374] {\r\n  width: 90px;\n}\r\n", ""]);
 
 // exports
 
@@ -320,7 +337,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-63cd6604]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-63cd6604] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.search-btn[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.bg-carousel[data-v-63cd6604] {\r\n  background-color:#eee;\n}\n#prev-icon[data-v-63cd6604] {\r\n  color: #0276fd !important;\n}\n.footer-style[data-v-63cd6604]{\r\n  margin-bottom: 0;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-63cd6604]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-63cd6604] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.search-btn[data-v-63cd6604] {\r\n  background-color: #0276fd;\n}\n.bg-carousel[data-v-63cd6604] {\r\n  background-color: #eee;\n}\n#prev-icon[data-v-63cd6604] {\r\n  color: #0276fd !important;\n}\n.footer-style[data-v-63cd6604] {\r\n  margin-bottom: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -405,12 +422,12 @@ var render = function() {
   return _c("div", { staticClass: "mt-5" }, [
     _c("div", { staticClass: "footer-top bg-dark text-white" }, [
       _c("div", { staticClass: "row container" }, [
-        _c("div", { staticClass: "col-md-4 col-lg-4 footer-about my-3" }, [
+        _c("div", { staticClass: "col-md-6 col-lg-3 footer-about my-3" }, [
           _c("h4", [_vm._v("درباره ما")]),
           _vm._v(" "),
           _c("p", [
             _vm._v(
-              "\n            We are a young company always looking for new and creative ideas\n            to help you with our products in your everyday work.\n          "
+              "\n          گروه هنری دروان جم تلاش دارد با معرفی محصولات هنری اصیل و دست ساز در\n          راستای توسعه و ترویج هنر سنتی و مدرن با ارائه دست سازه های زیبا در\n          جهت رضایت خریدار گام بردارد...\n        "
             )
           ]),
           _vm._v(" "),
@@ -432,7 +449,9 @@ var render = function() {
         _vm._v(" "),
         _vm._m(0),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2)
       ])
     ])
   ])
@@ -442,16 +461,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 col-lg-3 my-3 footer-social" }, [
+    return _c("div", { staticClass: "col-md-6 col-lg-3 my-3 footer-social" }, [
       _c("h4", [_vm._v("مارا دنبال کنید")]),
       _vm._v(" "),
       _c("div", { staticClass: "mt-3" }, [
         _c("div", { staticClass: "d-flex justify-content-start" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fab fa-instagram fa-2x px-3" })
-          ]),
+          _c(
+            "a",
+            { attrs: { href: "https://www.instagram.com/dorvangem/?hl=en" } },
+            [_c("i", { staticClass: "fab fa-instagram fa-2x px-3" })]
+          ),
           _vm._v(" "),
-          _c("a", { attrs: { href: "#" } }, [
+          _c("a", { attrs: { href: "https://t.me/dorvangem" } }, [
             _c("i", { staticClass: "fab fa-telegram fa-2x px-3" })
           ])
         ])
@@ -462,12 +483,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 col-lg-4 my-3 footer-contact" }, [
+    return _c("div", { staticClass: "col-md-6 col-lg-3 my-3 zarinpal" }, [
+      _c("h4", [_vm._v("پرداخت امن با نماد اعتماد")]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "javascript:showZPTrust();",
+            title: "دروازه پرداخت معتبر"
+          }
+        },
+        [
+          _c("img", {
+            attrs: {
+              src: "https://cdn.zarinpal.com/badges/trustLogo/1.svg",
+              border: "0",
+              alt: "دروازه پرداخت معتبر"
+            }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 col-lg-3 my-3 footer-contact" }, [
       _c("h4", [_vm._v("ارتباط با ما")]),
       _vm._v(" "),
       _c("p", [
         _c("i", { staticClass: "fas fa-map-marker-alt fa-2x" }),
-        _vm._v(" Via Rossini 10, 10136 Turin\n            Italy\n          ")
+        _vm._v(" Via Rossini 10, 10136\n          Turin Italy\n        ")
       ]),
       _vm._v(" "),
       _c("p", [
@@ -477,7 +525,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _c("i", { staticClass: "fas fa-envelope fa-2x" }),
-        _vm._v(" Email:\n            "),
+        _vm._v(" Email:\n          "),
         _c("a", { attrs: { href: "#" } }, [_vm._v("hello@domain.com")])
       ]),
       _vm._v(" "),
@@ -528,7 +576,10 @@ var render = function() {
                 { staticClass: "d-flex flex-row" },
                 [
                   _c("base-input", {
-                    attrs: { name: "search", placeholder: "جست و جو" },
+                    attrs: {
+                      name: "search",
+                      placeholder: "محصول مورد نظر شما"
+                    },
                     model: {
                       value: _vm.form.search,
                       callback: function($$v) {

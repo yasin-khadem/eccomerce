@@ -156,7 +156,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({})
+      form: new vform__WEBPACK_IMPORTED_MODULE_0__["Form"]({
+        name: null,
+        slug: null
+      })
     };
   },
   created: function created() {
@@ -664,7 +667,7 @@ var render = function() {
           { staticClass: "col-md-6 d-flex flex-row mb-3 search-input" },
           [
             _c("base-input", {
-              attrs: { name: "search" },
+              attrs: { name: "search", placeholder: "براساس نام محصول" },
               model: {
                 value: _vm.form.search,
                 callback: function($$v) {

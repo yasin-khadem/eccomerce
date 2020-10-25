@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|string',
                 'description' => 'required|string',
-                'code' => 'required|numeric',
+                'code' => 'required|string',
                 // 'image'=>'required|string',
                 'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
@@ -38,7 +38,7 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|string',
                 'description' => 'required|string',
-                'code' => 'required|numeric',
+                'code' => 'required|string',
                 // 'image'=>'required|string',
                 'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',

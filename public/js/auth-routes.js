@@ -121,6 +121,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Register",
@@ -141,10 +153,17 @@ __webpack_require__.r(__webpack_exports__);
     register: function register() {
       var _this = this;
 
-      this.$store.dispatch('auth/register', this.form).then(function () {
-        _this.$router.push({
-          name: 'home'
-        });
+      this.$store.dispatch("auth/register", this.form).then(function () {
+        swal.message("ثبت نام انجام شد");
+        var nextUrl = localStorage.getItem("nextUrl");
+
+        if (nextUrl) {
+          window.location.href = nextUrl;
+        } else {
+          _this.$router.push({
+            name: "home"
+          });
+        }
       });
     }
   }
@@ -284,6 +303,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Login",
@@ -303,10 +333,17 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      this.$store.dispatch('auth/login', this.form).then(function () {
-        _this.$router.push({
-          name: 'home'
-        });
+      this.$store.dispatch("auth/login", this.form).then(function () {
+        swal.message('شما وارد شدید');
+        var nextUrl = localStorage.getItem("nextUrl");
+
+        if (nextUrl) {
+          window.location.href = nextUrl;
+        } else {
+          _this.$router.push({
+            name: "home"
+          });
+        }
       });
     }
   }
@@ -345,7 +382,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width {\r\n  max-width: 360px;\n}\n.mr-top{\r\n  margin-top: 1rem;\n}\r\n", ""]);
+exports.push([module.i, "\n.login-width {\r\n  max-width: 360px;\n}\n.mr-top {\r\n  margin-top: 1rem;\n}\r\n", ""]);
 
 // exports
 
@@ -383,7 +420,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\n.register-link[data-v-295e81a1]{\r\n  color:  #0276fd;\n}\n.forget-password-link[data-v-295e81a1]{\r\n  color: #0062d1;\n}\r\n\r\n\r\n\r\n\r\n", ""]);
+exports.push([module.i, "\n.login-width[data-v-295e81a1] {\r\n  max-width: 360px;\n}\n.register-link[data-v-295e81a1] {\r\n  color: #0276fd;\n}\n.forget-password-link[data-v-295e81a1] {\r\n  color: #0062d1;\n}\r\n", ""]);
 
 // exports
 
@@ -611,7 +648,7 @@ var render = function() {
     "form",
     {
       staticClass:
-        "d-flex flex-column align-items-center mt-5 login-width mx-auto  py-2 container",
+        "d-flex flex-column align-items-center mt-5 login-width mx-auto py-2 container",
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -859,11 +896,7 @@ var render = function() {
           staticClass: "register-link my-2",
           attrs: { to: { name: "auth", params: { url: "register" } } }
         },
-        [
-          _c("strong", [
-            _vm._v("\n      ثبت نام نکرده اید؟ اینجا کلیک کنید\n      ")
-          ])
-        ]
+        [_c("strong", [_vm._v(" ثبت نام نکرده اید؟ اینجا کلیک کنید ")])]
       ),
       _vm._v(" "),
       _c(

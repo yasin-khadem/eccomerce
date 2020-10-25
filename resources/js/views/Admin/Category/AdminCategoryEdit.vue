@@ -35,7 +35,10 @@ export default {
   },
   data() {
     return {
-      form: new Form({}),
+      form: new Form({
+        name: null,
+        slug: null
+      }),
     };
   },
   created() {

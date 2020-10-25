@@ -144,7 +144,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     changeProfile: function changeProfile() {
-      this.$store.dispatch('auth/profile', this.form);
+      var _this = this;
+
+      this.$store.dispatch('auth/profile', this.form).then(function () {
+        swal.message('تغییرات ثبت شد');
+
+        _this.$router.push({
+          name: 'home'
+        });
+      });
     },
     changeProfileSrc: function changeProfileSrc(event) {
       this.form.profile_name = event;

@@ -2,9 +2,9 @@
   <div class="w-100" id="bg-navbar">
     <div class="container">
       <nav class="row navbar navbar-expand-lg navbar-dark bg-dark" dir="ltr">
-        <router-link class="navbar-brand" :to="{ name: 'home' }"
-          >فروشگاه</router-link
-        >
+        <router-link class="navbar-brand mt-1" :to="{ name: 'home' }"
+          ><h4><strong>DorvanGem</strong></h4>
+          </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -17,8 +17,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="mt-2 navbar-nav mr-auto">
+        <div class="collapse navbar-collapse mb-1" id="navbarSupportedContent">
+          <ul class="mt-2 navbar-nav mr-auto ">
             <template v-if="isLoggedIn">
              
               <template v-if="isLoggedIn && !user.is_admin">

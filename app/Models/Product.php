@@ -17,7 +17,7 @@ class Product extends Model
 
 
     protected $guarded = ['slug'];
-    protected $appends = ['related_images','is_exist', 'selectedTags', 'image_src', 'url_path'];
+    protected $appends = ['display_code', 'related_images', 'is_exist', 'selectedTags', 'image_src', 'url_path'];
 
     protected $SortingOptions = [
         'id' => 'id',
@@ -40,7 +40,7 @@ class Product extends Model
         'newest' => 'desc',
         'oldest' => 'asc'
     ];
-    public $exists = ["available"=> "available", "unavailable"=> "unavailable", "both"=>"both"];
+    public $exists = ["available" => "available", "unavailable" => "unavailable", "both" => "both"];
 
     public function sluggable()
     {
@@ -58,12 +58,21 @@ class Product extends Model
     {
         return $this->belongsToMany(Category::class);
     }
-    public function images(){
+    public function images()
+    {
         return $this->hasMany(Image::class);
     }
+    public function getDisplayCodeAttribute()
+    {
+        $code = $this->code . "";
+        for ($i = 0; $i < 4 - strlen($code); $i++){
+            $code = "0" . $code;
+            return $code;
+        }
+    }
     public function getRelatedImagesAttribute()
-    {   
-        $images = Image::where('product_code',$this->code)->get();
+    {
+        $images = Image::where('product_code', $this->code)->get();
         return $images;
     }
     public function syncCategories(array $categories)

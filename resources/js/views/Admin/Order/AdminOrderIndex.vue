@@ -59,7 +59,7 @@
             <td>{{ order.customer_name }}</td>
             <td>{{ order.payment_id }}</td>
             <td>{{ order.product_name }}</td>
-            <td>{{ order.product_code }}</td>
+            <td>{{ order.display_code }}</td>
             <td>{{ order.address }}</td>
             <td>{{ order.mobile_number }}</td>
             <td>{{ order.phone_number }}</td>

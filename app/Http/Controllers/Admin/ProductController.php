@@ -40,7 +40,19 @@ class ProductController extends Controller
         $this->createOrUpdate($request, $product);
         return response(['ok'], 200);
     }
+    public function existupdate(Request $request, Product $product)
+    {
+        if($request->exist === 1){
+            $exist = true;
+        }else{
+            $exist = false;
+        }
+        $product->update([
+            'exist' => !$exist
+        ]);
+        return response(['ok'], 200);
 
+    }
     public function destroy(Product $product)
     {
         $this->product->removeFromPublic($product->image_src);

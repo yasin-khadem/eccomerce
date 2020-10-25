@@ -22,7 +22,8 @@ class ImageGalleryController extends Controller
 
 
     public function store(GalleryRequest $request)
-    {
+    {   
+        dump($request->product_code);
         $product = Product::firstWhere('code', $request->product_code);
         if ($product) {
             $data['product_id'] = $product->id;

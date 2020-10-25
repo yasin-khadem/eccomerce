@@ -13,7 +13,7 @@ class UserController extends Controller
     
     public function index()
     {
-        return new UserCollection(User::searchByUrl()->paginate(10));
+        return new UserCollection(User::orderBy('id','desc')->searchByUrl()->paginate(10));
     }
 
     /**

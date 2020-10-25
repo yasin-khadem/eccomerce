@@ -26,6 +26,7 @@ Route::group([
     Route::apiResource('categories', 'CategoryController');
     Route::apiResource('image', 'ImageGalleryController')->only('index','store','destroy');
     Route::apiResource('product', 'ProductController');
+    Route::patch('product-update/{product}', 'ProductController@existupdate');
     Route::apiResource('order', 'OrderController');
     Route::apiResource('comment', 'CommentController')->only('index', 'update', 'destroy');
     Route::get('payment', 'PaymentController@index');

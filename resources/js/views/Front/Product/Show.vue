@@ -55,7 +55,7 @@
     <!-- محل کامنت -->
 
     <div class="d-flex justify-content-center mt-5">
-      <h3 v-if="showTitle">محصولات مربوطه</h3>
+      <h3 v-if="showTitle">محصولات مشابه</h3>
     </div>
     <hr />
     <related-products
@@ -109,6 +109,7 @@ export default {
     },
   },
   created() {
+    localStorage.removeItem('nextUrl');
     axios
       .get(`/api/product/${this.slug}`)
       .then(({ data }) => {

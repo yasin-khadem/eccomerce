@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card width-80 mx-auto">
     <div class="row">
       <div class="col-md-4">
         <template v-if="ShowCarousel">
@@ -95,20 +95,28 @@
       <div class="col-md-8">
         <div class="card-block p-3">
           <h4 class="card-title">نام محصول: {{ product.name }}</h4>
-          <p class="card-text">
+          <div class="card-text">
+          <div>
             <strong> کد: </strong>
             {{ product.code }}
-          </p>
-          <p class="card-text">
+          </div>
+            <div class="mt-1">
             <strong> توضیحات: </strong>
             {{ product.description }}
-          </p>
-          <h6 class="card-title">
+            </div>
+        
+          <div class="my-2">
+          <h6>
             <strong> قیمت: {{ formatToman(parseInt(product.price)) }}</strong>
           </h6>
+          </div>
           <h6>
-            <strong>دسته بندی:</strong>
+            <strong>
+            برچسب ها:
+            </strong>
+            (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)
           </h6>
+          </div>
           <div class="row ml-3">
             <router-link
               v-for="category in product.categories"
@@ -174,6 +182,7 @@ export default {
   },
   methods: {
     redirectToLogin(){
+      localStorage.setItem('nextUrl', window.location.origin + '/product/show/' + this.product.slug )
       swal.message('برای سفارش باید وارد سایت شوید','warning',2700)
       this.$router.push({name: 'auth', params:{url:'login'}})
     },
@@ -223,7 +232,7 @@ export default {
 .slider-background-prev {
   height: 30px;
   width: 30px;
-  padding: 5px 3px 6px 4px;
+  padding: 5px 3px 6px 2px;
   background-color: black;
   border-radius: 50%;
 }
@@ -233,5 +242,8 @@ export default {
   padding: 4px 3px 6px 6px;
   background-color: black;
   border-radius: 50%;
+}
+.width-80{
+  width: 85%;
 }
 </style>

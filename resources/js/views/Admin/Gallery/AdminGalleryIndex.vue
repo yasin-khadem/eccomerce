@@ -16,7 +16,7 @@
     <div class="mt-1 mb-2">
       <h4>جست و جو</h4>
       <div class="col-md-6 d-flex flex-row mb-3 search-input">
-        <base-input name="search" v-model="form.search"></base-input>
+        <base-input name="search" placeholder="جست و جو کد محصول" v-model="form.search"></base-input>
         <base-btn :loading="searchLoading" @click="searchImage" class="ml-2 mb-2">
           <i class="fa fa-search"></i>
         </base-btn>

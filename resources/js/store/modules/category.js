@@ -18,7 +18,7 @@ export const actions = {
 });
     },
     getCategory({ commit },payload) {
-        return axios.get(`/api/admin/categories?page=${payload}`);
+        return axios.get(`/api/admin/categories/${payload}`);
     },
     updateCategory({ commit }, payload) {
         return payload.patch(`/api/admin/categories/${payload.slug}`);

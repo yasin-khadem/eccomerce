@@ -67,7 +67,6 @@ export const actions = {
                 return objectToFormData(data);
             }]
         })
-        // return payload.post('/api/admin/product')
     },
 
     updateProduct({ commit }, payload) {
