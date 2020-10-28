@@ -290,7 +290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 2px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.width-80[data-v-f1a2d284] {\r\n  width: 85%;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 2px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.width-80[data-v-f1a2d284] {\r\n  width: 85%;\n}\n.margin-badge[data-v-f1a2d284]{\r\n  margin: 1px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -574,7 +574,7 @@ var render = function() {
                   "router-link",
                   {
                     key: category.slug,
-                    staticClass: "mx-1",
+                    staticClass: "mx-1 margin-badge",
                     attrs: {
                       to: {
                         name: "home-tagged",

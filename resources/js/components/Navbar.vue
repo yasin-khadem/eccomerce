@@ -19,6 +19,22 @@
 
         <div class="collapse navbar-collapse mb-1" id="navbarSupportedContent">
           <ul class="mt-2 navbar-nav mr-auto ">
+          <template v-if="!isLoggedIn">
+                  <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'home' }">
+                  <template class="mr-2">صفحه اصلی</template>
+                  <i class="fas fa-home mx-2"></i>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <div class="mx-auto">
+                  <router-link class="nav-link" :to="{ name: 'about-us' }">
+                    <template class="mr-2">درباره ما</template>
+                    <i class="fas fa-info-circle mx-2" aria-hidden="true"></i>
+                  </router-link>
+                </div>
+                </li>
+          </template>
             <template v-if="isLoggedIn">
              
               <template v-if="isLoggedIn && !user.is_admin">
@@ -187,6 +203,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout").then(() => {
+        swal.message('از حساب خود خارج شدید','warning')
         this.$router.push({ name: "home" });
       });
     },

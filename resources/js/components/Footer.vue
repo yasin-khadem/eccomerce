@@ -40,16 +40,15 @@
         </div>
         <div class="col-md-6 col-lg-3 my-3 footer-contact">
           <h4>ارتباط با ما</h4>
+         
+          <p><i class="fas fa-phone fa-2x"></i> تماس: 09122604129</p>
           <p>
-            <i class="fas fa-map-marker-alt fa-2x"></i> Via Rossini 10, 10136
-            Turin Italy
+            <i class="fas fa-envelope fa-2x"></i> ایمیل:
+            <a>dorvangem@gmail.com</a>
           </p>
-          <p><i class="fas fa-phone fa-2x"></i> Phone: (0039) 333 12 68 347</p>
-          <p>
-            <i class="fas fa-envelope fa-2x"></i> Email:
-            <a href="#">hello@domain.com</a>
+           <p>
+            <i class="fas fa-map-marker-alt fa-2x"></i> ایران ، البرز ، کرج
           </p>
-          <p><i class="fab fa-skype fa-2x"></i> Skype: you_online</p>
         </div>
       </div>
     </div>

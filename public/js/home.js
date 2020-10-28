@@ -66,7 +66,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Footer"
 });
@@ -515,24 +514,19 @@ var staticRenderFns = [
       _c("h4", [_vm._v("ارتباط با ما")]),
       _vm._v(" "),
       _c("p", [
-        _c("i", { staticClass: "fas fa-map-marker-alt fa-2x" }),
-        _vm._v(" Via Rossini 10, 10136\n          Turin Italy\n        ")
-      ]),
-      _vm._v(" "),
-      _c("p", [
         _c("i", { staticClass: "fas fa-phone fa-2x" }),
-        _vm._v(" Phone: (0039) 333 12 68 347")
+        _vm._v(" تماس: 09122604129")
       ]),
       _vm._v(" "),
       _c("p", [
         _c("i", { staticClass: "fas fa-envelope fa-2x" }),
-        _vm._v(" Email:\n          "),
-        _c("a", { attrs: { href: "#" } }, [_vm._v("hello@domain.com")])
+        _vm._v(" ایمیل:\n          "),
+        _c("a", [_vm._v("dorvangem@gmail.com")])
       ]),
       _vm._v(" "),
       _c("p", [
-        _c("i", { staticClass: "fab fa-skype fa-2x" }),
-        _vm._v(" Skype: you_online")
+        _c("i", { staticClass: "fas fa-map-marker-alt fa-2x" }),
+        _vm._v(" ایران ، البرز ، کرج\n        ")
       ])
     ])
   }

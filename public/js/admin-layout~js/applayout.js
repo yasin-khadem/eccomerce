@@ -185,6 +185,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -204,6 +220,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.$store.dispatch("auth/logout").then(function () {
+        swal.message('از حساب خود خارج شدید', 'warning');
+
         _this.$router.push({
           name: "home"
         });
@@ -309,6 +327,57 @@ var render = function() {
                 "ul",
                 { staticClass: "mt-2 navbar-nav mr-auto " },
                 [
+                  !_vm.isLoggedIn
+                    ? [
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: { name: "home" } }
+                              },
+                              [
+                                [_vm._v("صفحه اصلی")],
+                                _vm._v(" "),
+                                _c("i", { staticClass: "fas fa-home mx-2" })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "div",
+                            { staticClass: "mx-auto" },
+                            [
+                              _c(
+                                "router-link",
+                                {
+                                  staticClass: "nav-link",
+                                  attrs: { to: { name: "about-us" } }
+                                },
+                                [
+                                  [_vm._v("درباره ما")],
+                                  _vm._v(" "),
+                                  _c("i", {
+                                    staticClass: "fas fa-info-circle mx-2",
+                                    attrs: { "aria-hidden": "true" }
+                                  })
+                                ],
+                                2
+                              )
+                            ],
+                            1
+                          )
+                        ])
+                      ]
+                    : _vm._e(),
+                  _vm._v(" "),
                   _vm.isLoggedIn
                     ? [
                         _vm.isLoggedIn && !_vm.user.is_admin

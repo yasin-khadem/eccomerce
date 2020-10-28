@@ -121,7 +121,7 @@
             <router-link
               v-for="category in product.categories"
               :key="category.slug"
-              class="mx-1"
+              class="mx-1 margin-badge"
               :to="{ name: 'home-tagged', params: { slug: category.slug } }"
             >
               <a class="badge badge-tags">{{ category.name }}</a>
@@ -250,5 +250,8 @@ export default {
 }
 .width-80 {
   width: 85%;
+}
+.margin-badge{
+  margin: 1px 0;
 }
 </style>
