@@ -58,7 +58,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "AboutUs",
+  created: function created() {
+    localStorage.removeItem('nextUrl');
+  }
+});
 
 /***/ }),
 
@@ -133,11 +138,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-2 col-md-6" }, [
-      _c("div", { staticClass: "pt-2 pr-4 pl-2" }, [
+    return _c("div", { staticClass: "container mt-2 col-md-6 " }, [
+      _c("div", { staticClass: "pt-2 pr-4 pl-2  alert alert-secondary mt-3" }, [
         _c("div", { staticClass: "container" }, [
           _c("ul", [
-            _c("li", { staticClass: "my-3" }, [
+            _c("li", { staticClass: "mb-3 mt-1" }, [
               _c("p", [
                 _c("strong", [
                   _vm._v(

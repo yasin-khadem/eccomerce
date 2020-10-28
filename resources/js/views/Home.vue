@@ -157,6 +157,7 @@ export default {
     },
   },
   created() {
+    localStorage.removeItem("nextUrl");
     let columns = ["expensive", "cheapest", "newest", "oldest"];
     let exists = ["available", "unavailable", "both"];
     let sortBy = this.$route.query.sortBy;

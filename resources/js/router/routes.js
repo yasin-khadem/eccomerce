@@ -21,7 +21,7 @@ const AdminOrderIndex = () => import(/* webpackChunkName: "js/admin-orders" */ '
 const AdminCommentIndex = () => import(/* webpackChunkName: "js/admin-comments" */ '../views/Admin/Comment/AdminCommentIndex.vue');
 const AdminPaymentIndex = () => import(/* webpackChunkName: "js/admin-payments" */ '../views/Admin/Payment/AdminPaymentIndex.vue');
 const Purchased = () => import(/* webpackChunkName: "js/Purchased" */ '../views/dashboard/Purchased.vue');
-const Profile = () => import(/* webpackChunkName: "js/profile" */ '../views/dashboard/Profile.vue');
+const ProfileShow = () => import(/* webpackChunkName: "js/profile-show" */ '../views/dashboard/ProfileShow.vue');
 const HomeTagged = () => import(/* webpackChunkName: "js/home-tagged" */ '../views/Front/HomeTagged.vue');
 const AboutUs = () => import(/* webpackChunkName: "js/aboutus" */ '../views/Front/AboutUs.vue');
 const Show = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/Show.vue');
@@ -62,9 +62,9 @@ export default [
                 name: 'product-show-guest',
                 component: ShowGuest,
                 props: true,
-                meta: {
-                    middleware: [guestShowPage]
-                },
+                // meta: {
+                //     middleware: [guestShowPage]
+                // },
                 children: [
                     {
                         path: ':slug',
@@ -77,9 +77,9 @@ export default [
                 name: 'product-show',
                 component: Show,
                 props: true,
-                meta: {
-                    middleware: [auth]
-                },
+                // meta: {
+                //     middleware: [auth]
+                // },
                 children: [
                     {
                         path: ':slug',
@@ -99,10 +99,9 @@ export default [
                 }
             },
             {
-                path: 'profile/:url',
+                path: 'profile-info',
                 name: 'profile',
-                component: Profile,
-                props: true,
+                component: ProfileShow,
                 meta: {
                     middleware: [
                         auth

@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-2 col-md-6">
-    <div class="pt-2 pr-4 pl-2">
+  <div class="container mt-2 col-md-6 ">
+    <div class="pt-2 pr-4 pl-2  alert alert-secondary mt-3">
       <div class="container">
         <ul>
-          <li class="my-3">
+          <li class="mb-3 mt-1">
             <p>
               <strong>
                 گروه هنری دروان جم تلاش دارد با معرفی محصولات هنری اصیل و دست
@@ -48,7 +48,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name:"AboutUs",
+  created(){
+        localStorage.removeItem('nextUrl');
+  }
+};
 </script>
 
 <style scoped>

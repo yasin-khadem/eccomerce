@@ -2,7 +2,7 @@
   <div class="container">
     <header class="my-3">
       <div class="d-flex justify-content-center">
-        <h5>لیست خرید های شما</h5>
+        <h4 class="alert alert-dark">لیست خرید های شما</h4>
       </div>
     </header>
     <template v-if="showTable">
@@ -70,7 +70,7 @@ export default {
       axios.get(`/api/purchased?page=${page}`).then(({ data }) => {
         
           this.purchased = data;
-          window.history.pushState(
+          window.history.replaceState(
             "purchased",
             "Purchased",
             `/purchased/index?page=${page}`

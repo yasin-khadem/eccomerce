@@ -17,7 +17,7 @@ class Product extends Model
 
 
     protected $guarded = ['slug'];
-    protected $appends = ['display_code', 'related_images', 'is_exist', 'selectedTags', 'image_src', 'url_path'];
+    protected $appends = ['related_images', 'is_exist', 'selectedTags', 'image_src', 'url_path'];
 
     protected $SortingOptions = [
         'id' => 'id',
@@ -61,14 +61,6 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(Image::class);
-    }
-    public function getDisplayCodeAttribute()
-    {
-        $code = $this->code . "";
-        for ($i = 0; $i < 4 - strlen($code); $i++){
-            $code = "0" . $code;
-            return $code;
-        }
     }
     public function getRelatedImagesAttribute()
     {

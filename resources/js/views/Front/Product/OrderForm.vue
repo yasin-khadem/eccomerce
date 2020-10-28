@@ -69,7 +69,8 @@
             </form>
           </template>
         </div>
-        <ul class="mt-3">
+        <div class="alert alert-danger mt-3">
+        <ul>
           <li class="text-danger">
             <strong> لطفا کد پستی و آدرس را با دقت وارد کنید </strong>
           </li>
@@ -80,6 +81,7 @@
             >
           </li>
         </ul>
+        </div>
       </div>
     </div>
   </div>

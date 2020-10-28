@@ -98,6 +98,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "OrderForm",
@@ -255,6 +257,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 
@@ -280,7 +285,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     CanUserDelete: function CanUserDelete() {
       return this.comment.user_id === this.user.id || this.user.is_admin === 1;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])('auth', ['user'])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])("auth", ["user"])),
   methods: {
     showTextArea: function showTextArea() {
       this.isReply = !this.isReply;
@@ -294,8 +299,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.replyComment.post("/api/comment").then(function (_ref) {
-        var dat = _ref.dat;
-        swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+        var data = _ref.data;
+        swal.message("پس از تایید ادمین ثبت میشود", "info", 3000);
         _this.replyComment = null;
         _this.isReply = !_this.isReply;
       })["catch"](function (e) {
@@ -303,7 +308,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     deleteComment: function deleteComment() {
-      this.$emit('delete-comment', this.comment);
+      this.$emit("delete-comment", this.comment);
       axios["delete"]("/api/comment/".concat(this.comment.id));
     },
     hideComment: function hideComment(comment) {
@@ -443,6 +448,13 @@ __webpack_require__.r(__webpack_exports__);
       return _.isEmpty(this.product.confirmed_comments) ? false : true;
     }
   },
+  beforeCreate: function beforeCreate() {
+    var user = localStorage.getItem('user');
+
+    if (!user) {
+      window.location.href = window.location.origin + "/product/show-guest/" + this.$route.params.slug;
+    }
+  },
   created: function created() {
     var _this = this;
 
@@ -469,7 +481,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.comment.post("/api/comment").then(function (_ref3) {
         var data = _ref3.data;
-        swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+        swal.message("پس از تایید ادمین ثبت میشود", "info", 3000);
         _this2.comment.body = null;
       })["catch"](function (e) {
         swal.message("نظر شما ارسال نشد", "error");
@@ -515,7 +527,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.userComment[data-v-427c2615] {\r\n  overflow: auto;\n}\n.cursor[data-v-427c2615] {\r\n  cursor: pointer;\n}\n.d-name[data-v-427c2615]{\r\n    overflow: hidden;\n}\r\n", ""]);
+exports.push([module.i, "\n.userComment[data-v-427c2615] {\r\n  overflow: auto;\n}\n.cursor[data-v-427c2615] {\r\n  cursor: pointer;\n}\n.d-name[data-v-427c2615] {\r\n  overflow: hidden;\n}\r\n", ""]);
 
 // exports
 
@@ -820,16 +832,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "mt-3" }, [
-      _c("li", { staticClass: "text-danger" }, [
-        _c("strong", [_vm._v(" لطفا کد پستی و آدرس را با دقت وارد کنید ")])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "text-danger" }, [
-        _c("strong", [
-          _vm._v(
-            "بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک\n            کردن روی آن به صفحه ی پرداخت وارد می شوید"
-          )
+    return _c("div", { staticClass: "alert alert-danger mt-3" }, [
+      _c("ul", [
+        _c("li", { staticClass: "text-danger" }, [
+          _c("strong", [_vm._v(" لطفا کد پستی و آدرس را با دقت وارد کنید ")])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "text-danger" }, [
+          _c("strong", [
+            _vm._v(
+              "بعد از تکمیل فرم و ثبت اطلاعات ، دکمه خرید ظاهر میشود و با کلیک\n            کردن روی آن به صفحه ی پرداخت وارد می شوید"
+            )
+          ])
         ])
       ])
     ])

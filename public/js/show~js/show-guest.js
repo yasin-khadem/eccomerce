@@ -198,12 +198,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   }),
   methods: {
     redirectToLogin: function redirectToLogin() {
-      localStorage.setItem('nextUrl', window.location.origin + '/product/show/' + this.product.slug);
-      swal.message('برای سفارش باید وارد سایت شوید', 'warning', 2700);
+      localStorage.setItem("nextUrl", window.location.origin + "/product/show/" + this.product.slug);
+      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2700);
       this.$router.push({
-        name: 'auth',
+        name: "auth",
         params: {
-          url: 'login'
+          url: "login"
         }
       });
     },
@@ -211,10 +211,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.orderForm = true;
+      window.scrollTo(0, 0);
       this.$emit("setOrderForm", true);
 
       if ($(document).width() > 750) {
-        window.scrollTo(0, 500);
+        window.scrollTo(0, 400);
       } else {
         swal.confirm("آیا مایل به ثبت سفارش هستید", "info", "برای ثبت سفارش تایید را بزنید").then(function (result) {
           if (result.value) {
@@ -289,7 +290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 2px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.width-80[data-v-f1a2d284]{\r\n  width: 85%;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-f1a2d284] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.order-card[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  padding: 0.35rem 0.75rem 0.15rem 0.75rem;\n}\n.badge-tags[data-v-f1a2d284] {\r\n  background-color: #9c27b0;\r\n  color: #fff;\r\n  font-weight: 300;\r\n  font-size: 15px;\n}\n.slider-background-prev[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 5px 3px 6px 2px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.slider-background-next[data-v-f1a2d284] {\r\n  height: 30px;\r\n  width: 30px;\r\n  padding: 4px 3px 6px 6px;\r\n  background-color: black;\r\n  border-radius: 50%;\n}\n.width-80[data-v-f1a2d284] {\r\n  width: 85%;\n}\r\n", ""]);
 
 // exports
 
@@ -537,13 +538,15 @@ var render = function() {
             _c("div", { staticClass: "card-text" }, [
               _c("div", [
                 _c("strong", [_vm._v(" کد: ")]),
-                _vm._v("\n          " + _vm._s(_vm.product.code) + "\n        ")
+                _vm._v(
+                  "\n            " + _vm._s(_vm.product.code) + "\n          "
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "mt-1" }, [
                 _c("strong", [_vm._v(" توضیحات: ")]),
                 _vm._v(
-                  "\n          " +
+                  "\n            " +
                     _vm._s(_vm.product.description) +
                     "\n          "
                 )
@@ -553,7 +556,7 @@ var render = function() {
                 _c("h6", [
                   _c("strong", [
                     _vm._v(
-                      " قیمت: " +
+                      "\n                قیمت: " +
                         _vm._s(_vm.formatToman(parseInt(_vm.product.price)))
                     )
                   ])
@@ -690,9 +693,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h6", [
-      _c("strong", [_vm._v("\n          برچسب ها:\n          ")]),
+      _c("strong", [_vm._v(" برچسب ها: ")]),
       _vm._v(
-        "\n          (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)\n        "
+        "\n            (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)\n          "
       )
     ])
   }

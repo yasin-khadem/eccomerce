@@ -243,6 +243,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1360,30 +1375,44 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("base-input", {
-                attrs: { name: "description", label: "توضیحات" },
-                model: {
-                  value: _vm.form.description,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "description", $$v)
-                  },
-                  expression: "form.description"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary my-2",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.changeExisting($event)
-                    }
-                  }
-                },
-                [_vm._v("\n          تغییر موجودیت\n        ")]
-              ),
+              _c("div", { staticClass: "form-groupe" }, [
+                _c("label", { attrs: { for: "description" } }, [
+                  _vm._v("توضیحات")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group bmd-form-group" },
+                  [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.description,
+                          expression: "form.description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "description", id: "description" },
+                      domProps: { value: _vm.form.description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "description", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("has-error", {
+                      attrs: { form: _vm.form, field: "description" }
+                    })
+                  ],
+                  1
+                )
+              ]),
               _vm._v(" "),
               _c("base-input", {
                 attrs: { name: "price", label: "قیمت" },
@@ -1440,9 +1469,30 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "base-btn",
-                { staticClass: "mt-3", attrs: { loading: _vm.form.busy } },
-                [_vm._v("ذخیره")]
+                "div",
+                { staticClass: "d-flex justify-content-between" },
+                [
+                  _c(
+                    "base-btn",
+                    { staticClass: "mt-3", attrs: { loading: _vm.form.busy } },
+                    [_vm._v("ذخیره")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary mt-2",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.changeExisting($event)
+                        }
+                      }
+                    },
+                    [_vm._v("\n            تغییر موجودیت\n          ")]
+                  )
+                ],
+                1
               )
             ],
             1

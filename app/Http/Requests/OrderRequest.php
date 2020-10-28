@@ -34,13 +34,13 @@ class OrderRequest extends FormRequest
     {
         return [
             'mobile_number.required' => 'شماره موبایل الزامی است',
-            'mobile_number.min' => 'شماره موبایل 11 رقم است',
-            'mobile_number.max' => 'شماره موبایل 11 رقم است',
+            'mobile_number.min' => 'شماره موبایل باید 11 رقم باشد',
+            'mobile_number.max' => 'شماره موبایل باید 11 رقم باشد',
             'phone_number.required' => 'شماره تماس الزامی است',
             'address.required' => 'آدرس الزامی است',
             'post_code.required' => 'کد پستی الزامی است',
-            'post_code.min' => 'کد پستی 10 رقم می باشد',
-            'post_code.max' => 'کد پستی 10 رقم می باشد',
+            'post_code.min' => 'کد پستی باید 10 رقم باشد',
+            'post_code.max' => 'کد پستی باید 10 رقم باشد',
         ];
     }
 }

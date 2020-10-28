@@ -49,7 +49,14 @@ export default {
       return _.isEmpty(this.product.related_products) ? false : true;
     },
   },
+  beforeCreate(){
+    let user = localStorage.getItem('user');
+    if(user){
+      window.location.href = window.location.origin + "/product/show/" + this.$route.params.slug;
+    }
+  },
   created() {
+        localStorage.removeItem('nextUrl');
     axios
       .get(`/api/product-guest/${this.slug}`)
       .then(({ data }) => {

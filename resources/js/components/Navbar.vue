@@ -31,7 +31,7 @@
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
-                    :to="{ name: 'profile', params: { url: 'show' } }"
+                    :to="{ name: 'profile'}"
                   >
                     <template class="mr-2">پروفایل من</template>
                     <i class="fas fa-user mx-2" aria-hidden="true"></i>
@@ -152,7 +152,7 @@
                 >
                   <router-link
                     class="dropdown-item"
-                    :to="{ name: 'profile', params: { url: 'show' } }"
+                    :to="{ name: 'profile'}"
                   >
                     پروفایل
                   </router-link>

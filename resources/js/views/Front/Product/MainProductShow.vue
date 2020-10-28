@@ -96,26 +96,26 @@
         <div class="card-block p-3">
           <h4 class="card-title">نام محصول: {{ product.name }}</h4>
           <div class="card-text">
-          <div>
-            <strong> کد: </strong>
-            {{ product.code }}
-          </div>
-            <div class="mt-1">
-            <strong> توضیحات: </strong>
-            {{ product.description }}
+            <div>
+              <strong> کد: </strong>
+              {{ product.code }}
             </div>
-        
-          <div class="my-2">
-          <h6>
-            <strong> قیمت: {{ formatToman(parseInt(product.price)) }}</strong>
-          </h6>
-          </div>
-          <h6>
-            <strong>
-            برچسب ها:
-            </strong>
-            (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)
-          </h6>
+            <div class="mt-1">
+              <strong> توضیحات: </strong>
+              {{ product.description }}
+            </div>
+
+            <div class="my-2">
+              <h6>
+                <strong>
+                  قیمت: {{ formatToman(parseInt(product.price)) }}</strong
+                >
+              </h6>
+            </div>
+            <h6>
+              <strong> برچسب ها: </strong>
+              (برای دیدن محصولات مشابه روی برچسب ها کلیک کنید)
+            </h6>
           </div>
           <div class="row ml-3">
             <router-link
@@ -181,16 +181,21 @@ export default {
     },
   },
   methods: {
-    redirectToLogin(){
-      localStorage.setItem('nextUrl', window.location.origin + '/product/show/' + this.product.slug )
-      swal.message('برای سفارش باید وارد سایت شوید','warning',2700)
-      this.$router.push({name: 'auth', params:{url:'login'}})
+    redirectToLogin() {
+      localStorage.setItem(
+        "nextUrl",
+        window.location.origin + "/product/show/" + this.product.slug
+      );
+      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2700);
+      this.$router.push({ name: "auth", params: { url: "login" } });
     },
     showOrderForm() {
       this.orderForm = true;
+      window.scrollTo(0, 0);
+
       this.$emit("setOrderForm", true);
       if ($(document).width() > 750) {
-        window.scrollTo(0, 500);
+        window.scrollTo(0, 400);
       } else {
         swal
           .confirm(
@@ -243,7 +248,7 @@ export default {
   background-color: black;
   border-radius: 50%;
 }
-.width-80{
+.width-80 {
   width: 85%;
 }
 </style>

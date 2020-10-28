@@ -252,6 +252,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }),
   created: function created() {
+    localStorage.removeItem("nextUrl");
     var columns = ["expensive", "cheapest", "newest", "oldest"];
     var exists = ["available", "unavailable", "both"];
     var sortBy = this.$route.query.sortBy;

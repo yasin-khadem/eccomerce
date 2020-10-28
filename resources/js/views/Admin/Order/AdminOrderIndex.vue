@@ -8,7 +8,8 @@
       </div>
 
       <div class="mt-3">
-        <h4>جست و جو</h4>
+        <h4><strong>جست و جو</strong></h4>
+        <h5>(عبارت جست و جو به صورت کامل باید تایپ شود)</h5>
         <div class="col-md-6 d-flex flex-row mb-3 search-input">
           <base-input
             name="search"
@@ -59,7 +60,7 @@
             <td>{{ order.customer_name }}</td>
             <td>{{ order.payment_id }}</td>
             <td>{{ order.product_name }}</td>
-            <td>{{ order.display_code }}</td>
+            <td>{{ order.product_code }}</td>
             <td>{{ order.address }}</td>
             <td>{{ order.mobile_number }}</td>
             <td>{{ order.phone_number }}</td>

@@ -50,6 +50,71 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -65,22 +130,40 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      currentExist: "both",
+      currentSortBy: "",
       formatToman: __webpack_require__(/*! prial */ "./node_modules/prial/index.js").formatToman
     };
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])("product", ["products"])),
   created: function created() {
-    this.fetchProduts(this.$route.query.page);
+    var columns = ["expensive", "cheapest", "newest", "oldest"];
+    var exists = ["available", "unavailable", "both"];
+    var sortBy = this.$route.query.sortBy;
+    this.currentSortBy = columns.includes(sortBy) ? sortBy : "newest";
+    var existing = this.$route.query.existing;
+    this.currentExist = exists.includes(existing) ? existing : "both";
+    this.fetchProducts(this.$route.query.page);
   },
   methods: {
-    fetchProduts: function fetchProduts() {
+    fetchProducts: function fetchProducts() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       var queries = this.$route.query;
       queries.page = page;
-      this.$store.dispatch("product/getTaggedProducts", {
+      queries.existing = this.currentExist;
+      queries.sortBy = this.currentSortBy;
+      return this.$store.dispatch("product/getTaggedProducts", {
         queries: queries,
         params: this.$route.params
       });
+    },
+    onChange: function onChange(event) {
+      this.$route.query.page = 1;
+      this.fetchProducts(this.$route.query.page);
+    },
+    setExisting: function setExisting() {
+      this.$route.query.page = 1;
+      this.fetchProducts(this.$route.query.page);
     }
   }
 });
@@ -99,7 +182,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card[data-v-759b2790]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-759b2790] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-759b2790]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-759b2790]{\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.alert[data-v-759b2790]{\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-759b2790] {\r\n  background-color: #0276fd;\n}\n.btn-custome[data-v-759b2790]{\r\n  background-color: #0276fd;\r\n  color: #fff;\n}\r\n", ""]);
 
 // exports
 
@@ -154,24 +237,179 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
-      { staticClass: "d-flex justify-content-around mt-3" },
+      {
+        staticClass:
+          " mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
+      },
       [
-        _c("h5", { staticClass: " ml-3 my-auto" }, [
-          _c("strong", [
-            _vm._v(" دسته بندی " + _vm._s(this.$route.params.slug) + " ")
+        _c("div", { staticClass: "mx-auto  mt-5" }, [
+          _c("h4", { staticClass: "alert alert-primary" }, [
+            _c("strong", [
+              _vm._v(" دسته بندی " + _vm._s(this.$route.params.slug) + " ")
+            ])
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary mr-3",
-            attrs: { to: { name: "home" } }
-          },
-          [_vm._v("صفحه اصلی")]
-        )
-      ],
-      1
+        _c("div", { staticClass: "mx-auto mt-1" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.currentSortBy,
+                  expression: "currentSortBy"
+                }
+              ],
+              staticClass: "custom-select my-1 mr-sm-2 bg-select text-white",
+              attrs: { dir: "ltr", id: "inlineFormCustomSelectPref" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.currentSortBy = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  function($event) {
+                    $event.preventDefault()
+                    return _vm.onChange($event)
+                  }
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "expensive" } }, [
+                _vm._v("گران ترین")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "cheapest" } }, [
+                _vm._v("ارزان ترین")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "newest" } }, [
+                _vm._v("جدید ترین")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "oldest" } }, [
+                _vm._v("قدیمی ترین")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "d-flex justify-content-around mt-3" }, [
+            _c("div", { staticClass: "radio" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentExist,
+                      expression: "currentExist"
+                    }
+                  ],
+                  staticClass: "mr-2",
+                  attrs: { type: "radio", name: "optradio", value: "both" },
+                  domProps: { checked: _vm._q(_vm.currentExist, "both") },
+                  on: {
+                    change: [
+                      function($event) {
+                        _vm.currentExist = "both"
+                      },
+                      function($event) {
+                        $event.preventDefault()
+                        return _vm.setExisting($event)
+                      }
+                    ]
+                  }
+                }),
+                _c("strong", [_vm._v("همه")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "radio" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentExist,
+                      expression: "currentExist"
+                    }
+                  ],
+                  staticClass: "mr-2",
+                  attrs: {
+                    type: "radio",
+                    name: "optradio",
+                    value: "available"
+                  },
+                  domProps: { checked: _vm._q(_vm.currentExist, "available") },
+                  on: {
+                    change: [
+                      function($event) {
+                        _vm.currentExist = "available"
+                      },
+                      function($event) {
+                        $event.preventDefault()
+                        return _vm.setExisting($event)
+                      }
+                    ]
+                  }
+                }),
+                _c("strong", [_vm._v("موجود")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "radio disabled" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentExist,
+                      expression: "currentExist"
+                    }
+                  ],
+                  staticClass: "mr-2",
+                  attrs: {
+                    type: "radio",
+                    name: "optradio",
+                    value: "unavailable"
+                  },
+                  domProps: {
+                    checked: _vm._q(_vm.currentExist, "unavailable")
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        _vm.currentExist = "unavailable"
+                      },
+                      function($event) {
+                        $event.preventDefault()
+                        return _vm.setExisting($event)
+                      }
+                    ]
+                  }
+                }),
+                _c("strong", [_vm._v("نا موجود")])
+              ])
+            ])
+          ])
+        ])
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -197,14 +435,41 @@ var render = function() {
         _vm._v(" "),
         _c("pagination", {
           attrs: { data: _vm.products, limit: 1 },
-          on: { "pagination-change-page": _vm.fetchProduts }
+          on: { "pagination-change-page": _vm.fetchProducts }
         })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex justify-content-center mb-5" },
+      [
+        _c(
+          "router-link",
+          { staticClass: "btn btn-custome", attrs: { to: { name: "home" } } },
+          [_vm._v("صفحه اصلی")]
+        )
       ],
       1
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "my-1 mr-2",
+        attrs: { for: "inlineFormCustomSelectPref" }
+      },
+      [_c("h4", [_c("strong", [_vm._v(" مرتب سازی ")])])]
+    )
+  }
+]
 render._withStripped = true
 
 

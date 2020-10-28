@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="d-flex flex-column align-items-center mx-auto">
+    <div class="d-flex flex-column align-items-center mx-auto ">
       <div class="col-md-6">
         <header class="my-3">
           <div class="d-flex justify-content-between">

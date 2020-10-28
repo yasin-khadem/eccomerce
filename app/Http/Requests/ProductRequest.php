@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 use function Symfony\Component\VarDumper\Dumper\esc;
@@ -29,7 +30,7 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|string',
                 'description' => 'required|string',
-                'code' => 'required|string',
+                'code' => 'required|string|unique:products',
                 // 'image'=>'required|string',
                 'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
@@ -38,7 +39,7 @@ class ProductRequest extends FormRequest
             return [
                 'name' => 'required|string',
                 'description' => 'required|string',
-                'code' => 'required|string',
+                'code' => 'required|string|unique:products,code, ' . $this->product->id,
                 // 'image'=>'required|string',
                 'price' => 'required|numeric|min:1000',
                 'selectedTags.0' => 'required',
@@ -56,6 +57,7 @@ class ProductRequest extends FormRequest
             'name.string' => 'نام باید رشته باشد',
             'code.required' => 'کد محصول الزامی است',
             'code.numeric' => 'کد محصول باید عدد باشد',
+            'code.unique' => 'کد محصول قبلا استفاده شده',
             'description.required' => 'توضیحات الزامی است',
             'description.string' => 'توضیحات باید رشته باشد',
         ];

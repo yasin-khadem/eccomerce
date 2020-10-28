@@ -1,13 +1,74 @@
 <template>
   <div>
-    <div class="d-flex justify-content-around mt-3">
-      <h5 class=" ml-3 my-auto">
+    <!-- test -->
+    <div
+      class=" mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
+    >
+    <div class="mx-auto  mt-5">
+      <h4 class="alert alert-primary">
         <strong> دسته بندی {{ this.$route.params.slug }} </strong>
-      </h5>
-      <router-link :to="{ name: 'home' }" class="btn btn-primary mr-3"
-        >صفحه اصلی</router-link
-      >
+      </h4>
     </div>
+      <div class="mx-auto mt-1">
+        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
+          <h4><strong> مرتب سازی </strong></h4>
+        </label>
+        <select
+          @change.prevent="onChange($event)"
+          v-model="currentSortBy"
+          dir="ltr"
+          class="custom-select my-1 mr-sm-2 bg-select text-white"
+          id="inlineFormCustomSelectPref"
+        >
+          <option value="expensive">گران ترین</option>
+          <option value="cheapest">ارزان ترین</option>
+          <option value="newest">جدید ترین</option>
+          <option value="oldest">قدیمی ترین</option>
+        </select>
+
+        <div class="d-flex justify-content-around mt-3">
+          <div class="radio">
+            <label
+              ><input
+                type="radio"
+                class="mr-2"
+                name="optradio"
+                value="both"
+                @change.prevent="setExisting($event)"
+                v-model="currentExist"
+              /><strong>همه</strong></label
+            >
+          </div>
+          <div class="radio">
+            <label
+              ><input
+                type="radio"
+                class="mr-2"
+                name="optradio"
+                value="available"
+                @change.prevent="setExisting($event)"
+                v-model="currentExist"
+              /><strong>موجود</strong></label
+            >
+          </div>
+          <div class="radio disabled">
+            <label
+              ><input
+                type="radio"
+                class="mr-2"
+                name="optradio"
+                value="unavailable"
+                @change.prevent="setExisting($event)"
+                v-model="currentExist"
+              /><strong>نا موجود</strong></label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- test -->
     <div class="container mt-4">
       <div
         class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5"
@@ -22,9 +83,13 @@
       </div>
       <pagination
         :data="products"
-        @pagination-change-page="fetchProduts"
+        @pagination-change-page="fetchProducts"
         :limit="1"
       ></pagination>
+    </div>
+
+    <div class="d-flex justify-content-center mb-5">
+      <router-link class="btn btn-custome" :to="{name: 'home'}">صفحه اصلی</router-link>
     </div>
   </div>
 </template>
@@ -45,6 +110,8 @@ export default {
   },
   data() {
     return {
+      currentExist: "both",
+      currentSortBy: "",
       formatToman: require("prial").formatToman,
     };
   },
@@ -52,16 +119,32 @@ export default {
     ...mapState("product", ["products"]),
   },
   created() {
-    this.fetchProduts(this.$route.query.page);
+    let columns = ["expensive", "cheapest", "newest", "oldest"];
+    let exists = ["available", "unavailable", "both"];
+    let sortBy = this.$route.query.sortBy;
+    this.currentSortBy = columns.includes(sortBy) ? sortBy : "newest";
+    let existing = this.$route.query.existing;
+    this.currentExist = exists.includes(existing) ? existing : "both";
+    this.fetchProducts(this.$route.query.page);
   },
   methods: {
-    fetchProduts(page = 1) {
+    fetchProducts(page = 1) {
       let queries = this.$route.query;
       queries.page = page;
-      this.$store.dispatch("product/getTaggedProducts", {
+      queries.existing = this.currentExist;
+      queries.sortBy = this.currentSortBy;
+      return this.$store.dispatch("product/getTaggedProducts", {
         queries,
         params: this.$route.params,
       });
+    },
+    onChange(event) {
+      this.$route.query.page = 1;
+      this.fetchProducts(this.$route.query.page);
+    },
+    setExisting() {
+      this.$route.query.page = 1;
+      this.fetchProducts(this.$route.query.page);
     },
   },
 };
@@ -74,11 +157,24 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   transition: 500ms;
 }
-.card {
+.card{
   -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   transition: 500ms;
+}
+.alert{
+    -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+}
+html[dir="rtl"] .custom-select {
+  background-color: #0276fd;
+}
+
+.btn-custome{
+  background-color: #0276fd;
+  color: #fff;
 }
 </style>
 

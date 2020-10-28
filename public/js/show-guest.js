@@ -66,9 +66,17 @@ __webpack_require__.r(__webpack_exports__);
       return _.isEmpty(this.product.related_products) ? false : true;
     }
   },
+  beforeCreate: function beforeCreate() {
+    var user = localStorage.getItem('user');
+
+    if (user) {
+      window.location.href = window.location.origin + "/product/show/" + this.$route.params.slug;
+    }
+  },
   created: function created() {
     var _this = this;
 
+    localStorage.removeItem('nextUrl');
     axios.get("/api/product-guest/".concat(this.slug)).then(function (_ref) {
       var data = _ref.data;
       _this.product = data;

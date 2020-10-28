@@ -344,12 +344,7 @@ var render = function() {
                                     "router-link",
                                     {
                                       staticClass: "nav-link",
-                                      attrs: {
-                                        to: {
-                                          name: "profile",
-                                          params: { url: "show" }
-                                        }
-                                      }
+                                      attrs: { to: { name: "profile" } }
                                     },
                                     [
                                       [_vm._v("پروفایل من")],
@@ -716,12 +711,7 @@ var render = function() {
                                   "router-link",
                                   {
                                     staticClass: "dropdown-item",
-                                    attrs: {
-                                      to: {
-                                        name: "profile",
-                                        params: { url: "show" }
-                                      }
-                                    }
+                                    attrs: { to: { name: "profile" } }
                                   },
                                   [
                                     _vm._v(

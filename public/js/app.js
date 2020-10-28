@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile":"js/profile","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile-show":"js/profile-show","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71905,8 +71905,8 @@ var Purchased = function Purchased() {
   return Promise.all(/*! import() | js/Purchased */[__webpack_require__.e("vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user"), __webpack_require__.e("js/Purchased")]).then(__webpack_require__.bind(null, /*! ../views/dashboard/Purchased.vue */ "./resources/js/views/dashboard/Purchased.vue"));
 };
 
-var Profile = function Profile() {
-  return __webpack_require__.e(/*! import() | js/profile */ "js/profile").then(__webpack_require__.bind(null, /*! ../views/dashboard/Profile.vue */ "./resources/js/views/dashboard/Profile.vue"));
+var ProfileShow = function ProfileShow() {
+  return __webpack_require__.e(/*! import() | js/profile-show */ "js/profile-show").then(__webpack_require__.bind(null, /*! ../views/dashboard/ProfileShow.vue */ "./resources/js/views/dashboard/ProfileShow.vue"));
 };
 
 var HomeTagged = function HomeTagged() {
@@ -71956,9 +71956,9 @@ var AdminGallery = function AdminGallery() {
     name: 'product-show-guest',
     component: ShowGuest,
     props: true,
-    meta: {
-      middleware: [_middleware_guest_show_page__WEBPACK_IMPORTED_MODULE_3__["default"]]
-    },
+    // meta: {
+    //     middleware: [guestShowPage]
+    // },
     children: [{
       path: ':slug',
       name: 'product-show-slug-guest'
@@ -71968,9 +71968,9 @@ var AdminGallery = function AdminGallery() {
     name: 'product-show',
     component: Show,
     props: true,
-    meta: {
-      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    },
+    // meta: {
+    //     middleware: [auth]
+    // },
     children: [{
       path: ':slug',
       name: 'product-show-slug'
@@ -71984,10 +71984,9 @@ var AdminGallery = function AdminGallery() {
       middleware: [_middleware_guest__WEBPACK_IMPORTED_MODULE_4__["default"]]
     }
   }, {
-    path: 'profile/:url',
+    path: 'profile-info',
     name: 'profile',
-    component: Profile,
-    props: true,
+    component: ProfileShow,
     meta: {
       middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
     }

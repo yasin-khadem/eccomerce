@@ -13,6 +13,7 @@
               بازگشت
             </router-link>
           </div>
+          
         </header>
       </div>
       <div class="col-md-6">
@@ -23,14 +24,20 @@
             label="کد محصول"
             v-model="form.code"
           ></base-input>
-          <base-input
-            name="description"
-            label="توضیحات"
-            v-model="form.description"
-          ></base-input>
-          <button class="btn btn-primary my-2" @click.prevent="changeExisting">
-            تغییر موجودیت
-          </button>
+
+          <div class="form-groupe">
+            <label for="description">توضیحات</label>
+            <div class="form-group bmd-form-group">
+              <textarea
+                class="form-control"
+                name="description"
+                id="description"
+                v-model="form.description"
+              ></textarea>
+              <has-error :form="form" field="description"></has-error>
+            </div>
+          </div>
+
           <base-input
             name="price"
             label="قیمت"
@@ -56,7 +63,15 @@
             <input id="image" type="file" @change="changeImage" />
             <has-error :form="form" field="image"></has-error>
           </div>
+          <div class="d-flex justify-content-between">
           <base-btn class="mt-3" :loading="form.busy">ذخیره</base-btn>
+            <button
+              class="btn btn-primary mt-2"
+              @click.prevent="changeExisting"
+            >
+              تغییر موجودیت
+            </button>
+          </div>
         </form>
       </div>
     </div>

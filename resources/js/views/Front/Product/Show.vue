@@ -108,6 +108,12 @@ export default {
       return _.isEmpty(this.product.confirmed_comments) ? false : true;
     },
   },
+  beforeCreate(){
+    let user = localStorage.getItem('user');
+    if(!user){
+      window.location.href = window.location.origin + "/product/show-guest/" + this.$route.params.slug;
+    }
+  },
   created() {
     localStorage.removeItem('nextUrl');
     axios
@@ -130,7 +136,7 @@ export default {
       this.comment
         .post("/api/comment")
         .then(({ data }) => {
-          swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+          swal.message("پس از تایید ادمین ثبت میشود", "info", 3000);
           this.comment.body = null;
         })
         .catch((e) => {

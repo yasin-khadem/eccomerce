@@ -106,6 +106,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -557,7 +558,9 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "mt-3" }, [
-        _c("h4", [_vm._v("جست و جو")]),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("h5", [_vm._v("(عبارت جست و جو به صورت کامل باید تایپ شود)")]),
         _vm._v(" "),
         _c(
           "div",
@@ -595,7 +598,7 @@ var render = function() {
               "div",
               { staticClass: "mt-3 flex flex-row" },
               [
-                _vm._m(1),
+                _vm._m(2),
                 _vm._v(" "),
                 _c(
                   "base-btn",
@@ -618,7 +621,7 @@ var render = function() {
       { staticClass: "table-responsive" },
       [
         _c("table", { staticClass: "table table-striped" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c(
             "tbody",
@@ -634,7 +637,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(order.product_name))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(order.display_code))]),
+                _c("td", [_vm._v(_vm._s(order.product_code))]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(order.address))]),
                 _vm._v(" "),
@@ -703,6 +706,12 @@ var staticRenderFns = [
     return _c("div", { staticClass: "d-flex justify-content-center" }, [
       _c("div", { staticClass: "card" }, [_c("h5", [_vm._v("لیست سفارش ها")])])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h4", [_c("strong", [_vm._v("جست و جو")])])
   },
   function() {
     var _vm = this

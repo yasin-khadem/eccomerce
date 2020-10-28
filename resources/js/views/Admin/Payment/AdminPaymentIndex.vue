@@ -8,10 +8,19 @@
       </div>
 
       <div class="mt-3">
-        <h4>جست و جو</h4>
+        <h4><strong>جست و جو</strong></h4>
+        <h5>(عبارت جست و جو به صورت کامل باید تایپ شود)</h5>
         <div class="col-md-6 d-flex flex-row mb-3 search-input">
-          <base-input name="search" placeholder="بر اساس شناسه پرداخت یا کد محصول" v-model="form.search"></base-input>
-          <base-btn :loading="searchLoading" @click="searchPayment" class="ml-2 mb-2">
+          <base-input
+            name="search"
+            placeholder="بر اساس شناسه پرداخت یا کد محصول"
+            v-model="form.search"
+          ></base-input>
+          <base-btn
+            :loading="searchLoading"
+            @click="searchPayment"
+            class="ml-2 mb-2"
+          >
             <i class="fa fa-search"></i>
           </base-btn>
         </div>
@@ -51,7 +60,7 @@
             <td>{{ payment.user.name }}</td>
             <td>{{ payment.user.id }}</td>
             <td>{{ payment.order_id }}</td>
-            <td>{{ payment.display_code }}</td>
+            <td>{{ payment.product_code }}</td>
             <td>{{ payment.product_id }}</td>
             <td>{{ formatToman(payment.price) }}</td>
             <td>{{ moment(payment.created_at).format("jYYYY/jMM/jDD") }}</td>
@@ -112,7 +121,7 @@ export default {
       let queries = this.$route.query;
       queries.page = page;
       // let { data } = await axios.get(`/api/admin/payment?page=${page}`);
-      let { data } = await axios.get(`/api/admin/payment`, {params: queries});
+      let { data } = await axios.get(`/api/admin/payment`, { params: queries });
       window.history.replaceState(
         "payment",
         "Payment",

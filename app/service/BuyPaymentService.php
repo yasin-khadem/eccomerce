@@ -105,7 +105,7 @@ class BuyPaymentService
                 'title' => 'به مشکل خوردیم!',
                 'text' => 'قیمت نباید کمتر از هزار تومان باشد',
                 'icon' => 'error',
-                'confirm_text' => 'اوکی'
+                'confirm_text' => 'باشه'
             ]);
             $this->response = back();
         }

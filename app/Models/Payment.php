@@ -11,7 +11,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $appends = ['status', 'display_code'];
+    protected $appends = ['status'];
 
 
     protected $casts = [
@@ -41,13 +41,5 @@ class Payment extends Model
                 ->orWhere('product_code', request()->search);
         }
         return $builder;
-    }
-    public function getDisplayCodeAttribute()
-    {
-        $code = $this->product_code . "";
-        for ($i = 0; $i < 4 - strlen($code); $i++) {
-            $code = "0" . $code;
-            return $code;
-        }
     }
 }

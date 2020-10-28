@@ -86,7 +86,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get("/api/purchased?page=".concat(page)).then(function (_ref) {
         var data = _ref.data;
         _this.purchased = data;
-        window.history.pushState("purchased", "Purchased", "/purchased/index?page=".concat(page));
+        window.history.replaceState("purchased", "Purchased", "/purchased/index?page=".concat(page));
 
         if (_.isEmpty(_this.purchased.data)) {
           swal.message("هنوز خرید نکرده اید", "warning");
@@ -649,7 +649,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("header", { staticClass: "my-3" }, [
       _c("div", { staticClass: "d-flex justify-content-center" }, [
-        _c("h5", [_vm._v("لیست خرید های شما")])
+        _c("h4", { staticClass: "alert alert-dark" }, [
+          _vm._v("لیست خرید های شما")
+        ])
       ])
     ])
   },

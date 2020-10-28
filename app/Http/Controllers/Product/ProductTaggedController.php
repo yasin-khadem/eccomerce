@@ -16,7 +16,11 @@ class ProductTaggedController extends Controller
             Product::with('categories')
             ->whereHas('categories', function ($query) use ($category) {
                 $query->where('slug', $category->slug);
-            })->sortByUrl()->searchByUrl()->paginate(10)
+            })
+            ->sortByUrlHome()
+            ->filterHome()
+            // ->searchByUrl()
+            ->paginate(10)
         );
     }
 }

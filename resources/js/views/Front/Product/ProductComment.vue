@@ -4,13 +4,16 @@
       <div class="">
         <img :src="comment.user.profile_src" width="60" alt="" />
         <span class="d-name"
-          ><strong>{{ comment.user.name }}</strong></span>
+          ><strong>{{ comment.user.name }}</strong></span
+        >
       </div>
       <div class="my-auto">
         <i class="fa fa-reply px-2 cursor" @click="showTextArea"></i>
-        <i class="fa fa-trash text-danger px-2 cursor"
-         @click="deleteComment"
-         v-if="CanUserDelete"></i>
+        <i
+          class="fa fa-trash text-danger px-2 cursor"
+          @click="deleteComment"
+          v-if="CanUserDelete"
+        ></i>
       </div>
     </div>
     <div>
@@ -59,7 +62,7 @@
 <script>
 import { Form } from "vform";
 import ProductComment from "@/views/Front/Product/ProductComment.vue";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "ProductComment",
   props: {
@@ -79,14 +82,13 @@ export default {
     };
   },
   computed: {
-      CanUserDelete() {
-          return this.comment.user_id === this.user.id || this.user.is_admin === 1;
-      },
-      
-      ...mapGetters('auth',['user'])
+    CanUserDelete() {
+      return this.comment.user_id === this.user.id || this.user.is_admin === 1;
+    },
+
+    ...mapGetters("auth", ["user"]),
   },
-      
-  
+
   methods: {
     showTextArea() {
       this.isReply = !this.isReply;
@@ -99,8 +101,8 @@ export default {
     submitReplyComment() {
       this.replyComment
         .post(`/api/comment`)
-        .then(({ dat }) => {
-          swal.message("نظر شما پس از تایید ثبت میشود", "info", 3000);
+        .then(({ data }) => {
+          swal.message("پس از تایید ادمین ثبت میشود", "info", 3000);
           this.replyComment = null;
           this.isReply = !this.isReply;
         })
@@ -108,14 +110,14 @@ export default {
           swal.message("نظر شما ارسال نشد", "error");
         });
     },
-    deleteComment(){
-        this.$emit('delete-comment',this.comment);
-        axios.delete(`/api/comment/${this.comment.id}`);
+    deleteComment() {
+      this.$emit("delete-comment", this.comment);
+      axios.delete(`/api/comment/${this.comment.id}`);
     },
-    hideComment(comment){
-        let index = this.comment.reply_comments.indexOf(comment)
-        this.comment.reply_comments.splice(index,1)
-    }
+    hideComment(comment) {
+      let index = this.comment.reply_comments.indexOf(comment);
+      this.comment.reply_comments.splice(index, 1);
+    },
   },
 };
 </script>
@@ -127,7 +129,7 @@ export default {
 .cursor {
   cursor: pointer;
 }
-.d-name{
-    overflow: hidden;
+.d-name {
+  overflow: hidden;
 }
 </style>
