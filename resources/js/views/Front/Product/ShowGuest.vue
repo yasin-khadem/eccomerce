@@ -25,9 +25,9 @@ import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
 import MainProductShow from "@/views/Front/Product/MainProductShow.vue";
 export default {
   name: "ShowGuest",
-  metaInfo() {
+    metaInfo() {
     return {
-      title: "محصول " + this.slug,
+      title:  'خرید و سفارش' + ' ' + this.product.name + ' کد' + this.product.code,
     };
   },
   components: {

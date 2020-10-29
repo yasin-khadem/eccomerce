@@ -90,6 +90,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -349,7 +351,11 @@ var render = function() {
               [
                 _c("img", {
                   staticClass: "card-img-top w-100",
-                  attrs: { src: "/" + _vm.product.image_src, width: "100" }
+                  attrs: {
+                    src: "/" + _vm.product.image_src,
+                    width: "100",
+                    alt: _vm.product.name + " " + _vm.product.description
+                  }
                 })
               ]
             )
@@ -371,7 +377,11 @@ var render = function() {
               [
                 _c("img", {
                   staticClass: "card-img-top w-100",
-                  attrs: { src: "/" + _vm.product.image_src, width: "100" }
+                  attrs: {
+                    src: "/" + _vm.product.image_src,
+                    width: "100",
+                    alt: _vm.product.name + " " + _vm.product.description
+                  }
                 })
               ]
             )

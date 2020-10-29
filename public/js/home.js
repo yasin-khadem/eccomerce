@@ -223,7 +223,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   metaInfo: {
-    title: "صفحه اصلی"
+    title: 'فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری'
   },
   components: {
     Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -438,7 +438,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "about-us ml-3",
-                  attrs: { to: { name: "about-us" } }
+                  attrs: { to: { name: "about-us" }, title: "درباره ما" }
                 },
                 [_vm._v("ادامه")]
               )
@@ -468,13 +468,27 @@ var staticRenderFns = [
         _c("div", { staticClass: "d-flex justify-content-start" }, [
           _c(
             "a",
-            { attrs: { href: "https://www.instagram.com/dorvangem/?hl=en" } },
+            {
+              attrs: {
+                href: "https://www.instagram.com/dorvangem/?hl=en",
+                target: "_blank",
+                title: "پیج اینستگارام ما"
+              }
+            },
             [_c("i", { staticClass: "fab fa-instagram fa-2x px-3" })]
           ),
           _vm._v(" "),
-          _c("a", { attrs: { href: "https://t.me/dorvangem" } }, [
-            _c("i", { staticClass: "fab fa-telegram fa-2x px-3" })
-          ])
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://t.me/dorvangem",
+                target: "_blank",
+                title: "کانال تلگرام ما"
+              }
+            },
+            [_c("i", { staticClass: "fab fa-telegram fa-2x px-3" })]
+          )
         ])
       ])
     ])
@@ -515,7 +529,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", [
         _c("i", { staticClass: "fas fa-phone fa-2x" }),
-        _vm._v(" تماس: 09122604129")
+        _vm._v(" پشتیبانی: 09122604129")
       ]),
       _vm._v(" "),
       _c("p", [

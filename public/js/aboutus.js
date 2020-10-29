@@ -60,8 +60,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AboutUs",
+  metaInfo: {
+    title: "درباره ما",
+    meta: [{
+      name: "description",
+      content: "درباره ما"
+    }]
+  },
   created: function created() {
-    localStorage.removeItem('nextUrl');
+    localStorage.removeItem("nextUrl");
   }
 });
 
@@ -79,7 +86,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\np[data-v-21fd2bf6] {\r\n  line-height: 1.7;\r\n  color: #343a40;\n}\nul li[data-v-21fd2bf6] {\r\n  color: #9b27b0;\n}\n.city[data-v-21fd2bf6]{\r\n  color: red;\r\n  display: inline;\n}\r\n", ""]);
+exports.push([module.i, "\np[data-v-21fd2bf6] {\r\n  line-height: 1.7;\r\n  color: #343a40;\n}\nul li[data-v-21fd2bf6] {\r\n  color: #9b27b0;\n}\n.city[data-v-21fd2bf6] {\r\n  color: red;\r\n  display: inline;\n}\r\n", ""]);
 
 // exports
 
@@ -138,8 +145,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container mt-2 col-md-6 " }, [
-      _c("div", { staticClass: "pt-2 pr-4 pl-2  alert alert-secondary mt-3" }, [
+    return _c("div", { staticClass: "container mt-2 col-md-6" }, [
+      _c("div", { staticClass: "pt-2 pr-4 pl-2 alert alert-secondary mt-3" }, [
         _c("div", { staticClass: "container" }, [
           _c("ul", [
             _c("li", { staticClass: "mb-3 mt-1" }, [
@@ -158,9 +165,9 @@ var staticRenderFns = [
                   _vm._v(
                     "\n              ارسال محصولات خریداری شده توسط شما به وسیله ی پست انجام میشود\n              (محصولات دارای ابعاد بزرگ فقط در شهر های\n              "
                   ),
-                  _c("p", { staticClass: "city" }, [_vm._v(" تهران ")]),
+                  _c("p", { staticClass: "city" }, [_vm._v("تهران")]),
                   _vm._v("\n              و\n              "),
-                  _c("p", { staticClass: "city" }, [_vm._v(" کرج ")]),
+                  _c("p", { staticClass: "city" }, [_vm._v("کرج")]),
                   _vm._v(
                     "\n\n              و شهرک های هم جوار قابل ارسال میباشد)\n            "
                   )

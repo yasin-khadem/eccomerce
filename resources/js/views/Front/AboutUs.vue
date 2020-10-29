@@ -1,6 +1,6 @@
 <template>
-  <div class="container mt-2 col-md-6 ">
-    <div class="pt-2 pr-4 pl-2  alert alert-secondary mt-3">
+  <div class="container mt-2 col-md-6">
+    <div class="pt-2 pr-4 pl-2 alert alert-secondary mt-3">
       <div class="container">
         <ul>
           <li class="mb-3 mt-1">
@@ -17,9 +17,9 @@
               <strong>
                 ارسال محصولات خریداری شده توسط شما به وسیله ی پست انجام میشود
                 (محصولات دارای ابعاد بزرگ فقط در شهر های
-                <p class="city"> تهران </p>
+                <p class="city">تهران</p>
                 و
-                <p class="city"> کرج </p>
+                <p class="city">کرج</p>
 
                 و شهرک های هم جوار قابل ارسال میباشد)
               </strong>
@@ -49,10 +49,21 @@
 
 <script>
 export default {
-  name:"AboutUs",
-  created(){
-        localStorage.removeItem('nextUrl');
-  }
+  name: "AboutUs",
+
+  metaInfo: {
+    title: "درباره ما",
+    meta: [
+      {
+        name: "description",
+        content:
+          "درباره ما",
+      },
+    ],
+  },
+  created() {
+    localStorage.removeItem("nextUrl");
+  },
 };
 </script>
 
@@ -64,7 +75,7 @@ p {
 ul li {
   color: #9b27b0;
 }
-.city{
+.city {
   color: red;
   display: inline;
 }

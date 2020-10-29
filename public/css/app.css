@@ -16836,10 +16836,10 @@ a.text-dark:focus {
 }
 
 @font-face {
-  font-family: "iransans";
+  font-family: "IRANSansWeb";
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/iransans.ttf?e59513c82578df5dafb6b8da951be9b6);
+  src: url(/fonts/IRANSansWeb.ttf?c26a9eb202b3ef6455281f0335cfffe9);
 }
 
 body,
@@ -16855,7 +16855,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: iransans, Arial, Helvetica, sans-serif !important;
+  font-family: IRANSansWeb, Arial, Helvetica, sans-serif !important;
 }
 
 #bg-navbar {

@@ -11,7 +11,7 @@
             جهت رضایت خریدار گام بردارد...
           </p>
           <h5>
-            <router-link :to="{ name: 'about-us' }" class="about-us ml-3"
+            <router-link :to="{ name: 'about-us' }" class="about-us ml-3" title="درباره ما"
               >ادامه</router-link
             >
           </h5>
@@ -20,10 +20,10 @@
           <h4>مارا دنبال کنید</h4>
           <div class="mt-3">
             <div class="d-flex justify-content-start">
-              <a href="https://www.instagram.com/dorvangem/?hl=en"
+              <a href="https://www.instagram.com/dorvangem/?hl=en" target="_blank" title="پیج اینستگارام ما"
                 ><i class="fab fa-instagram fa-2x px-3"></i
               ></a>
-              <a href="https://t.me/dorvangem"
+              <a href="https://t.me/dorvangem" target="_blank" title="کانال تلگرام ما"
                 ><i class="fab fa-telegram fa-2x px-3"></i
               ></a>
             </div>
@@ -41,7 +41,7 @@
         <div class="col-md-6 col-lg-3 my-3 footer-contact">
           <h4>ارتباط با ما</h4>
          
-          <p><i class="fas fa-phone fa-2x"></i> تماس: 09122604129</p>
+          <p><i class="fas fa-phone fa-2x"></i> پشتیبانی: 09122604129</p>
           <p>
             <i class="fas fa-envelope fa-2x"></i> ایمیل:
             <a>dorvangem@gmail.com</a>

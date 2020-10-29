@@ -417,7 +417,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "Show",
   metaInfo: function metaInfo() {
     return {
-      title: "محصول " + this.slug
+      title: 'خرید و سفارش' + ' ' + this.product.name + ' کد' + this.product.code
     };
   },
   components: {

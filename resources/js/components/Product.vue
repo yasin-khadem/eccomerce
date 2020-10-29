@@ -11,6 +11,7 @@
           :src="'/' + product.image_src"
           class="card-img-top w-100"
           width="100"
+          :alt="product.name + ' ' + product.description"
         />
       </router-link>
     </template>
@@ -25,6 +26,7 @@
           :src="'/' + product.image_src"
           class="card-img-top w-100"
           width="100"
+          :alt="product.name + ' ' + product.description"
         />
       </router-link>
     </template>
@@ -38,7 +40,9 @@
             params: { slug: product.slug },
           }"
         >
-          <h5 class="card-title link-name">{{ product.name }}</h5>
+          <h3 class="card-title link-name">
+            <small>{{ product.name }}</small>
+          </h3>
         </router-link>
       </template>
       <template v-if="!isLoggedIn">
@@ -49,23 +53,33 @@
             params: { slug: product.slug },
           }"
         >
-          <h5 class="card-title link-name">{{ product.name }}</h5>
+          <h3 class="card-title link-name">
+            <small>
+              {{ product.name }}
+            </small>
+          </h3>
         </router-link>
       </template>
-      <h5 class="card-category mb-3">
+      <h4 class="card-category mb-3">
         <small>
           کد:
           {{ product.code }}
         </small>
-      </h5>
-      <h6 class="card-title">
-        <strong> {{ formatToman(product.price) }} </strong>
-      </h6>
+      </h4>
+      <h4 class="card-title">
+        <small>
+          <strong> {{ formatToman(product.price) }} </strong>
+        </small>
+      </h4>
     </div>
     <div class="card-footer">
-      <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{
-        product.is_exist
-      }}</strong>
+      <h4>
+        <small>
+          <strong :class="[product.exist ? 'text-success' : 'text-danger']">{{
+            product.is_exist
+          }}</strong>
+        </small>
+      </h4>
     </div>
   </div>
 </template>

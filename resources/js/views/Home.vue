@@ -127,8 +127,9 @@ import Footer from "@/components/Footer.vue";
 import { mapState } from "vuex";
 export default {
   name: "Home",
-  metaInfo: {
-    title: "صفحه اصلی",
+  metaInfo:{
+    title: 'فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری',
+   
   },
   components: {
     Product,

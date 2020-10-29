@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "ShowGuest",
   metaInfo: function metaInfo() {
     return {
-      title: "محصول " + this.slug
+      title: 'خرید و سفارش' + ' ' + this.product.name + ' کد' + this.product.code
     };
   },
   components: {

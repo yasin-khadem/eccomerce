@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["js/home-tagged~js/show~js/show-guest"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Product.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
@@ -18,18 +18,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -418,8 +406,8 @@ var render = function() {
                     }
                   },
                   [
-                    _c("h3", { staticClass: "card-title link-name" }, [
-                      _c("small", [_vm._v(_vm._s(_vm.product.name))])
+                    _c("h5", { staticClass: "card-title link-name" }, [
+                      _vm._v(_vm._s(_vm.product.name))
                     ])
                   ]
                 )
@@ -440,21 +428,15 @@ var render = function() {
                     }
                   },
                   [
-                    _c("h3", { staticClass: "card-title link-name" }, [
-                      _c("small", [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(_vm.product.name) +
-                            "\n          "
-                        )
-                      ])
+                    _c("h5", { staticClass: "card-title link-name" }, [
+                      _vm._v(_vm._s(_vm.product.name))
                     ])
                   ]
                 )
               ]
             : _vm._e(),
           _vm._v(" "),
-          _c("h4", { staticClass: "card-category mb-3" }, [
+          _c("h5", { staticClass: "card-category mb-3" }, [
             _c("small", [
               _vm._v(
                 "\n        کد:\n        " +
@@ -464,11 +446,9 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("h4", { staticClass: "card-title" }, [
-            _c("small", [
-              _c("strong", [
-                _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
-              ])
+          _c("h6", { staticClass: "card-title" }, [
+            _c("strong", [
+              _vm._v(" " + _vm._s(_vm.formatToman(_vm.product.price)) + " ")
             ])
           ])
         ],
@@ -476,15 +456,11 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer" }, [
-        _c("h4", [
-          _c("small", [
-            _c(
-              "strong",
-              { class: [_vm.product.exist ? "text-success" : "text-danger"] },
-              [_vm._v(_vm._s(_vm.product.is_exist))]
-            )
-          ])
-        ])
+        _c(
+          "strong",
+          { class: [_vm.product.exist ? "text-success" : "text-danger"] },
+          [_vm._v(_vm._s(_vm.product.is_exist))]
+        )
       ])
     ],
     2

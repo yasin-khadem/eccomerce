@@ -2,13 +2,13 @@
   <div>
     <!-- test -->
     <div
-      class=" mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
+      class="mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
     >
-    <div class="mx-auto  mt-5">
-      <h4 class="alert alert-primary">
-        <strong> دسته بندی {{ this.$route.params.slug }} </strong>
-      </h4>
-    </div>
+      <div class="mx-auto mt-5">
+        <h4 class="alert alert-primary">
+          <strong> دسته بندی {{ this.$route.params.slug }} </strong>
+        </h4>
+      </div>
       <div class="mx-auto mt-1">
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">
           <h4><strong> مرتب سازی </strong></h4>
@@ -66,7 +66,6 @@
         </div>
       </div>
     </div>
-    
 
     <!-- test -->
     <div class="container mt-4">
@@ -89,7 +88,9 @@
     </div>
 
     <div class="d-flex justify-content-center mb-5">
-      <router-link class="btn btn-custome" :to="{name: 'home'}">صفحه اصلی</router-link>
+      <router-link class="btn btn-custome" :to="{ name: 'home' }"
+        >صفحه اصلی</router-link
+      >
     </div>
   </div>
 </template>
@@ -102,7 +103,7 @@ export default {
   name: "HomeTagged",
   metaInfo() {
     return {
-      title: `محصولات دسته ${this.$route.params.slug} `,
+      title: `خرید و سفارش ${this.$route.params.slug}`,
     };
   },
   components: {
@@ -157,14 +158,14 @@ export default {
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);
   transition: 500ms;
 }
-.card{
+.card {
   -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   transition: 500ms;
 }
-.alert{
-    -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
+.alert {
+  -webkit-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);
 }
@@ -172,7 +173,7 @@ html[dir="rtl"] .custom-select {
   background-color: #0276fd;
 }
 
-.btn-custome{
+.btn-custome {
   background-color: #0276fd;
   color: #fff;
 }

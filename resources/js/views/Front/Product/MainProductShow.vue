@@ -14,7 +14,7 @@
                   <img
                     class="d-block w-100"
                     :src="'/' + product.image_src"
-                    alt="First slide"
+                    :alt="product.name + ' ' + product.description"
                   />
                 </a>
               </div>
@@ -28,7 +28,7 @@
                   <img
                     class="d-block w-100"
                     :src="'/' + item.gallery_src"
-                    alt="Second slide"
+                    :alt="item.description"
                   />
                 </a>
               </div>
@@ -70,6 +70,7 @@
                 <img
                   class="d-block w-100 img-fluid"
                   :src="'/' + product.image_src"
+                  :alt="product.name + ' ' + product.description"
                 />
               </li>
               <li
@@ -81,6 +82,7 @@
                 <img
                   class="d-block w-100 img-fluid"
                   :src="'/' + item.gallery_src"
+                  :alt="item.description"
                 />
               </li>
             </ol>
@@ -88,7 +90,11 @@
         </template>
         <template v-if="!ShowCarousel">
           <a :href="'/' + product.image_src">
-            <img :src="'/' + product.image_src" class="card-img-top w-100" />
+            <img
+              :src="'/' + product.image_src"
+              class="card-img-top w-100"
+              :alt="product.name + ' ' + product.description"
+            />
           </a>
         </template>
       </div>
@@ -251,7 +257,7 @@ export default {
 .width-80 {
   width: 85%;
 }
-.margin-badge{
+.margin-badge {
   margin: 1px 0;
 }
 </style>

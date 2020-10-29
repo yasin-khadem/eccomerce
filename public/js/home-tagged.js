@@ -115,6 +115,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -122,7 +123,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "HomeTagged",
   metaInfo: function metaInfo() {
     return {
-      title: "\u0645\u062D\u0635\u0648\u0644\u0627\u062A \u062F\u0633\u062A\u0647 ".concat(this.$route.params.slug, " ")
+      title: "\u062E\u0631\u06CC\u062F \u0648 \u0633\u0641\u0627\u0631\u0634 ".concat(this.$route.params.slug)
     };
   },
   components: {
@@ -182,7 +183,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.card[data-v-759b2790]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-759b2790]{\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.alert[data-v-759b2790]{\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-759b2790] {\r\n  background-color: #0276fd;\n}\n.btn-custome[data-v-759b2790]{\r\n  background-color: #0276fd;\r\n  color: #fff;\n}\r\n", ""]);
+exports.push([module.i, "\n.card[data-v-759b2790]:hover {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.49);\r\n  transition: 500ms;\n}\n.card[data-v-759b2790] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\r\n  transition: 500ms;\n}\n.alert[data-v-759b2790] {\r\n  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.25);\n}\nhtml[dir=\"rtl\"] .custom-select[data-v-759b2790] {\r\n  background-color: #0276fd;\n}\n.btn-custome[data-v-759b2790] {\r\n  background-color: #0276fd;\r\n  color: #fff;\n}\r\n", ""]);
 
 // exports
 
@@ -239,10 +240,10 @@ var render = function() {
       "div",
       {
         staticClass:
-          " mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
+          "mx-auto row row-cols-12 row-cols-sm-12 row-cols-md-12 row-cols-lg-12 row-cols-xl-12"
       },
       [
-        _c("div", { staticClass: "mx-auto  mt-5" }, [
+        _c("div", { staticClass: "mx-auto mt-5" }, [
           _c("h4", { staticClass: "alert alert-primary" }, [
             _c("strong", [
               _vm._v(" دسته بندی " + _vm._s(this.$route.params.slug) + " ")
