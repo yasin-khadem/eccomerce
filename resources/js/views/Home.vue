@@ -108,12 +108,14 @@
         </div>
       </div>
     </div>
-    <div>
-      <pagination
-        :data="products"
-        @pagination-change-page="fetchProducts"
-        :limit="1"
-      ></pagination>
+    <div class="container">
+      <div>
+        <pagination
+          :data="products"
+          @pagination-change-page="fetchProducts"
+          :limit="1"
+        ></pagination>
+      </div>
     </div>
     <Footer class="footer-style"></Footer>
   </div>
@@ -127,9 +129,9 @@ import Footer from "@/components/Footer.vue";
 import { mapState } from "vuex";
 export default {
   name: "Home",
-  metaInfo:{
-    title: 'فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری',
-   
+  metaInfo: {
+    title:
+      "فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری",
   },
   components: {
     Product,

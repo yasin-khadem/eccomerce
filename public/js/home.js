@@ -215,6 +215,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -223,7 +225,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
   metaInfo: {
-    title: 'فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری'
+    title: "فروشگاه اینترنتی dorvangem | خرید سنگ های قیمتی و نیمه قیمتی و محصولات هنری"
   },
   components: {
     Product: _components_Product_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -818,16 +820,18 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c("pagination", {
-            attrs: { data: _vm.products, limit: 1 },
-            on: { "pagination-change-page": _vm.fetchProducts }
-          })
-        ],
-        1
-      ),
+      _c("div", { staticClass: "container" }, [
+        _c(
+          "div",
+          [
+            _c("pagination", {
+              attrs: { data: _vm.products, limit: 1 },
+              on: { "pagination-change-page": _vm.fetchProducts }
+            })
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c("Footer", { staticClass: "footer-style" })
     ],
