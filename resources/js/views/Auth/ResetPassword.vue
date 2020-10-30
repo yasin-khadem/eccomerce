@@ -4,7 +4,7 @@
       class="d-flex flex-column align-items-center mt-5 login-width mx-auto py-2 container"
       @submit.prevent="resetPassword"
     >
-      <h3>فرم بازیابی رمز</h3>
+      <h3>ایجاد رمز جدید</h3>
       <base-input
         name="email"
         type="email"

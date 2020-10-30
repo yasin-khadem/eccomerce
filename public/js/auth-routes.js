@@ -755,7 +755,7 @@ var render = function() {
         }
       },
       [
-        _c("h3", [_vm._v("فرم بازیابی رمز")]),
+        _c("h3", [_vm._v("ایجاد رمز جدید")]),
         _vm._v(" "),
         _c("base-input", {
           attrs: { name: "email", type: "email", label: "ایمیل" },

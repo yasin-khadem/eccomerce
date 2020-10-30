@@ -48,15 +48,11 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         $ressetPasswordUrl = config('frontend.reset_password_url') . "?token={$this->token}";
-        // $data = ['name'=> $this->user->name, 'email' => $this->user->email,'link'=> $ressetPasswordUrl];
       
         Mail::send(new ResetPasswordMarkdown($ressetPasswordUrl, $this->user->name,$this->user->email,$this->token));
         dump('sending email');
         return response(['ok'],200);
-        // return (new MailMessage)
-        //             ->line('برای بازیابی رمز از لینک زیر استفاده کنید.')
-        //             ->action('بازیابی رمز', $ressetPasswordUrl)
-        //             ->line('ممنون از عضویت شما در وبسایت ما');
+       
     }
     /**
      * Get the array representation of the notification.
