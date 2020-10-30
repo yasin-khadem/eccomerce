@@ -90,7 +90,6 @@ __webpack_require__.r(__webpack_exports__);
 
         if (_.isEmpty(_this.purchased.data)) {
           swal.message("هنوز خرید نکرده اید", "warning");
-          window.history.back();
         }
       });
     }

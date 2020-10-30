@@ -201,6 +201,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -220,7 +224,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.$store.dispatch("auth/logout").then(function () {
-        swal.message('از حساب خود خارج شدید', 'warning');
+        swal.message("از حساب خود خارج شدید", "warning");
 
         _this.$router.push({
           name: "home"
@@ -311,7 +315,7 @@ var render = function() {
               staticClass: "navbar-brand mt-1",
               attrs: { to: { name: "home" } }
             },
-            [_c("h4", [_c("strong", [_vm._v("DorvanGem")])])]
+            [_c("h4", [_vm._v("DorvanGem")])]
           ),
           _vm._v(" "),
           _vm._m(0),
@@ -325,7 +329,7 @@ var render = function() {
             [
               _c(
                 "ul",
-                { staticClass: "mt-2 navbar-nav mr-auto " },
+                { staticClass: "mt-2 navbar-nav mr-auto" },
                 [
                   !_vm.isLoggedIn
                     ? [
@@ -343,6 +347,27 @@ var render = function() {
                                 [_vm._v("صفحه اصلی")],
                                 _vm._v(" "),
                                 _c("i", { staticClass: "fas fa-home mx-2" })
+                              ],
+                              2
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "li",
+                          { staticClass: "nav-item" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "nav-link",
+                                attrs: { to: { name: "dashboard-index" } }
+                              },
+                              [
+                                [_vm._v("دسته بندی ها")],
+                                _vm._v(" "),
+                                _c("i", { staticClass: "fa fa-list-alt mx-2" })
                               ],
                               2
                             )
@@ -397,6 +422,29 @@ var render = function() {
                                       _vm._v(" "),
                                       _c("i", {
                                         staticClass: "fas fa-home mx-2"
+                                      })
+                                    ],
+                                    2
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "li",
+                                { staticClass: "nav-item" },
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "nav-link",
+                                      attrs: { to: { name: "dashboard-index" } }
+                                    },
+                                    [
+                                      [_vm._v("دسته بندی ها")],
+                                      _vm._v(" "),
+                                      _c("i", {
+                                        staticClass: "fa fa-list-alt mx-2"
                                       })
                                     ],
                                     2

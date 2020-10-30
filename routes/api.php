@@ -35,6 +35,7 @@ Route::group([
 });
 
 Route::apiResource('product', 'Product\ProductController');
+Route::get('categories-guest', 'Front\CategoryController@index');
 Route::get('product-guest/{product}', 'Product\ProductGuestController@show');
 Route::get('product/tagged/{category}', 'Product\ProductTaggedController@index');
 Route::apiResource('order', 'Order\OrderController')->middleware(['auth:api']);

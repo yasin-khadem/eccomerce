@@ -26,9 +26,5 @@
     "/js/show-guest.js": "/js/show-guest.js",
     "/js/show~js/show-guest.js": "/js/show~js/show-guest.js",
     "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js": "/vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user.js",
-    "/vendors~js/admin-product.js": "/vendors~js/admin-product.js",
-    "/js/home-tagged~js/show~js/show-guest.js": "/js/home-tagged~js/show~js/show-guest.js",
-    "/js/auth-routes~js/home~js/home-tagged~js/show-guest.js": "/js/auth-routes~js/home~js/home-tagged~js/show-guest.js",
-    "/js/auth-routes~js/home~js/home-tagged~js/show.js": "/js/auth-routes~js/home~js/home-tagged~js/show.js",
-    "/js/auth-routes~js/home~js/show~js/show-guest.js": "/js/auth-routes~js/home~js/show~js/show-guest.js"
+    "/vendors~js/admin-product.js": "/vendors~js/admin-product.js"
 }

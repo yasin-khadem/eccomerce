@@ -3,8 +3,8 @@
     <div class="container">
       <nav class="row navbar navbar-expand-lg navbar-dark bg-dark" dir="ltr">
         <router-link class="navbar-brand mt-1" :to="{ name: 'home' }"
-          ><h4><strong>DorvanGem</strong></h4>
-          </router-link>
+          ><h4>DorvanGem</h4>
+        </router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -18,37 +18,45 @@
         </button>
 
         <div class="collapse navbar-collapse mb-1" id="navbarSupportedContent">
-          <ul class="mt-2 navbar-nav mr-auto ">
-          <template v-if="!isLoggedIn">
-                  <li class="nav-item">
+          <ul class="mt-2 navbar-nav mr-auto">
+            <template v-if="!isLoggedIn">
+              <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'home' }">
                   <template class="mr-2">صفحه اصلی</template>
                   <i class="fas fa-home mx-2"></i>
                 </router-link>
               </li>
-               <li class="nav-item">
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
+                  <template class="mr-2">دسته بندی ها</template>
+                  <i class="fa fa-list-alt mx-2"></i>
+                </router-link>
+              </li>
+              <li class="nav-item">
                 <div class="mx-auto">
                   <router-link class="nav-link" :to="{ name: 'about-us' }">
                     <template class="mr-2">درباره ما</template>
                     <i class="fas fa-info-circle mx-2" aria-hidden="true"></i>
                   </router-link>
                 </div>
-                </li>
-          </template>
+              </li>
+            </template>
             <template v-if="isLoggedIn">
-             
               <template v-if="isLoggedIn && !user.is_admin">
-               <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'home' }">
-                  <template class="mr-2">صفحه اصلی</template>
-                  <i class="fas fa-home mx-2"></i>
+                <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'home' }">
+                    <template class="mr-2">صفحه اصلی</template>
+                    <i class="fas fa-home mx-2"></i>
+                  </router-link>
+                </li>
+                <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'dashboard-index' }">
+                  <template class="mr-2">دسته بندی ها</template>
+                  <i class="fa fa-list-alt mx-2"></i>
                 </router-link>
               </li>
                 <li class="nav-item">
-                  <router-link
-                    class="nav-link"
-                    :to="{ name: 'profile'}"
-                  >
+                  <router-link class="nav-link" :to="{ name: 'profile' }">
                     <template class="mr-2">پروفایل من</template>
                     <i class="fas fa-user mx-2" aria-hidden="true"></i>
                   </router-link>
@@ -59,31 +67,34 @@
                     <i class="fas fa-shopping-bag mx-2" aria-hidden="true"></i>
                   </router-link>
                 </li>
-                
+
                 <li class="nav-item">
-                <div class="mx-auto">
-                  <router-link class="nav-link" :to="{ name: 'about-us' }">
-                    <template class="mr-2">درباره ما</template>
-                    <i class="fas fa-info-circle mx-2" aria-hidden="true"></i>
-                  </router-link>
-                </div>
+                  <div class="mx-auto">
+                    <router-link class="nav-link" :to="{ name: 'about-us' }">
+                      <template class="mr-2">درباره ما</template>
+                      <i class="fas fa-info-circle mx-2" aria-hidden="true"></i>
+                    </router-link>
+                  </div>
                 </li>
 
                 <li class="nav-item">
-                <a class="nav-link" @click.prevent="logout">
-                  <template class="mr-2">خروج</template>
-                  <i class="fa fa-sign-out-alt mx-2"></i>
-                </a>
-              </li>
+                  <a class="nav-link" @click.prevent="logout">
+                    <template class="mr-2">خروج</template>
+                    <i class="fa fa-sign-out-alt mx-2"></i>
+                  </a>
+                </li>
               </template>
               <!-- admin -->
               <template v-if="isLoggedIn && user.is_admin">
-               <li class="nav-item">
-                <router-link class="nav-link" :to="{ name: 'admin-gallery', params:{url:'index'} }">
-                  <template class="mr-2">گالری</template>
-                  <i class="far fa-images mx-2"></i>
-                </router-link>
-              </li>
+                <li class="nav-item">
+                  <router-link
+                    class="nav-link"
+                    :to="{ name: 'admin-gallery', params: { url: 'index' } }"
+                  >
+                    <template class="mr-2">گالری</template>
+                    <i class="far fa-images mx-2"></i>
+                  </router-link>
+                </li>
                 <li class="nav-item">
                   <router-link
                     class="nav-link"
@@ -120,11 +131,8 @@
                     <i class="fas fa-scroll mx-2"></i>
                   </router-link>
                 </li>
-                 <li class="nav-item">
-                  <router-link
-                    class="nav-link"
-                    :to="{ name: 'admin-comment'}"
-                  >
+                <li class="nav-item">
+                  <router-link class="nav-link" :to="{ name: 'admin-comment' }">
                     <template class="mr-2">نظرات</template>
                     <i class="fa fa-comment mx-2"></i>
                   </router-link>
@@ -140,7 +148,6 @@
                 </li>
               </template>
               <!-- admin -->
-              
             </template>
           </ul>
           <div class="form-inline my-2 my-lg-0" dir="rtl">
@@ -166,10 +173,7 @@
                   class="dropdown-menu background-dropdown-menu-color"
                   :class="dropDownShow"
                 >
-                  <router-link
-                    class="dropdown-item"
-                    :to="{ name: 'profile'}"
-                  >
+                  <router-link class="dropdown-item" :to="{ name: 'profile' }">
                     پروفایل
                   </router-link>
                   <a class="dropdown-item" href="#" @click="logout">خروج</a>
@@ -203,7 +207,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout").then(() => {
-        swal.message('از حساب خود خارج شدید','warning')
+        swal.message("از حساب خود خارج شدید", "warning");
         this.$router.push({ name: "home" });
       });
     },

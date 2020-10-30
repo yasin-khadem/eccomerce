@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard":"js/Dashboard","js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile-show":"js/profile-show","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile-show":"js/profile-show","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -71861,10 +71861,6 @@ var DashboardIndex = function DashboardIndex() {
   return __webpack_require__.e(/*! import() | js/Dashboard-index */ "js/Dashboard-index").then(__webpack_require__.bind(null, /*! ../views/dashboard/DashboardIndex.vue */ "./resources/js/views/dashboard/DashboardIndex.vue"));
 };
 
-var Dashboard = function Dashboard() {
-  return __webpack_require__.e(/*! import() | js/Dashboard */ "js/Dashboard").then(__webpack_require__.bind(null, /*! ../views/dashboard/Dashboard.vue */ "./resources/js/views/dashboard/Dashboard.vue"));
-};
-
 var AdminDashboardIndex = function AdminDashboardIndex() {
   return __webpack_require__.e(/*! import() | js/admin-Dashboard-index */ "js/admin-Dashboard-index").then(__webpack_require__.bind(null, /*! ../views/admin/AdminDashboardIndex.vue */ "./resources/js/views/admin/AdminDashboardIndex.vue"));
 };
@@ -71991,16 +71987,12 @@ var AdminGallery = function AdminGallery() {
       middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
     }
   }, {
-    path: '/dashboard',
-    component: Dashboard,
+    path: '/categories-guest',
+    name: 'dashboard-index',
+    component: DashboardIndex,
     meta: {
-      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
-    },
-    children: [{
-      path: 'index',
-      name: 'dashboard-index',
-      component: DashboardIndex
-    }]
+      description: ['fdsfdsfdf']
+    }
   }, {
     path: '/admin/dashboard',
     component: AdminDashboard,
