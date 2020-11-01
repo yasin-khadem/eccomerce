@@ -70844,7 +70844,11 @@ __webpack_require__(/*! bootstrap-material-design */ "./node_modules/bootstrap-m
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.use(vue_meta__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
-if (false) {}
+if (true) {
+  Vue.config.devtools = false;
+  Vue.config.debug = false;
+  Vue.config.silent = true;
+}
 
 var files = __webpack_require__("./resources/js/components sync recursive Base[A-Z]\\w+\\.vue$/");
 
