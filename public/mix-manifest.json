@@ -1,7 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/Dashboard.js": "/js/Dashboard.js",
     "/js/Dashboard-index.js": "/js/Dashboard-index.js",
     "/js/Purchased.js": "/js/Purchased.js",
     "/js/aboutus.js": "/js/aboutus.js",
@@ -21,6 +20,8 @@
     "/js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest.js": "/js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest.js",
     "/js/home.js": "/js/home.js",
     "/js/home-tagged.js": "/js/home-tagged.js",
+    "/js/product-order.js": "/js/product-order.js",
+    "/js/product-order~js/show.js": "/js/product-order~js/show.js",
     "/js/profile-show.js": "/js/profile-show.js",
     "/js/show.js": "/js/show.js",
     "/js/show-guest.js": "/js/show-guest.js",

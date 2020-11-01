@@ -1,22 +1,10 @@
 <template>
   <div class="container mt-5">
     <!--  محل نمایش محصول    -->
-
     <main-product-show
       :product="product"
-      @setOrderForm="setOrderForm"
     ></main-product-show>
     <!--  محل نمایش محصول    -->
-
-    <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
-    <order-form
-      v-if="orderForm"
-      :orderForm="orderForm"
-      :formProduct="formProduct"
-      :product="product"
-    >
-    </order-form>
-    <!--   فرم ثبت سفارش آدرش ، شماره تلفن ، کد پستی    -->
 
     <!-- محل کامنت -->
     <div>
@@ -70,7 +58,6 @@ import { Form } from "vform";
 import { mapState } from "vuex";
 import Product from "@/components/Product.vue";
 import RelatedProducts from "@/views/Front/Product/RelatedProducts.vue";
-import OrderForm from "@/views/Front/Product/OrderForm.vue";
 import MainProductShow from "@/views/Front/Product/MainProductShow.vue";
 import ProductComment from "@/views/Front/Product/ProductComment.vue";
 export default {
@@ -83,7 +70,6 @@ export default {
   components: {
     Product,
     RelatedProducts,
-    OrderForm,
     MainProductShow,
     ProductComment,
   },
@@ -96,8 +82,6 @@ export default {
       }),
       product: {},
       slug: this.$route.params.slug,
-      orderForm: false,
-      formProduct: {},
     };
   },
   computed: {
@@ -120,7 +104,6 @@ export default {
       .get(`/api/product/${this.slug}`)
       .then(({ data }) => {
         this.product = data;
-        this.formProduct = data;
         this.comment.product_id = data.id;
       })
       .catch(({ response }) => {
@@ -129,9 +112,7 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
-    setOrderForm(event) {
-      this.orderForm = event;
-    },
+   
     submitComment() {
       this.comment
         .post("/api/comment")

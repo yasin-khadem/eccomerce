@@ -25,7 +25,7 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         DB::table('orders')->whereNull('payment_id')
-            ->where('created_at', '<', now()->subHour(1))->delete();
+            ->where('created_at', '<', now()->subHour())->delete();
         Order::create([
             'user_id' => $request->user()->id,
             'customer_name' => $request->user()->name,

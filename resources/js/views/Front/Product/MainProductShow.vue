@@ -133,14 +133,15 @@
               <a class="badge badge-tags">{{ category.name }}</a>
             </router-link>
           </div>
-          <template v-if="isLoggedIn">
-            <a
+          <template v-if="isLoggedIn && ProductExist">
+          <router-link class="btn btn-primary mt-3" :to="{name:'product-buy-slug', params:{slug:this.$route.params.slug}}">سفارش</router-link>
+       <!--     <a
               href="#"
               class="btn btn-primary up-show-card mt-3"
               @click.prevent="showOrderForm"
               v-if="ProductExist"
               >سفارش</a
-            >
+            >   -->
           </template>
           <template v-if="!isLoggedIn && ProductExist">
             <button
@@ -192,32 +193,8 @@ export default {
         "nextUrl",
         window.location.origin + "/product/show/" + this.product.slug
       );
-      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2700);
+      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2300);
       this.$router.push({ name: "auth", params: { url: "login" } });
-    },
-    showOrderForm() {
-      this.orderForm = true;
-      window.scrollTo(0, 0);
-
-      this.$emit("setOrderForm", true);
-      if ($(document).width() > 750) {
-        window.scrollTo(0, 400);
-      } else {
-        swal
-          .confirm(
-            "آیا مایل به ثبت سفارش هستید",
-            "info",
-            "برای ثبت سفارش تایید را بزنید"
-          )
-          .then((result) => {
-            if (result.value) {
-              window.scrollTo(0, 700);
-            } else {
-              this.orderForm = false;
-              this.$emit("setOrderForm", false);
-            }
-          });
-      }
     },
   },
 };

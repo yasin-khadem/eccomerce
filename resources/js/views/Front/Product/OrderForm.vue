@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex justify-content-center mt-3">
       <div class="card order-card text-white">
         <h3>ثبت سفارش</h3>
       </div>
@@ -92,10 +92,6 @@ import { Form } from "vform";
 export default {
   name: "OrderForm",
   props: { 
-    orderForm: {
-      type: Boolean,
-      required: true,
-    },
     formProduct: {
       type: [Object, Array],
       required: true,
@@ -109,7 +105,7 @@ export default {
     return {
       showBuyBotton: false,
       form: new Form({
-        product: this.formProduct,
+        product: {},
         phone_number: null,
         mobile_number: null,
         post_code: null,
@@ -122,6 +118,17 @@ export default {
         address: null,
       },
     };
+  },
+  created(){
+    axios
+      .get(`/api/product/${this.$route.params.slug}`)
+      .then(({ data }) => {
+        this.form.product = data;
+        
+      })
+      .catch(({ response }) => {
+        if (response.status === 404) this.$router.push({ name: "not-found" });
+      });
   },
   methods: {
     continueToBuy() {

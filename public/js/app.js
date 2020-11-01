@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/profile-show":"js/profile-show","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"js/Dashboard-index":"js/Dashboard-index","js/aboutus":"js/aboutus","js/admin-Dashboard":"js/admin-Dashboard","js/admin-Dashboard-index":"js/admin-Dashboard-index","js/admin-category":"js/admin-category","js/admin-comments":"js/admin-comments","js/admin-gallery":"js/admin-gallery","js/admin-layout~js/applayout":"js/admin-layout~js/applayout","js/admin-layout":"js/admin-layout","js/applayout":"js/applayout","js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest":"js/auth-routes~js/home~js/home-tagged~js/show~js/show-guest","js/home":"js/home","js/auth-routes":"js/auth-routes","js/home-tagged":"js/home-tagged","js/show~js/show-guest":"js/show~js/show-guest","js/show":"js/show","js/show-guest":"js/show-guest","js/product-order":"js/product-order","js/profile-show":"js/profile-show","vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user":"vendors~js/Purchased~js/admin-orders~js/admin-payments~js/admin-product~js/admin-user","js/Purchased":"js/Purchased","js/admin-orders":"js/admin-orders","js/admin-payments":"js/admin-payments","js/admin-user":"js/admin-user","vendors~js/admin-product":"vendors~js/admin-product","js/admin-product":"js/admin-product"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -70842,11 +70842,9 @@ __webpack_require__(/*! bootstrap-material-design */ "./node_modules/bootstrap-m
 
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-Vue.use(vue_meta__WEBPACK_IMPORTED_MODULE_0__["default"]); // if (process.env.MIX_APP_ENV === 'production'){
-//     Vue.config.devtools = false;
-//     Vue.config.debug = false;
-//     Vue.config.silent = true;
-// }
+Vue.use(vue_meta__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+if (false) {}
 
 var files = __webpack_require__("./resources/js/components sync recursive Base[A-Z]\\w+\\.vue$/");
 
@@ -71929,6 +71927,10 @@ var AdminGallery = function AdminGallery() {
   return __webpack_require__.e(/*! import() | js/admin-gallery */ "js/admin-gallery").then(__webpack_require__.bind(null, /*! ../views/Admin/Gallery/AdminGallery.vue */ "./resources/js/views/Admin/Gallery/AdminGallery.vue"));
 };
 
+var ProductOrder = function ProductOrder() {
+  return __webpack_require__.e(/*! import() | js/product-order */ "js/product-order").then(__webpack_require__.bind(null, /*! ../views/Front/Product/ProductOrder.vue */ "./resources/js/views/Front/Product/ProductOrder.vue"));
+};
+
 /* harmony default export */ __webpack_exports__["default"] = ([{
   path: '/',
   component: AppLayout,
@@ -71962,6 +71964,18 @@ var AdminGallery = function AdminGallery() {
     children: [{
       path: ':slug',
       name: 'product-show-slug-guest'
+    }]
+  }, {
+    path: '/product/buy',
+    name: 'product-buy',
+    component: ProductOrder,
+    props: true,
+    meta: {
+      middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    },
+    children: [{
+      path: ':slug',
+      name: 'product-buy-slug'
     }]
   }, {
     path: '/product/show',

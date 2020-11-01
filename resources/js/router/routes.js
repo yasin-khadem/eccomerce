@@ -26,6 +26,7 @@ const AboutUs = () => import(/* webpackChunkName: "js/aboutus" */ '../views/Fron
 const Show = () => import(/* webpackChunkName: "js/show" */ '../views/Front/Product/Show.vue');
 const ShowGuest = () => import(/* webpackChunkName: "js/show-guest" */ '../views/Front/Product/ShowGuest.vue');
 const AdminGallery = () => import(/* webpackChunkName: "js/admin-gallery" */ '../views/Admin/Gallery/AdminGallery.vue');
+const ProductOrder = () => import(/* webpackChunkName: "js/product-order" */ '../views/Front/Product/ProductOrder.vue');
  
 
 export default [
@@ -68,6 +69,21 @@ export default [
                     {
                         path: ':slug',
                         name: 'product-show-slug-guest'
+                    }
+                ]
+            },
+            {
+                path:'/product/buy',
+                name: 'product-buy',
+                component: ProductOrder,
+                props: true,
+                meta:{
+                    middleware: [auth]
+                },
+                children: [
+                    {
+                        path: ':slug',
+                        name: 'product-buy-slug'
                     }
                 ]
             },

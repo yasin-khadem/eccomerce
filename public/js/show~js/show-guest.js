@@ -179,6 +179,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -205,34 +206,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: {
     redirectToLogin: function redirectToLogin() {
       localStorage.setItem("nextUrl", window.location.origin + "/product/show/" + this.product.slug);
-      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2700);
+      swal.message("برای سفارش باید وارد سایت شوید", "warning", 2300);
       this.$router.push({
         name: "auth",
         params: {
           url: "login"
         }
       });
-    },
-    showOrderForm: function showOrderForm() {
-      var _this = this;
-
-      this.orderForm = true;
-      window.scrollTo(0, 0);
-      this.$emit("setOrderForm", true);
-
-      if ($(document).width() > 750) {
-        window.scrollTo(0, 400);
-      } else {
-        swal.confirm("آیا مایل به ثبت سفارش هستید", "info", "برای ثبت سفارش تایید را بزنید").then(function (result) {
-          if (result.value) {
-            window.scrollTo(0, 700);
-          } else {
-            _this.orderForm = false;
-
-            _this.$emit("setOrderForm", false);
-          }
-        });
-      }
     }
   }
 });
@@ -613,24 +593,21 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm.isLoggedIn
+            _vm.isLoggedIn && _vm.ProductExist
               ? [
-                  _vm.ProductExist
-                    ? _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-primary up-show-card mt-3",
-                          attrs: { href: "#" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.showOrderForm($event)
-                            }
-                          }
-                        },
-                        [_vm._v("سفارش")]
-                      )
-                    : _vm._e()
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary mt-3",
+                      attrs: {
+                        to: {
+                          name: "product-buy-slug",
+                          params: { slug: this.$route.params.slug }
+                        }
+                      }
+                    },
+                    [_vm._v("سفارش")]
+                  )
                 ]
               : _vm._e(),
             _vm._v(" "),
